@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { BookOpen, GraduationCap, Mail, Phone, Globe, FileText, User, Award, CheckCircle } from 'lucide-react';
+import { BookOpen, GraduationCap, Globe, FileText, User, Award, CheckCircle } from 'lucide-react';
 
 export default function Home() {
   const [lang, setLang] = useState('fa');
@@ -24,7 +24,7 @@ export default function Home() {
         'مدرس دوره‌های تخصصی ریاضیات دانشگاهی و دبیرستان'
       ],
       contactTitle: 'ارتباط با استاد',
-      contactText: 'جهت رزرو وقت مشاوره و کلاس‌های آنلاین، می‌توانید از طریق ایمیل دانشگاهی یا پیام‌رسان‌ها با من در ارتباط باشید.',
+      contactText: 'جهت رزرو وقت مشاوره و کلاس‌های آنلاین، می‌توانید از طریق ایمیل دانشگاهی با من در ارتباط باشید.',
       email: 'ایمیل دانشگاهی: h.mohammadi@university.ac.ir',
       footer: 'تمامی حقوق محفوظ است © 2026 دکتر هادی محمدی',
       menu: {
@@ -54,7 +54,7 @@ export default function Home() {
         'Instructor of specialized university and high school mathematics'
       ],
       contactTitle: 'Contact Me',
-      contactText: 'To book a consultation session and online classes, you can contact me via institutional email or messaging apps.',
+      contactText: 'To book a consultation session and online classes, you can contact me via institutional email.',
       email: 'Academic Email: h.mohammadi@university.ac.ir',
       footer: 'All rights reserved © 2026 Dr. Hadi Mohammadi',
       menu: {
@@ -98,19 +98,19 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 to-indigo-800 text-white py-20 px-4 text-center">
+      <section className="bg-gradient-to-br from-blue-950 to-indigo-900 text-white py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
-          <div className="w-32 h-32 bg-white/10 rounded-full mx-auto mb-6 flex items-center justify-center border-2 border-white/20">
+          <div className="w-32 h-32 bg-white/10 rounded-full mx-auto mb-6 flex items-center justify-center border-2 border-white/20 shadow-inner">
             <GraduationCap size={64} className="text-blue-200" />
           </div>
           <h1 className="text-4xl md:text-5xl font-black mb-4">{t.name}</h1>
           <p className="text-xl md:text-2xl text-blue-200 font-medium mb-2">{t.title}</p>
           <p className="text-slate-300 max-w-2xl mx-auto mb-8">{t.subtitle}</p>
           <div className="flex justify-center gap-4">
-            <a href="#contact" className="bg-white text-blue-900 font-bold px-6 py-3 rounded-lg shadow hover:bg-blue-50 transition">
+            <a href="#contact" className="bg-white text-blue-950 font-bold px-6 py-3 rounded-lg shadow hover:bg-blue-50 transition">
               {lang === 'fa' ? 'رزرو مشاوره و کلاس' : 'Book a Session'}
             </a>
-            <a href="#books" className="bg-blue-700 text-white font-bold px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition">
+            <a href="#books" className="bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow hover:bg-blue-500 transition">
               {t.menu.books}
             </a>
           </div>
@@ -120,7 +120,7 @@ export default function Home() {
       {/* About Section */}
       <section id="about" className="py-16 px-4 max-w-4xl mx-auto">
         <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-          <h2 className="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-2">
+          <h2 className="text-2xl font-bold text-blue-950 mb-4 flex items-center gap-2">
             <User className="text-blue-600" /> {t.aboutTitle}
           </h2>
           <p className="text-slate-700 leading-relaxed text-lg">{t.aboutText}</p>
@@ -131,7 +131,7 @@ export default function Home() {
       <section id="books" className="py-16 px-4 bg-slate-100">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-blue-900 mb-2 flex items-center justify-center gap-2">
+            <h2 className="text-3xl font-bold text-blue-950 mb-2 flex items-center justify-center gap-2">
               <BookOpen className="text-blue-600" /> {t.booksTitle}
             </h2>
             <p className="text-slate-600">{t.booksSub}</p>
@@ -139,7 +139,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col justify-between">
               <div>
-                <h3 className="font-bold text-lg text-slate-900 mb-2">رضیات پیشرفته دبیرستان و آمادگی کنکور / آزمون‌های بین‌المللی</h3>
+                <h3 className="font-bold text-lg text-slate-900 mb-2">ریاضیات پیشرفته دبیرستان و آزمون‌های بین‌المللی</h3>
                 <p className="text-slate-600 text-sm mb-4">شامل درسنامه کامل، مثال‌های حل‌شده و تمرین‌های استاندارد.</p>
               </div>
               <a href="#" className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-800 text-sm">
@@ -162,7 +162,7 @@ export default function Home() {
       {/* Classes Section */}
       <section id="classes" className="py-16 px-4 max-w-4xl mx-auto">
         <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 text-center">
-          <h2 className="text-2xl font-bold text-blue-900 mb-4">{t.classesTitle}</h2>
+          <h2 className="text-2xl font-bold text-blue-950 mb-4">{t.classesTitle}</h2>
           <p className="text-slate-700 text-lg max-w-2xl mx-auto">{t.classesDesc}</p>
         </div>
       </section>
@@ -170,7 +170,7 @@ export default function Home() {
       {/* CV Section */}
       <section id="cv" className="py-16 px-4 bg-slate-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-blue-900 mb-6 flex items-center gap-2">
+          <h2 className="text-2xl font-bold text-blue-950 mb-6 flex items-center gap-2">
             <Award className="text-blue-600" /> {t.cvTitle}
           </h2>
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
@@ -188,9 +188,9 @@ export default function Home() {
 
       {/* Contact Section */}
       <section id="contact" className="py-16 px-4 max-w-4xl mx-auto text-center">
-        <h2 className="text-2xl font-bold text-blue-900 mb-4">{t.contactTitle}</h2>
+        <h2 className="text-2xl font-bold text-blue-950 mb-4">{t.contactTitle}</h2>
         <p className="text-slate-600 mb-6">{t.contactText}</p>
-        <div className="bg-blue-900 text-white p-6 rounded-2xl inline-block shadow-md">
+        <div className="bg-blue-950 text-white p-6 rounded-2xl inline-block shadow-md">
           <p className="font-medium text-lg">{t.email}</p>
         </div>
       </section>
