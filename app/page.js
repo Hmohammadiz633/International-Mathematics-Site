@@ -1,5 +1,9 @@
+
+import ContactButtons from '../components/ContactButtons';
+<ContactButtons />
 'use client';
-import { useState } from 'react';
+import { useState } from '
+  react';
 import { BookOpen, GraduationCap, Globe, FileText, User, Award, CheckCircle } from 'lucide-react';
 
 export default function Home() {
@@ -202,3 +206,5 @@ export default function Home() {
     </div>
   );
 }
+
+
