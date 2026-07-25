@@ -4,7 +4,7 @@ export default function ContactButtons() {
   return (
     <div className="flex flex-col gap-4 w-full max-w-lg mx-auto mt-6" dir="rtl">
       
-      {/* کادر ۱: آدرس تلگرام آموزش بین‌المللی ریاضیات */}
+      {/* کادر ۱: تلگرام */}
       <a
         href="https://t.me/International_Maths"
         target="_blank"
@@ -16,7 +16,7 @@ export default function ContactButtons() {
             ✈️
           </div>
           <div className="text-right">
-            <span className="block text-xs text-slate-500 font-medium mb-1">کانال تلگرام</span>
+            <span className="block text-xs text-slate-500 font-medium mb-0.5">آدرس تلگرام</span>
             <span className="text-sm md:text-base font-bold text-slate-800">آموزش بین‌المللی ریاضیات</span>
           </div>
         </div>
@@ -25,7 +25,7 @@ export default function ContactButtons() {
         </span>
       </a>
 
-      {/* کادر ۲: آدرس اینستاگرام */}
+      {/* کادر ۲: اینستاگرام */}
       <a
         href="https://instagram.com/Hadi_mohammadi_zarandini"
         target="_blank"
@@ -37,8 +37,8 @@ export default function ContactButtons() {
             📸
           </div>
           <div className="text-right">
-            <span className="block text-xs text-slate-500 font-medium mb-1">صفحه اینستاگرام</span>
-            <span className="text-sm md:text-base font-bold text-slate-800">آدرس اینستاگرام</span>
+            <span className="block text-xs text-slate-500 font-medium mb-0.5">آدرس اینستاگرام</span>
+            <span className="text-sm md:text-base font-bold text-slate-800">Hadi_mohammadi_zarandini</span>
           </div>
         </div>
         <span className="text-xs font-mono text-pink-600 bg-pink-50 px-3 py-1.5 rounded-lg ltr">
@@ -46,7 +46,7 @@ export default function ContactButtons() {
         </span>
       </a>
 
-      {/* کادر ۳: آدرس جیمیل */}
+      {/* کادر ۳: جیمیل */}
       <a
         href="mailto:Hadi.mohammadi.zarandini@gmail.com"
         className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-200 group"
@@ -56,8 +56,8 @@ export default function ContactButtons() {
             ✉️
           </div>
           <div className="text-right">
-            <span className="block text-xs text-slate-500 font-medium mb-1">پست الکترونیکی</span>
-            <span className="text-sm md:text-base font-bold text-slate-800">آدرس جیمیل</span>
+            <span className="block text-xs text-slate-500 font-medium mb-0.5">آدرس جیمیل</span>
+            <span className="text-sm md:text-base font-bold text-slate-800">ارسال ایمیل به استاد</span>
           </div>
         </div>
         <span className="text-xs font-mono text-red-600 bg-red-50 px-2.5 py-1.5 rounded-lg ltr break-all">
