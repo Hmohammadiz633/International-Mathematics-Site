@@ -53,7 +53,7 @@ export default function Home() {
       <header className="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           
-          {/* سمت راست منو (بدون اسم) */}
+          {/* سمت راست منو */}
           <div className="flex items-center gap-2">
             <span className="text-xl">📐</span>
           </div>
@@ -99,12 +99,12 @@ export default function Home() {
             />
           </div>
 
-          {/* متن اصلی با فونت بزرگ‌تر */}
+          {/* عنوان اصلی */}
           <h1 className="text-3xl md:text-5xl font-extrabold mb-3">
             {lang === 'fa' ? 'آموزش بین المللی ریاضیات' : 'International Mathematics Education'}
           </h1>
 
-          {/* زیرعنوان (اسم) با فونت کوچک‌تر */}
+          {/* زیرعنوان (نام استاد) */}
           <h2 className="text-xl md:text-3xl font-semibold text-slate-200 mb-2">
             {lang === 'fa' ? 'دکتر هادی محمدی' : 'Dr. Hadi Mohammadi'}
           </h2>
@@ -127,14 +127,14 @@ export default function Home() {
           </h2>
           <p className="text-slate-600 leading-relaxed text-justify text-base md:text-lg">
             {lang === 'fa' 
-              ? 'اینجانب دکتر هادی محمدی، دارای مدرک دکتری تخصصی ریاضی و عضو هیأت علمی یکی از دانشگاه‌های تهران هستم. با سال‌ها تجربه در امر تدریس دانشگاهی و مدارس برتر، تخصصی ویژه‌ای در آموزش آنلاین ریاضیات (از مقطع دبیرستان تا دانشگاه، شامل سیستم‌های IB, AP, A-Level و دروس دانشگاهی) به دانش‌آموزان و دانشجویان ایرانی مقیم خارج از کشور دارم.'
-              : 'I am Dr. Hadi Mohammadi, holding a Ph.D. in Mathematics and serving as a university faculty member. With extensive experience teaching at top universities and high schools, I specialize in online mathematics education tailored for students worldwide.'
+              ? 'اینجانب دکتر هادی محمدی، دارای مدرک دکتری تخصصی ریاضی از دانشگاه صنعتی امیرکبیر (پلی‌تکنیک تهران) و عضو هیأت علمی دانشگاه هستم. با سال‌ها تجربه در امر تدریس دانشگاهی و مدارس برتر، تخصص ویژه‌ای در آموزش آنلاین ریاضیات (از مقطع دبیرستان تا دانشگاه، شامل سیستم‌های IB, AP, A-Level و دروس دانشگاهی) به دانش‌آموزان و دانشجویان ایرانی مقیم خارج از کشور دارم.'
+              : 'I am Dr. Hadi Mohammadi, holding a Ph.D. in Mathematics from Amirkabir University of Technology (Tehran Polytechnic) and serving as a university faculty member. With extensive experience teaching at top universities and high schools, I specialize in online mathematics education tailored for students worldwide.'
             }
           </p>
         </div>
       </section>
 
-      {/* ۳. بخش کتاب‌های تدریس‌شده (آکاردئونی هوشمند) */}
+      {/* ۳. بخش کتاب‌های تدریس‌شده */}
       <section id="books" className="max-w-5xl mx-auto my-16 px-4 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-2 flex items-center justify-center gap-2">
           <span className="text-3xl">📚</span>
@@ -252,7 +252,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ۵. بخش سوابق علمی و پژوهشی */}
+      {/* ۵. بخش سوابق علمی و پژوهشی (اصلاح‌شده) */}
       <section id="resume" className="max-w-5xl mx-auto my-16 px-4">
         <div className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-slate-100">
           <div className="flex items-center justify-center gap-2 mb-8 text-[#1e295d]">
@@ -264,7 +264,7 @@ export default function Home() {
           
           <ul className="space-y-4 max-w-2xl mx-auto text-right">
             <li className="flex items-center justify-between text-base md:text-lg text-slate-700 border-b border-slate-100 pb-3">
-              <span>{lang === 'fa' ? 'دکتری تخصصی ریاضی از دانشگاه‌های برتر تهران' : 'Ph.D. in Mathematics from top universities in Tehran'}</span>
+              <span>{lang === 'fa' ? 'دکتری تخصصی ریاضی از دانشگاه صنعتی امیرکبیر (پلی‌تکنیک تهران)' : 'Ph.D. in Mathematics from Amirkabir University of Technology (Tehran Polytechnic)'}</span>
               <span className="text-blue-600 font-bold">✓</span>
             </li>
             <li className="flex items-center justify-between text-base md:text-lg text-slate-700 border-b border-slate-100 pb-3">
@@ -283,7 +283,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ۶. بخش ارتباط با استاد (۳ کادر) */}
+      {/* ۶. بخش ارتباط با استاد */}
       <section id="contact" className="max-w-5xl mx-auto my-16 px-4 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-3">
           {lang === 'fa' ? 'ارتباط با استاد' : 'Contact Professor'}
