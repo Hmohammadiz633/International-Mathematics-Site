@@ -13,8 +13,8 @@ const CATEGORIES = [
   { id: 'university', title: 'کتاب‌های دانشگاهی' },
 ];
 
-// لیست مقاطع تحصیلی
-const GRADES = [
+// لیست مقاطع تحصیلی دانش‌آموزی
+const SCHOOL_GRADES = [
   { id: 'g7', title: 'سال هفتم' },
   { id: 'g8', title: 'سال هشتم' },
   { id: 'g9', title: 'سال نهم' },
@@ -23,28 +23,46 @@ const GRADES = [
   { id: 'g12', title: 'سال دوازدهم' },
 ];
 
+// لیست کتاب‌های اختصاصی دانشگاهی
+const UNIVERSITY_BOOKS = [
+  { id: 'thomas', title: 'کتاب ریاضی عمومی توماس' },
+  { id: 'stewart', title: 'کتاب ریاضی عمومی استوارت' },
+  { id: 'stewart-sol', title: 'کتاب حل تمرین استوارت' },
+  { id: 'adams', title: 'کتاب ریاضی عمومی آدامز' },
+  { id: 'adams-sol', title: 'کتاب حل تمرین آدامز' },
+  { id: 'math2-eng', title: 'کتاب ریاضی عمومی ۲ مهندسی' },
+  { id: 'math-med-ca', title: 'کتاب ریاضی عمومی پزشکی کانادا' },
+  { id: 'prob-stat', title: 'کتاب آمار و احتمالات مهندسی' },
+  { id: 'complex-num', title: 'کتاب اعداد مختلط' },
+  { id: 'num-analysis', title: 'کتاب محاسبات عددی' },
+  { id: 'applied-math', title: 'کتاب ریاضی کاربردی' },
+];
+
 export default function Home() {
   const [lang, setLang] = useState('fa');
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedGrade, setSelectedGrade] = useState(null);
+  const [selectedSubItem, setSelectedSubItem] = useState(null);
 
   const handleCategoryClick = (catId) => {
     if (selectedCategory === catId) {
       setSelectedCategory(null);
-      setSelectedGrade(null);
+      setSelectedSubItem(null);
     } else {
       setSelectedCategory(catId);
-      setSelectedGrade(null);
+      setSelectedSubItem(null);
     }
   };
 
-  const handleGradeClick = (gradeId) => {
-    if (selectedGrade === gradeId) {
-      setSelectedGrade(null);
+  const handleSubItemClick = (itemId) => {
+    if (selectedSubItem === itemId) {
+      setSelectedSubItem(null);
     } else {
-      setSelectedGrade(gradeId);
+      setSelectedSubItem(itemId);
     }
   };
+
+  const isUniversity = selectedCategory === 'university';
+  const subItemList = isUniversity ? UNIVERSITY_BOOKS : SCHOOL_GRADES;
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
@@ -53,7 +71,6 @@ export default function Home() {
       <header className="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           
-          {/* سمت راست منو */}
           <div className="flex items-center gap-2">
             <span className="text-xl">📐</span>
           </div>
@@ -76,7 +93,6 @@ export default function Home() {
             </a>
           </nav>
 
-          {/* دکمه تغییر زبان */}
           <button 
             onClick={() => setLang(lang === 'fa' ? 'en' : 'fa')}
             className="text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 transition flex items-center gap-1 shadow-sm active:scale-95"
@@ -90,7 +106,6 @@ export default function Home() {
       <section className="bg-[#1e295d] text-white py-16 px-4 text-center">
         <div className="max-w-3xl mx-auto flex flex-col items-center">
           
-          {/* عکس پرتره دکتر هادی محمدی */}
           <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl mb-6 bg-slate-800 flex items-center justify-center">
             <img 
               src="/profile.jpg" 
@@ -99,12 +114,10 @@ export default function Home() {
             />
           </div>
 
-          {/* عنوان اصلی */}
           <h1 className="text-3xl md:text-5xl font-extrabold mb-3">
             {lang === 'fa' ? 'آموزش بین المللی ریاضیات' : 'International Mathematics Education'}
           </h1>
 
-          {/* زیرعنوان (نام استاد) */}
           <h2 className="text-xl md:text-3xl font-semibold text-slate-200 mb-2">
             {lang === 'fa' ? 'دکتر هادی محمدی' : 'Dr. Hadi Mohammadi'}
           </h2>
@@ -134,7 +147,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ۳. بخش کتاب‌های تدریس‌شده */}
+      {/* ۳. بخش کتاب‌های تدریس‌شده (هوشمند برای دانشگاه و دبیرستان) */}
       <section id="books" className="max-w-5xl mx-auto my-16 px-4 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-2 flex items-center justify-center gap-2">
           <span className="text-3xl">📚</span>
@@ -142,11 +155,11 @@ export default function Home() {
         </h2>
         <p className="text-slate-500 mb-8 text-sm md:text-base">
           {lang === 'fa' 
-            ? 'جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور و سپس پایه تحصیلی مورد نظر را انتخاب کنید:' 
-            : 'Select country/system and grade to view textbooks:'}
+            ? 'جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:' 
+            : 'Select country/system or University Books to view textbooks:'}
         </p>
 
-        {/* دکمه‌های کشورها */}
+        {/* دکمه‌های اصلی (کشورها + کتاب‌های دانشگاهی) */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
           {CATEGORIES.map((cat) => {
             const isActive = selectedCategory === cat.id;
@@ -167,56 +180,55 @@ export default function Home() {
           })}
         </div>
 
-        {/* باز شدن سال‌های تحصیلی پس از انتخاب کشور */}
+        {/* نمایش آیکون‌های فرعی (پایه‌های تحصیلی یا لیست کتاب‌های دانشگاهی) */}
         {selectedCategory && (
           <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm mb-6">
             <h3 className="text-base font-bold text-slate-700 mb-4 flex items-center justify-center gap-1">
-              <span>🎓</span>
+              <span>{isUniversity ? '🎓' : '🏫'}</span>
               <span>
-                {lang === 'fa'
-                  ? `پایه‌های تحصیلی مربوط به ${CATEGORIES.find((c) => c.id === selectedCategory)?.title}`
-                  : 'Select Grade Level'}
+                {isUniversity
+                  ? (lang === 'fa' ? 'انتخاب کتاب دانشگاهی' : 'Select University Textbook')
+                  : (lang === 'fa' ? `پایه‌های تحصیلی مربوط به ${CATEGORIES.find((c) => c.id === selectedCategory)?.title}` : 'Select Grade Level')}
               </span>
             </h3>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5">
-              {GRADES.map((grade) => {
-                const isGradeActive = selectedGrade === grade.id;
+            {/* شبکه‌بندی هوشمند دکمه‌ها */}
+            <div className={`grid gap-2.5 ${isUniversity ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3' : 'grid-cols-2 sm:grid-cols-3 md:grid-cols-6'}`}>
+              {subItemList.map((item) => {
+                const isSubActive = selectedSubItem === item.id;
                 return (
                   <button
-                    key={grade.id}
-                    onClick={() => handleGradeClick(grade.id)}
-                    className={`py-2.5 px-3 rounded-xl text-xs font-bold border transition-all ${
-                      isGradeActive
+                    key={item.id}
+                    onClick={() => handleSubItemClick(item.id)}
+                    className={`py-3 px-3 rounded-xl text-xs font-bold border transition-all flex items-center justify-center gap-2 ${
+                      isSubActive
                         ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
                         : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-blue-50'
                     }`}
                   >
-                    {grade.title}
+                    {isUniversity && <span>📙</span>}
+                    <span>{item.title}</span>
                   </button>
                 );
               })}
             </div>
 
-            {/* نمایش جلد کتاب و لینک دانلود PDF */}
-            {selectedGrade && (
+            {/* نمایش کادر دانلود PDF پس از انتخاب کتاب/پایه */}
+            {selectedSubItem && (
               <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col items-center">
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 max-w-sm w-full shadow-inner flex flex-col items-center">
                   <div className="w-40 h-52 bg-gradient-to-br from-blue-700 to-[#1e295d] rounded-xl shadow-md flex flex-col items-center justify-center text-white p-4 mb-4 text-center border-2 border-white/20">
                     <span className="text-4xl mb-2">📕</span>
                     <span className="text-xs font-bold leading-tight">
-                      {CATEGORIES.find((c) => c.id === selectedCategory)?.title}
-                    </span>
-                    <span className="text-[10px] opacity-80 mt-1">
-                      {GRADES.find((g) => g.id === selectedGrade)?.title}
+                      {subItemList.find((i) => i.id === selectedSubItem)?.title}
                     </span>
                   </div>
 
-                  <h4 className="text-sm font-bold text-slate-800 mb-1">
-                    کتاب جامع ریاضیات - {GRADES.find((g) => g.id === selectedGrade)?.title}
+                  <h4 className="text-sm font-bold text-slate-800 mb-1 text-center">
+                    {subItemList.find((i) => i.id === selectedSubItem)?.title}
                   </h4>
                   <p className="text-xs text-slate-500 mb-4">
-                    شامل درسنامه کامل و نمونه سوالات
+                    {lang === 'fa' ? 'نسخه کامل همراه با حل تمرینات' : 'Full version with exercises'}
                   </p>
 
                   <a
@@ -252,7 +264,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ۵. بخش سوابق علمی و پژوهشی (اصلاح‌شده) */}
+      {/* ۵. بخش سوابق علمی و پژوهشی */}
       <section id="resume" className="max-w-5xl mx-auto my-16 px-4">
         <div className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-slate-100">
           <div className="flex items-center justify-center gap-2 mb-8 text-[#1e295d]">
@@ -294,7 +306,6 @@ export default function Home() {
             : 'For booking consultations, online classes, or inquiries, reach out below:'}
         </p>
 
-        {/* دکمه‌های ارتباطی ۳تایی */}
         <div className="flex flex-col gap-4 w-full max-w-xl mx-auto mt-6" dir="rtl">
           <a
             href="https://t.me/International_Maths"
