@@ -2,36 +2,65 @@ import ContactButtons from '../components/ContactButtons';
 
 export default function Home() {
   return (
-    <main style={{ minHeight: '100vh', backgroundColor: '#f8fafc', color: '#1e293b', fontFamily: 'sans-serif' }} dir="rtl">
+    <main dir="rtl">
       
-      {/* هدر سایت */}
-      <section style={{ backgroundColor: '#0f172a', color: '#ffffff', padding: '60px 16px', textAlign: 'center' }}>
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <div style={{ width: '80px', height: '80px', backgroundColor: '#1e293b', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px auto', fontSize: '32px' }}>🎓</div>
-          <h1 style={{ fontSize: '36px', fontWeight: 'bold', marginBottom: '16px' }}>دکتر هادی محمدی</h1>
-          <p style={{ fontSize: '18px', color: '#cbd5e1', marginBottom: '8px' }}>عضو هیأت علمی دانشگاه و مدرس آنلاین ریاضی</p>
-          <p style={{ fontSize: '14px', color: '#94a3b8', marginBottom: '32px' }}>ویژه ایرانیان خارج از کشور (آمریکا، کانادا، اروپا، استرالیا و انگلستان)</p>
+      {/* هدر و بنر اصلی با همان ظاهر اولیه */}
+      <section className="bg-[#242b6b] text-white py-16 px-4 text-center">
+        <div className="max-w-4xl mx-auto">
+          <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-white/20">
+            <span className="text-4xl">🎓</span>
+          </div>
+          <h1 className="text-3xl md:text-5xl font-bold mb-4">دکتر هادی محمدی</h1>
+          <p className="text-lg md:text-xl text-slate-200 mb-2">عضو هیأت علمی دانشگاه و مدرس آنلاین ریاضی</p>
+          <p className="text-sm md:text-base text-slate-300 mb-8">ویژه ایرانیان خارج از کشور (آمریکا، کانادا، اروپا، استرالیا و انگلستان)</p>
+          
+          <div className="flex flex-wrap justify-center gap-4">
+            <a href="#contact" className="bg-white text-slate-900 font-bold px-6 py-3 rounded-xl hover:bg-slate-100 transition">
+              رزرو مشاوره و کلاس
+            </a>
+            <a href="#books" className="bg-[#3b82f6] text-white font-bold px-6 py-3 rounded-xl hover:bg-blue-600 transition">
+              کتاب‌ها و جزوات
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* سوابق علمی و پژوهشی */}
-      <section style={{ maxWidth: '800px', margin: '40px auto', padding: '0 16px' }}>
-        <div style={{ backgroundColor: '#ffffff', borderRadius: '20px', padding: '32px 24px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
-          <h2 style={{ fontSize: '24px', fontWeight: 'bold', textAlign: 'center', marginBottom: '24px', color: '#0f172a' }}>🎗️ سوابق علمی و پژوهشی</h2>
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0, lineHeight: '2.5', fontSize: '16px' }}>
-            <li style={{ borderBottom: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between' }}><span>دکتری تخصصی ریاضی از دانشگاه‌های برتر تهران</span> <strong style={{ color: '#2563eb' }}>✓</strong></li>
-            <li style={{ borderBottom: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between' }}><span>عضو هیأت علمی و مدرس دانشگاه</span> <strong style={{ color: '#2563eb' }}>✓</strong></li>
-            <li style={{ borderBottom: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between' }}><span>تألیف چندین مقاله علمی پژوهشی در ژورنال‌های معتبر بین‌المللی</span> <strong style={{ color: '#2563eb' }}>✓</strong></li>
-            <li style={{ display: 'flex', justifyContent: 'space-between' }}><span>مدرس دوره‌های تخصصی ریاضیات دانشگاهی و دبیرستان</span> <strong style={{ color: '#2563eb' }}>✓</strong></li>
+      {/* بخش درباره من / سوابق علمی دقیقاً مثل قبل */}
+      <section className="max-w-4xl mx-auto my-12 px-4">
+        <div className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-slate-100">
+          <div className="flex items-center justify-center gap-2 mb-6 text-[#242b6b]">
+            <span className="text-2xl">🎗️</span>
+            <h2 className="text-2xl md:text-3xl font-bold">سوابق علمی و پژوهشی</h2>
+          </div>
+          
+          <ul className="space-y-4 max-w-2xl mx-auto text-right">
+            <li className="flex items-center justify-between text-base md:text-lg text-slate-700 border-b border-slate-100 pb-3">
+              <span>دکتری تخصصی ریاضی از دانشگاه‌های برتر تهران</span>
+              <span className="text-blue-600 font-bold">✓</span>
+            </li>
+            <li className="flex items-center justify-between text-base md:text-lg text-slate-700 border-b border-slate-100 pb-3">
+              <span>عضو هیأت علمی و مدرس دانشگاه</span>
+              <span className="text-blue-600 font-bold">✓</span>
+            </li>
+            <li className="flex items-center justify-between text-base md:text-lg text-slate-700 border-b border-slate-100 pb-3">
+              <span>تألیف چندین مقاله علمی پژوهشی در ژورنال‌های معتبر بین‌المللی</span>
+              <span className="text-blue-600 font-bold">✓</span>
+            </li>
+            <li className="flex items-center justify-between text-base md:text-lg text-slate-700">
+              <span>مدرس دوره‌های تخصصی ریاضیات دانشگاهی و دبیرستان</span>
+              <span className="text-blue-600 font-bold">✓</span>
+            </li>
           </ul>
         </div>
       </section>
 
-      {/* بخش ارتباط با استاد */}
-      <section style={{ maxWidth: '800px', margin: '40px auto', padding: '0 16px', textAlign: 'center' }}>
-        <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: '#0f172a', marginBottom: '8px' }}>ارتباط با استاد</h2>
-        <p style={{ color: '#64748b', fontSize: '15px' }}>جهت رزرو وقت مشاوره، کلاس‌های آنلاین و ارسال پیام می‌توانید از طریق راه‌های زیر در ارتباط باشید:</p>
-        
+      {/* بخش ارتباط با استاد با ۳ کادر جدید */}
+      <section id="contact" className="max-w-4xl mx-auto my-12 px-4 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-[#242b6b] mb-3">ارتباط با استاد</h2>
+        <p className="text-slate-600 mb-6 text-sm md:text-base">
+          جهت رزرو وقت مشاوره، کلاس‌های آنلاین و ارسال پیام می‌توانید از طریق راه‌های زیر در ارتباط باشید:
+        </p>
+
         <ContactButtons />
       </section>
 
