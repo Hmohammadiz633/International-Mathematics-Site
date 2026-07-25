@@ -90,7 +90,7 @@ export default function Home() {
       <section className="bg-[#1e295d] text-white py-16 px-4 text-center">
         <div className="max-w-3xl mx-auto flex flex-col items-center">
           
-          {/* عکس پرتره دکتر هادی محمدی از پوشه public */}
+          {/* عکس پرتره دکتر هادی محمدی - آدرس‌دهی مستقیم از پوشه public */}
           <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl mb-6 bg-slate-800 flex items-center justify-center">
             <img 
               src="/profile.jpg" 
