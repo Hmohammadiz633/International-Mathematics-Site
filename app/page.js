@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import ContactButtons from '../components/ContactButtons';
 import LanguageToggle from '../components/LanguageToggle';
+import BooksSection from '../components/BooksSection';
 
 export default function Home() {
   const [lang, setLang] = useState('fa');
@@ -23,7 +24,7 @@ export default function Home() {
               {lang === 'fa' ? 'درباره من' : 'About Me'}
             </a>
             <a href="#books" className="hover:text-blue-600 transition">
-              {lang === 'fa' ? 'کتاب‌ها و جزوات' : 'Books & Notes'}
+              {lang === 'fa' ? 'کتاب‌های تدریس‌شده' : 'Taught Books'}
             </a>
             <a href="#services" className="hover:text-blue-600 transition">
               {lang === 'fa' ? 'خدمات تدریس' : 'Services'}
@@ -62,7 +63,7 @@ export default function Home() {
               {lang === 'fa' ? 'رزرو مشاوره و کلاس' : 'Book Consultation'}
             </a>
             <a href="#books" className="bg-[#3b82f6] text-white font-bold px-6 py-3.5 rounded-xl hover:bg-blue-600 transition shadow-lg">
-              {lang === 'fa' ? 'کتاب‌ها و جزوات' : 'Books & Pamphlets'}
+              {lang === 'fa' ? 'کتاب‌های تدریس‌شده' : 'Taught Books'}
             </a>
           </div>
         </div>
@@ -77,61 +78,14 @@ export default function Home() {
           <p className="text-slate-600 leading-relaxed text-justify text-base md:text-lg">
             {lang === 'fa' 
               ? 'اینجانب دکتر هادی محمدی، دارای مدرک دکتری تخصصی ریاضی و عضو هیأت علمی یکی از دانشگاه‌های تهران هستم. با سال‌ها تجربه در امر تدریس دانشگاهی و مدارس برتر، تخصصی ویژه‌ای در آموزش آنلاین ریاضیات (از مقطع دبیرستان تا دانشگاه، شامل سیستم‌های IB, AP, A-Level و دروس دانشگاهی) به دانش‌آموزان و دانشجویان ایرانی مقیم خارج از کشور دارم.'
-              : 'I am Dr. Hadi Mohammadi, holding a Ph.D. in Mathematics and serving as a university faculty member. With extensive experience teaching at top universities and high schools, I specialize in online mathematics education (ranging from high school curricula such as IB, AP, and A-Level to advanced university courses) tailored for students worldwide.'
+              : 'I am Dr. Hadi Mohammadi, holding a Ph.D. in Mathematics and serving as a university faculty member. With extensive experience teaching at top universities and high schools, I specialize in online mathematics education tailored for students worldwide.'
             }
           </p>
         </div>
       </section>
 
-      {/* ۳. بخش کتاب‌ها و جزوات آموزشی */}
-      <section id="books" className="max-w-5xl mx-auto my-16 px-4 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-2 flex items-center justify-center gap-2">
-          <span>📖</span> {lang === 'fa' ? 'کتاب‌ها و جزوات آموزشی' : 'Books & Educational Pamphlets'}
-        </h2>
-        <p className="text-slate-500 mb-8 text-sm md:text-base">
-          {lang === 'fa' ? 'دانلود فایل‌های PDF کتب و جزوات تألیفی و تدریس‌شده' : 'Download PDF files of authored and course material'}
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
-            <div>
-              <h3 className="text-xl font-bold text-[#1e295d] mb-3">
-                {lang === 'fa' ? 'ریاضیات پیشرفته دبیرستان و آزمون‌های بین‌المللی' : 'Advanced High School Math & International Exams'}
-              </h3>
-              <p className="text-slate-500 text-sm mb-6">
-                {lang === 'fa' ? 'شامل درسنامه کامل، مثال‌های حل‌شده و تمرین‌های استاندارد.' : 'Comprehensive lessons, solved examples, and practice problems.'}
-              </p>
-            </div>
-            <a 
-              href="https://t.me/International_Maths" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 text-blue-600 font-bold text-sm bg-blue-50 py-3 px-4 rounded-xl hover:bg-blue-100 transition"
-            >
-              <span>📄</span> {lang === 'fa' ? 'دانلود کتاب / جزوه نمونه (PDF)' : 'Download Sample Notes (PDF)'}
-            </a>
-          </div>
-
-          <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
-            <div>
-              <h3 className="text-xl font-bold text-[#1e295d] mb-3">
-                {lang === 'fa' ? 'جزوه اختصاصی ریاضی دانشگاهی (عمومی و پایه)' : 'University Mathematics Notes (Core & Calculus)'}
-              </h3>
-              <p className="text-slate-500 text-sm mb-6">
-                {lang === 'fa' ? 'مجموعه نکات و تست‌های تألیفی جهت آمادگی دانشجویان.' : 'Key formulas, problem-solving techniques, and exam preparation.'}
-              </p>
-            </div>
-            <a 
-              href="https://t.me/International_Maths" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 text-blue-600 font-bold text-sm bg-blue-50 py-3 px-4 rounded-xl hover:bg-blue-100 transition"
-            >
-              <span>📄</span> {lang === 'fa' ? 'دانلود کتاب / جزوه نمونه (PDF)' : 'Download Sample Notes (PDF)'}
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* ۳. بخش کتاب‌های تدریس‌شده (با آکاردئون چندمرحله‌ای کامل) */}
+      <BooksSection lang={lang} />
 
       {/* ۴. بخش خدمات تدریس آنلاین */}
       <section id="services" className="max-w-5xl mx-auto my-16 px-4">
