@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import ContactButtons from '../components/ContactButtons';
+import LanguageToggle from '../components/LanguageToggle';
 
 export default function Home() {
   const [lang, setLang] = useState('fa');
@@ -25,23 +26,18 @@ export default function Home() {
               {lang === 'fa' ? 'کتاب‌ها و جزوات' : 'Books & Notes'}
             </a>
             <a href="#services" className="hover:text-blue-600 transition">
-              {lang === 'fa' ? 'خدمات تدریس' : 'Teaching Services'}
+              {lang === 'fa' ? 'خدمات تدریس' : 'Services'}
             </a>
             <a href="#resume" className="hover:text-blue-600 transition">
               {lang === 'fa' ? 'رزومه' : 'Resume'}
             </a>
             <a href="#contact" className="hover:text-blue-600 transition">
-              {lang === 'fa' ? 'تماس با ما' : 'Contact Us'}
+              {lang === 'fa' ? 'تماس با ما' : 'Contact'}
             </a>
           </nav>
 
-          {/* دکمه فعال تغییر زبان (انگلیسی / فارسی) */}
-          <button 
-            onClick={() => setLang(lang === 'fa' ? 'en' : 'fa')}
-            className="text-xs font-semibold px-3 py-1.5 rounded-full border border-blue-200 text-blue-700 bg-blue-50 hover:bg-blue-100 transition flex items-center gap-1"
-          >
-            🌐 {lang === 'fa' ? 'English' : 'فارسی'}
-          </button>
+          {/* دکمه تغییر زبان */}
+          <LanguageToggle onLanguageChange={(newLang) => setLang(newLang)} />
         </div>
       </header>
 
@@ -58,7 +54,7 @@ export default function Home() {
             {lang === 'fa' ? 'عضو هیأت علمی دانشگاه و مدرس آنلاین ریاضی' : 'University Faculty Member & Online Math Tutor'}
           </p>
           <p className="text-sm md:text-base text-slate-300 opacity-90 mb-8">
-            {lang === 'fa' ? 'ویژه ایرانیان خارج از کشور (آمریکا، کانادا، اروپا، استرالیا و انگلستان)' : 'Specialized for Students Abroad (USA, Canada, Europe, Australia, UK)'}
+            {lang === 'fa' ? 'ویژه ایرانیان خارج از کشور (آمریکا، کانادا، اروپا، استرالیا و انگلستان)' : 'Specialized for International Students (USA, Canada, Europe, Australia, UK)'}
           </p>
           
           <div className="flex flex-wrap justify-center gap-4">
@@ -81,30 +77,29 @@ export default function Home() {
           <p className="text-slate-600 leading-relaxed text-justify text-base md:text-lg">
             {lang === 'fa' 
               ? 'اینجانب دکتر هادی محمدی، دارای مدرک دکتری تخصصی ریاضی و عضو هیأت علمی یکی از دانشگاه‌های تهران هستم. با سال‌ها تجربه در امر تدریس دانشگاهی و مدارس برتر، تخصصی ویژه‌ای در آموزش آنلاین ریاضیات (از مقطع دبیرستان تا دانشگاه، شامل سیستم‌های IB, AP, A-Level و دروس دانشگاهی) به دانش‌آموزان و دانشجویان ایرانی مقیم خارج از کشور دارم.'
-              : 'I am Dr. Hadi Mohammadi, holding a Ph.D. in Mathematics and a faculty member at a top university in Tehran. With years of experience teaching at universities and top schools, I specialize in online mathematics tutoring (from high school to university levels including IB, AP, A-Level, and university coursework) for students worldwide.'
+              : 'I am Dr. Hadi Mohammadi, holding a Ph.D. in Mathematics and serving as a university faculty member. With extensive experience teaching at top universities and high schools, I specialize in online mathematics education (ranging from high school curricula such as IB, AP, and A-Level to advanced university courses) tailored for students worldwide.'
             }
           </p>
         </div>
       </section>
 
-      {/* ۳. بخش کتاب‌ها و جزوات آموزشی (کاملاً مطابق عکس IMG_0585) */}
+      {/* ۳. بخش کتاب‌ها و جزوات آموزشی */}
       <section id="books" className="max-w-5xl mx-auto my-16 px-4 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-2 flex items-center justify-center gap-2">
-          <span>📖</span> {lang === 'fa' ? 'کتاب‌ها و جزوات آموزشی' : 'Books & Pamphlets'}
+          <span>📖</span> {lang === 'fa' ? 'کتاب‌ها و جزوات آموزشی' : 'Books & Educational Pamphlets'}
         </h2>
         <p className="text-slate-500 mb-8 text-sm md:text-base">
-          {lang === 'fa' ? 'دانلود فایل‌های PDF کتب و جزوات تألیفی و تدریس‌شده' : 'Download PDF files of authored and taught books/notes'}
+          {lang === 'fa' ? 'دانلود فایل‌های PDF کتب و جزوات تألیفی و تدریس‌شده' : 'Download PDF files of authored and course material'}
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {/* کارت اول */}
           <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
             <div>
               <h3 className="text-xl font-bold text-[#1e295d] mb-3">
                 {lang === 'fa' ? 'ریاضیات پیشرفته دبیرستان و آزمون‌های بین‌المللی' : 'Advanced High School Math & International Exams'}
               </h3>
               <p className="text-slate-500 text-sm mb-6">
-                {lang === 'fa' ? 'شامل درسنامه کامل، مثال‌های حل‌شده و تمرین‌های استاندارد.' : 'Includes complete lessons, solved examples, and standard exercises.'}
+                {lang === 'fa' ? 'شامل درسنامه کامل، مثال‌های حل‌شده و تمرین‌های استاندارد.' : 'Comprehensive lessons, solved examples, and practice problems.'}
               </p>
             </div>
             <a 
@@ -113,18 +108,17 @@ export default function Home() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 text-blue-600 font-bold text-sm bg-blue-50 py-3 px-4 rounded-xl hover:bg-blue-100 transition"
             >
-              <span>📄</span> {lang === 'fa' ? 'دانلود کتاب / جزوه نمونه (PDF)' : 'Download Sample Pamphlet (PDF)'}
+              <span>📄</span> {lang === 'fa' ? 'دانلود کتاب / جزوه نمونه (PDF)' : 'Download Sample Notes (PDF)'}
             </a>
           </div>
 
-          {/* کارت دوم */}
           <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition">
             <div>
               <h3 className="text-xl font-bold text-[#1e295d] mb-3">
-                {lang === 'fa' ? 'جزوه اختصاصی ریاضی دانشگاهی (عمومی و پایه)' : 'University Mathematics Notes (General & Core)'}
+                {lang === 'fa' ? 'جزوه اختصاصی ریاضی دانشگاهی (عمومی و پایه)' : 'University Mathematics Notes (Core & Calculus)'}
               </h3>
               <p className="text-slate-500 text-sm mb-6">
-                {lang === 'fa' ? 'مجموعه نکات و تست‌های تألیفی جهت آمادگی دانشجویان.' : 'Key concepts and specialized problems for university student preparation.'}
+                {lang === 'fa' ? 'مجموعه نکات و تست‌های تألیفی جهت آمادگی دانشجویان.' : 'Key formulas, problem-solving techniques, and exam preparation.'}
               </p>
             </div>
             <a 
@@ -133,34 +127,34 @@ export default function Home() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 text-blue-600 font-bold text-sm bg-blue-50 py-3 px-4 rounded-xl hover:bg-blue-100 transition"
             >
-              <span>📄</span> {lang === 'fa' ? 'دانلود کتاب / جزوه نمونه (PDF)' : 'Download Sample Pamphlet (PDF)'}
+              <span>📄</span> {lang === 'fa' ? 'دانلود کتاب / جزوه نمونه (PDF)' : 'Download Sample Notes (PDF)'}
             </a>
           </div>
         </div>
       </section>
 
-      {/* ۴. بخش خدمات تدریس آنلاین (کاملاً مطابق عکس IMG_0586) */}
+      {/* ۴. بخش خدمات تدریس آنلاین */}
       <section id="services" className="max-w-5xl mx-auto my-16 px-4">
         <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-4">
-            {lang === 'fa' ? 'خدمات تدریس آنلاین' : 'Online Tutoring Services'}
+            {lang === 'fa' ? 'خدمات تدریس آنلاین' : 'Online Teaching Services'}
           </h2>
           <p className="text-slate-600 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
             {lang === 'fa' 
               ? 'برگزاری کلاس‌های خصوصی و نیمه‌خصوصی ریاضی با متدهای نوین آموزشی و متناسب با سیستم آموزشی کشور محل اقامت شما.'
-              : 'Conducting private and semi-private mathematics classes with modern teaching methods tailored to the curriculum of your country.'
+              : 'Private and group online math tutoring aligned with the educational standards of your country.'
             }
           </p>
         </div>
       </section>
 
-      {/* ۵. بخش سوابق علمی و پژوهشی (مطابق عکس IMG_0586 و IMG_0587) */}
+      {/* ۵. بخش سوابق علمی و پژوهشی */}
       <section id="resume" className="max-w-5xl mx-auto my-16 px-4">
         <div className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-slate-100">
           <div className="flex items-center justify-center gap-2 mb-8 text-[#1e295d]">
             <span className="text-2xl text-blue-600">🎗️</span>
             <h2 className="text-2xl md:text-3xl font-bold">
-              {lang === 'fa' ? 'سوابق علمی و پژوهشی' : 'Academic Background'}
+              {lang === 'fa' ? 'سوابق علمی و پژوهشی' : 'Academic & Research Background'}
             </h2>
           </div>
           
@@ -174,18 +168,18 @@ export default function Home() {
               <span className="text-blue-600 font-bold">✓</span>
             </li>
             <li className="flex items-center justify-between text-base md:text-lg text-slate-700 border-b border-slate-100 pb-3">
-              <span>{lang === 'fa' ? 'تألیف چندین مقاله علمی پژوهشی در ژورنال‌های معتبر بین‌المللی' : 'Author of articles in peer-reviewed international journals'}</span>
+              <span>{lang === 'fa' ? 'تألیف چندین مقاله علمی پژوهشی در ژورنال‌های معتبر بین‌المللی' : 'Author of peer-reviewed articles in prestigious journals'}</span>
               <span className="text-blue-600 font-bold">✓</span>
             </li>
             <li className="flex items-center justify-between text-base md:text-lg text-slate-700">
-              <span>{lang === 'fa' ? 'مدرس دوره‌های تخصصی ریاضیات دانشگاهی و دبیرستان' : 'Specialized Instructor for University and High School Math'}</span>
+              <span>{lang === 'fa' ? 'مدرس دوره‌های تخصصی ریاضیات دانشگاهی و دبیرستان' : 'Specialized Instructor for University and High School Mathematics'}</span>
               <span className="text-blue-600 font-bold">✓</span>
             </li>
           </ul>
         </div>
       </section>
 
-      {/* ۶. بخش ارتباط با استاد (۳ کادر تلگرام، اینستاگرام و جیمیل) */}
+      {/* ۶. بخش ارتباط با استاد */}
       <section id="contact" className="max-w-5xl mx-auto my-16 px-4 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-3">
           {lang === 'fa' ? 'ارتباط با استاد' : 'Contact Professor'}
@@ -193,7 +187,7 @@ export default function Home() {
         <p className="text-slate-500 mb-6 text-sm md:text-base">
           {lang === 'fa' 
             ? 'جهت رزرو وقت مشاوره، کلاس‌های آنلاین و ارسال پیام می‌توانید از طریق راه‌های زیر در ارتباط باشید:' 
-            : 'For booking consultations, online classes, and inquiries, feel free to reach out:'}
+            : 'For booking consultations, online classes, or inquiries, reach out below:'}
         </p>
 
         <ContactButtons />
@@ -201,7 +195,7 @@ export default function Home() {
 
       {/* فوتر سایت */}
       <footer className="bg-[#0f172a] text-slate-400 text-center py-6 text-sm">
-        <p>تمامی حقوق محفوظ است © 2026 دکتر هادی محمدی</p>
+        <p>© 2026 {lang === 'fa' ? 'دکتر هادی محمدی - تمامی حقوق محفوظ است' : 'Dr. Hadi Mohammadi. All rights reserved.'}</p>
       </footer>
 
     </div>
