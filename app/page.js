@@ -2,13 +2,13 @@ import ContactButtons from '../components/ContactButtons';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800" dir="rtl">
+    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans" dir="rtl">
       
-      {/* منوی بالای سایت (Header) */}
+      {/* منوی بالای سایت */}
       <header className="bg-white border-b border-slate-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-xl text-slate-900">دکتر هادی محمدی</span>
+            <span className="font-bold text-xl text-[#1e295d]">دکتر هادی محمدی</span>
           </div>
           
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
@@ -25,13 +25,13 @@ export default function Home() {
         </div>
       </header>
 
-      {/* بنر اصلی سرمه‌ای (Hero Section) */}
+      {/* ۱. بنر اصلی سرمه‌ای (Hero Section) */}
       <section className="bg-[#1e295d] text-white py-20 px-4 text-center">
         <div className="max-w-3xl mx-auto">
-          <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-white/15 shadow-inner">
+          <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-white/15">
             <span className="text-4xl">🎓</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">دکتر هادی محمدی</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">دکتر هادی محمدی</h1>
           <p className="text-xl md:text-2xl text-slate-200 font-medium mb-3">عضو هیأت علمی دانشگاه و مدرس آنلاین ریاضی</p>
           <p className="text-sm md:text-base text-slate-300 opacity-90 mb-8">ویژه ایرانیان خارج از کشور (آمریکا، کانادا، اروپا، استرالیا و انگلستان)</p>
           
@@ -46,22 +46,62 @@ export default function Home() {
         </div>
       </section>
 
-      {/* بخش درباره من */}
+      {/* ۲. بخش درباره من */}
       <section id="about" className="max-w-5xl mx-auto my-12 px-4">
         <div className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-slate-100">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <h2 className="text-2xl font-bold text-[#1e295d] mb-4 flex items-center gap-2">
             <span>👤</span> درباره من
           </h2>
-          <p className="text-slate-600 leading-relaxed text-justify">
-            دکتر هادی محمدی، با سال‌ها تجربه در تدریس مقاطع مختلف دانشگاهی و دبیرستان، آماده ارائه خدمات آموزشی و مشاوره تخصصی به دانشجویان و دانش‌آموزان عزیز به ویژه ایرانیان مقیم خارج از کشور است.
+          <p className="text-slate-600 leading-relaxed text-justify text-base md:text-lg">
+            اینجانب دکتر هادی محمدی، دارای مدرک دکتری تخصصی ریاضی و عضو هیأت علمی یکی از دانشگاه‌های تهران هستم. با سال‌ها تجربه در امر تدریس دانشگاهی و مدارس برتر، تخصصی ویژه‌ای در آموزش آنلاین ریاضیات (از مقطع دبیرستان تا دانشگاه، شامل سیستم‌های IB, AP, A-Level و دروس دانشگاهی) به دانش‌آموزان و دانشجویان ایرانی مقیم خارج از کشور دارم.
           </p>
         </div>
       </section>
 
-      {/* بخش سوابق علمی و پژوهشی */}
-      <section id="resume" className="max-w-5xl mx-auto my-12 px-4">
+      {/* ۳. بخش کتاب‌ها و جزوات آموزشی */}
+      <section id="books" className="max-w-5xl mx-auto my-16 px-4 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-2 flex items-center justify-center gap-2">
+          <span>📖</span> کتاب‌ها و جزوات آموزشی
+        </h2>
+        <p className="text-slate-500 mb-8 text-sm md:text-base">دانلود فایل‌های PDF کتب و جزوات تألیفی و تدریس‌شده</p>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-100 flex flex-col justify-between">
+            <div>
+              <h3 className="text-xl font-bold text-[#1e295d] mb-3">ریاضیات پیشرفته دبیرستان و آزمون‌های بین‌المللی</h3>
+              <p className="text-slate-500 text-sm mb-6">شامل درسنامه کامل، مثال‌های حل‌شده و تمرین‌های استاندارد.</p>
+            </div>
+            <a href="#contact" className="inline-flex items-center justify-center gap-2 text-blue-600 font-bold text-sm bg-blue-50 py-3 px-4 rounded-xl hover:bg-blue-100 transition">
+              <span>📄</span> دانلود کتاب / جزوه نمونه (PDF)
+            </a>
+          </div>
+
+          <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-100 flex flex-col justify-between">
+            <div>
+              <h3 className="text-xl font-bold text-[#1e295d] mb-3">جزوه اختصاصی ریاضی دانشگاهی (عمومی و پایه)</h3>
+              <p className="text-slate-500 text-sm mb-6">مجموعه نکات و تست‌های تألیفی جهت آمادگی دانشجویان.</p>
+            </div>
+            <a href="#contact" className="inline-flex items-center justify-center gap-2 text-blue-600 font-bold text-sm bg-blue-50 py-3 px-4 rounded-xl hover:bg-blue-100 transition">
+              <span>📄</span> دانلود کتاب / جزوه نمونه (PDF)
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ۴. بخش خدمات تدریس آنلاین */}
+      <section id="services" className="max-w-5xl mx-auto my-16 px-4">
+        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-4">خدمات تدریس آنلاین</h2>
+          <p className="text-slate-600 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+            برگزاری کلاس‌های خصوصی و نیمه‌خصوصی ریاضی با متدهای نوین آموزشی و متناسب با سیستم آموزشی کشور محل اقامت شما.
+          </p>
+        </div>
+      </section>
+
+      {/* ۵. بخش سوابق علمی و پژوهشی */}
+      <section id="resume" className="max-w-5xl mx-auto my-16 px-4">
         <div className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-slate-100">
-          <div className="flex items-center justify-center gap-2 mb-8 text-slate-900">
+          <div className="flex items-center justify-center gap-2 mb-8 text-[#1e295d]">
             <span className="text-2xl text-amber-500">🎗️</span>
             <h2 className="text-2xl md:text-3xl font-bold">سوابق علمی و پژوهشی</h2>
           </div>
@@ -87,18 +127,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* بخش ارتباط با استاد (همان بخش جدید۳تایی) */}
+      {/* ۶. بخش جدید ارتباط با استاد (۳ کادر اختصاصی) */}
       <section id="contact" className="max-w-5xl mx-auto my-16 px-4 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">ارتباط با استاد</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-3">ارتباط با استاد</h2>
         <p className="text-slate-500 mb-6 text-sm md:text-base">
           جهت رزرو وقت مشاوره، کلاس‌های آنلاین و ارسال پیام می‌توانید از طریق راه‌های زیر در ارتباط باشید:
         </p>
 
+        {/* فراخوانی ۳ کادر ارتباطی */}
         <ContactButtons />
       </section>
 
       {/* فوتر سایت */}
-      <footer className="bg-slate-900 text-slate-400 text-center py-6 text-sm border-t border-slate-800">
+      <footer className="bg-[#0f172a] text-slate-400 text-center py-6 text-sm">
         <p>تمامی حقوق محفوظ است © 2026 دکتر هادی محمدی</p>
       </footer>
 
