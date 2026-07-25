@@ -2,45 +2,61 @@ import React from 'react';
 
 export default function ContactButtons() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '500px', margin: '24px auto 0 auto', direction: 'rtl' }}>
+    <div className="flex flex-col gap-4 w-full max-w-lg mx-auto mt-6" dir="rtl">
       
       {/* تلگرام */}
-      <a href="https://t.me/International_Maths" target="_blank" rel="noopener noreferrer" 
-         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '16px', textDecoration: 'none', color: '#1e293b', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span style={{ fontSize: '24px', backgroundColor: '#e0f2fe', padding: '8px', borderRadius: '12px' }}>✈️</span>
-          <div style={{ textAlign: 'right' }}>
-            <span style={{ display: 'block', fontSize: '12px', color: '#64748b' }}>آدرس تلگرام</span>
-            <strong style={{ fontSize: '15px' }}>آموزش بین‌المللی ریاضیات</strong>
+      <a
+        href="https://t.me/International_Maths"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-200"
+      >
+        <div className="flex items-center gap-3">
+          <span className="text-2xl bg-sky-100 p-2 rounded-xl">✈️</span>
+          <div className="text-right">
+            <span className="block text-xs text-slate-500 font-medium">آدرس تلگرام</span>
+            <span className="text-sm md:text-base font-bold text-slate-800">آموزش بین‌المللی ریاضیات</span>
           </div>
         </div>
-        <span style={{ fontSize: '12px', color: '#0284c7', backgroundColor: '#f0f9ff', padding: '6px 12px', borderRadius: '8px', fontFamily: 'monospace', direction: 'ltr' }}>@International_Maths</span>
+        <span className="text-xs font-mono text-sky-600 bg-sky-50 px-3 py-1.5 rounded-lg ltr">
+          @International_Maths
+        </span>
       </a>
 
       {/* اینستاگرام */}
-      <a href="https://instagram.com/Hadi_mohammadi_zarandini" target="_blank" rel="noopener noreferrer" 
-         style={{ display: 'flex', alignItems: 'center', justifyBetween: 'space-between', padding: '16px', backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '16px', textDecoration: 'none', color: '#1e293b', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span style={{ fontSize: '24px', backgroundColor: '#fce7f3', padding: '8px', borderRadius: '12px' }}>📸</span>
-          <div style={{ textAlign: 'right' }}>
-            <span style={{ display: 'block', fontSize: '12px', color: '#64748b' }}>آدرس اینستاگرام</span>
-            <strong style={{ fontSize: '15px' }}>Hadi_mohammadi_zarandini</strong>
+      <a
+        href="https://instagram.com/Hadi_mohammadi_zarandini"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-200"
+      >
+        <div className="flex items-center gap-3">
+          <span className="text-2xl bg-pink-100 p-2 rounded-xl">📸</span>
+          <div className="text-right">
+            <span className="block text-xs text-slate-500 font-medium">آدرس اینستاگرام</span>
+            <span className="text-sm md:text-base font-bold text-slate-800">Hadi_mohammadi_zarandini</span>
           </div>
         </div>
-        <span style={{ fontSize: '12px', color: '#db2777', backgroundColor: '#fdf2f8', padding: '6px 12px', borderRadius: '8px', fontFamily: 'monospace', direction: 'ltr' }}>@Hadi_mohammadi_zarandini</span>
+        <span className="text-xs font-mono text-pink-600 bg-pink-50 px-3 py-1.5 rounded-lg ltr">
+          @Hadi_mohammadi_zarandini
+        </span>
       </a>
 
       {/* جیمیل */}
-      <a href="mailto:Hadi.mohammadi.zarandini@gmail.com" 
-         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px', backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '16px', textDecoration: 'none', color: '#1e293b', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span style={{ fontSize: '24px', backgroundColor: '#fee2e2', padding: '8px', borderRadius: '12px' }}>✉️</span>
-          <div style={{ textAlign: 'right' }}>
-            <span style={{ display: 'block', fontSize: '12px', color: '#64748b' }}>آدرس جیمیل</span>
-            <strong style={{ fontSize: '15px' }}>ارسال ایمیل به استاد</strong>
+      <a
+        href="mailto:Hadi.mohammadi.zarandini@gmail.com"
+        className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-all duration-200"
+      >
+        <div className="flex items-center gap-3">
+          <span className="text-2xl bg-red-100 p-2 rounded-xl">✉️</span>
+          <div className="text-right">
+            <span className="block text-xs text-slate-500 font-medium">آدرس جیمیل</span>
+            <span className="text-sm md:text-base font-bold text-slate-800">ارسال ایمیل به استاد</span>
           </div>
         </div>
-        <span style={{ fontSize: '11px', color: '#dc2626', backgroundColor: '#fef2f2', padding: '6px 10px', borderRadius: '8px', fontFamily: 'monospace', direction: 'ltr', wordBreak: 'break-all' }}>Hadi.mohammadi.zarandini@gmail.com</span>
+        <span className="text-xs font-mono text-red-600 bg-red-50 px-2.5 py-1.5 rounded-lg ltr break-all">
+          Hadi.mohammadi.zarandini@gmail.com
+        </span>
       </a>
 
     </div>
