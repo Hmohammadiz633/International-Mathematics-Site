@@ -1,69 +1,36 @@
-import React from 'react';
-
 export default function ContactButtons() {
   return (
-    <div style={styles.container}>
+    <div className="flex flex-col gap-4 w-full max-w-md mx-auto">
+      {/* دکمه تلگرام */}
       <a
         href="https://t.me/International_Maths"
         target="_blank"
         rel="noopener noreferrer"
-        style={{ ...styles.card, ...styles.telegram }}
+        className="flex flex-col items-center justify-center p-4 bg-[#28a8ea] text-white rounded-xl font-bold shadow-md hover:opacity-95 transition transform active:scale-95"
       >
-        <span style={styles.title}>ارتباط در تلگرام</span>
-        <span style={styles.link}>@International_Maths</span>
+        <span className="text-base">ارتباط در تلگرام</span>
+        <span className="text-xs font-normal mt-1 opacity-90 ltr font-sans">@International_Maths</span>
       </a>
 
+      {/* دکمه اینستاگرام */}
       <a
         href="https://instagram.com/hadi_mohammadi_zarandini"
         target="_blank"
         rel="noopener noreferrer"
-        style={{ ...styles.card, ...styles.instagram }}
+        className="flex flex-col items-center justify-center p-4 bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] text-white rounded-xl font-bold shadow-md hover:opacity-95 transition transform active:scale-95"
       >
-        <span style={styles.title}>صفحه اینستاگرام</span>
-        <span style={styles.link}>@hadi_mohammadi_zarandini</span>
+        <span className="text-base">صفحه اینستاگرام</span>
+        <span className="text-xs font-normal mt-1 opacity-90 ltr font-sans">@hadi_mohammadi_zarandini</span>
       </a>
 
+      {/* دکمه ایمیل */}
       <a
         href="mailto:hadi.mohammadi.zarandini@gmail.com"
-        style={{ ...styles.card, ...styles.gmail }}
+        className="flex flex-col items-center justify-center p-4 bg-[#e5252a] text-white rounded-xl font-bold shadow-md hover:opacity-95 transition transform active:scale-95"
       >
-        <span style={styles.title}>ارتباط از طریق ایمیل</span>
-        <span style={styles.link}>hadi.mohammadi.zarandini@gmail.com</span>
+        <span className="text-base">ارتباط از طریق ایمیل</span>
+        <span className="text-xs font-normal mt-1 opacity-90 ltr font-sans break-all">hadi.mohammadi.zarandini@gmail.com</span>
       </a>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '15px',
-    maxWidth: '450px',
-    margin: '20px auto',
-    direction: 'rtl',
-  },
-  card: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: '12px 20px',
-    borderRadius: '12px',
-    textDecoration: 'none',
-    color: '#ffffff',
-    fontWeight: 'bold',
-    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
-  },
-  title: {
-    fontSize: '14px',
-    opacity: 0.9,
-  },
-  link: {
-    fontSize: '15px',
-    direction: 'ltr',
-    textAlign: 'right',
-    marginTop: '4px',
-  },
-  telegram: { background: 'linear-gradient(135deg, #2AABEE, #229ED9)' },
-  instagram: { background: 'linear-gradient(135deg, #833AB4, #FD1D1D, #FCB045)' },
-  gmail: { background: 'linear-gradient(135deg, #EA4335, #BB001B)' },
-};
