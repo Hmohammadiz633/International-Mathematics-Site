@@ -87,29 +87,28 @@ export default function Home() {
       </header>
 
       {/* ۱. بنر اصلی سرمه‌ای (Hero Section) */}
-      <section className="bg-[#1e295d] text-white py-20 px-4 text-center">
-        <div className="max-w-3xl mx-auto">
-          <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-white/15">
-            <span className="text-4xl">🎓</span>
+      <section className="bg-[#1e295d] text-white py-16 px-4 text-center">
+        <div className="max-w-3xl mx-auto flex flex-col items-center">
+          
+          {/* عکس پرتره دکتر هادی محمدی */}
+          <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl mb-6 bg-slate-800">
+            <img 
+              src="/profile.jpg" 
+              alt="دکتر هادی محمدی" 
+              className="w-full h-full object-cover"
+            />
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
+
+          <h1 className="text-3xl md:text-5xl font-extrabold mb-3">
             {lang === 'fa' ? 'دکتر هادی محمدی' : 'Dr. Hadi Mohammadi'}
           </h1>
-          <p className="text-xl md:text-2xl text-slate-200 font-medium mb-3">
+          <p className="text-lg md:text-2xl text-slate-200 font-medium mb-2">
             {lang === 'fa' ? 'عضو هیأت علمی دانشگاه و مدرس آنلاین ریاضی' : 'University Faculty Member & Online Math Tutor'}
           </p>
-          <p className="text-sm md:text-base text-slate-300 opacity-90 mb-8">
+          <p className="text-sm md:text-base text-slate-300 opacity-90">
             {lang === 'fa' ? 'ویژه ایرانیان خارج از کشور (آمریکا، کانادا، اروپا، استرالیا و انگلستان)' : 'Specialized for International Students (USA, Canada, Europe, Australia, UK)'}
           </p>
-          
-          <div className="flex flex-wrap justify-center gap-4">
-            <a href="#contact" className="bg-white text-slate-900 font-bold px-6 py-3.5 rounded-xl hover:bg-slate-100 transition shadow-lg">
-              {lang === 'fa' ? 'رزرو مشاوره و کلاس' : 'Book Consultation'}
-            </a>
-            <a href="#books" className="bg-[#3b82f6] text-white font-bold px-6 py-3.5 rounded-xl hover:bg-blue-600 transition shadow-lg">
-              {lang === 'fa' ? 'کتاب‌های تدریس‌شده' : 'Taught Books'}
-            </a>
-          </div>
+
         </div>
       </section>
 
