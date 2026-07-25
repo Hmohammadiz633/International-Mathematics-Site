@@ -1,41 +1,41 @@
 'use client';
 import { useState } from 'react';
 
-// لیست کشورها/سیستم‌ها
+// لیست کشورها/سیستم‌ها با پشتیبانی کامل از دو زبان
 const CATEGORIES = [
-  { id: 'cambridge', title: 'کمبریج (Cambridge)' },
-  { id: 'australia', title: 'استرالیا (Australia)' },
-  { id: 'canada', title: 'کانادا (Canada)' },
-  { id: 'uk', title: 'انگلستان (UK)' },
-  { id: 'germany', title: 'آلمان (Germany)' },
-  { id: 'california', title: 'کالیفرنیا (California)' },
-  { id: 'turkey', title: 'ترکیه (Turkey)' },
-  { id: 'university', title: 'کتاب‌های دانشگاهی' },
+  { id: 'cambridge', titleFa: 'کمبریج', titleEn: 'Cambridge' },
+  { id: 'australia', titleFa: 'استرالیا', titleEn: 'Australia' },
+  { id: 'canada', titleFa: 'کانادا', titleEn: 'Canada' },
+  { id: 'uk', titleFa: 'انگلستان', titleEn: 'UK' },
+  { id: 'germany', titleFa: 'آلمان', titleEn: 'Germany' },
+  { id: 'california', titleFa: 'کالیفرنیا', titleEn: 'California' },
+  { id: 'turkey', titleFa: 'ترکیه', titleEn: 'Turkey' },
+  { id: 'university', titleFa: 'کتاب‌های دانشگاهی', titleEn: 'University Textbooks' },
 ];
 
 // لیست مقاطع تحصیلی دانش‌آموزی
 const SCHOOL_GRADES = [
-  { id: 'g7', title: 'سال هفتم' },
-  { id: 'g8', title: 'سال هشتم' },
-  { id: 'g9', title: 'سال نهم' },
-  { id: 'g10', title: 'سال دهم' },
-  { id: 'g11', title: 'سال یازدهم' },
-  { id: 'g12', title: 'سال دوازدهم' },
+  { id: 'g7', titleFa: 'سال هفتم', titleEn: 'Grade 7' },
+  { id: 'g8', titleFa: 'سال هشتم', titleEn: 'Grade 8' },
+  { id: 'g9', titleFa: 'سال نهم', titleEn: 'Grade 9' },
+  { id: 'g10', titleFa: 'سال دهم', titleEn: 'Grade 10' },
+  { id: 'g11', titleFa: 'سال یازدهم', titleEn: 'Grade 11' },
+  { id: 'g12', titleFa: 'سال دوازدهم', titleEn: 'Grade 12' },
 ];
 
 // لیست کتاب‌های اختصاصی دانشگاهی
 const UNIVERSITY_BOOKS = [
-  { id: 'thomas', title: 'کتاب ریاضی عمومی توماس' },
-  { id: 'stewart', title: 'کتاب ریاضی عمومی استوارت' },
-  { id: 'stewart-sol', title: 'کتاب حل تمرین استوارت' },
-  { id: 'adams', title: 'کتاب ریاضی عمومی آدامز' },
-  { id: 'adams-sol', title: 'کتاب حل تمرین آدامز' },
-  { id: 'math2-eng', title: 'کتاب ریاضی عمومی ۲ مهندسی' },
-  { id: 'math-med-ca', title: 'کتاب ریاضی عمومی پزشکی کانادا' },
-  { id: 'prob-stat', title: 'کتاب آمار و احتمالات مهندسی' },
-  { id: 'complex-num', title: 'کتاب اعداد مختلط' },
-  { id: 'num-analysis', title: 'کتاب محاسبات عددی' },
-  { id: 'applied-math', title: 'کتاب ریاضی کاربردی' },
+  { id: 'thomas', titleFa: 'کتاب ریاضی عمومی توماس', titleEn: "Thomas' Calculus" },
+  { id: 'stewart', titleFa: 'کتاب ریاضی عمومی استوارت', titleEn: "Stewart's Calculus" },
+  { id: 'stewart-sol', titleFa: 'کتاب حل تمرین استوارت', titleEn: "Stewart Solutions Manual" },
+  { id: 'adams', titleFa: 'کتاب ریاضی عمومی آدامز', titleEn: "Adams' Calculus" },
+  { id: 'adams-sol', titleFa: 'کتاب حل تمرین آدامز', titleEn: "Adams Solutions Manual" },
+  { id: 'math2-eng', titleFa: 'کتاب ریاضی عمومی ۲ مهندسی', titleEn: "Engineering Calculus II" },
+  { id: 'math-med-ca', titleFa: 'کتاب ریاضی عمومی پزشکی کانادا', titleEn: "Canadian Pre-Med Math" },
+  { id: 'prob-stat', titleFa: 'کتاب آمار و احتمالات مهندسی', titleEn: "Engineering Statistics & Probability" },
+  { id: 'complex-num', titleFa: 'کتاب اعداد مختلط', titleEn: "Complex Variables & Numbers" },
+  { id: 'num-analysis', titleFa: 'کتاب محاسبات عددی', titleEn: "Numerical Analysis" },
+  { id: 'applied-math', titleFa: 'کتاب ریاضی کاربردی', titleEn: "Applied Mathematics" },
 ];
 
 export default function Home() {
@@ -102,7 +102,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* ۱. بنر اصلی سرمه‌ای (Hero Section) */}
+      {/* ۱. بنر اصلی (Hero Section) */}
       <section className="bg-[#1e295d] text-white py-16 px-4 text-center">
         <div className="max-w-3xl mx-auto flex flex-col items-center">
           
@@ -147,7 +147,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ۳. بخش کتاب‌های تدریس‌شده (هوشمند برای دانشگاه و دبیرستان) */}
+      {/* ۳. بخش کتاب‌های تدریس‌شده (با آیکون‌های کاملاً تفکیک‌شده دو زبانه) */}
       <section id="books" className="max-w-5xl mx-auto my-16 px-4 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-2 flex items-center justify-center gap-2">
           <span className="text-3xl">📚</span>
@@ -159,10 +159,12 @@ export default function Home() {
             : 'Select country/system or University Books to view textbooks:'}
         </p>
 
-        {/* دکمه‌های اصلی (کشورها + کتاب‌های دانشگاهی) */}
+        {/* دکمه‌های اصلی کشورها / دانشگاهی */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
           {CATEGORIES.map((cat) => {
             const isActive = selectedCategory === cat.id;
+            const categoryTitle = lang === 'fa' ? cat.titleFa : cat.titleEn;
+
             return (
               <button
                 key={cat.id}
@@ -174,13 +176,13 @@ export default function Home() {
                 }`}
               >
                 <span>{isActive ? '📖' : '📘'}</span>
-                <span>{cat.title}</span>
+                <span>{categoryTitle}</span>
               </button>
             );
           })}
         </div>
 
-        {/* نمایش آیکون‌های فرعی (پایه‌های تحصیلی یا لیست کتاب‌های دانشگاهی) */}
+        {/* نمایش آیکون‌های فرعی (پایه‌های تحصیلی یا کتاب‌های دانشگاهی) */}
         {selectedCategory && (
           <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm mb-6">
             <h3 className="text-base font-bold text-slate-700 mb-4 flex items-center justify-center gap-1">
@@ -188,14 +190,18 @@ export default function Home() {
               <span>
                 {isUniversity
                   ? (lang === 'fa' ? 'انتخاب کتاب دانشگاهی' : 'Select University Textbook')
-                  : (lang === 'fa' ? `پایه‌های تحصیلی مربوط به ${CATEGORIES.find((c) => c.id === selectedCategory)?.title}` : 'Select Grade Level')}
+                  : (lang === 'fa' 
+                      ? `پایه‌های تحصیلی مربوط به ${CATEGORIES.find((c) => c.id === selectedCategory)?.titleFa}` 
+                      : `Grade levels for ${CATEGORIES.find((c) => c.id === selectedCategory)?.titleEn}`)}
               </span>
             </h3>
 
-            {/* شبکه‌بندی هوشمند دکمه‌ها */}
+            {/* شبکه دکمه‌های فرعی */}
             <div className={`grid gap-2.5 ${isUniversity ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3' : 'grid-cols-2 sm:grid-cols-3 md:grid-cols-6'}`}>
               {subItemList.map((item) => {
                 const isSubActive = selectedSubItem === item.id;
+                const itemTitle = lang === 'fa' ? item.titleFa : item.titleEn;
+
                 return (
                   <button
                     key={item.id}
@@ -207,25 +213,29 @@ export default function Home() {
                     }`}
                   >
                     {isUniversity && <span>📙</span>}
-                    <span>{item.title}</span>
+                    <span>{itemTitle}</span>
                   </button>
                 );
               })}
             </div>
 
-            {/* نمایش کادر دانلود PDF پس از انتخاب کتاب/پایه */}
+            {/* کادر دانلود PDF */}
             {selectedSubItem && (
               <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col items-center">
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 max-w-sm w-full shadow-inner flex flex-col items-center">
                   <div className="w-40 h-52 bg-gradient-to-br from-blue-700 to-[#1e295d] rounded-xl shadow-md flex flex-col items-center justify-center text-white p-4 mb-4 text-center border-2 border-white/20">
                     <span className="text-4xl mb-2">📕</span>
                     <span className="text-xs font-bold leading-tight">
-                      {subItemList.find((i) => i.id === selectedSubItem)?.title}
+                      {lang === 'fa' 
+                        ? subItemList.find((i) => i.id === selectedSubItem)?.titleFa 
+                        : subItemList.find((i) => i.id === selectedSubItem)?.titleEn}
                     </span>
                   </div>
 
                   <h4 className="text-sm font-bold text-slate-800 mb-1 text-center">
-                    {subItemList.find((i) => i.id === selectedSubItem)?.title}
+                    {lang === 'fa' 
+                      ? subItemList.find((i) => i.id === selectedSubItem)?.titleFa 
+                      : subItemList.find((i) => i.id === selectedSubItem)?.titleEn}
                   </h4>
                   <p className="text-xs text-slate-500 mb-4">
                     {lang === 'fa' ? 'نسخه کامل همراه با حل تمرینات' : 'Full version with exercises'}
@@ -274,7 +284,7 @@ export default function Home() {
             </h2>
           </div>
           
-          <ul className="space-y-4 max-w-2xl mx-auto text-right">
+          <ul className={`space-y-4 max-w-2xl mx-auto ${lang === 'fa' ? 'text-right' : 'text-left'}`}>
             <li className="flex items-center justify-between text-base md:text-lg text-slate-700 border-b border-slate-100 pb-3">
               <span>{lang === 'fa' ? 'دکتری تخصصی ریاضی از دانشگاه صنعتی امیرکبیر (پلی‌تکنیک تهران)' : 'Ph.D. in Mathematics from Amirkabir University of Technology (Tehran Polytechnic)'}</span>
               <span className="text-blue-600 font-bold">✓</span>
@@ -306,7 +316,7 @@ export default function Home() {
             : 'For booking consultations, online classes, or inquiries, reach out below:'}
         </p>
 
-        <div className="flex flex-col gap-4 w-full max-w-xl mx-auto mt-6" dir="rtl">
+        <div className="flex flex-col gap-4 w-full max-w-xl mx-auto mt-6" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
           <a
             href="https://t.me/International_Maths"
             target="_blank"
@@ -315,9 +325,13 @@ export default function Home() {
           >
             <div className="flex items-center gap-3">
               <span className="text-2xl bg-sky-100 p-2.5 rounded-xl">✈️</span>
-              <div className="text-right">
-                <span className="block text-xs text-slate-500 font-medium">آدرس تلگرام</span>
-                <span className="text-sm md:text-base font-bold text-slate-800">آموزش بین‌المللی ریاضیات</span>
+              <div className={lang === 'fa' ? 'text-right' : 'text-left'}>
+                <span className="block text-xs text-slate-500 font-medium">
+                  {lang === 'fa' ? 'آدرس تلگرام' : 'Telegram'}
+                </span>
+                <span className="text-sm md:text-base font-bold text-slate-800">
+                  {lang === 'fa' ? 'آموزش بین‌المللی ریاضیات' : 'International Math Education'}
+                </span>
               </div>
             </div>
             <div dir="ltr" className="text-xs font-mono text-sky-600 bg-sky-50 px-3 py-1.5 rounded-lg">
@@ -333,8 +347,10 @@ export default function Home() {
           >
             <div className="flex items-center gap-3">
               <span className="text-2xl bg-pink-100 p-2.5 rounded-xl">📸</span>
-              <div className="text-right">
-                <span className="block text-xs text-slate-500 font-medium">آدرس اینستاگرام</span>
+              <div className={lang === 'fa' ? 'text-right' : 'text-left'}>
+                <span className="block text-xs text-slate-500 font-medium">
+                  {lang === 'fa' ? 'آدرس اینستاگرام' : 'Instagram'}
+                </span>
                 <span className="text-sm md:text-base font-bold text-slate-800">Hadi_mohammadi_zarandini</span>
               </div>
             </div>
@@ -349,9 +365,13 @@ export default function Home() {
           >
             <div className="flex items-center gap-3">
               <span className="text-2xl bg-red-100 p-2.5 rounded-xl">✉️</span>
-              <div className="text-right">
-                <span className="block text-xs text-slate-500 font-medium">آدرس جیمیل</span>
-                <span className="text-sm md:text-base font-bold text-slate-800">ارسال ایمیل به استاد</span>
+              <div className={lang === 'fa' ? 'text-right' : 'text-left'}>
+                <span className="block text-xs text-slate-500 font-medium">
+                  {lang === 'fa' ? 'آدرس جیمیل' : 'Gmail'}
+                </span>
+                <span className="text-sm md:text-base font-bold text-slate-800">
+                  {lang === 'fa' ? 'ارسال ایمیل به استاد' : 'Send Email to Dr. Mohammadi'}
+                </span>
               </div>
             </div>
             <div dir="ltr" className="text-xs font-mono text-red-600 bg-red-50 px-2.5 py-1.5 rounded-lg break-all">
