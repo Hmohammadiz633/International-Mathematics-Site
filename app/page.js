@@ -147,7 +147,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ۳. بخش کتاب‌های تدریس‌شده (با آیکون‌های کاملاً تفکیک‌شده دو زبانه) */}
+      {/* ۳. بخش کتاب‌های تدریس‌شده */}
       <section id="books" className="max-w-5xl mx-auto my-16 px-4 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-2 flex items-center justify-center gap-2">
           <span className="text-3xl">📚</span>
@@ -182,7 +182,7 @@ export default function Home() {
           })}
         </div>
 
-        {/* نمایش آیکون‌های فرعی (پایه‌های تحصیلی یا کتاب‌های دانشگاهی) */}
+        {/* نمایش زیرمجموعه‌ها */}
         {selectedCategory && (
           <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm mb-6">
             <h3 className="text-base font-bold text-slate-700 mb-4 flex items-center justify-center gap-1">
@@ -196,7 +196,6 @@ export default function Home() {
               </span>
             </h3>
 
-            {/* شبکه دکمه‌های فرعی */}
             <div className={`grid gap-2.5 ${isUniversity ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3' : 'grid-cols-2 sm:grid-cols-3 md:grid-cols-6'}`}>
               {subItemList.map((item) => {
                 const isSubActive = selectedSubItem === item.id;
@@ -305,79 +304,122 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ۶. بخش ارتباط با استاد */}
+      {/* ۶. بخش ارتباط با استاد (طراحی جدید و اصلاح شده) */}
       <section id="contact" className="max-w-5xl mx-auto my-16 px-4 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-3">
+        <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-2">
           {lang === 'fa' ? 'ارتباط با استاد' : 'Contact Professor'}
         </h2>
-        <p className="text-slate-500 mb-6 text-sm md:text-base">
+        <p className="text-slate-500 mb-8 text-xs md:text-sm">
           {lang === 'fa' 
             ? 'جهت رزرو وقت مشاوره، کلاس‌های آنلاین و ارسال پیام می‌توانید از طریق راه‌های زیر در ارتباط باشید:' 
             : 'For booking consultations, online classes, or inquiries, reach out below:'}
         </p>
 
-        <div className="flex flex-col gap-4 w-full max-w-xl mx-auto mt-6" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+        {/* کادرهای فشرده، شکیل و دارای لوگوهای رسمی */}
+        <div className="flex flex-col gap-3 w-full max-w-md mx-auto" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+          
+          {/* کادر تلگرام */}
           <a
             href="https://t.me/International_Maths"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition"
+            className="flex items-center justify-between p-3.5 bg-white border border-slate-200/80 rounded-2xl shadow-sm hover:shadow-md hover:border-sky-300 transition group"
           >
             <div className="flex items-center gap-3">
-              <span className="text-2xl bg-sky-100 p-2.5 rounded-xl">✈️</span>
+              <div className="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center text-sky-500 group-hover:scale-105 transition">
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.52c-.15.68-.55.85-1.12.53l-3.08-2.27-1.48 1.43c-.16.16-.3.3-.61.3l.22-3.12 5.68-5.13c.25-.22-.05-.34-.38-.12l-7.02 4.42-3.03-.95c-.66-.21-.67-.66.14-.98l11.83-4.56c.55-.2 1.03.13.87.93z"/>
+                </svg>
+              </div>
               <div className={lang === 'fa' ? 'text-right' : 'text-left'}>
-                <span className="block text-xs text-slate-500 font-medium">
-                  {lang === 'fa' ? 'آدرس تلگرام' : 'Telegram'}
+                <span className="block text-[11px] text-slate-400 font-medium">
+                  {lang === 'fa' ? 'تلگرام' : 'Telegram'}
                 </span>
-                <span className="text-sm md:text-base font-bold text-slate-800">
-                  {lang === 'fa' ? 'آموزش بین‌المللی ریاضیات' : 'International Math Education'}
+                <span className="text-xs md:text-sm font-bold text-slate-800">
+                  {lang === 'fa' ? 'آموزش بین‌المللی ریاضیات' : 'International Math'}
                 </span>
               </div>
             </div>
-            <div dir="ltr" className="text-xs font-mono text-sky-600 bg-sky-50 px-3 py-1.5 rounded-lg">
+            <span dir="ltr" className="text-[11px] font-mono text-sky-600 bg-sky-50 px-2.5 py-1 rounded-lg">
               @International_Maths
-            </div>
+            </span>
           </a>
 
+          {/* کادر اینستاگرام */}
           <a
             href="https://instagram.com/Hadi_mohammadi_zarandini"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition"
+            className="flex items-center justify-between p-3.5 bg-white border border-slate-200/80 rounded-2xl shadow-sm hover:shadow-md hover:border-pink-300 transition group"
           >
             <div className="flex items-center gap-3">
-              <span className="text-2xl bg-pink-100 p-2.5 rounded-xl">📸</span>
+              <div className="w-10 h-10 rounded-xl bg-pink-50 flex items-center justify-center text-pink-500 group-hover:scale-105 transition">
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </div>
               <div className={lang === 'fa' ? 'text-right' : 'text-left'}>
-                <span className="block text-xs text-slate-500 font-medium">
-                  {lang === 'fa' ? 'آدرس اینستاگرام' : 'Instagram'}
+                <span className="block text-[11px] text-slate-400 font-medium">
+                  {lang === 'fa' ? 'اینستاگرام' : 'Instagram'}
                 </span>
-                <span className="text-sm md:text-base font-bold text-slate-800">Hadi_mohammadi_zarandini</span>
+                <span className="text-xs md:text-sm font-bold text-slate-800">Hadi_mohammadi_zarandini</span>
               </div>
             </div>
-            <div dir="ltr" className="text-xs font-mono text-pink-600 bg-pink-50 px-3 py-1.5 rounded-lg">
-              @Hadi_mohammadi_zarandini
-            </div>
+            <span dir="ltr" className="text-[11px] font-mono text-pink-600 bg-pink-50 px-2.5 py-1 rounded-lg">
+              @Hadi...
+            </span>
           </a>
 
+          {/* کادر جیمیل */}
           <a
             href="mailto:Hadi.mohammadi.zarandini@gmail.com"
-            className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition"
+            className="flex items-center justify-between p-3.5 bg-white border border-slate-200/80 rounded-2xl shadow-sm hover:shadow-md hover:border-red-300 transition group"
           >
             <div className="flex items-center gap-3">
-              <span className="text-2xl bg-red-100 p-2.5 rounded-xl">✉️</span>
+              <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center text-red-500 group-hover:scale-105 transition">
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.272H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.545l8.073-6.052c1.618-1.214 3.927-.059 3.927 1.964z"/>
+                </svg>
+              </div>
               <div className={lang === 'fa' ? 'text-right' : 'text-left'}>
-                <span className="block text-xs text-slate-500 font-medium">
-                  {lang === 'fa' ? 'آدرس جیمیل' : 'Gmail'}
+                <span className="block text-[11px] text-slate-400 font-medium">
+                  {lang === 'fa' ? 'جیمیل' : 'Gmail'}
                 </span>
-                <span className="text-sm md:text-base font-bold text-slate-800">
-                  {lang === 'fa' ? 'ارسال ایمیل به استاد' : 'Send Email to Dr. Mohammadi'}
+                <span className="text-xs md:text-sm font-bold text-slate-800">
+                  {lang === 'fa' ? 'ارسال ایمیل به استاد' : 'Send Email'}
                 </span>
               </div>
             </div>
-            <div dir="ltr" className="text-xs font-mono text-red-600 bg-red-50 px-2.5 py-1.5 rounded-lg break-all">
-              Hadi.mohammadi.zarandini@gmail.com
-            </div>
+            <span dir="ltr" className="text-[10px] font-mono text-red-600 bg-red-50 px-2 py-1 rounded-lg truncate max-w-[110px]">
+              Hadi.mohammadi...
+            </span>
           </a>
+
+          {/* کادر تلفن تماس (جدید) */}
+          <a
+            href="tel:+989123104844"
+            className="flex items-center justify-between p-3.5 bg-white border border-slate-200/80 rounded-2xl shadow-sm hover:shadow-md hover:border-emerald-300 transition group"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:scale-105 transition">
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                </svg>
+              </div>
+              <div className={lang === 'fa' ? 'text-right' : 'text-left'}>
+                <span className="block text-[11px] text-slate-400 font-medium">
+                  {lang === 'fa' ? 'تلفن تماس / واتساپ' : 'Phone / WhatsApp'}
+                </span>
+                <span className="text-xs md:text-sm font-bold text-slate-800">
+                  {lang === 'fa' ? 'ارتباط مستقیم با استاد' : 'Direct Call'}
+                </span>
+              </div>
+            </div>
+            <span dir="ltr" className="text-[11px] font-mono text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg">
+              +98 912 310 4844
+            </span>
+          </a>
+
         </div>
       </section>
 
