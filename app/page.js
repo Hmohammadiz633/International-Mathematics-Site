@@ -1,11 +1,50 @@
 'use client';
 import { useState } from 'react';
-import ContactButtons from '../components/ContactButtons';
-import LanguageToggle from '../components/LanguageToggle';
-import BooksSection from '../components/BooksSection';
+
+// لیست کشورها/سیستم‌ها
+const CATEGORIES = [
+  { id: 'cambridge', title: 'کمبریج (Cambridge)' },
+  { id: 'australia', title: 'استرالیا (Australia)' },
+  { id: 'canada', title: 'کانادا (Canada)' },
+  { id: 'uk', title: 'انگلستان (UK)' },
+  { id: 'germany', title: 'آلمان (Germany)' },
+  { id: 'california', title: 'کالیفرنیا (California)' },
+  { id: 'turkey', title: 'ترکیه (Turkey)' },
+  { id: 'university', title: 'کتاب‌های دانشگاهی' },
+];
+
+// لیست مقاطع تحصیلی
+const GRADES = [
+  { id: 'g7', title: 'سال هفتم' },
+  { id: 'g8', title: 'سال هشتم' },
+  { id: 'g9', title: 'سال نهم' },
+  { id: 'g10', title: 'سال دهم' },
+  { id: 'g11', title: 'سال یازدهم' },
+  { id: 'g12', title: 'سال دوازدهم' },
+];
 
 export default function Home() {
   const [lang, setLang] = useState('fa');
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedGrade, setSelectedGrade] = useState(null);
+
+  const handleCategoryClick = (catId) => {
+    if (selectedCategory === catId) {
+      setSelectedCategory(null);
+      setSelectedGrade(null);
+    } else {
+      setSelectedCategory(catId);
+      setSelectedGrade(null);
+    }
+  };
+
+  const handleGradeClick = (gradeId) => {
+    if (selectedGrade === gradeId) {
+      setSelectedGrade(null);
+    } else {
+      setSelectedGrade(gradeId);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
@@ -38,7 +77,12 @@ export default function Home() {
           </nav>
 
           {/* دکمه تغییر زبان */}
-          <LanguageToggle onLanguageChange={(newLang) => setLang(newLang)} />
+          <button 
+            onClick={() => setLang(lang === 'fa' ? 'en' : 'fa')}
+            className="text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 transition flex items-center gap-1 shadow-sm active:scale-95"
+          >
+            🌐 {lang === 'fa' ? 'English' : 'فارسی'}
+          </button>
         </div>
       </header>
 
@@ -84,8 +128,108 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ۳. بخش کتاب‌های تدریس‌شده (با آکاردئون چندمرحله‌ای کامل) */}
-      <BooksSection lang={lang} />
+      {/* ۳. بخش کتاب‌های تدریس‌شده (آکاردئونی هوشمند) */}
+      <section id="books" className="max-w-5xl mx-auto my-16 px-4 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-2 flex items-center justify-center gap-2">
+          <span className="text-3xl">📚</span>
+          {lang === 'fa' ? 'کتاب‌های تدریس‌شده' : 'Taught Books'}
+        </h2>
+        <p className="text-slate-500 mb-8 text-sm md:text-base">
+          {lang === 'fa' 
+            ? 'جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور و سپس پایه تحصیلی مورد نظر را انتخاب کنید:' 
+            : 'Select country/system and grade to view textbooks:'}
+        </p>
+
+        {/* دکمه‌های کشورها */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+          {CATEGORIES.map((cat) => {
+            const isActive = selectedCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => handleCategoryClick(cat.id)}
+                className={`p-3.5 rounded-2xl text-sm font-bold border transition-all duration-200 flex items-center justify-center gap-2 shadow-sm ${
+                  isActive
+                    ? 'bg-[#1e295d] text-white border-[#1e295d] scale-105 shadow-md'
+                    : 'bg-white text-slate-700 border-slate-200 hover:border-blue-300 hover:bg-slate-50'
+                }`}
+              >
+                <span>{isActive ? '📖' : '📘'}</span>
+                <span>{cat.title}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* باز شدن سال‌های تحصیلی پس از انتخاب کشور */}
+        {selectedCategory && (
+          <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm mb-6">
+            <h3 className="text-base font-bold text-slate-700 mb-4 flex items-center justify-center gap-1">
+              <span>🎓</span>
+              <span>
+                {lang === 'fa'
+                  ? `پایه‌های تحصیلی مربوط به ${CATEGORIES.find((c) => c.id === selectedCategory)?.title}`
+                  : 'Select Grade Level'}
+              </span>
+            </h3>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5">
+              {GRADES.map((grade) => {
+                const isGradeActive = selectedGrade === grade.id;
+                return (
+                  <button
+                    key={grade.id}
+                    onClick={() => handleGradeClick(grade.id)}
+                    className={`py-2.5 px-3 rounded-xl text-xs font-bold border transition-all ${
+                      isGradeActive
+                        ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
+                        : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-blue-50'
+                    }`}
+                  >
+                    {grade.title}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* نمایش جلد کتاب و لینک دانلود PDF */}
+            {selectedGrade && (
+              <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col items-center">
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 max-w-sm w-full shadow-inner flex flex-col items-center">
+                  <div className="w-40 h-52 bg-gradient-to-br from-blue-700 to-[#1e295d] rounded-xl shadow-md flex flex-col items-center justify-center text-white p-4 mb-4 text-center border-2 border-white/20">
+                    <span className="text-4xl mb-2">📕</span>
+                    <span className="text-xs font-bold leading-tight">
+                      {CATEGORIES.find((c) => c.id === selectedCategory)?.title}
+                    </span>
+                    <span className="text-[10px] opacity-80 mt-1">
+                      {GRADES.find((g) => g.id === selectedGrade)?.title}
+                    </span>
+                  </div>
+
+                  <h4 className="text-sm font-bold text-slate-800 mb-1">
+                    کتاب جامع ریاضیات - {GRADES.find((g) => g.id === selectedGrade)?.title}
+                  </h4>
+                  <p className="text-xs text-slate-500 mb-4">
+                    شامل درسنامه کامل و نمونه سوالات
+                  </p>
+
+                  <a
+                    href="https://t.me/International_Maths"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition shadow-sm"
+                  >
+                    <span>📥</span>
+                    <span>
+                      {lang === 'fa' ? 'دانلود فایل PDF کتاب' : 'Download Book PDF'}
+                    </span>
+                  </a>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </section>
 
       {/* ۴. بخش خدمات تدریس آنلاین */}
       <section id="services" className="max-w-5xl mx-auto my-16 px-4">
@@ -133,7 +277,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ۶. بخش ارتباط با استاد */}
+      {/* ۶. بخش ارتباط با استاد (۳ کادر) */}
       <section id="contact" className="max-w-5xl mx-auto my-16 px-4 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-3">
           {lang === 'fa' ? 'ارتباط با استاد' : 'Contact Professor'}
@@ -144,10 +288,63 @@ export default function Home() {
             : 'For booking consultations, online classes, or inquiries, reach out below:'}
         </p>
 
-        <ContactButtons />
+        {/* دکمه‌های ارتباطی ۳تایی */}
+        <div className="flex flex-col gap-4 w-full max-w-xl mx-auto mt-6" dir="rtl">
+          <a
+            href="https://t.me/International_Maths"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition"
+          >
+            <div className="flex items-center gap-3">
+              <span className="text-2xl bg-sky-100 p-2.5 rounded-xl">✈️</span>
+              <div className="text-right">
+                <span className="block text-xs text-slate-500 font-medium">آدرس تلگرام</span>
+                <span className="text-sm md:text-base font-bold text-slate-800">آموزش بین‌المللی ریاضیات</span>
+              </div>
+            </div>
+            <div dir="ltr" className="text-xs font-mono text-sky-600 bg-sky-50 px-3 py-1.5 rounded-lg">
+              @International_Maths
+            </div>
+          </a>
+
+          <a
+            href="https://instagram.com/Hadi_mohammadi_zarandini"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition"
+          >
+            <div className="flex items-center gap-3">
+              <span className="text-2xl bg-pink-100 p-2.5 rounded-xl">📸</span>
+              <div className="text-right">
+                <span className="block text-xs text-slate-500 font-medium">آدرس اینستاگرام</span>
+                <span className="text-sm md:text-base font-bold text-slate-800">Hadi_mohammadi_zarandini</span>
+              </div>
+            </div>
+            <div dir="ltr" className="text-xs font-mono text-pink-600 bg-pink-50 px-3 py-1.5 rounded-lg">
+              @Hadi_mohammadi_zarandini
+            </div>
+          </a>
+
+          <a
+            href="mailto:Hadi.mohammadi.zarandini@gmail.com"
+            className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition"
+          >
+            <div className="flex items-center gap-3">
+              <span className="text-2xl bg-red-100 p-2.5 rounded-xl">✉️</span>
+              <div className="text-right">
+                <span className="block text-xs text-slate-500 font-medium">آدرس جیمیل</span>
+                <span className="text-sm md:text-base font-bold text-slate-800">ارسال ایمیل به استاد</span>
+              </div>
+            </div>
+            <div dir="ltr" className="text-xs font-mono text-red-600 bg-red-50 px-2.5 py-1.5 rounded-lg break-all">
+              Hadi.mohammadi.zarandini@gmail.com
+            </div>
+          </a>
+        </div>
       </section>
 
-      {/* فوتر سایت */}
+      {/* فوتر */}
       <footer className="bg-[#0f172a] text-slate-400 text-center py-6 text-sm">
         <p>© 2026 {lang === 'fa' ? 'دکتر هادی محمدی - تمامی حقوق محفوظ است' : 'Dr. Hadi Mohammadi. All rights reserved.'}</p>
       </footer>
