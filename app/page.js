@@ -140,8 +140,8 @@ export default function Home() {
           </h2>
           <p className="text-slate-600 leading-relaxed text-justify text-base md:text-lg">
             {lang === 'fa' 
-              ? 'اینجانب دکتر هادی محمدی، دارای مدرک دکتری تخصصی ریاضی از دانشگاه صنعتی امیرکبیر (پلی‌تکنیک تهران) و عضو هیأت علمی دانشگاه هستم. با سال‌ها تجربه در امر تدریس دانشگاهی و مدارس برتر، تخصص ویژه‌ای در آموزش آنلاین ریاضیات (از مقطع دبیرستان تا دانشگاه، شامل سیستم‌های IB, AP, A-Level و دروس دانشگاهی) به دانش‌آموزان و دانشجویان ایرانی مقیم خارج از کشور دارم.'
-              : 'I am Dr. Hadi Mohammadi, holding a Ph.D. in Mathematics from Amirkabir University of Technology (Tehran Polytechnic) and serving as a university faculty member. With extensive experience teaching at top universities and high schools, I specialize in online mathematics education tailored for students worldwide.'
+              ? 'اینجانب دکتر هادی محمدی، دارای مدرک دکتری تخصصی ریاضی از دانشگاه صنعتی امیرکبیر (پلی‌تکنیک تهران) و عضو هیأت علمی دانشگاه با ۲۹ سال سابقه تدریس هستم. با سال‌ها تجربه در امر تدریس دانشگاهی و مدارس برتر، تخصص ویژه‌ای در آموزش آنلاین ریاضیات (از مقطع دبیرستان تا دانشگاه، شامل سیستم‌های IB, AP, A-Level و دروس دانشگاهی) به دانش‌آموزان و دانشجویان ایرانی مقیم خارج از کشور دارم.'
+              : 'I am Dr. Hadi Mohammadi, holding a Ph.D. in Mathematics from Amirkabir University of Technology (Tehran Polytechnic), a university faculty member with 29 years of teaching experience. With extensive experience teaching at top universities and high schools, I specialize in online mathematics education tailored for students worldwide.'
             }
           </p>
         </div>
@@ -273,7 +273,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ۵. بخش سوابق علمی و پژوهشی */}
+      {/* ۵. بخش سوابق علمی و پژوهشی (بروزرسانی شده با ۲۹ سال سابقه تدریس) */}
       <section id="resume" className="max-w-5xl mx-auto my-16 px-4">
         <div className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-slate-100">
           <div className="flex items-center justify-center gap-2 mb-8 text-[#1e295d]">
@@ -289,7 +289,7 @@ export default function Home() {
               <span className="text-blue-600 font-bold">✓</span>
             </li>
             <li className="flex items-center justify-between text-base md:text-lg text-slate-700 border-b border-slate-100 pb-3">
-              <span>{lang === 'fa' ? 'عضو هیأت علمی و مدرس دانشگاه' : 'University Faculty Member and Lecturer'}</span>
+              <span>{lang === 'fa' ? 'عضو هیأت علمی دانشگاه با ۲۹ سال سابقه تدریس' : 'University Faculty Member with 29 Years of Teaching Experience'}</span>
               <span className="text-blue-600 font-bold">✓</span>
             </li>
             <li className="flex items-center justify-between text-base md:text-lg text-slate-700 border-b border-slate-100 pb-3">
@@ -304,7 +304,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ۶. بخش ارتباط با استاد (طراحی جدید و اصلاح شده) */}
+      {/* ۶. بخش ارتباط با استاد (دقیقاً کاملاً زیر هم و مرتب‌شده) */}
       <section id="contact" className="max-w-5xl mx-auto my-16 px-4 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-2">
           {lang === 'fa' ? 'ارتباط با استاد' : 'Contact Professor'}
@@ -315,15 +315,15 @@ export default function Home() {
             : 'For booking consultations, online classes, or inquiries, reach out below:'}
         </p>
 
-        {/* کادرهای فشرده، شکیل و دارای لوگوهای رسمی */}
-        <div className="flex flex-col gap-3 w-full max-w-md mx-auto" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
+        {/* چیدمان کاملاً عمودی و شکیل در یک ستون */}
+        <div className="flex flex-col gap-3.5 w-full max-w-md mx-auto" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
           
-          {/* کادر تلگرام */}
+          {/* ۱. تلگرام */}
           <a
             href="https://t.me/International_Maths"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between p-3.5 bg-white border border-slate-200/80 rounded-2xl shadow-sm hover:shadow-md hover:border-sky-300 transition group"
+            className="flex items-center justify-between p-3.5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-sky-300 transition group"
           >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center text-sky-500 group-hover:scale-105 transition">
@@ -333,7 +333,7 @@ export default function Home() {
               </div>
               <div className={lang === 'fa' ? 'text-right' : 'text-left'}>
                 <span className="block text-[11px] text-slate-400 font-medium">
-                  {lang === 'fa' ? 'تلگرام' : 'Telegram'}
+                  {lang === 'fa' ? 'کانال و آیدی تلگرام' : 'Telegram Channel'}
                 </span>
                 <span className="text-xs md:text-sm font-bold text-slate-800">
                   {lang === 'fa' ? 'آموزش بین‌المللی ریاضیات' : 'International Math'}
@@ -345,12 +345,12 @@ export default function Home() {
             </span>
           </a>
 
-          {/* کادر اینستاگرام */}
+          {/* ۲. اینستاگرام */}
           <a
             href="https://instagram.com/Hadi_mohammadi_zarandini"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between p-3.5 bg-white border border-slate-200/80 rounded-2xl shadow-sm hover:shadow-md hover:border-pink-300 transition group"
+            className="flex items-center justify-between p-3.5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-pink-300 transition group"
           >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-pink-50 flex items-center justify-center text-pink-500 group-hover:scale-105 transition">
@@ -360,7 +360,7 @@ export default function Home() {
               </div>
               <div className={lang === 'fa' ? 'text-right' : 'text-left'}>
                 <span className="block text-[11px] text-slate-400 font-medium">
-                  {lang === 'fa' ? 'اینستاگرام' : 'Instagram'}
+                  {lang === 'fa' ? 'صفحه اینستاگرام' : 'Instagram Page'}
                 </span>
                 <span className="text-xs md:text-sm font-bold text-slate-800">Hadi_mohammadi_zarandini</span>
               </div>
@@ -370,10 +370,10 @@ export default function Home() {
             </span>
           </a>
 
-          {/* کادر جیمیل */}
+          {/* ۳. جیمیل */}
           <a
             href="mailto:Hadi.mohammadi.zarandini@gmail.com"
-            className="flex items-center justify-between p-3.5 bg-white border border-slate-200/80 rounded-2xl shadow-sm hover:shadow-md hover:border-red-300 transition group"
+            className="flex items-center justify-between p-3.5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-red-300 transition group"
           >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center text-red-500 group-hover:scale-105 transition">
@@ -383,7 +383,7 @@ export default function Home() {
               </div>
               <div className={lang === 'fa' ? 'text-right' : 'text-left'}>
                 <span className="block text-[11px] text-slate-400 font-medium">
-                  {lang === 'fa' ? 'جیمیل' : 'Gmail'}
+                  {lang === 'fa' ? 'آدرس پست الکترونیکی' : 'Email Address'}
                 </span>
                 <span className="text-xs md:text-sm font-bold text-slate-800">
                   {lang === 'fa' ? 'ارسال ایمیل به استاد' : 'Send Email'}
@@ -395,10 +395,10 @@ export default function Home() {
             </span>
           </a>
 
-          {/* کادر تلفن تماس (جدید) */}
+          {/* ۴. شماره تلفن تماس مستقیم */}
           <a
             href="tel:+989123104844"
-            className="flex items-center justify-between p-3.5 bg-white border border-slate-200/80 rounded-2xl shadow-sm hover:shadow-md hover:border-emerald-300 transition group"
+            className="flex items-center justify-between p-3.5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-emerald-300 transition group"
           >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:scale-105 transition">
@@ -408,10 +408,10 @@ export default function Home() {
               </div>
               <div className={lang === 'fa' ? 'text-right' : 'text-left'}>
                 <span className="block text-[11px] text-slate-400 font-medium">
-                  {lang === 'fa' ? 'تلفن تماس / واتساپ' : 'Phone / WhatsApp'}
+                  {lang === 'fa' ? 'شماره تلفن / واتساپ' : 'Phone / WhatsApp'}
                 </span>
                 <span className="text-xs md:text-sm font-bold text-slate-800">
-                  {lang === 'fa' ? 'ارتباط مستقیم با استاد' : 'Direct Call'}
+                  {lang === 'fa' ? 'تماس مستقیم با استاد' : 'Direct Call'}
                 </span>
               </div>
             </div>
