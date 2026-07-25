@@ -52,10 +52,10 @@ export default function Home() {
       {/* منوی بالای سایت (Header) */}
       <header className="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          
+          {/* سمت راست منو (بدون اسم) */}
           <div className="flex items-center gap-2">
-            <span className="font-bold text-xl text-[#1e295d]">
-              {lang === 'fa' ? 'دکتر هادی محمدی' : 'Dr. Hadi Mohammadi'}
-            </span>
+            <span className="text-xl">📐</span>
           </div>
           
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
@@ -90,7 +90,7 @@ export default function Home() {
       <section className="bg-[#1e295d] text-white py-16 px-4 text-center">
         <div className="max-w-3xl mx-auto flex flex-col items-center">
           
-          {/* عکس پرتره دکتر هادی محمدی - آدرس‌دهی مستقیم از پوشه public */}
+          {/* عکس پرتره دکتر هادی محمدی */}
           <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl mb-6 bg-slate-800 flex items-center justify-center">
             <img 
               src="/profile.jpg" 
@@ -99,13 +99,20 @@ export default function Home() {
             />
           </div>
 
+          {/* متن اصلی با فونت بزرگ‌تر */}
           <h1 className="text-3xl md:text-5xl font-extrabold mb-3">
-            {lang === 'fa' ? 'دکتر هادی محمدی' : 'Dr. Hadi Mohammadi'}
+            {lang === 'fa' ? 'آموزش بین المللی ریاضیات' : 'International Mathematics Education'}
           </h1>
-          <p className="text-lg md:text-2xl text-slate-200 font-medium mb-2">
+
+          {/* زیرعنوان (اسم) با فونت کوچک‌تر */}
+          <h2 className="text-xl md:text-3xl font-semibold text-slate-200 mb-2">
+            {lang === 'fa' ? 'دکتر هادی محمدی' : 'Dr. Hadi Mohammadi'}
+          </h2>
+
+          <p className="text-base md:text-xl text-slate-300 font-medium mb-2">
             {lang === 'fa' ? 'عضو هیأت علمی دانشگاه و مدرس آنلاین ریاضی' : 'University Faculty Member & Online Math Tutor'}
           </p>
-          <p className="text-sm md:text-base text-slate-300 opacity-90">
+          <p className="text-xs md:text-sm text-slate-400 opacity-90">
             {lang === 'fa' ? 'ویژه ایرانیان خارج از کشور (آمریکا، کانادا، اروپا، استرالیا و انگلستان)' : 'Specialized for International Students (USA, Canada, Europe, Australia, UK)'}
           </p>
 
