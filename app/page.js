@@ -91,9 +91,9 @@ export default function Home() {
         <div className="max-w-3xl mx-auto flex flex-col items-center">
           
           {/* عکس پرتره دکتر هادی محمدی */}
-          <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl mb-6 bg-slate-800">
+          <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl mb-6 bg-slate-800 flex items-center justify-center">
             <img 
-              src="/profile.jpg" 
+              src="https://ibb.co/CsB8RD1b" 
               alt="دکتر هادی محمدی" 
               className="w-full h-full object-cover"
             />
