@@ -42,6 +42,7 @@ export default function Home() {
   const [lang, setLang] = useState('fa');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubItem, setSelectedSubItem] = useState(null);
+  const [imgError, setImgError] = useState(false);
 
   const handleCategoryClick = (catId) => {
     if (selectedCategory === catId) {
@@ -51,6 +52,7 @@ export default function Home() {
       setSelectedCategory(catId);
       setSelectedSubItem(null);
     }
+    setImgError(false);
   };
 
   const handleSubItemClick = (itemId) => {
@@ -59,16 +61,16 @@ export default function Home() {
     } else {
       setSelectedSubItem(itemId);
     }
+    setImgError(false);
   };
 
   const isUniversity = selectedCategory === 'university';
   const subItemList = isUniversity ? UNIVERSITY_BOOKS : SCHOOL_GRADES;
 
-  // چک کردن اینکه آیا کتاب انتخاب شده، «کلاس هفتم کمبریج» است یا خیر
   const isCambridgeGrade7 = selectedCategory === 'cambridge' && selectedSubItem === 'g7';
 
-  // لینک گوگل درایو فایل PDF کلاس هفتم کمبریج (لینک خود را اینجا قرار دهید)
-  const cambridgeGrade7DriveUrl = "https://drive.google.com/file/d/109Lk_VbvwpVMRcv70qMXKKhfAyuAmNF_/view?usp=drivesdk";
+  // لینک فایل PDF در گوگل درایو
+  const cambridgeGrade7DriveUrl = "https://drive.google.com/file/d/YOUR_DRIVE_FILE_ID/view?usp=sharing";
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
@@ -101,7 +103,7 @@ export default function Home() {
       <section className="bg-[#1e295d] text-white py-16 px-4 text-center">
         <div className="max-w-3xl mx-auto flex flex-col items-center">
           <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl mb-6 bg-slate-800 flex items-center justify-center">
-            <img src="/profile.jpg" alt="دکتر هادی محمدی" className="w-full h-full object-cover" />
+            <img src="/profile.jpg" alt="دکتر هادی محمدی" className="w-full h-full object-cover" onError={(e) => { e.target.style.display = 'none'; }} />
           </div>
 
           <h1 className="text-3xl md:text-5xl font-extrabold mb-3">
@@ -203,29 +205,39 @@ export default function Home() {
               })}
             </div>
 
-            {/* کادر نمایش کتاب و دکمه دانلود */}
+            {/* کادر کارت نمایش جلد کتاب */}
             {selectedSubItem && (
               <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col items-center">
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 max-w-sm w-full shadow-inner flex flex-col items-center">
                   
-                  {/* بخش تصویر کتاب */}
-                  <div className="w-44 h-56 rounded-xl shadow-md overflow-hidden mb-4 border-2 border-slate-200 bg-white flex items-center justify-center">
-                    {isCambridgeGrade7 ? (
-                      /* عکس اختصاصی سال هفتم کمبریج */
+                  {/* بخش نمایش جلد (فراخوانی با پسوند JPG) */}
+                  <div className="w-44 h-56 rounded-xl shadow-md overflow-hidden mb-4 border-2 border-slate-200 bg-white flex items-center justify-center relative">
+                    {isCambridgeGrade7 && !imgError ? (
                       <img 
-                        src="/cambridge-g7.jpg" 
+                        src="/cambridge-g7.JPG" 
                         alt="کتاب ریاضی هفتم کمبریج" 
                         className="w-full h-full object-cover"
+                        onError={() => setImgError(true)}
                       />
                     ) : (
-                      /* جلد پیش‌فرض برای سایر موارد */
-                      <div className="w-full h-full bg-gradient-to-br from-blue-700 to-[#1e295d] flex flex-col items-center justify-center text-white p-4 text-center">
-                        <span className="text-4xl mb-2">📕</span>
-                        <span className="text-xs font-bold leading-tight">
-                          {lang === 'fa' 
-                            ? subItemList.find((i) => i.id === selectedSubItem)?.titleFa 
-                            : subItemList.find((i) => i.id === selectedSubItem)?.titleEn}
-                        </span>
+                      /* کارت طراحی‌شده هوشمند برای زمان عدم بارگذاری عکس */
+                      <div className="w-full h-full bg-gradient-to-br from-indigo-800 via-blue-900 to-slate-900 flex flex-col items-center justify-between text-white p-4 text-center">
+                        <div className="text-[10px] uppercase tracking-wider font-semibold bg-white/20 px-2 py-0.5 rounded-full border border-white/20 mt-1">
+                          {selectedCategory?.toUpperCase()}
+                        </div>
+                        
+                        <div className="my-auto flex flex-col items-center">
+                          <span className="text-3xl mb-1">📘</span>
+                          <span className="text-xs font-extrabold leading-tight px-1">
+                            {lang === 'fa' 
+                              ? subItemList.find((i) => i.id === selectedSubItem)?.titleFa 
+                              : subItemList.find((i) => i.id === selectedSubItem)?.titleEn}
+                          </span>
+                        </div>
+
+                        <div className="text-[9px] text-slate-300 font-light border-t border-white/10 w-full pt-1">
+                          International Mathematics
+                        </div>
                       </div>
                     )}
                   </div>
@@ -248,7 +260,7 @@ export default function Home() {
                   >
                     <span>📥</span>
                     <span>
-                      {lang === 'fa' ? 'دانلود فایل PDF از گوگل درایو' : 'Download PDF from Google Drive'}
+                      {lang === 'fa' ? 'دانلود فایل PDF' : 'Download PDF'}
                     </span>
                   </a>
 
