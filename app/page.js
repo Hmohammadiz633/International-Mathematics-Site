@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-// لینک‌های اختصاصی گوگل درایو برای تمامی پایه‌ها (لینک‌های سال نهم و دهم به طور کامل اصلاح شدند)
+// لینک‌های اختصاصی گوگل درایو برای هر پایه
 const CAMBRIDGE_DRIVE_URLS = {
   g7: "https://drive.google.com/file/d/YOUR_GRADE7_DRIVE_ID/view?usp=sharing",
   g8: "https://drive.google.com/file/d/109Lk_VbvwpVMRcv70qMXKKHfAyuAmNF_/view?usp=drive_sdk",
@@ -56,7 +56,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* بخش معرفی اصلی (Hero Section) */}
+      {/* بخش معرفی اصلی */}
       <section className="bg-indigo-950 text-white py-16 px-4 text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto flex flex-col items-center">
           <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-white/20 shadow-xl mb-6">
@@ -76,7 +76,7 @@ export default function Home() {
             <span>👤</span> درباره من
           </h3>
           <p className="leading-relaxed text-gray-600 text-justify">
-            اینجانب دکتر هادی محمدی، دارای مدرک دکتری تخصصی ریاضی از دانشگاه صنعتی امیرکبیر (پلی‌تکنیک تهران) و عضو هیئت علمی دانشگاه با ۲۹ سال سابقه تدریس هستم. با سال‌ها تجربه در امر تدریس دانشگاهی و مدارس برتر، تخصص ویژه‌ای در آموزش آنلاین ریاضیات (از مقطع دبیرستان تا دانشگاه، شامل سیستم‌های IB، AP، A-Level و دروس دانشگاهی) به دانش‌آموزان و دانشجویان ایرانی مقیم خارج از کشور دارم.
+            اینجانب دکتر هادی محمدی، دارای مدرک دکتری تخصصی ریاضی از دانشگاه صنعتی امیرکبیر (پلی‌تکنیک تهران) و عضو هیئت علمی دانشگاه با ۲۹ سال سابقه تدریس هستم. با سال‌ها تجربه در امر تدریس دانشگاهی و مدارس برتر، تخصص ویژه‌ای در آموزش آنلاین ریاضیات به دانش‌آموزان و دانشجویان ایرانی مقیم خارج از کشور دارم.
           </p>
         </div>
       </section>
@@ -90,7 +90,7 @@ export default function Home() {
           <p className="text-gray-500 text-sm">جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:</p>
         </div>
 
-        {/* دکمه‌های دسته‌بندی کشورها */}
+        {/* دکمه‌های دسته‌بندی کشوری */}
         <div className="flex flex-wrap gap-3 justify-center mb-8">
           {CATEGORIES.map((cat) => (
             <button
@@ -108,12 +108,12 @@ export default function Home() {
           ))}
         </div>
 
-        {/* نمایش بخش پایه‌های کمبریج با تب‌بندی داخلی */}
+        {/* بخش کمبریج و تب‌های پایه‌ها */}
         {selectedCategory === 'cambridge' && (
           <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-gray-200 max-w-4xl mx-auto">
             <h4 className="text-xl font-semibold mb-6 text-center text-indigo-900">🏛️ پایه‌های تحصیلی مربوط به کمبریج</h4>
             
-            {/* دکمه‌های انتخاب پایه تحصیلی */}
+            {/* دکمه‌های انتخاب پایه */}
             <div className="flex flex-wrap gap-2 justify-center mb-8">
               {SCHOOL_GRADES.map((grade) => (
                 <button
@@ -130,36 +130,40 @@ export default function Home() {
               ))}
             </div>
 
-            {/* نمایش کارت مربوط به پایه انتخاب شده */}
-            {SCHOOL_GRADES.filter(g => g.id === selectedGrade).map((grade) => (
-              <div key={grade.id} className="flex flex-col items-center text-center">
-                <div className="w-64 h-80 bg-gray-100 rounded-2xl overflow-hidden shadow-md border border-gray-200 mb-4 relative">
-                  <img 
-                    src={`/cambridge-${grade.id}.JPG`} 
-                    alt={grade.titleFa}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      if (e.target.src.endsWith('.JPG')) {
-                        e.target.src = `/cambridge-${grade.id}.jpg`;
-                      } else {
-                        e.target.src = '/profile.jpg';
-                      }
-                    }}
-                  />
-                </div>
-                <h5 className="text-xl font-bold text-indigo-950 mb-1">{grade.titleFa}</h5>
-                <p className="text-sm text-gray-500 mb-6">نسخه کامل همراه با حل تمرینات</p>
+            {/* کارت نمایش تصویر و دکمه دانلود گوگل درایو مستقیم */}
+            {SCHOOL_GRADES.filter(g => g.id === selectedGrade).map((grade) => {
+              const driveLink = CAMBRIDGE_DRIVE_URLS[grade.id] || "#";
+              return (
+                <div key={grade.id} className="flex flex-col items-center text-center">
+                  <div className="w-64 h-80 bg-gray-100 rounded-2xl overflow-hidden shadow-md border border-gray-200 mb-4 relative">
+                    <img 
+                      src={`/cambridge-${grade.id}.JPG`} 
+                      alt={grade.titleFa}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        // در صورت عدم لود با پسوند پس‌زمینه بزرگ، پسوند کوچک را امتحان کن
+                        if (e.target.src.includes('.JPG')) {
+                          e.target.src = `/cambridge-${grade.id}.jpg`;
+                        } else {
+                          e.target.src = '/profile.jpg';
+                        }
+                      }}
+                    />
+                  </div>
+                  <h5 className="text-xl font-bold text-indigo-950 mb-1">{grade.titleFa}</h5>
+                  <p className="text-sm text-gray-500 mb-6">نسخه کامل همراه با حل تمرینات</p>
 
-                <a
-                  href={CAMBRIDGE_DRIVE_URLS[grade.id]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-medium rounded-xl transition-colors shadow-md text-sm"
-                >
-                  <span>📥</span> دانلود فایل PDF از گوگل درایو
-                </a>
-              </div>
-            ))}
+                  <a
+                    href={driveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-medium rounded-xl transition-colors shadow-md text-sm cursor-pointer"
+                  >
+                    <span>📥</span> دانلود فایل PDF از گوگل درایو
+                  </a>
+                </div>
+              );
+            })}
           </div>
         )}
       </section>
@@ -214,7 +218,7 @@ export default function Home() {
               <span className="text-xs text-gray-400 block">کانال و آیدی تلگرام</span>
               <span className="font-bold text-indigo-950">آموزش بین‌المللی ریاضیات</span>
             </div>
-            <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-lg text-xs font-mono">@International_Maths</span>
+            <a href="https://t.me/International_Maths" target="_blank" rel="noreferrer" className="bg-blue-50 text-blue-600 px-3 py-1 rounded-lg text-xs font-mono">@International_Maths</a>
           </div>
 
           <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
