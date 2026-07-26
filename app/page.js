@@ -1,14 +1,15 @@
 'use client';
 import { useState } from 'react';
 
-// 🔗 آدرس مستقیم پست هر فایل در گروه تلگرام (لینک‌های مستقیم تلگرام خود را اینجا وارد کنید)
+// 🔗 لینک‌های اختصاصی هر پایه در تلگرام
+// (لینک مستقیم پست فایل هر پایه را دقیقاً جلوی آن وارد کنید)
 const TELEGRAM_PDF_URLS = {
-  g7: "https://t.me/International_Maths/1400", // لینک اختصاصی فایل سال هفتم
-  g8: "https://t.me/International_Maths/1401", // لینک اختصاصی فایل سال هشتم
-  g9: "https://t.me/International_Maths/1402", // لینک اختصاصی فایل سال نهم
-  g10: "https://t.me/International_Maths/1403", // لینک اختصاصی فایل سال دهم
-  g11: "https://t.me/International_Maths", // لینک اختصاصی فایل سال یازدهم
-  g12: "https://t.me/International_Maths"  // لینک اختصاصی فایل سال دوازدهم
+  g7: "https://t.me/International_Maths/1400",  // لینک پست سال هفتم
+  g8: "https://t.me/International_Maths/1401",  // لینک پست سال هشتم
+  g9: "https://t.me/International_Maths/1402",  // لینک پست سال نهم
+  g10: "https://t.me/International_Maths/1403", // لینک پست سال دهم
+  g11: "https://t.me/International_Maths/1404", // لینک پست سال یازدهم
+  g12: "https://t.me/International_Maths/1405"  // لینک پست سال دوازدهم
 };
 
 // لیست کشورها / سیستم‌ها
@@ -23,7 +24,7 @@ const CATEGORIES = [
   { id: 'university', titleFa: 'کتاب‌های دانشگاهی', titleEn: 'University Textbooks' }
 ];
 
-// لیست مقاطع تحصیلی دانش‌آموزی
+// لیست مقاطع تحصیلی دانش‌آموزی (تمام لینک‌های قدیمی گوگل درایو کاملاً پاک شدند)
 const SCHOOL_GRADES = [
   { id: 'g7', titleFa: 'سال هفتم', titleEn: 'Grade 7' },
   { id: 'g8', titleFa: 'سال هشتم', titleEn: 'Grade 8' },
@@ -35,7 +36,7 @@ const SCHOOL_GRADES = [
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('cambridge');
-  const [selectedGrade, setSelectedGrade] = useState('g7');
+  const [selectedGrade, setSelectedGrade] = useState('g8'); // پیش‌فرض سال هشتم
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans rtl" dir="rtl">
@@ -113,7 +114,7 @@ export default function Home() {
           <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-gray-200 max-w-4xl mx-auto">
             <h4 className="text-xl font-semibold mb-6 text-center text-indigo-900">🏛️ پایه‌های تحصیلی مربوط به کمبریج</h4>
             
-            {/* دکمه‌های انتخاب پایه */}
+            {/* دکمه‌های انتخاب پایه (۷ تا ۱۲) */}
             <div className="flex flex-wrap gap-2 justify-center mb-8">
               {SCHOOL_GRADES.map((grade) => (
                 <button
@@ -130,9 +131,10 @@ export default function Home() {
               ))}
             </div>
 
-            {/* کارت نمایش تصویر و دکمه دانلود تلگرام اختصاصی */}
+            {/* کارت اصلی - متصل به لینک تلگرام پایه انتخاب شده */}
             {SCHOOL_GRADES.filter(g => g.id === selectedGrade).map((grade) => {
-              const currentTelegramUrl = TELEGRAM_PDF_URLS[grade.id] || "https://t.me/International_Maths";
+              // دریافت لینک اختصاصی تلگرام همان پایه
+              const telegramLink = TELEGRAM_PDF_URLS[grade.id] || "https://t.me/International_Maths";
 
               return (
                 <div key={grade.id} className="flex flex-col items-center text-center">
@@ -154,7 +156,7 @@ export default function Home() {
                   <p className="text-sm text-gray-500 mb-6">نسخه کامل همراه با حل تمرینات</p>
 
                   <a
-                    href={currentTelegramUrl}
+                    href={telegramLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition-colors shadow-md text-sm cursor-pointer"
