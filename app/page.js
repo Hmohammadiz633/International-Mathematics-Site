@@ -1,259 +1,51 @@
 'use client';
+
 import { useState } from 'react';
-
-// 🔗 لینک‌های مستقیم پست تلگرام برای هر پایه (در صورت نیاز لینک مستقیم هر فایل را جایگزین کنید)
-const TELEGRAM_LINKS = {
-  g7: "https://t.me/International_Maths/1400",  // لینک پست فایل سال هفتم
-  g8: "https://t.me/International_Maths/1401",  // لینک پست فایل سال هشتم
-  g9: "https://t.me/International_Maths/1402",  // لینک پست فایل سال نهم
-  g10: "https://t.me/International_Maths/1403", // لینک پست فایل سال دهم
-  g11: "https://t.me/International_Maths/1404", // لینک پست فایل سال یازدهم
-  g12: "https://t.me/International_Maths/1405"  // لینک پست فایل سال دوازدهم
-};
-
-// لیست کشورها / سیستم‌های آموزشی
-const CATEGORIES = [
-  { id: 'cambridge', titleFa: 'کمبریج' },
-  { id: 'australia', titleFa: 'استرالیا' },
-  { id: 'canada', titleFa: 'کانادا' },
-  { id: 'uk', titleFa: 'انگلستان' },
-  { id: 'germany', titleFa: 'آلمان' },
-  { id: 'california', titleFa: 'کالیفرنیا' },
-  { id: 'turkey', titleFa: 'ترکیه' },
-  { id: 'university', titleFa: 'کتاب‌های دانشگاهی' }
-];
-
-// لیست مقاطع تحصیلی (سال هفتم تا دوازدهم)
-const SCHOOL_GRADES = [
-  { id: 'g7', titleFa: 'سال هفتم' },
-  { id: 'g8', titleFa: 'سال هشتم' },
-  { id: 'g9', titleFa: 'سال نهم' },
-  { id: 'g10', titleFa: 'سال دهم' },
-  { id: 'g11', titleFa: 'سال یازدهم' },
-  { id: 'g12', titleFa: 'سال دوازدهم' }
-];
+import Header from '@/components/Header'; // یا مسیر مربوط به هدر شما
+import BooksSection from '@/components/BooksSection';
+import Footer from '@/components/Footer'; // یا مسیر مربوط به فوتر شما
 
 export default function Home() {
-  const [selectedCategory, setSelectedCategory] = useState('cambridge');
-  const [selectedGrade, setSelectedGrade] = useState('g7');
+  // مدیریت متمرکز زبان سایت (fa یا en)
+  const [lang, setLang] = useState('fa');
+
+  const toggleLanguage = () => {
+    setLang((prevLang) => (prevLang === 'fa' ? 'en' : 'fa'));
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800 font-sans rtl" dir="rtl">
-      {/* هدر اصلی سایت */}
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <nav className="flex gap-6 text-sm md:text-base font-medium text-gray-600">
-            <a href="#about" className="hover:text-blue-600 transition-colors">درباره من</a>
-            <a href="#books" className="hover:text-blue-600 transition-colors">کتاب‌های تدریس‌شده</a>
-            <a href="#services" className="hover:text-blue-600 transition-colors">خدمات تدریس</a>
-            <a href="#resume" className="hover:text-blue-600 transition-colors">رزومه</a>
-            <a href="#contact" className="hover:text-blue-600 transition-colors">تماس با ما</a>
-          </nav>
-          <div className="border border-gray-300 rounded-full px-3 py-1 text-sm text-gray-600 cursor-pointer flex items-center gap-1">
-            <span>English</span>
+    <div className={`min-h-screen bg-gray-50 text-gray-900 ${lang === 'en' ? 'ltr' : 'rtl'}`} dir={lang === 'en' ? 'ltr' : 'rtl'}>
+      {/* هدر سایت همراه با دکمه تغییر زبان */}
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+          <h1 className="text-xl font-bold text-indigo-900">
+            {lang === 'fa' ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics'}
+          </h1>
+          
+          {/* دکمه تغییر زبان در هدر اصلی */}
+          <button
+            type="button"
+            onClick={toggleLanguage}
+            className="px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-900 font-semibold rounded-xl text-sm border border-indigo-200 transition-all shadow-sm flex items-center gap-2"
+          >
             <span>🌐</span>
-          </div>
+            <span>{lang === 'fa' ? 'English' : 'فارسی'}</span>
+          </button>
         </div>
       </header>
 
-      {/* بخش بنر اصلی (Hero Section) */}
-      <section className="bg-indigo-950 text-white py-16 px-4 text-center relative overflow-hidden">
-        <div className="max-w-4xl mx-auto flex flex-col items-center">
-          <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-white/20 shadow-xl mb-6">
-            <img src="/profile.jpg" alt="دکتر هادی محمدی" className="w-full h-full object-cover" />
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">آموزش بین‌المللی ریاضیات</h1>
-          <h2 className="text-xl md:text-2xl font-medium mb-3 text-indigo-200">دکتر هادی محمدی</h2>
-          <p className="text-base md:text-lg text-indigo-100 font-light mb-2">عضو هیئت علمی دانشگاه و مدرس آنلاین ریاضی</p>
-          <p className="text-sm text-indigo-300">ویژه ایرانیان خارج از کشور (آمریکا، کانادا، اروپا، استرالیا و انگلستان)</p>
-        </div>
-      </section>
+      {/* محتوای اصلی - فراخوانی بخش کتاب‌ها با زبان جدید */}
+      <main className="container mx-auto py-8 px-4">
+        <BooksSection lang={lang} />
+      </main>
 
-      {/* درباره من */}
-      <section id="about" className="py-12 px-4 max-w-4xl mx-auto">
-        <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
-          <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-indigo-950">
-            <span>👤</span> درباره من
-          </h3>
-          <p className="leading-relaxed text-gray-600 text-justify">
-            اینجانب دکتر هادی محمدی، دارای مدرک دکتری تخصصی ریاضی از دانشگاه صنعتی امیرکبیر (پلی‌تکنیک تهران) و عضو هیئت علمی دانشگاه با ۲۹ سال سابقه تدریس هستم. با سال‌ها تجربه در امر تدریس دانشگاهی و مدارس برتر، تخصص ویژه‌ای در آموزش آنلاین ریاضیات به دانش‌آموزان و دانشجویان ایرانی مقیم خارج از کشور دارم.
-          </p>
-        </div>
-      </section>
-
-      {/* کتاب‌های تدریس شده */}
-      <section id="books" className="py-12 px-4 max-w-6xl mx-auto">
-        <div className="text-center mb-10">
-          <h3 className="text-2xl font-bold mb-3 text-indigo-950 flex items-center justify-center gap-2">
-            <span>📚</span> کتاب‌های تدریس‌شده
-          </h3>
-          <p className="text-gray-500 text-sm">جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:</p>
-        </div>
-
-        {/* دکمه‌های انتخاب کشور / سیستم آموزشی */}
-        <div className="flex flex-wrap gap-3 justify-center mb-8">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`px-5 py-3 rounded-xl font-medium transition-all shadow-sm flex items-center gap-2 ${
-                selectedCategory === cat.id
-                  ? 'bg-indigo-900 text-white shadow-md'
-                  : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
-              }`}
-            >
-              <span>📖</span>
-              <span>{cat.titleFa}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* نمایش بخش کمبریج و تب‌های پایه‌ها */}
-        {selectedCategory === 'cambridge' && (
-          <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-gray-200 max-w-4xl mx-auto">
-            <h4 className="text-xl font-semibold mb-6 text-center text-indigo-900">🏛️ پایه‌های تحصیلی مربوط به کمبریج</h4>
-            
-            {/* دکمه‌های انتخاب پایه تحصیلی */}
-            <div className="flex flex-wrap gap-2 justify-center mb-8">
-              {SCHOOL_GRADES.map((grade) => (
-                <button
-                  key={grade.id}
-                  onClick={() => setSelectedGrade(grade.id)}
-                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-                    selectedGrade === grade.id
-                      ? 'bg-blue-600 text-white shadow'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  {grade.titleFa}
-                </button>
-              ))}
-            </div>
-
-            {/* کارت نمایش تصویر جلد کتاب و دکمه دانلود تلگرام */}
-            {SCHOOL_GRADES.filter(g => g.id === selectedGrade).map((grade) => {
-              const currentTelegramUrl = TELEGRAM_LINKS[grade.id] || "https://t.me/International_Maths";
-
-              return (
-                <div key={grade.id} className="flex flex-col items-center text-center">
-                  <div className="w-64 h-80 bg-gray-100 rounded-2xl overflow-hidden shadow-md border border-gray-200 mb-4 relative">
-                    <img 
-                      src={`/cambridge-${grade.id}.jpg`} 
-                      alt={grade.titleFa}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        if (e.target.src.endsWith('.jpg')) {
-                          e.target.src = `/cambridge-${grade.id}.JPG`;
-                        } else {
-                          e.target.src = '/profile.jpg';
-                        }
-                      }}
-                    />
-                  </div>
-                  <h5 className="text-xl font-bold text-indigo-950 mb-1">{grade.titleFa}</h5>
-                  <p className="text-sm text-gray-500 mb-6">نسخه کامل همراه با حل تمرینات</p>
-
-                  {/* دکمه اختصاصی تلگرام با آیکون رسمی تلگرام */}
-                  <a
-                    href={currentTelegramUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-sky-500 hover:bg-sky-600 text-white font-medium rounded-xl transition-all shadow-md text-sm cursor-pointer"
-                  >
-                    <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                      <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.52c-.15.68-.55.84-1.12.52l-3.1-2.28-1.5 1.44c-.17.17-.31.31-.63.31l.22-3.17 5.77-5.21c.25-.22-.05-.34-.39-.12l-7.13 4.49-3.08-.96c-.67-.21-.68-.67.14-.99l12.03-4.64c.56-.2 1.05.14.83 1.09z" />
-                    </svg>
-                    <span>دانلود فایل PDF از گروه تلگرامی آموزش بین المللی ریاضیات</span>
-                  </a>
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </section>
-
-      {/* خدمات تدریس */}
-      <section id="services" className="py-12 px-4 max-w-4xl mx-auto">
-        <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 text-center">
-          <h3 className="text-xl font-bold mb-3 text-indigo-950">خدمات تدریس آنلاین</h3>
-          <p className="text-gray-600 leading-relaxed">
-            برگزاری کلاس‌های خصوصی و نیمه‌خصوصی ریاضی با متدهای نوین آموزشی و متناسب با سیستم آموزشی کشور محل اقامت شما.
-          </p>
-        </div>
-      </section>
-
-      {/* سوابق علمی و پژوهشی */}
-      <section id="resume" className="py-12 px-4 max-w-4xl mx-auto">
-        <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
-          <h3 className="text-xl font-bold mb-6 text-indigo-950 flex items-center justify-center gap-2">
-            <span>🎗️</span> سوابق علمی و پژوهشی
-          </h3>
-          <ul className="space-y-4 text-gray-700">
-            <li className="flex items-center gap-3 border-b border-gray-100 pb-3">
-              <span className="text-blue-600 font-bold">✓</span>
-              <span>دکتری تخصصی ریاضی از دانشگاه صنعتی امیرکبیر (پلی‌تکنیک تهران)</span>
-            </li>
-            <li className="flex items-center gap-3 border-b border-gray-100 pb-3">
-              <span className="text-blue-600 font-bold">✓</span>
-              <span>عضو هیئت علمی دانشگاه با ۲۹ سال سابقه تدریس</span>
-            </li>
-            <li className="flex items-center gap-3 border-b border-gray-100 pb-3">
-              <span className="text-blue-600 font-bold">✓</span>
-              <span>تألیف چندین مقاله علمی پژوهشی در ژورنال‌های معتبر بین‌المللی</span>
-            </li>
-            <li className="flex items-center gap-3 pb-1">
-              <span className="text-blue-600 font-bold">✓</span>
-              <span>مدرس دوره‌های تخصصی ریاضیات دانشگاهی و دبیرستان</span>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      {/* بخش راه ارتباطی */}
-      <section id="contact" className="py-12 px-4 max-w-4xl mx-auto">
-        <div className="text-center mb-8">
-          <h3 className="text-2xl font-bold mb-2 text-indigo-950">ارتباط با استاد</h3>
-          <p className="text-gray-500 text-sm">جهت رزرو وقت مشاوره، کلاس‌های آنلاین و ارسال پیام می‌توانید از طریق راه‌های زیر در ارتباط باشید:</p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
-            <div className="text-right">
-              <span className="text-xs text-gray-400 block">کانال و آیدی تلگرام</span>
-              <span className="font-bold text-indigo-950">آموزش بین‌المللی ریاضیات</span>
-            </div>
-            <a href="https://t.me/International_Maths" target="_blank" rel="noreferrer" className="bg-blue-50 text-blue-600 px-3 py-1 rounded-lg text-xs font-mono">@International_Maths</a>
-          </div>
-
-          <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
-            <div className="text-right">
-              <span className="text-xs text-gray-400 block">صفحه اینستاگرام</span>
-              <span className="font-bold text-indigo-950">Hadi_mohammadi_zarandini</span>
-            </div>
-            <span className="bg-pink-50 text-pink-600 px-3 py-1 rounded-lg text-xs font-mono">@Hadi...</span>
-          </div>
-
-          <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
-            <div className="text-right">
-              <span className="text-xs text-gray-400 block">آدرس پست الکترونیکی</span>
-              <span className="font-bold text-indigo-950">ارسال ایمیل به استاد</span>
-            </div>
-            <span className="bg-red-50 text-red-600 px-3 py-1 rounded-lg text-xs font-mono">Hadi.mohammadi...</span>
-          </div>
-
-          <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
-            <div className="text-right">
-              <span className="text-xs text-gray-400 block">شماره تلفن / واتساپ</span>
-              <span className="font-bold text-indigo-950">تماس مستقیم با استاد</span>
-            </div>
-            <span className="bg-green-50 text-green-600 px-3 py-1 rounded-lg text-xs font-mono">+98 912 310 4844</span>
-          </div>
-        </div>
-      </section>
-
-      {/* فوتر سایت */}
-      <footer className="bg-indigo-950 text-indigo-300 py-6 text-center text-sm border-t border-indigo-900">
-        <p>© 2026 دکتر هادی محمدی - تمامی حقوق محفوظ است</p>
+      {/* فوتر ساده */}
+      <footer className="bg-white border-t border-gray-200 py-6 text-center text-sm text-gray-500">
+        <p>
+          {lang === 'fa'
+            ? 'تمامی حقوق محفوظ است © آموزش بین‌المللی ریاضیات'
+            : 'All rights reserved © International Mathematics'}
+        </p>
       </footer>
     </div>
   );
