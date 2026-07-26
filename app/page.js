@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-// لینک‌های اختصاصی گوگل درایو برای هر پایه
+// لینک‌های مستقیم و اختصاصی گوگل درایو برای هر پایه
 const CAMBRIDGE_DRIVE_URLS = {
   g7: "https://drive.google.com/file/d/YOUR_GRADE7_DRIVE_ID/view?usp=sharing",
   g8: "https://drive.google.com/file/d/109Lk_VbvwpVMRcv70qMXKKHfAyuAmNF_/view?usp=drive_sdk",
@@ -56,7 +56,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* بخش معرفی اصلی */}
+      {/* بخش معرفی اصلی (Hero Section) */}
       <section className="bg-indigo-950 text-white py-16 px-4 text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto flex flex-col items-center">
           <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-white/20 shadow-xl mb-6">
@@ -130,20 +130,21 @@ export default function Home() {
               ))}
             </div>
 
-            {/* کارت نمایش تصویر و دکمه دانلود گوگل درایو مستقیم */}
+            {/* کارت نمایش تصویر و دکمه دانلود گوگل درایو */}
             {SCHOOL_GRADES.filter(g => g.id === selectedGrade).map((grade) => {
-              const driveLink = CAMBRIDGE_DRIVE_URLS[grade.id] || "#";
+              const currentDriveUrl = CAMBRIDGE_DRIVE_URLS[grade.id] || "#";
+
               return (
                 <div key={grade.id} className="flex flex-col items-center text-center">
                   <div className="w-64 h-80 bg-gray-100 rounded-2xl overflow-hidden shadow-md border border-gray-200 mb-4 relative">
                     <img 
-                      src={`/cambridge-${grade.id}.JPG`} 
+                      src={`/cambridge-${grade.id}.jpg`} 
                       alt={grade.titleFa}
                       className="w-full h-full object-cover"
                       onError={(e) => {
-                        // در صورت عدم لود با پسوند پس‌زمینه بزرگ، پسوند کوچک را امتحان کن
-                        if (e.target.src.includes('.JPG')) {
-                          e.target.src = `/cambridge-${grade.id}.jpg`;
+                        // در صورت عدم لود با پسوند کوچک، پسوند بزرگ را امتحان کن
+                        if (e.target.src.endsWith('.jpg')) {
+                          e.target.src = `/cambridge-${grade.id}.JPG`;
                         } else {
                           e.target.src = '/profile.jpg';
                         }
@@ -154,10 +155,10 @@ export default function Home() {
                   <p className="text-sm text-gray-500 mb-6">نسخه کامل همراه با حل تمرینات</p>
 
                   <a
-                    href={driveLink}
+                    href={currentDriveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-medium rounded-xl transition-colors shadow-md text-sm cursor-pointer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-medium rounded-xl transition-colors shadow-md text-sm"
                   >
                     <span>📥</span> دانلود فایل PDF از گوگل درایو
                   </a>
