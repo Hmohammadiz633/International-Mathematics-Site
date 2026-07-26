@@ -1,10 +1,10 @@
 'use client';
 import { useState } from 'react';
 
-// لینک‌های فایل‌های PDF در گوگل درایو برای کتاب‌های کمبریج
+// لینک‌های اختصاصی گوگل درایو برای هر پایه
 const CAMBRIDGE_DRIVE_URLS = {
   g7: "https://drive.google.com/file/d/YOUR_GRADE7_DRIVE_ID/view?usp=sharing",
-  g8: "https://drive.google.com/file/d/109Lk_VbvwpVMRcv70qMXKKhfAyuAmNF_/view?usp=drivesdk",
+  g8: "https://drive.google.com/file/d/14r4JWoB1WA-YR9o6MH8nNV5wLqSJ2m2k/view?usp=drivesdk",
 };
 
 // لیست کشورها/سیستم‌ها
@@ -48,35 +48,30 @@ export default function Home() {
   const [lang, setLang] = useState('fa');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubItem, setSelectedSubItem] = useState(null);
-  const [imgError, setImgError] = useState(false);
+  // استفاده از object برای مدیریت خطای تصویر هر پایه به‌صورت مجزا
+  const [imgErrors, setImgErrors] = useState({});
 
   const handleCategoryClick = (catId) => {
-    if (selectedCategory === catId) {
-      setSelectedCategory(null);
-      setSelectedSubItem(null);
-    } else {
-      setSelectedCategory(catId);
-      setSelectedSubItem(null);
-    }
-    setImgError(false);
+    setSelectedCategory(selectedCategory === catId ? null : catId);
+    setSelectedSubItem(null);
   };
 
   const handleSubItemClick = (itemId) => {
-    if (selectedSubItem === itemId) {
-      setSelectedSubItem(null);
-    } else {
-      setSelectedSubItem(itemId);
-    }
-    setImgError(false);
+    setSelectedSubItem(selectedSubItem === itemId ? null : itemId);
+  };
+
+  const handleImageError = (itemId) => {
+    setImgErrors((prev) => ({ ...prev, [itemId]: true }));
   };
 
   const isUniversity = selectedCategory === 'university';
   const subItemList = isUniversity ? UNIVERSITY_BOOKS : SCHOOL_GRADES;
 
-  // بررسی سیستم انتخاب‌شده
+  // بررسی وضعیت کمبریج
   const isCambridge = selectedCategory === 'cambridge';
   const currentDriveUrl = isCambridge ? CAMBRIDGE_DRIVE_URLS[selectedSubItem] : null;
-  const imagePath = isCambridge ? `/cambridge-${selectedSubItem}.JPG` : null;
+  const imagePath = isCambridge && selectedSubItem ? `/cambridge-${selectedSubItem}.JPG` : null;
+  const hasImageError = selectedSubItem ? imgErrors[selectedSubItem] : false;
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
@@ -211,22 +206,23 @@ export default function Home() {
               })}
             </div>
 
-            {/* کادر کارت نمایش جلد کتاب */}
+            {/* کادر نمایش عکس و دکمه دانلود */}
             {selectedSubItem && (
               <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col items-center">
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 max-w-sm w-full shadow-inner flex flex-col items-center">
                   
-                  {/* بخش نمایش جلد (فراخوانی هوشمند فایل با پسوند .JPG) */}
+                  {/* عکس کتاب */}
                   <div className="w-44 h-56 rounded-xl shadow-md overflow-hidden mb-4 border-2 border-slate-200 bg-white flex items-center justify-center relative">
-                    {isCambridge && (selectedSubItem === 'g7' || selectedSubItem === 'g8') && !imgError ? (
+                    {isCambridge && imagePath && !hasImageError ? (
                       <img 
+                        key={selectedSubItem}
                         src={imagePath} 
                         alt={`کتاب ریاضی ${subItemList.find((i) => i.id === selectedSubItem)?.titleFa}`} 
                         className="w-full h-full object-cover"
-                        onError={() => setImgError(true)}
+                        onError={() => handleImageError(selectedSubItem)}
                       />
                     ) : (
-                      /* کارت طراحی‌شده هوشمند برای زمان عدم بارگذاری عکس */
+                      /* جایگزین گرافیکی در صورت عدم وجود فایل عکس */
                       <div className="w-full h-full bg-gradient-to-br from-indigo-800 via-blue-900 to-slate-900 flex flex-col items-center justify-between text-white p-4 text-center">
                         <div className="text-[10px] uppercase tracking-wider font-semibold bg-white/20 px-2 py-0.5 rounded-full border border-white/20 mt-1">
                           {selectedCategory?.toUpperCase()}
@@ -257,7 +253,7 @@ export default function Home() {
                     {lang === 'fa' ? 'نسخه کامل همراه با حل تمرینات' : 'Full version with exercises'}
                   </p>
 
-                  {/* دکمه دانلود PDF از گوگل درایو */}
+                  {/* دکمه دانلود گوگل درایو */}
                   <a
                     href={currentDriveUrl || "https://t.me/International_Maths"}
                     target="_blank"
