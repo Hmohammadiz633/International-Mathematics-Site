@@ -1,15 +1,8 @@
 'use client';
 import { useState } from 'react';
 
-// لینک‌های مستقیم و اختصاصی گوگل درایو برای هر پایه
-const CAMBRIDGE_DRIVE_URLS = {
-  g7: "https://drive.google.com/file/d/YOUR_GRADE7_DRIVE_ID/view?usp=sharing",
-  g8: "https://drive.google.com/file/d/109Lk_VbvwpVMRcv70qMXKKHfAyuAmNF_/view?usp=drive_sdk",
-  g9: "https://drive.google.com/file/d/1H7pXLr_yeHDPT-9xCPTWCuufu5NU_fWe/view?usp=drive_sdk",
-  g10: "https://drive.google.com/file/d/1L_K_GU80PxUQE2En2degEb6ISBtNWsOZ/view?usp=drive_sdk",
-  g11: "https://drive.google.com/file/d/YOUR_GRADE11_DRIVE_ID/view?usp=sharing",
-  g12: "https://drive.google.com/file/d/YOUR_GRADE12_DRIVE_ID/view?usp=sharing"
-};
+// لینک کانال/گروه تلگرام برای تمامی فایل‌ها
+const TELEGRAM_GROUP_URL = "https://t.me/International_Maths";
 
 // لیست کشورها / سیستم‌ها
 const CATEGORIES = [
@@ -130,10 +123,8 @@ export default function Home() {
               ))}
             </div>
 
-            {/* کارت نمایش تصویر و دکمه دانلود گوگل درایو */}
+            {/* کارت نمایش تصویر و دکمه دانلود تلگرام */}
             {SCHOOL_GRADES.filter(g => g.id === selectedGrade).map((grade) => {
-              const currentDriveUrl = CAMBRIDGE_DRIVE_URLS[grade.id] || "#";
-
               return (
                 <div key={grade.id} className="flex flex-col items-center text-center">
                   <div className="w-64 h-80 bg-gray-100 rounded-2xl overflow-hidden shadow-md border border-gray-200 mb-4 relative">
@@ -142,7 +133,6 @@ export default function Home() {
                       alt={grade.titleFa}
                       className="w-full h-full object-cover"
                       onError={(e) => {
-                        // در صورت عدم لود با پسوند کوچک، پسوند بزرگ را امتحان کن
                         if (e.target.src.endsWith('.jpg')) {
                           e.target.src = `/cambridge-${grade.id}.JPG`;
                         } else {
@@ -155,12 +145,12 @@ export default function Home() {
                   <p className="text-sm text-gray-500 mb-6">نسخه کامل همراه با حل تمرینات</p>
 
                   <a
-                    href={currentDriveUrl}
+                    href={TELEGRAM_GROUP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-medium rounded-xl transition-colors shadow-md text-sm"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition-colors shadow-md text-sm"
                   >
-                    <span>📥</span> دانلود فایل PDF از گوگل درایو
+                    <span>📥</span> دانلود فایل pdf از گروه تلگرامی آموزش بین المللی ریاضیات
                   </a>
                 </div>
               );
