@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-// لینک‌های اختصاصی گوگل درایو برای پایه‌های مختلف کمبریج (اصلاح شده برای نهم و دهم)
+// لینک‌های اختصاصی گوگل درایو برای پایه‌های مختلف کمبریج
 const CAMBRIDGE_DRIVE_URLS = {
   g7: "https://drive.google.com/file/d/YOUR_GRADE7_DRIVE_ID/view?usp=sharing",
   g8: "https://drive.google.com/file/d/109Lk_VbvwpVMRcv70qMXKKHfAyuAmNF_/view?usp=drive_sdk",
@@ -80,7 +80,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* کتاب‌های تدریس شده و انتخاب سیستم آموزشی */}
+      {/* کتاب‌های تدریس شده */}
       <section id="books" className="py-12 px-4 max-w-6xl mx-auto">
         <div className="text-center mb-10">
           <h3 className="text-2xl font-bold mb-3 text-indigo-950 flex items-center justify-center gap-2">
@@ -89,7 +89,7 @@ export default function Home() {
           <p className="text-gray-500 text-sm">جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:</p>
         </div>
 
-        {/* دکمه‌های انتخاب دسته‌بندی */}
+        {/* دکمه‌های دسته‌بندی */}
         <div className="flex flex-wrap gap-3 justify-center mb-12">
           {CATEGORIES.map((cat) => (
             <button
@@ -107,7 +107,7 @@ export default function Home() {
           ))}
         </div>
 
-        {/* نمایش پایه‌های تحصیلی کمبریج به همراه عکس‌های جلد درست و لینک‌های درایو */}
+        {/* نمایش پایه‌های کمبریج */}
         {selectedCategory === 'cambridge' && (
           <div>
             <h4 className="text-xl font-semibold mb-6 text-center text-indigo-900">پایه‌های تحصیلی کمبریج</h4>
@@ -117,19 +117,23 @@ export default function Home() {
                   key={grade.id}
                   className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col"
                 >
-                  {/* عکس جلد پایه (پوشش‌دهی دقیق فایل‌های موجود در public) */}
+                  {/* عکس جلد پایه با سیستم پشتیبان در صورت خطای بارگذاری */}
                   <div className="h-48 w-full bg-gray-100 relative overflow-hidden">
                     <img 
                       src={`/cambridge-${grade.id}.JPG`} 
                       alt={grade.titleFa}
                       className="w-full h-full object-cover"
                       onError={(e) => {
-                        e.target.src = '/profile.jpg'; // تصویر جایگزین در صورت عدم وجود عکس
+                        // اگر عکس با پسوند .JPG پیدا نشد، .jpg را امتحان می‌کند یا پروفایل را نشان می‌دهد
+                        if (e.target.src.endsWith('.JPG')) {
+                          e.target.src = `/cambridge-${grade.id}.jpg`;
+                        } else {
+                          e.target.src = '/profile.jpg';
+                        }
                       }}
                     />
                   </div>
 
-                  {/* اطلاعات پایه و دکمه درایو */}
                   <div className="p-5 flex flex-col flex-grow justify-between">
                     <div>
                       <h5 className="text-lg font-bold mb-1 text-indigo-950">{grade.titleFa}</h5>
@@ -152,7 +156,7 @@ export default function Home() {
         )}
       </section>
 
-      {/* خدمات تدریس آنلاین */}
+      {/* خدمات تدریس */}
       <section id="services" className="py-12 px-4 max-w-4xl mx-auto">
         <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 text-center">
           <h3 className="text-xl font-bold mb-3 text-indigo-950">خدمات تدریس آنلاین</h3>
@@ -162,7 +166,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* سوابق علمی و پژوهشی (رزومه) */}
+      {/* سوابق علمی */}
       <section id="resume" className="py-12 px-4 max-w-4xl mx-auto">
         <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
           <h3 className="text-xl font-bold mb-6 text-indigo-950 flex items-center justify-center gap-2">
@@ -189,7 +193,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ارتباط با استاد */}
+      {/* ارتباط با ما */}
       <section id="contact" className="py-12 px-4 max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h3 className="text-2xl font-bold mb-2 text-indigo-950">ارتباط با استاد</h3>
@@ -221,7 +225,7 @@ export default function Home() {
             <span className="bg-red-50 text-red-600 px-3 py-1 rounded-lg text-xs font-mono">Hadi.mohammadi...</span>
           </div>
 
-          <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div className="bg-white p-4 thead bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
             <div className="text-right">
               <span className="text-xs text-gray-400 block">شماره تلفن / واتساپ</span>
               <span className="font-bold text-indigo-950">تماس مستقیم با استاد</span>
