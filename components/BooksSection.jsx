@@ -50,12 +50,16 @@ const universityBooks = [
   { id: 'u-applied', titleFa: 'ریاضی کاربردی', titleEn: 'Applied Mathematics', image: '/cambridge-g9.JPG' }
 ];
 
-export default function BooksSection({ lang = 'fa' }) {
+export default function BooksSection({ lang: propLang }) {
+  // پشتیبانی همزمان از زبان دریافتی و تغییر دستی زبان
+  const [currentLang, setCurrentLang] = useState(propLang || 'fa');
   const [activeCategory, setActiveCategory] = useState('cambridge');
   const [activeGrade, setActiveGrade] = useState('g7');
   const [activeUniBookId, setActiveUniBookId] = useState('u-thomas');
 
-  const isEn = lang === 'en';
+  // اگر prop تغییر کرد به روز شود
+  const activeLanguage = propLang || currentLang;
+  const isEn = activeLanguage === 'en';
   const isUni = activeCategory === 'university';
 
   const currentCategory = categories.find((c) => c.id === activeCategory);
@@ -71,12 +75,25 @@ export default function BooksSection({ lang = 'fa' }) {
   const telegramUrl = isUni ? DEFAULT_TELEGRAM : (TELEGRAM_LINKS[activeGrade] || DEFAULT_TELEGRAM);
 
   return (
-    <section className="max-w-5xl mx-auto px-4 py-8" id="books">
-      {/* لیست کشورها / دسته‌بندی‌ها */}
+    <section className="max-w-5xl mx-auto px-4 py-8" id="books" dir={isEn ? 'ltr' : 'rtl'}>
+      
+      {/* دکمه سوییچ زبان در صورتی که در هدر اصلی تعریف نشده باشد */}
+      <div className="flex justify-end mb-4">
+        <button
+          type="button"
+          onClick={() => setCurrentLang(isEn ? 'fa' : 'en')}
+          className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold rounded-lg border border-gray-300 transition-all flex items-center gap-1"
+        >
+          🌐 {isEn ? 'فارسی' : 'English'}
+        </button>
+      </div>
+
+      {/* ۱. لیست کشورها / دسته‌بندی‌ها */}
       <div className="flex flex-wrap justify-center gap-2 mb-8">
         {categories.map((cat) => (
           <button
             key={cat.id}
+            type="button"
             onClick={() => setActiveCategory(cat.id)}
             className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
               activeCategory === cat.id
@@ -89,7 +106,7 @@ export default function BooksSection({ lang = 'fa' }) {
         ))}
       </div>
 
-      {/* بخش انتخاب سال (۷ تا ۱۲) برای تمام کشورها */}
+      {/* ۲. بخش انتخاب سال (۷ تا ۱۲) برای تمام کشورها */}
       {!isUni && (
         <div className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-gray-100 shadow-sm mb-8">
           <h3 className="text-center text-gray-700 font-bold mb-4 flex items-center justify-center gap-2">
@@ -105,6 +122,7 @@ export default function BooksSection({ lang = 'fa' }) {
             {schoolGrades.map((grade) => (
               <button
                 key={grade.id}
+                type="button"
                 onClick={() => setActiveGrade(grade.id)}
                 className={`py-3 px-2 rounded-xl text-sm font-medium transition-all ${
                   activeGrade === grade.id
@@ -119,7 +137,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </div>
       )}
 
-      {/* بخش انتخاب کتاب‌های دانشگاهی */}
+      {/* ۳. بخش انتخاب کتاب‌های دانشگاهی */}
       {isUni && (
         <div className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-gray-100 shadow-sm mb-8">
           <h3 className="text-center text-gray-700 font-bold mb-4 flex items-center justify-center gap-2">
@@ -131,6 +149,7 @@ export default function BooksSection({ lang = 'fa' }) {
             {universityBooks.map((uBook) => (
               <button
                 key={uBook.id}
+                type="button"
                 onClick={() => setActiveUniBookId(uBook.id)}
                 className={`py-2.5 px-3.5 rounded-xl text-sm font-medium transition-all ${
                   activeUniBookId === uBook.id
@@ -145,12 +164,12 @@ export default function BooksSection({ lang = 'fa' }) {
         </div>
       )}
 
-      {/* کارت نمایش کتاب + دکمه تلگرام */}
+      {/* ۴. کارت نمایش کتاب + دکمه تلگرام */}
       <div className="flex justify-center">
         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm max-w-sm w-full text-center">
           <img
             src={bookImage}
-            alt={bookTitle}
+            alt={bookTitle || 'Book'}
             className="w-48 h-64 object-cover mx-auto rounded-xl shadow-md mb-4"
             onError={(e) => {
               e.currentTarget.src = '/cambridge-g7.JPG';
@@ -165,15 +184,4 @@ export default function BooksSection({ lang = 'fa' }) {
             href={telegramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full py-3.5 px-4 bg-[#24A1DE] hover:bg-[#1d82b3] text-white font-medium rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm"
-          >
-            <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-              <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.52c-.15.68-.55.85-1.12.53l-3.08-2.27-1.48 1.43c-.16.16-.3.3-.62.3l.22-3.13 5.71-5.16c.25-.22-.05-.34-.38-.12l-7.06 4.44-3.04-.95c-.66-.21-.67-.66.14-.98l11.89-4.58c.55-.2 1.03.13.84.97z" />
-            </svg>
-            <span>{isEn ? 'International Mathematics' : 'آموزش بین‌المللی ریاضیات'}</span>
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
+            className="w-full py-3.5 px-4 bg-
