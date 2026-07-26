@@ -4,7 +4,7 @@ import { useState } from 'react';
 // لینک‌های فایل‌های PDF در گوگل درایو برای کتاب‌های کمبریج
 const CAMBRIDGE_DRIVE_URLS = {
   g7: "https://drive.google.com/file/d/YOUR_GRADE7_DRIVE_ID/view?usp=sharing",
-  g8: "https://drive.google.com/file/d/YOUR_GRADE8_DRIVE_ID/view?usp=sharing",
+  g8: "https://drive.google.com/file/d/109Lk_VbvwpVMRcv70qMXKKhfAyuAmNF_/view?usp=drivesdk",
 };
 
 // لیست کشورها/سیستم‌ها
