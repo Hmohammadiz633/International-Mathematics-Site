@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 
+// ۱. لینک‌های مستقیم تلگرام برای هر پایه
 const TELEGRAM_LINKS = {
   g7: "https://t.me/International_Maths/1400",
   g8: "https://t.me/International_Maths/1401",
@@ -10,112 +11,129 @@ const TELEGRAM_LINKS = {
   g12: "https://t.me/International_Maths/1405"
 };
 
+// ۲. لیست کامل دسته‌بندی‌ها (کشورها + کتاب‌های دانشگاهی)
 const CATEGORIES = [
-  { id: 'cambridge', titleFa: 'کمبریج' },
-  { id: 'australia', titleFa: 'استرالیا' },
-  { id: 'canada', titleFa: 'کانادا' },
-  { id: 'uk', titleFa: 'انگلستان' },
-  { id: 'germany', titleFa: 'آلمان' },
-  { id: 'california', titleFa: 'کالیفرنیا' },
-  { id: 'turkey', titleFa: 'ترکیه' },
-  { id: 'university', titleFa: 'کتاب‌های دانشگاهی' }
+  { id: 'cambridge', titleFa: 'کمبریج', titleEn: 'Cambridge' },
+  { id: 'australia', titleFa: 'استرالیا', titleEn: 'Australia' },
+  { id: 'canada', titleFa: 'کانادا', titleEn: 'Canada' },
+  { id: 'uk', titleFa: 'انگلستان', titleEn: 'UK' },
+  { id: 'germany', titleFa: 'آلمان', titleEn: 'Germany' },
+  { id: 'california', titleFa: 'کالیفرنیا', titleEn: 'California' },
+  { id: 'turkey', titleFa: 'ترکیه', titleEn: 'Turkey' },
+  { id: 'university', titleFa: 'کتاب‌های دانشگاهی', titleEn: 'University Textbooks' }
 ];
 
+// ۳. پایه های تحصیلی
 const SCHOOL_GRADES = [
-  { id: 'g7', titleFa: 'سال هفتم' },
-  { id: 'g8', titleFa: 'سال هشتم' },
-  { id: 'g9', titleFa: 'سال نهم' },
-  { id: 'g10', titleFa: 'سال دهم' },
-  { id: 'g11', titleFa: 'سال یازدهم' },
-  { id: 'g12', titleFa: 'سال دوازدهم' }
+  { id: 'g7', titleFa: 'سال هفتم', titleEn: 'Grade 7' },
+  { id: 'g8', titleFa: 'سال هشتم', titleEn: 'Grade 8' },
+  { id: 'g9', titleFa: 'سال نهم', titleEn: 'Grade 9' },
+  { id: 'g10', titleFa: 'سال دهم', titleEn: 'Grade 10' },
+  { id: 'g11', titleFa: 'سال یازدهم', titleEn: 'Grade 11' },
+  { id: 'g12', titleFa: 'سال دوازدهم', titleEn: 'Grade 12' }
 ];
 
-export default function BooksSection() {
+// ۴. لیست کتاب‌ها
+const BOOKS = [
+  { id: 'c-g7', categoryId: 'cambridge', gradeId: 'g7', titleFa: 'سال هفتم', titleEn: 'Grade 7', image: '/cambridge-g7.JPG' },
+  { id: 'c-g8', categoryId: 'cambridge', gradeId: 'g8', titleFa: 'سال هشتم', titleEn: 'Grade 8', image: '/cambridge-g8.JPG' },
+  { id: 'c-g9', categoryId: 'cambridge', gradeId: 'g9', titleFa: 'سال نهم', titleEn: 'Grade 9', image: '/cambridge-g9.JPG' },
+  { id: 'c-g10', categoryId: 'cambridge', gradeId: 'g10', titleFa: 'سال دهم', titleEn: 'Grade 10', image: '/cambridge-g10.JPG' },
+  { id: 'c-g11', categoryId: 'cambridge', gradeId: 'g11', titleFa: 'سال یازدهم', titleEn: 'Grade 11', image: '/cambridge-g7.JPG' },
+  { id: 'c-g12', categoryId: 'cambridge', gradeId: 'g12', titleFa: 'سال دوازدهم', titleEn: 'Grade 12', image: '/cambridge-g8.JPG' }
+];
+
+export default function BooksSection({ lang = 'fa' }) {
   const [selectedCategory, setSelectedCategory] = useState('cambridge');
   const [selectedGrade, setSelectedGrade] = useState('g7');
 
-  return (
-    <section id="books" className="py-12 px-4 max-w-6xl mx-auto">
-      <div className="text-center mb-10">
-        <h3 className="text-2xl font-bold mb-3 text-indigo-950 flex items-center justify-center gap-2">
-          <span>📚</span> کتاب‌های تدریس‌شده
-        </h3>
-        <p className="text-gray-500 text-sm">جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:</p>
-      </div>
+  const isEn = lang === 'en';
+  const currentCategory = CATEGORIES.find((c) => c.id === selectedCategory);
+  const currentBook = BOOKS.find(
+    (b) => b.categoryId === selectedCategory && b.gradeId === selectedGrade
+  );
 
-      <div className="flex flex-wrap gap-3 justify-center mb-8">
+  // دریافت لینک تلگرام مربوط به پایه انتخابی
+  const telegramUrl = TELEGRAM_LINKS[selectedGrade] || "https://t.me/International_Maths";
+
+  return (
+    <section className="max-w-5xl mx-auto px-4 py-8" id="books">
+      {/* دکمه‌های انتخاب سیستم آموزشی */}
+      <div className="flex flex-wrap justify-center gap-2 mb-8">
         {CATEGORIES.map((cat) => (
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
-            className={`px-5 py-3 rounded-xl font-medium transition-all shadow-sm flex items-center gap-2 ${
+            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
               selectedCategory === cat.id
                 ? 'bg-indigo-900 text-white shadow-md'
-                : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
+                : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-100'
             }`}
           >
-            <span>📖</span>
-            <span>{cat.titleFa}</span>
+            {isEn ? cat.titleEn : cat.titleFa}
           </button>
         ))}
       </div>
 
-      {selectedCategory === 'cambridge' && (
-        <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-gray-200 max-w-4xl mx-auto">
-          <h4 className="text-xl font-semibold mb-6 text-center text-indigo-900">🏛️ پایه‌های تحصیلی مربوط به کمبریج</h4>
-          
-          <div className="flex flex-wrap gap-2 justify-center mb-8">
+      {/* انتخاب پایه تحصیلی */}
+      {selectedCategory !== 'university' && (
+        <div className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-gray-100 shadow-sm mb-8">
+          <h3 className="text-center text-gray-700 font-bold mb-4 flex items-center justify-center gap-2">
+            <span>🏫</span>
+            <span>
+              {isEn
+                ? `Grades for ${currentCategory?.titleEn}`
+                : `پایه‌های تحصیلی مربوط به ${currentCategory?.titleFa}`}
+            </span>
+          </h3>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
             {SCHOOL_GRADES.map((grade) => (
               <button
                 key={grade.id}
                 onClick={() => setSelectedGrade(grade.id)}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                className={`py-3 px-2 rounded-xl text-sm font-medium transition-all ${
                   selectedGrade === grade.id
-                    ? 'bg-blue-600 text-white shadow'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
                 }`}
               >
-                {grade.titleFa}
+                {isEn ? grade.titleEn : grade.titleFa}
               </button>
             ))}
           </div>
+        </div>
+      )}
 
-          {SCHOOL_GRADES.filter(g => g.id === selectedGrade).map((grade) => {
-            const currentTelegramUrl = TELEGRAM_LINKS[grade.id] || "https://t.me/International_Maths";
+      {/* نمایش کارت کتاب و دکمه جدید تلگرام */}
+      {currentBook && (
+        <div className="flex justify-center">
+          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm max-w-sm w-full text-center">
+            <img
+              src={currentBook.image}
+              alt={isEn ? currentBook.titleEn : currentBook.titleFa}
+              className="w-48 h-64 object-cover mx-auto rounded-xl shadow-md mb-4"
+            />
+            <h4 className="font-bold text-gray-800 text-lg mb-1">
+              {isEn ? currentBook.titleEn : currentBook.titleFa}
+            </h4>
+            <p className="text-xs text-gray-500 mb-6">
+              {isEn ? 'Complete version with solutions' : 'نسخه کامل همراه با حل تمرینات'}
+            </p>
 
-            return (
-              <div key={grade.id} className="flex flex-col items-center text-center">
-                <div className="w-64 h-80 bg-gray-100 rounded-2xl overflow-hidden shadow-md border border-gray-200 mb-4 relative">
-                  <img 
-                    src={`/cambridge-${grade.id}.jpg`} 
-                    alt={grade.titleFa}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      if (e.target.src.endsWith('.jpg')) {
-                        e.target.src = `/cambridge-${grade.id}.JPG`;
-                      } else {
-                        e.target.src = '/profile.jpg';
-                      }
-                    }}
-                  />
-                </div>
-                <h5 className="text-xl font-bold text-indigo-950 mb-1">{grade.titleFa}</h5>
-                <p className="text-sm text-gray-500 mb-6">نسخه کامل همراه با حل تمرینات</p>
-
-                <a
-                  href={currentTelegramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-sky-500 hover:bg-sky-600 text-white font-medium rounded-xl transition-all shadow-md text-sm cursor-pointer"
-                >
-                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.52c-.15.68-.55.84-1.12.52l-3.1-2.28-1.5 1.44c-.17.17-.31.31-.63.31l.22-3.17 5.77-5.21c.25-.22-.05-.34-.39-.12l-7.13 4.49-3.08-.96c-.67-.21-.68-.67.14-.99l12.03-4.64c.56-.2 1.05.14.83 1.09z" />
-                  </svg>
-                  <span>دانلود فایل PDF از گروه تلگرامی آموزش بین المللی ریاضیات</span>
-                </a>
-              </div>
-            );
-          })}
+            {/* دکمه اختصاصی تلگرام */}
+            <a
+              href={telegramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3.5 px-4 bg-[#24A1DE] hover:bg-[#1d82b3] text-white font-medium rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm"
+            >
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.52c-.15.68-.55.85-1.12.53l-3.08-2.27-1.48 1.43c-.16.16-.3.3-.62.3l.22-3.13 5.71-5.16c.25-.22-.05-.34-.38-.12l-7.06 4.44-3.04-.95c-.66-.21-.67-.66.14-.98l11.89-4.58c.55-.2 1.03.13.84.97z" />
+              </svg>
+              <span>{isEn ? 'International Mathematics' : 'آموزش بین‌المللی ریاضیات'}</span>
+            </a>
+          </div>
         </div>
       )}
     </section>
