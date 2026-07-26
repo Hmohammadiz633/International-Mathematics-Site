@@ -150,6 +150,7 @@ export default function BooksSection({ lang: propLang }) {
 
       <div className="flex justify-center">
         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm max-w-sm w-full text-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={bookImage}
             alt={bookTitle || 'Book'}
