@@ -14,14 +14,14 @@ const TELEGRAM_LINKS = {
 const DEFAULT_TELEGRAM = 'https://t.me/International_Maths';
 
 const categories = [
-  { id: 'cambridge', titleFa: 'کمبریج', titleEn: 'Cambridge' },
-  { id: 'australia', titleFa: 'استرالیا', titleEn: 'Australia' },
-  { id: 'canada', titleFa: 'کانادا', titleEn: 'Canada' },
-  { id: 'uk', titleFa: 'انگلستان', titleEn: 'UK' },
-  { id: 'germany', titleFa: 'آلمان', titleEn: 'Germany' },
-  { id: 'california', titleFa: 'کالیفرنیا', titleEn: 'California' },
-  { id: 'turkey', titleFa: 'ترکیه', titleEn: 'Turkey' },
-  { id: 'university', titleFa: 'کتاب‌های دانشگاهی', titleEn: 'University Textbooks' }
+  { id: 'cambridge', titleFa: 'کمبریج', titleEn: 'Cambridge', icon: '📚' },
+  { id: 'australia', titleFa: 'استرالیا', titleEn: 'Australia', icon: '🇦🇺' },
+  { id: 'canada', titleFa: 'کانادا', titleEn: 'Canada', icon: '🇨🇦' },
+  { id: 'uk', titleFa: 'انگلستان', titleEn: 'UK', icon: '🇬🇧' },
+  { id: 'germany', titleFa: 'آلمان', titleEn: 'Germany', icon: '🇩🇪' },
+  { id: 'california', titleFa: 'کالیفرنیا', titleEn: 'California', icon: '🇺🇸' },
+  { id: 'turkey', titleFa: 'ترکیه', titleEn: 'Turkey', icon: '🇹🇷' },
+  { id: 'university', titleFa: 'کتاب‌های دانشگاهی', titleEn: 'University Textbooks', icon: '🎓' }
 ];
 
 const schoolGrades = [
@@ -40,10 +40,10 @@ const universityBooks = [
   { id: 'u-adams', titleFa: 'ریاضی عمومی آدامز', titleEn: 'Adams Calculus', image: '/cambridge-g10.JPG' },
   { id: 'u-adams-sol', titleFa: 'حل تمرین ریاضی آدامز', titleEn: 'Adams Calculus Solutions', image: '/cambridge-g7.JPG' },
   { id: 'u-math2', titleFa: 'ریاضی عمومی ۲', titleEn: 'Calculus 2', image: '/cambridge-g8.JPG' },
-  { id: 'u-stat', titleFa: 'آمار و احتمالات مهندسی', titleEn: 'Engineering Statistics & Probability', image: '/cambridge-g9.JPG' },
+  { id: 'u-stat', titleFa: 'آمار و احتمالات مهندسی', titleEn: 'Engineering Statistics', image: '/cambridge-g9.JPG' },
   { id: 'u-complex', titleFa: 'اعداد مختلط', titleEn: 'Complex Numbers', image: '/cambridge-g10.JPG' },
   { id: 'u-linear', titleFa: 'جبر خطی', titleEn: 'Linear Algebra', image: '/cambridge-g7.JPG' },
-  { id: 'u-numerical', titleFa: 'محاسبات عددی', titleEn: 'Numerical Calculations', image: '/cambridge-g8.JPG' },
+  { id: 'u-numerical', titleFa: 'محاسبات عددی', titleEn: 'Numerical Methods', image: '/cambridge-g8.JPG' },
   { id: 'u-applied', titleFa: 'ریاضی کاربردی', titleEn: 'Applied Mathematics', image: '/cambridge-g9.JPG' }
 ];
 
@@ -75,26 +75,42 @@ export default function BooksSection({ lang: propLang }) {
 
   return (
     <section className="max-w-5xl mx-auto px-4 py-8" id="books" dir={isEn ? 'ltr' : 'rtl'}>
-      <div className="flex flex-wrap justify-center gap-2 mb-8">
+      {/* تیتر اصلی */}
+      <div className="text-center mb-8">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-indigo-950 mb-2 flex items-center justify-center gap-2">
+          <span>📚</span>
+          <span>{isEn ? 'Taught Books' : 'کتاب‌های تدریس‌شده'}</span>
+        </h2>
+        <p className="text-sm text-gray-500">
+          {isEn
+            ? 'To view books, first select the educational system/country or university section:'
+            : 'جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:'}
+        </p>
+      </div>
+
+      {/* مرحله ۱: انتخاب کشور / دانشگاه */}
+      <div className="flex flex-wrap justify-center gap-2.5 mb-8">
         {categories.map((cat) => (
           <button
             key={cat.id}
             type="button"
             onClick={() => setActiveCategory(cat.id)}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+            className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 cursor-pointer ${
               activeCategory === cat.id
-                ? 'bg-indigo-900 text-white shadow-md'
-                : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-100'
+                ? 'bg-indigo-900 text-white shadow-lg scale-105'
+                : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
             }`}
           >
-            {isEn ? cat.titleEn : cat.titleFa}
+            <span>{cat.icon}</span>
+            <span>{isEn ? cat.titleEn : cat.titleFa}</span>
           </button>
         ))}
       </div>
 
+      {/* مرحله ۲: انتخاب پایه مدرسه‌ای */}
       {!isUni && (
-        <div className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-gray-100 shadow-sm mb-8">
-          <h3 className="text-center text-gray-700 font-bold mb-4 flex items-center justify-center gap-2">
+        <div className="bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-gray-200 shadow-sm mb-8">
+          <h3 className="text-center text-gray-800 font-bold mb-4 flex items-center justify-center gap-2 text-base">
             <span>🏫</span>
             <span>
               {isEn
@@ -109,10 +125,10 @@ export default function BooksSection({ lang: propLang }) {
                 key={grade.id}
                 type="button"
                 onClick={() => setActiveGrade(grade.id)}
-                className={`py-3 px-2 rounded-xl text-sm font-medium transition-all ${
+                className={`py-3 px-2 rounded-xl text-sm font-semibold transition-all cursor-pointer ${
                   activeGrade === grade.id
                     ? 'bg-blue-600 text-white shadow-md'
-                    : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                    : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-100'
                 }`}
               >
                 {isEn ? grade.titleEn : grade.titleFa}
@@ -122,23 +138,24 @@ export default function BooksSection({ lang: propLang }) {
         </div>
       )}
 
+      {/* مرحله ۲: انتخاب کتاب دانشگاهی */}
       {isUni && (
-        <div className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-gray-100 shadow-sm mb-8">
-          <h3 className="text-center text-gray-700 font-bold mb-4 flex items-center justify-center gap-2">
+        <div className="bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-gray-200 shadow-sm mb-8">
+          <h3 className="text-center text-gray-800 font-bold mb-4 flex items-center justify-center gap-2 text-base">
             <span>🎓</span>
-            <span>{isEn ? 'University Textbooks' : 'کتاب‌های دانشگاهی'}</span>
+            <span>{isEn ? 'Select University Book' : 'انتخاب کتاب دانشگاهی'}</span>
           </h3>
 
-          <div className="flex flex-wrap justify-center gap-2">
+          <div className="flex flex-wrap justify-center gap-2.5">
             {universityBooks.map((uBook) => (
               <button
                 key={uBook.id}
                 type="button"
                 onClick={() => setActiveUniBookId(uBook.id)}
-                className={`py-2.5 px-3.5 rounded-xl text-sm font-medium transition-all ${
+                className={`py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all cursor-pointer ${
                   activeUniBookId === uBook.id
                     ? 'bg-blue-600 text-white shadow-md'
-                    : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                    : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-100'
                 }`}
               >
                 {isEn ? uBook.titleEn : uBook.titleFa}
@@ -148,32 +165,33 @@ export default function BooksSection({ lang: propLang }) {
         </div>
       )}
 
+      {/* مرحله ۳: کارت نمایش کتاب و دکمه تلگرام */}
       <div className="flex justify-center">
-        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm max-w-sm w-full text-center">
+        <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-lg max-w-sm w-full text-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={bookImage}
             alt={bookTitle || 'Book'}
-            className="w-48 h-64 object-cover mx-auto rounded-xl shadow-md mb-4"
+            className="w-48 h-64 object-cover mx-auto rounded-xl shadow-md mb-4 border border-gray-100"
             onError={(e) => {
               e.currentTarget.src = '/cambridge-g7.JPG';
             }}
           />
-          <h4 className="font-bold text-gray-800 text-lg mb-1">{bookTitle}</h4>
+          <h4 className="font-bold text-gray-900 text-lg mb-1">{bookTitle}</h4>
           <p className="text-xs text-gray-500 mb-6">
-            {isEn ? 'Complete version with solutions' : 'نسخه کامل همراه با حل تمرینات'}
+            {isEn ? 'Complete version with exercise solutions' : 'نسخه کامل همراه با حل تمرینات'}
           </p>
 
           <a
             href={telegramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full py-3.5 px-4 bg-[#24A1DE] hover:bg-[#1d82b3] text-white font-medium rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm"
+            className="w-full py-3.5 px-4 bg-[#24A1DE] hover:bg-[#1d82b3] text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-md active:scale-95"
           >
             <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
               <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.52c-.15.68-.55.85-1.12.53l-3.08-2.27-1.48 1.43c-.16.16-.3.3-.62.3l.22-3.13 5.71-5.16c.25-.22-.05-.34-.38-.12l-7.06 4.44-3.04-.95c-.66-.21-.67-.66.14-.98l11.89-4.58c.55-.2 1.03.13.84.97z" />
             </svg>
-            <span>{isEn ? 'International Mathematics' : 'آموزش بین‌المللی ریاضیات'}</span>
+            <span>{isEn ? 'Download / View in Telegram' : 'دانلود / مشاهده در تلگرام'}</span>
           </a>
         </div>
       </div>
