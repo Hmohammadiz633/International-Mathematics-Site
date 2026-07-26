@@ -1,7 +1,7 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-// ۱. لینک‌های تلگرام پایه ۷ تا ۱۲
+// ۱. لینک‌های تلگرام برای پایه‌ها (سال ۷ تا ۱۲)
 const TELEGRAM_LINKS = {
   g7: "https://t.me/International_Maths/1400",
   g8: "https://t.me/International_Maths/1401",
@@ -56,8 +56,14 @@ export default function BooksSection({ lang: propLang }) {
   const [activeGrade, setActiveGrade] = useState('g7');
   const [activeUniBookId, setActiveUniBookId] = useState('u-thomas');
 
-  const activeLanguage = propLang || currentLang;
-  const isEn = activeLanguage === 'en';
+  // آپدیت خودکار با تغییر زبان از هدر سایت
+  useEffect(() => {
+    if (propLang) {
+      setCurrentLang(propLang);
+    }
+  }, [propLang]);
+
+  const isEn = currentLang === 'en';
   const isUni = activeCategory === 'university';
 
   const currentCategory = categories.find((c) => c.id === activeCategory);
@@ -73,7 +79,7 @@ export default function BooksSection({ lang: propLang }) {
 
   return (
     <section className="max-w-5xl mx-auto px-4 py-8" id="books" dir={isEn ? 'ltr' : 'rtl'}>
-      {/* دکمه اختصاصی سوییچ زبان */}
+      {/* دکمه اختصاصی سوییچ زبان جهت اطمینان ۱۰۰٪ */}
       <div className="flex justify-end mb-4">
         <button
           type="button"
@@ -160,7 +166,7 @@ export default function BooksSection({ lang: propLang }) {
         </div>
       )}
 
-      {/* ۴. نمایش کارت کتاب و لینک تلگرام */}
+      {/* ۴. کارت نمایش کتاب و لینک تلگرام */}
       <div className="flex justify-center">
         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm max-w-sm w-full text-center">
           <img
