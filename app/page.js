@@ -70,7 +70,7 @@ export default function Home() {
   const isCambridgeGrade7 = selectedCategory === 'cambridge' && selectedSubItem === 'g7';
 
   // لینک فایل PDF در گوگل درایو
-  const cambridgeGrade7DriveUrl = "https://drive.google.com/file/d/YOUR_DRIVE_FILE_ID/view?usp=sharing";
+  const cambridgeGrade7DriveUrl = "https://drive.google.com/file/d/109Lk_VbvwpVMRcv70qMXKKhfAyuAmNF_/view?usp=drivesdk";
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
