@@ -5,8 +5,8 @@ import { useState } from 'react';
 const CAMBRIDGE_DRIVE_URLS = {
   g7: "https://drive.google.com/file/d/YOUR_GRADE7_DRIVE_ID/view?usp=sharing",
   g8: "https://drive.google.com/file/d/109Lk_VbvwpVMRcv70qMXKKHfAyuAmNF_/view?usp=drive_sdk",
-  g9: "https://drive.google.com/file/d/1H7pXLr_yeHDPT-9xCPTWCuufu5NU_fWe/view?usp=drive_sdk",
-  g10: "https://drive.google.com/file/d/1L_K_GU80PxUQE2En2degEb6ISBtNWsOZ/view?usp=drive_sdk",
+  g9: "https://drive.google.com/file/d/1H7pXLr_yeHDPt-9XcPTWCuufu5NU_fWe/view?usp=drivesdk",
+  g10: "https://drive.google.com/file/d/1L_K_GU80PxUQE2En2degEb6ISBtNwSOZ/view?usp=drivesdk",
   g11: "https://drive.google.com/file/d/YOUR_GRADE11_DRIVE_ID/view?usp=sharing",
   g12: "https://drive.google.com/file/d/YOUR_GRADE12_DRIVE_ID/view?usp=sharing"
 };
