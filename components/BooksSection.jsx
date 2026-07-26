@@ -11,10 +11,10 @@ const TELEGRAM_LINKS = {
   g12: "https://t.me/International_Maths/1405"
 };
 
-// ۲. لینک عمومی تلگرام برای کتاب‌های دانشگاهی (در صورت نیاز می‌توانید برای هر کتاب لینک مجزا بگذارید)
+// لینک عمومی تلگرام برای بخش دانشگاهی
 const UNIVERSITY_TELEGRAM_LINK = "https://t.me/International_Maths";
 
-// ۳. لیست سیستم‌های آموزشی (کشورها + دانشگاهی)
+// ۲. لیست سیستم‌های آموزشی (کشورها + کتاب‌های دانشگاهی)
 const CATEGORIES = [
   { id: 'cambridge', titleFa: 'کمبریج', titleEn: 'Cambridge' },
   { id: 'australia', titleFa: 'استرالیا', titleEn: 'Australia' },
@@ -26,7 +26,7 @@ const CATEGORIES = [
   { id: 'university', titleFa: 'کتاب‌های دانشگاهی', titleEn: 'University Textbooks' }
 ];
 
-// ۴. لیست مقاطع تحصیلی دانش‌آموزی (سال هفتم تا دوازدهم)
+// ۳. مقاطع تحصیلی (سال هفتم تا دوازدهم)
 const SCHOOL_GRADES = [
   { id: 'g7', titleFa: 'سال هفتم', titleEn: 'Grade 7' },
   { id: 'g8', titleFa: 'سال هشتم', titleEn: 'Grade 8' },
@@ -36,7 +36,7 @@ const SCHOOL_GRADES = [
   { id: 'g12', titleFa: 'سال دوازدهم', titleEn: 'Grade 12' }
 ];
 
-// ۵. لیست کتاب‌های دانشگاهی درخواستی
+// ۴. کتاب‌های دانشگاهی
 const UNIVERSITY_BOOKS = [
   { id: 'u-thomas', titleFa: 'ریاضی عمومی توماس', titleEn: 'Thomas Calculus', image: '/cambridge-g7.JPG' },
   { id: 'u-stewart', titleFa: 'ریاضی عمومی استوارت', titleEn: 'Stewart Calculus', image: '/cambridge-g8.JPG' },
@@ -51,7 +51,7 @@ const UNIVERSITY_BOOKS = [
   { id: 'u-applied', titleFa: 'ریاضی کاربردی', titleEn: 'Applied Mathematics', image: '/cambridge-g9.JPG' }
 ];
 
-// ۶. ساخت دیتای پایه‌های تحصیلی برای تمامی کشورها
+// ۵. ساخت دیتای کتاب‌های مدرسه‌ای برای تمامی کشورها
 const COUNTRY_IDS = ['cambridge', 'australia', 'canada', 'uk', 'germany', 'california', 'turkey'];
 
 const SCHOOL_BOOKS = COUNTRY_IDS.flatMap((catId) =>
@@ -65,23 +65,24 @@ const SCHOOL_BOOKS = COUNTRY_IDS.flatMap((catId) =>
   }))
 );
 
-export default function BooksSection({ lang = 'fa' }) {
+export default function BooksSection({ lang: externalLang }) {
+  // مدیریت داخلی زبان برای فعال بودن دکمه تغییر زبان
+  const [internalLang, setInternalLang] = useState('fa');
+  const currentLang = externalLang || internalLang;
+  const isEn = currentLang === 'en';
+
   const [selectedCategory, setSelectedCategory] = useState('cambridge');
   const [selectedGrade, setSelectedGrade] = useState('g7');
   const [selectedUniBookId, setSelectedUniBookId] = useState('u-thomas');
 
-  const isEn = lang === 'en';
   const currentCategory = CATEGORIES.find((c) => c.id === selectedCategory);
 
-  // پیدا کردن کتاب دانش‌آموزی فعال
   const currentSchoolBook = SCHOOL_BOOKS.find(
     (b) => b.categoryId === selectedCategory && b.gradeId === selectedGrade
   );
 
-  // پیدا کردن کتاب دانشگاهی فعال
   const currentUniBook = UNIVERSITY_BOOKS.find((b) => b.id === selectedUniBookId);
 
-  // انتخاب کتاب و لینک بر اساس حالت (دانشگاهی یا مدرسه‌ای)
   const isUniversity = selectedCategory === 'university';
   const activeBook = isUniversity ? currentUniBook : currentSchoolBook;
   const activeTelegramLink = isUniversity
@@ -89,7 +90,17 @@ export default function BooksSection({ lang = 'fa' }) {
     : (TELEGRAM_LINKS[selectedGrade] || UNIVERSITY_TELEGRAM_LINK);
 
   return (
-    <section className="max-w-5xl mx-auto px-4 py-8" id="books">
+    <section className="max-w-5xl mx-auto px-4 py-8" id="books" dir={isEn ? 'ltr' : 'rtl'}>
+      {/* دکمه سوئیچ زبان (فارسی / English) */}
+      <div className="flex justify-end mb-4">
+        <button
+          onClick={() => setInternalLang(isEn ? 'fa' : 'en')}
+          className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold rounded-lg border border-gray-300 transition-all flex items-center gap-1"
+        >
+          🌐 {isEn ? 'فارسی' : 'English'}
+        </button>
+      </div>
+
       {/* دکمه‌های انتخاب سیستم آموزشی / کشورها */}
       <div className="flex flex-wrap justify-center gap-2 mb-8">
         {CATEGORIES.map((cat) => (
@@ -107,5 +118,42 @@ export default function BooksSection({ lang = 'fa' }) {
         ))}
       </div>
 
-      {/* بخش انتخاب مقطع تحصیلی مدرسه (سال ۷ تا ۱۲) */}
-      {!is
+      {/* بخش انتخاب پایه تحصیلی (سال ۷ تا ۱۲ برای تمامی کشورها) */}
+      {!isUniversity && (
+        <div className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-gray-100 shadow-sm mb-8">
+          <h3 className="text-center text-gray-700 font-bold mb-4 flex items-center justify-center gap-2">
+            <span>🏫</span>
+            <span>
+              {isEn
+                ? `Grades for ${currentCategory?.titleEn || ''}`
+                : `پایه‌های تحصیلی مربوط به ${currentCategory?.titleFa || ''}`}
+            </span>
+          </h3>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+            {SCHOOL_GRADES.map((grade) => (
+              <button
+                key={grade.id}
+                onClick={() => setSelectedGrade(grade.id)}
+                className={`py-3 px-2 rounded-xl text-sm font-medium transition-all ${
+                  selectedGrade === grade.id
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                {isEn ? grade.titleEn : grade.titleFa}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* بخش انتخاب کتاب‌های دانشگاهی */}
+      {isUniversity && (
+        <div className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-gray-100 shadow-sm mb-8">
+          <h3 className="text-center text-gray-700 font-bold mb-4 flex items-center justify-center gap-2">
+            <span>🎓</span>
+            <span>{isEn ? 'University Textbooks' : 'کتاب‌های دانشگاهی'}</span>
+          </h3>
+
+          <div className="flex flex-wrap justify-center gap
