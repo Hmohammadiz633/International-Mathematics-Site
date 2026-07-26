@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import BooksSection from '../components/BooksSection';
+import BooksSection from '@/components/BooksSection';
 
 export default function Home() {
   const [lang, setLang] = useState('fa');
@@ -30,12 +30,12 @@ export default function Home() {
         </div>
       </header>
 
-      {/* بخش اصلی نمایش کتاب‌ها */}
+      {/* بخش اصلی کتاب‌ها */}
       <main className="container mx-auto py-8 px-4">
         <BooksSection lang={lang} />
       </main>
 
-      {/* فوتر ساده */}
+      {/* فوتر */}
       <footer className="bg-white border-t border-gray-200 py-6 text-center text-sm text-gray-500 mt-12">
         <p>
           {lang === 'fa'
