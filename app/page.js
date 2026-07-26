@@ -7,7 +7,7 @@ export default function Home() {
   const [lang, setLang] = useState('fa');
 
   const toggleLanguage = () => {
-    setLang((prevLang) => (prevLang === 'fa' ? 'en' : 'fa'));
+    setLang((prev) => (prev === 'fa' ? 'en' : 'fa'));
   };
 
   return (
