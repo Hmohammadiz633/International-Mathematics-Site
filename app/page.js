@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-// لینک‌های اختصاصی گوگل درایو برای پایه‌های مختلف کمبریج
+// لینک‌های اختصاصی گوگل درایو برای پایه‌های مختلف کمبریج (سال نهم و دهم تفکیک و اصلاح شدند)
 const CAMBRIDGE_DRIVE_URLS = {
   g7: "https://drive.google.com/file/d/YOUR_GRADE7_DRIVE_ID/view?usp=sharing",
   g8: "https://drive.google.com/file/d/109Lk_VbvwpVMRcv70qMXKKHfAyuAmNF_/view?usp=drive_sdk",
@@ -117,17 +117,16 @@ export default function Home() {
                   key={grade.id}
                   className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col"
                 >
-                  {/* عکس جلد پایه با سیستم پشتیبان در صورت خطای بارگذاری */}
+                  {/* عکس جلد پایه با قابلیت چک کردن پسوندهای مختلف تصویر */}
                   <div className="h-48 w-full bg-gray-100 relative overflow-hidden">
                     <img 
                       src={`/cambridge-${grade.id}.JPG`} 
                       alt={grade.titleFa}
                       className="w-full h-full object-cover"
                       onError={(e) => {
-                        // اگر عکس با پسوند .JPG پیدا نشد، .jpg را امتحان می‌کند یا پروفایل را نشان می‌دهد
                         if (e.target.src.endsWith('.JPG')) {
                           e.target.src = `/cambridge-${grade.id}.jpg`;
-                        } else {
+                        } else if (!e.target.src.endsWith('/profile.jpg')) {
                           e.target.src = '/profile.jpg';
                         }
                       }}
@@ -225,7 +224,7 @@ export default function Home() {
             <span className="bg-red-50 text-red-600 px-3 py-1 rounded-lg text-xs font-mono">Hadi.mohammadi...</span>
           </div>
 
-          <div className="bg-white p-4 thead bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
             <div className="text-right">
               <span className="text-xs text-gray-400 block">شماره تلفن / واتساپ</span>
               <span className="font-bold text-indigo-950">تماس مستقیم با استاد</span>
