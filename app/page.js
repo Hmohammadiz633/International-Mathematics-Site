@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-// لیست کشورها/سیستم‌ها با پشتیبانی کامل از دو زبان
+// لیست کشورها/سیستم‌ها
 const CATEGORIES = [
   { id: 'cambridge', titleFa: 'کمبریج', titleEn: 'Cambridge' },
   { id: 'australia', titleFa: 'استرالیا', titleEn: 'Australia' },
@@ -64,33 +64,28 @@ export default function Home() {
   const isUniversity = selectedCategory === 'university';
   const subItemList = isUniversity ? UNIVERSITY_BOOKS : SCHOOL_GRADES;
 
+  // چک کردن اینکه آیا کتاب انتخاب شده، «کلاس هفتم کمبریج» است یا خیر
+  const isCambridgeGrade7 = selectedCategory === 'cambridge' && selectedSubItem === 'g7';
+
+  // لینک گوگل درایو فایل PDF کلاس هفتم کمبریج (لینک خود را اینجا قرار دهید)
+  const cambridgeGrade7DriveUrl = "https://drive.google.com/file/d/109Lk_VbvwpVMRcv70qMXKKhfAyuAmNF_/view?usp=drivesdk";
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
       
-      {/* منوی بالای سایت (Header) */}
+      {/* Header */}
       <header className="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          
           <div className="flex items-center gap-2">
             <span className="text-xl">📐</span>
           </div>
           
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
-            <a href="#about" className="hover:text-blue-600 transition">
-              {lang === 'fa' ? 'درباره من' : 'About Me'}
-            </a>
-            <a href="#books" className="hover:text-blue-600 transition">
-              {lang === 'fa' ? 'کتاب‌های تدریس‌شده' : 'Taught Books'}
-            </a>
-            <a href="#services" className="hover:text-blue-600 transition">
-              {lang === 'fa' ? 'خدمات تدریس' : 'Services'}
-            </a>
-            <a href="#resume" className="hover:text-blue-600 transition">
-              {lang === 'fa' ? 'رزومه' : 'Resume'}
-            </a>
-            <a href="#contact" className="hover:text-blue-600 transition">
-              {lang === 'fa' ? 'تماس با ما' : 'Contact'}
-            </a>
+            <a href="#about" className="hover:text-blue-600 transition">{lang === 'fa' ? 'درباره من' : 'About Me'}</a>
+            <a href="#books" className="hover:text-blue-600 transition">{lang === 'fa' ? 'کتاب‌های تدریس‌شده' : 'Taught Books'}</a>
+            <a href="#services" className="hover:text-blue-600 transition">{lang === 'fa' ? 'خدمات تدریس' : 'Services'}</a>
+            <a href="#resume" className="hover:text-blue-600 transition">{lang === 'fa' ? 'رزومه' : 'Resume'}</a>
+            <a href="#contact" className="hover:text-blue-600 transition">{lang === 'fa' ? 'تماس با ما' : 'Contact'}</a>
           </nav>
 
           <button 
@@ -102,37 +97,29 @@ export default function Home() {
         </div>
       </header>
 
-      {/* ۱. بنر اصلی (Hero Section) */}
+      {/* Banner */}
       <section className="bg-[#1e295d] text-white py-16 px-4 text-center">
         <div className="max-w-3xl mx-auto flex flex-col items-center">
-          
           <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl mb-6 bg-slate-800 flex items-center justify-center">
-            <img 
-              src="/profile.jpg" 
-              alt="دکتر هادی محمدی" 
-              className="w-full h-full object-cover"
-            />
+            <img src="/profile.jpg" alt="دکتر هادی محمدی" className="w-full h-full object-cover" />
           </div>
 
           <h1 className="text-3xl md:text-5xl font-extrabold mb-3">
             {lang === 'fa' ? 'آموزش بین المللی ریاضیات' : 'International Mathematics Education'}
           </h1>
-
           <h2 className="text-xl md:text-3xl font-semibold text-slate-200 mb-2">
             {lang === 'fa' ? 'دکتر هادی محمدی' : 'Dr. Hadi Mohammadi'}
           </h2>
-
           <p className="text-base md:text-xl text-slate-300 font-medium mb-2">
             {lang === 'fa' ? 'عضو هیأت علمی دانشگاه و مدرس آنلاین ریاضی' : 'University Faculty Member & Online Math Tutor'}
           </p>
           <p className="text-xs md:text-sm text-slate-400 opacity-90">
             {lang === 'fa' ? 'ویژه ایرانیان خارج از کشور (آمریکا، کانادا، اروپا، استرالیا و انگلستان)' : 'Specialized for International Students (USA, Canada, Europe, Australia, UK)'}
           </p>
-
         </div>
       </section>
 
-      {/* ۲. بخش درباره من */}
+      {/* About Section */}
       <section id="about" className="max-w-5xl mx-auto my-12 px-4">
         <div className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-slate-100">
           <h2 className="text-2xl font-bold text-[#1e295d] mb-4 flex items-center gap-2">
@@ -147,19 +134,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ۳. بخش کتاب‌های تدریس‌شده */}
+      {/* Taught Books Section */}
       <section id="books" className="max-w-5xl mx-auto my-16 px-4 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-2 flex items-center justify-center gap-2">
           <span className="text-3xl">📚</span>
           {lang === 'fa' ? 'کتاب‌های تدریس‌شده' : 'Taught Books'}
         </h2>
         <p className="text-slate-500 mb-8 text-sm md:text-base">
-          {lang === 'fa' 
-            ? 'جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:' 
-            : 'Select country/system or University Books to view textbooks:'}
+          {lang === 'fa' ? 'جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:' : 'Select country/system or University Books to view textbooks:'}
         </p>
 
-        {/* دکمه‌های اصلی کشورها / دانشگاهی */}
+        {/* Categories */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
           {CATEGORIES.map((cat) => {
             const isActive = selectedCategory === cat.id;
@@ -182,7 +167,7 @@ export default function Home() {
           })}
         </div>
 
-        {/* نمایش زیرمجموعه‌ها */}
+        {/* SubItems */}
         {selectedCategory && (
           <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm mb-6">
             <h3 className="text-base font-bold text-slate-700 mb-4 flex items-center justify-center gap-1">
@@ -218,17 +203,31 @@ export default function Home() {
               })}
             </div>
 
-            {/* کادر دانلود PDF */}
+            {/* کادر نمایش کتاب و دکمه دانلود */}
             {selectedSubItem && (
               <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col items-center">
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 max-w-sm w-full shadow-inner flex flex-col items-center">
-                  <div className="w-40 h-52 bg-gradient-to-br from-blue-700 to-[#1e295d] rounded-xl shadow-md flex flex-col items-center justify-center text-white p-4 mb-4 text-center border-2 border-white/20">
-                    <span className="text-4xl mb-2">📕</span>
-                    <span className="text-xs font-bold leading-tight">
-                      {lang === 'fa' 
-                        ? subItemList.find((i) => i.id === selectedSubItem)?.titleFa 
-                        : subItemList.find((i) => i.id === selectedSubItem)?.titleEn}
-                    </span>
+                  
+                  {/* بخش تصویر کتاب */}
+                  <div className="w-44 h-56 rounded-xl shadow-md overflow-hidden mb-4 border-2 border-slate-200 bg-white flex items-center justify-center">
+                    {isCambridgeGrade7 ? (
+                      /* عکس اختصاصی سال هفتم کمبریج */
+                      <img 
+                        src="/cambridge-g7.jpg" 
+                        alt="کتاب ریاضی هفتم کمبریج" 
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      /* جلد پیش‌فرض برای سایر موارد */
+                      <div className="w-full h-full bg-gradient-to-br from-blue-700 to-[#1e295d] flex flex-col items-center justify-center text-white p-4 text-center">
+                        <span className="text-4xl mb-2">📕</span>
+                        <span className="text-xs font-bold leading-tight">
+                          {lang === 'fa' 
+                            ? subItemList.find((i) => i.id === selectedSubItem)?.titleFa 
+                            : subItemList.find((i) => i.id === selectedSubItem)?.titleEn}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   <h4 className="text-sm font-bold text-slate-800 mb-1 text-center">
@@ -240,17 +239,19 @@ export default function Home() {
                     {lang === 'fa' ? 'نسخه کامل همراه با حل تمرینات' : 'Full version with exercises'}
                   </p>
 
+                  {/* دکمه دانلود PDF */}
                   <a
-                    href="https://t.me/International_Maths"
+                    href={isCambridgeGrade7 ? cambridgeGrade7DriveUrl : "https://t.me/International_Maths"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition shadow-sm"
                   >
                     <span>📥</span>
                     <span>
-                      {lang === 'fa' ? 'دانلود فایل PDF کتاب' : 'Download Book PDF'}
+                      {lang === 'fa' ? 'دانلود فایل PDF از گوگل درایو' : 'Download PDF from Google Drive'}
                     </span>
                   </a>
+
                 </div>
               </div>
             )}
@@ -258,7 +259,7 @@ export default function Home() {
         )}
       </section>
 
-      {/* ۴. بخش خدمات تدریس آنلاین */}
+      {/* Services */}
       <section id="services" className="max-w-5xl mx-auto my-16 px-4">
         <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-4">
@@ -273,7 +274,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ۵. بخش سوابق علمی و پژوهشی (بروزرسانی شده با ۲۹ سال سابقه تدریس) */}
+      {/* Resume */}
       <section id="resume" className="max-w-5xl mx-auto my-16 px-4">
         <div className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-slate-100">
           <div className="flex items-center justify-center gap-2 mb-8 text-[#1e295d]">
@@ -304,7 +305,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ۶. بخش ارتباط با استاد (دقیقاً کاملاً زیر هم و مرتب‌شده) */}
+      {/* Contact */}
       <section id="contact" className="max-w-5xl mx-auto my-16 px-4 text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-[#1e295d] mb-2">
           {lang === 'fa' ? 'ارتباط با استاد' : 'Contact Professor'}
@@ -315,115 +316,62 @@ export default function Home() {
             : 'For booking consultations, online classes, or inquiries, reach out below:'}
         </p>
 
-        {/* چیدمان کاملاً عمودی و شکیل در یک ستون */}
         <div className="flex flex-col gap-3.5 w-full max-w-md mx-auto" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
-          
-          {/* ۱. تلگرام */}
-          <a
-            href="https://t.me/International_Maths"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-between p-3.5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-sky-300 transition group"
-          >
+          <a href="https://t.me/International_Maths" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3.5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-sky-300 transition group">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center text-sky-500 group-hover:scale-105 transition">
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.52c-.15.68-.55.85-1.12.53l-3.08-2.27-1.48 1.43c-.16.16-.3.3-.61.3l.22-3.12 5.68-5.13c.25-.22-.05-.34-.38-.12l-7.02 4.42-3.03-.95c-.66-.21-.67-.66.14-.98l11.83-4.56c.55-.2 1.03.13.87.93z"/>
-                </svg>
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.52c-.15.68-.55.85-1.12.53l-3.08-2.27-1.48 1.43c-.16.16-.3.3-.61.3l.22-3.12 5.68-5.13c.25-.22-.05-.34-.38-.12l-7.02 4.42-3.03-.95c-.66-.21-.67-.66.14-.98l11.83-4.56c.55-.2 1.03.13.87.93z"/></svg>
               </div>
               <div className={lang === 'fa' ? 'text-right' : 'text-left'}>
-                <span className="block text-[11px] text-slate-400 font-medium">
-                  {lang === 'fa' ? 'کانال و آیدی تلگرام' : 'Telegram Channel'}
-                </span>
-                <span className="text-xs md:text-sm font-bold text-slate-800">
-                  {lang === 'fa' ? 'آموزش بین‌المللی ریاضیات' : 'International Math'}
-                </span>
+                <span className="block text-[11px] text-slate-400 font-medium">{lang === 'fa' ? 'کانال و آیدی تلگرام' : 'Telegram Channel'}</span>
+                <span className="text-xs md:text-sm font-bold text-slate-800">{lang === 'fa' ? 'آموزش بین‌المللی ریاضیات' : 'International Math'}</span>
               </div>
             </div>
-            <span dir="ltr" className="text-[11px] font-mono text-sky-600 bg-sky-50 px-2.5 py-1 rounded-lg">
-              @International_Maths
-            </span>
+            <span dir="ltr" className="text-[11px] font-mono text-sky-600 bg-sky-50 px-2.5 py-1 rounded-lg">@International_Maths</span>
           </a>
 
-          {/* ۲. اینستاگرام */}
-          <a
-            href="https://instagram.com/Hadi_mohammadi_zarandini"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-between p-3.5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-pink-300 transition group"
-          >
+          <a href="https://instagram.com/Hadi_mohammadi_zarandini" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3.5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-pink-300 transition group">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-pink-50 flex items-center justify-center text-pink-500 group-hover:scale-105 transition">
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
               </div>
               <div className={lang === 'fa' ? 'text-right' : 'text-left'}>
-                <span className="block text-[11px] text-slate-400 font-medium">
-                  {lang === 'fa' ? 'صفحه اینستاگرام' : 'Instagram Page'}
-                </span>
+                <span className="block text-[11px] text-slate-400 font-medium">{lang === 'fa' ? 'صفحه اینستاگرام' : 'Instagram Page'}</span>
                 <span className="text-xs md:text-sm font-bold text-slate-800">Hadi_mohammadi_zarandini</span>
               </div>
             </div>
-            <span dir="ltr" className="text-[11px] font-mono text-pink-600 bg-pink-50 px-2.5 py-1 rounded-lg">
-              @Hadi...
-            </span>
+            <span dir="ltr" className="text-[11px] font-mono text-pink-600 bg-pink-50 px-2.5 py-1 rounded-lg">@Hadi...</span>
           </a>
 
-          {/* ۳. جیمیل */}
-          <a
-            href="mailto:Hadi.mohammadi.zarandini@gmail.com"
-            className="flex items-center justify-between p-3.5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-red-300 transition group"
-          >
+          <a href="mailto:Hadi.mohammadi.zarandini@gmail.com" className="flex items-center justify-between p-3.5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-red-300 transition group">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center text-red-500 group-hover:scale-105 transition">
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.272H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.545l8.073-6.052c1.618-1.214 3.927-.059 3.927 1.964z"/>
-                </svg>
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.272H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.545l8.073-6.052c1.618-1.214 3.927-.059 3.927 1.964z"/></svg>
               </div>
               <div className={lang === 'fa' ? 'text-right' : 'text-left'}>
-                <span className="block text-[11px] text-slate-400 font-medium">
-                  {lang === 'fa' ? 'آدرس پست الکترونیکی' : 'Email Address'}
-                </span>
-                <span className="text-xs md:text-sm font-bold text-slate-800">
-                  {lang === 'fa' ? 'ارسال ایمیل به استاد' : 'Send Email'}
-                </span>
+                <span className="block text-[11px] text-slate-400 font-medium">{lang === 'fa' ? 'آدرس پست الکترونیکی' : 'Email Address'}</span>
+                <span className="text-xs md:text-sm font-bold text-slate-800">{lang === 'fa' ? 'ارسال ایمیل به استاد' : 'Send Email'}</span>
               </div>
             </div>
-            <span dir="ltr" className="text-[10px] font-mono text-red-600 bg-red-50 px-2 py-1 rounded-lg truncate max-w-[110px]">
-              Hadi.mohammadi...
-            </span>
+            <span dir="ltr" className="text-[10px] font-mono text-red-600 bg-red-50 px-2 py-1 rounded-lg truncate max-w-[110px]">Hadi.mohammadi...</span>
           </a>
 
-          {/* ۴. شماره تلفن تماس مستقیم */}
-          <a
-            href="tel:+989123104844"
-            className="flex items-center justify-between p-3.5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-emerald-300 transition group"
-          >
+          <a href="tel:+989123104844" className="flex items-center justify-between p-3.5 bg-white border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md hover:border-emerald-300 transition group">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:scale-105 transition">
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                </svg>
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
               </div>
               <div className={lang === 'fa' ? 'text-right' : 'text-left'}>
-                <span className="block text-[11px] text-slate-400 font-medium">
-                  {lang === 'fa' ? 'شماره تلفن / واتساپ' : 'Phone / WhatsApp'}
-                </span>
-                <span className="text-xs md:text-sm font-bold text-slate-800">
-                  {lang === 'fa' ? 'تماس مستقیم با استاد' : 'Direct Call'}
-                </span>
+                <span className="block text-[11px] text-slate-400 font-medium">{lang === 'fa' ? 'شماره تلفن / واتساپ' : 'Phone / WhatsApp'}</span>
+                <span className="text-xs md:text-sm font-bold text-slate-800">{lang === 'fa' ? 'تماس مستقیم با استاد' : 'Direct Call'}</span>
               </div>
             </div>
-            <span dir="ltr" className="text-[11px] font-mono text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg">
-              +98 912 310 4844
-            </span>
+            <span dir="ltr" className="text-[11px] font-mono text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg">+98 912 310 4844</span>
           </a>
-
         </div>
       </section>
 
-      {/* فوتر */}
+      {/* Footer */}
       <footer className="bg-[#0f172a] text-slate-400 text-center py-6 text-sm">
         <p>© 2026 {lang === 'fa' ? 'دکتر هادی محمدی - تمامی حقوق محفوظ است' : 'Dr. Hadi Mohammadi. All rights reserved.'}</p>
       </footer>
