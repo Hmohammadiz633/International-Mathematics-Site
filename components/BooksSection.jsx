@@ -3,15 +3,15 @@
 import { useState, useEffect } from 'react';
 
 const TELEGRAM_LINKS = {
-  g7: "https://t.me/International_Maths/1400",
-  g8: "https://t.me/International_Maths/1401",
-  g9: "https://t.me/International_Maths/1402",
-  g10: "https://t.me/International_Maths/1403",
-  g11: "https://t.me/International_Maths/1404",
-  g12: "https://t.me/International_Maths/1405"
+  g7: 'https://t.me/International_Maths/1400',
+  g8: 'https://t.me/International_Maths/1401',
+  g9: 'https://t.me/International_Maths/1402',
+  g10: 'https://t.me/International_Maths/1403',
+  g11: 'https://t.me/International_Maths/1404',
+  g12: 'https://t.me/International_Maths/1405'
 };
 
-const DEFAULT_TELEGRAM = "https://t.me/International_Maths";
+const DEFAULT_TELEGRAM = 'https://t.me/International_Maths';
 
 const categories = [
   { id: 'cambridge', titleFa: 'کمبریج', titleEn: 'Cambridge' },
@@ -68,9 +68,9 @@ export default function BooksSection({ lang: propLang }) {
 
   const bookTitle = isUni
     ? (isEn ? currentUniBook?.titleEn : currentUniBook?.titleFa)
-    : (isEn ? `${currentCategory?.titleEn} - ${currentSchoolGrade?.titleEn}` : `${currentCategory?.titleFa} - ${currentSchoolGrade?.titleFa}`);
+    : (isEn ? `${currentCategory?.titleEn || ''} - ${currentSchoolGrade?.titleEn || ''}` : `${currentCategory?.titleFa || ''} - ${currentSchoolGrade?.titleFa || ''}`);
 
-  const bookImage = isUni ? currentUniBook?.image : `/cambridge-${activeGrade}.JPG`;
+  const bookImage = isUni ? (currentUniBook?.image || '/cambridge-g7.JPG') : `/cambridge-${activeGrade}.JPG`;
   const telegramUrl = isUni ? DEFAULT_TELEGRAM : (TELEGRAM_LINKS[activeGrade] || DEFAULT_TELEGRAM);
 
   return (
