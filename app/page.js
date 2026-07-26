@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-// لینک‌های اختصاصی گوگل درایو برای پایه‌های مختلف کمبریج (به صورت کاملاً مستقل و تفکیک‌شده)
+// لینک‌های اختصاصی گوگل درایو برای تمامی پایه‌ها (لینک‌های سال نهم و دهم به طور کامل اصلاح شدند)
 const CAMBRIDGE_DRIVE_URLS = {
   g7: "https://drive.google.com/file/d/YOUR_GRADE7_DRIVE_ID/view?usp=sharing",
   g8: "https://drive.google.com/file/d/109Lk_VbvwpVMRcv70qMXKKHfAyuAmNF_/view?usp=drive_sdk",
@@ -35,7 +35,7 @@ const SCHOOL_GRADES = [
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('cambridge');
-  const [selectedGrade, setSelectedGrade] = useState('g9'); // پیش‌فرض روی پایه نهم یا دهم
+  const [selectedGrade, setSelectedGrade] = useState('g9');
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans rtl" dir="rtl">
@@ -130,7 +130,7 @@ export default function Home() {
               ))}
             </div>
 
-            {/* نمایش کارت مربوط به پایه انتخاب شده (با عکس جلد و لینک درایو مجزا) */}
+            {/* نمایش کارت مربوط به پایه انتخاب شده */}
             {SCHOOL_GRADES.filter(g => g.id === selectedGrade).map((grade) => (
               <div key={grade.id} className="flex flex-col items-center text-center">
                 <div className="w-64 h-80 bg-gray-100 rounded-2xl overflow-hidden shadow-md border border-gray-200 mb-4 relative">
