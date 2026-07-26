@@ -11,7 +11,7 @@ const TELEGRAM_LINKS = {
   g12: "https://t.me/International_Maths/1405"
 };
 
-// ۲. لیست سیستم‌های آموزشی (کشورها + دانشگاهی)
+// ۲. لیست کامل سیستم‌های آموزشی (کشورها + دانشگاهی)
 const CATEGORIES = [
   { id: 'cambridge', titleFa: 'کمبریج', titleEn: 'Cambridge' },
   { id: 'australia', titleFa: 'استرالیا', titleEn: 'Australia' },
@@ -23,7 +23,7 @@ const CATEGORIES = [
   { id: 'university', titleFa: 'کتاب‌های دانشگاهی', titleEn: 'University Textbooks' }
 ];
 
-// ۳. لیست پایه‌های تحصیلی
+// ۳. لیست مقاطع تحصیلی
 const SCHOOL_GRADES = [
   { id: 'g7', titleFa: 'سال هفتم', titleEn: 'Grade 7' },
   { id: 'g8', titleFa: 'سال هشتم', titleEn: 'Grade 8' },
@@ -33,7 +33,7 @@ const SCHOOL_GRADES = [
   { id: 'g12', titleFa: 'سال دوازدهم', titleEn: 'Grade 12' }
 ];
 
-// ۴. دیتا و تصویر کتاب‌ها
+// ۴. دیتا و تصاویر کتاب‌ها
 const BOOKS = [
   { id: 'c-g7', categoryId: 'cambridge', gradeId: 'g7', titleFa: 'سال هفتم', titleEn: 'Grade 7', image: '/cambridge-g7.JPG' },
   { id: 'c-g8', categoryId: 'cambridge', gradeId: 'g8', titleFa: 'سال هشتم', titleEn: 'Grade 8', image: '/cambridge-g8.JPG' },
@@ -53,7 +53,7 @@ export default function BooksSection({ lang = 'fa' }) {
     (b) => b.categoryId === selectedCategory && b.gradeId === selectedGrade
   );
 
-  // گرفتن لینک تلگرام پایه انتخاب‌شده
+  // لینک تلگرام بر اساس پایه انتخاب شده
   const currentTelegramLink = TELEGRAM_LINKS[selectedGrade] || "https://t.me/International_Maths";
 
   return (
@@ -75,7 +75,7 @@ export default function BooksSection({ lang = 'fa' }) {
         ))}
       </div>
 
-      {/* بخش انتخاب پایه تحصیلی */}
+      {/* انتخاب پایه تحصیلی */}
       {selectedCategory !== 'university' && (
         <div className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-gray-100 shadow-sm mb-8">
           <h3 className="text-center text-gray-700 font-bold mb-4 flex items-center justify-center gap-2">
@@ -105,7 +105,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </div>
       )}
 
-      {/* کارت کتاب و دکمه جدید تلگرام */}
+      {/* نمایش کارت کتاب و دکمه جدید تلگرام */}
       {currentBook && (
         <div className="flex justify-center">
           <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm max-w-sm w-full text-center">
