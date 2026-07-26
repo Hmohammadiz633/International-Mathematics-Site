@@ -1,6 +1,12 @@
 'use client';
 import { useState } from 'react';
 
+// لینک‌های فایل‌های PDF در گوگل درایو برای کتاب‌های کمبریج
+const CAMBRIDGE_DRIVE_URLS = {
+  g7: "https://drive.google.com/file/d/YOUR_GRADE7_DRIVE_ID/view?usp=sharing",
+  g8: "https://drive.google.com/file/d/YOUR_GRADE8_DRIVE_ID/view?usp=sharing",
+};
+
 // لیست کشورها/سیستم‌ها
 const CATEGORIES = [
   { id: 'cambridge', titleFa: 'کمبریج', titleEn: 'Cambridge' },
@@ -67,10 +73,10 @@ export default function Home() {
   const isUniversity = selectedCategory === 'university';
   const subItemList = isUniversity ? UNIVERSITY_BOOKS : SCHOOL_GRADES;
 
-  const isCambridgeGrade7 = selectedCategory === 'cambridge' && selectedSubItem === 'g7';
-
-  // لینک فایل PDF در گوگل درایو
-  const cambridgeGrade7DriveUrl = "https://drive.google.com/file/d/109Lk_VbvwpVMRcv70qMXKKhfAyuAmNF_/view?usp=drivesdk";
+  // بررسی سیستم انتخاب‌شده
+  const isCambridge = selectedCategory === 'cambridge';
+  const currentDriveUrl = isCambridge ? CAMBRIDGE_DRIVE_URLS[selectedSubItem] : null;
+  const imagePath = isCambridge ? `/cambridge-${selectedSubItem}.JPG` : null;
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans" dir={lang === 'fa' ? 'rtl' : 'ltr'}>
@@ -210,12 +216,12 @@ export default function Home() {
               <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col items-center">
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 max-w-sm w-full shadow-inner flex flex-col items-center">
                   
-                  {/* بخش نمایش جلد (فراخوانی با پسوند JPG) */}
+                  {/* بخش نمایش جلد (فراخوانی هوشمند فایل با پسوند .JPG) */}
                   <div className="w-44 h-56 rounded-xl shadow-md overflow-hidden mb-4 border-2 border-slate-200 bg-white flex items-center justify-center relative">
-                    {isCambridgeGrade7 && !imgError ? (
+                    {isCambridge && (selectedSubItem === 'g7' || selectedSubItem === 'g8') && !imgError ? (
                       <img 
-                        src="/cambridge-g7.JPG" 
-                        alt="کتاب ریاضی هفتم کمبریج" 
+                        src={imagePath} 
+                        alt={`کتاب ریاضی ${subItemList.find((i) => i.id === selectedSubItem)?.titleFa}`} 
                         className="w-full h-full object-cover"
                         onError={() => setImgError(true)}
                       />
@@ -251,16 +257,16 @@ export default function Home() {
                     {lang === 'fa' ? 'نسخه کامل همراه با حل تمرینات' : 'Full version with exercises'}
                   </p>
 
-                  {/* دکمه دانلود PDF */}
+                  {/* دکمه دانلود PDF از گوگل درایو */}
                   <a
-                    href={isCambridgeGrade7 ? cambridgeGrade7DriveUrl : "https://t.me/International_Maths"}
+                    href={currentDriveUrl || "https://t.me/International_Maths"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition shadow-sm"
                   >
                     <span>📥</span>
                     <span>
-                      {lang === 'fa' ? 'دانلود فایل PDF' : 'Download PDF'}
+                      {lang === 'fa' ? 'دانلود فایل PDF از گوگل درایو' : 'Download PDF from Google Drive'}
                     </span>
                   </a>
 
