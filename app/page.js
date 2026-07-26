@@ -1,12 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import Header from '@/components/Header'; // یا مسیر مربوط به هدر شما
 import BooksSection from '@/components/BooksSection';
-import Footer from '@/components/Footer'; // یا مسیر مربوط به فوتر شما
 
 export default function Home() {
-  // مدیریت متمرکز زبان سایت (fa یا en)
   const [lang, setLang] = useState('fa');
 
   const toggleLanguage = () => {
@@ -15,14 +12,12 @@ export default function Home() {
 
   return (
     <div className={`min-h-screen bg-gray-50 text-gray-900 ${lang === 'en' ? 'ltr' : 'rtl'}`} dir={lang === 'en' ? 'ltr' : 'rtl'}>
-      {/* هدر سایت همراه با دکمه تغییر زبان */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-xl font-bold text-indigo-900">
             {lang === 'fa' ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics'}
           </h1>
           
-          {/* دکمه تغییر زبان در هدر اصلی */}
           <button
             type="button"
             onClick={toggleLanguage}
@@ -34,12 +29,10 @@ export default function Home() {
         </div>
       </header>
 
-      {/* محتوای اصلی - فراخوانی بخش کتاب‌ها با زبان جدید */}
       <main className="container mx-auto py-8 px-4">
         <BooksSection lang={lang} />
       </main>
 
-      {/* فوتر ساده */}
       <footer className="bg-white border-t border-gray-200 py-6 text-center text-sm text-gray-500">
         <p>
           {lang === 'fa'
