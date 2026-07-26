@@ -1,12 +1,12 @@
 'use client';
 import { useState } from 'react';
 
-// لینک‌های اختصاصی گوگل درایو برای پایه‌های مختلف کمبریج (سال نهم و دهم تفکیک و اصلاح شدند)
+// لینک‌های اختصاصی گوگل درایو برای پایه‌های مختلف کمبریج (به صورت کاملاً مستقل و تفکیک‌شده)
 const CAMBRIDGE_DRIVE_URLS = {
   g7: "https://drive.google.com/file/d/YOUR_GRADE7_DRIVE_ID/view?usp=sharing",
   g8: "https://drive.google.com/file/d/109Lk_VbvwpVMRcv70qMXKKHfAyuAmNF_/view?usp=drive_sdk",
-  g9: "https://drive.google.com/file/d/1H7pXLr_yeHDPt-9XcPTWCuufu5NU_fWe/view?usp=drivesdk",
-  g10: "https://drive.google.com/file/d/1L_K_GU80PxUQE2En2degEb6ISBtNwSOZ/view?usp=drivesdk",
+  g9: "https://drive.google.com/file/d/1H7pXLr_yeHDPT-9xCPTWCuufu5NU_fWe/view?usp=drive_sdk",
+  g10: "https://drive.google.com/file/d/1L_K_GU80PxUQE2En2degEb6ISBtNWsOZ/view?usp=drive_sdk",
   g11: "https://drive.google.com/file/d/YOUR_GRADE11_DRIVE_ID/view?usp=sharing",
   g12: "https://drive.google.com/file/d/YOUR_GRADE12_DRIVE_ID/view?usp=sharing"
 };
@@ -35,6 +35,7 @@ const SCHOOL_GRADES = [
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('cambridge');
+  const [selectedGrade, setSelectedGrade] = useState('g9'); // پیش‌فرض روی پایه نهم یا دهم
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans rtl" dir="rtl">
@@ -89,8 +90,8 @@ export default function Home() {
           <p className="text-gray-500 text-sm">جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:</p>
         </div>
 
-        {/* دکمه‌های دسته‌بندی */}
-        <div className="flex flex-wrap gap-3 justify-center mb-12">
+        {/* دکمه‌های دسته‌بندی کشورها */}
+        <div className="flex flex-wrap gap-3 justify-center mb-8">
           {CATEGORIES.map((cat) => (
             <button
               key={cat.id}
@@ -107,50 +108,58 @@ export default function Home() {
           ))}
         </div>
 
-        {/* نمایش پایه‌های کمبریج */}
+        {/* نمایش بخش پایه‌های کمبریج با تب‌بندی داخلی */}
         {selectedCategory === 'cambridge' && (
-          <div>
-            <h4 className="text-xl font-semibold mb-6 text-center text-indigo-900">پایه‌های تحصیلی کمبریج</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-gray-200 max-w-4xl mx-auto">
+            <h4 className="text-xl font-semibold mb-6 text-center text-indigo-900">🏛️ پایه‌های تحصیلی مربوط به کمبریج</h4>
+            
+            {/* دکمه‌های انتخاب پایه تحصیلی */}
+            <div className="flex flex-wrap gap-2 justify-center mb-8">
               {SCHOOL_GRADES.map((grade) => (
-                <div 
+                <button
                   key={grade.id}
-                  className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col"
+                  onClick={() => setSelectedGrade(grade.id)}
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                    selectedGrade === grade.id
+                      ? 'bg-blue-600 text-white shadow'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
                 >
-                  {/* عکس جلد پایه با قابلیت چک کردن پسوندهای مختلف تصویر */}
-                  <div className="h-48 w-full bg-gray-100 relative overflow-hidden">
-                    <img 
-                      src={`/cambridge-${grade.id}.JPG`} 
-                      alt={grade.titleFa}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        if (e.target.src.endsWith('.JPG')) {
-                          e.target.src = `/cambridge-${grade.id}.jpg`;
-                        } else if (!e.target.src.endsWith('/profile.jpg')) {
-                          e.target.src = '/profile.jpg';
-                        }
-                      }}
-                    />
-                  </div>
-
-                  <div className="p-5 flex flex-col flex-grow justify-between">
-                    <div>
-                      <h5 className="text-lg font-bold mb-1 text-indigo-950">{grade.titleFa}</h5>
-                      <p className="text-xs text-gray-400 mb-4">{grade.titleEn}</p>
-                    </div>
-                    
-                    <a
-                      href={CAMBRIDGE_DRIVE_URLS[grade.id]}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-center w-full py-2.5 px-4 bg-indigo-900 hover:bg-indigo-800 text-white font-medium rounded-xl transition-colors text-sm"
-                    >
-                      ورود به درایو منابع
-                    </a>
-                  </div>
-                </div>
+                  {grade.titleFa}
+                </button>
               ))}
             </div>
+
+            {/* نمایش کارت مربوط به پایه انتخاب شده (با عکس جلد و لینک درایو مجزا) */}
+            {SCHOOL_GRADES.filter(g => g.id === selectedGrade).map((grade) => (
+              <div key={grade.id} className="flex flex-col items-center text-center">
+                <div className="w-64 h-80 bg-gray-100 rounded-2xl overflow-hidden shadow-md border border-gray-200 mb-4 relative">
+                  <img 
+                    src={`/cambridge-${grade.id}.JPG`} 
+                    alt={grade.titleFa}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      if (e.target.src.endsWith('.JPG')) {
+                        e.target.src = `/cambridge-${grade.id}.jpg`;
+                      } else {
+                        e.target.src = '/profile.jpg';
+                      }
+                    }}
+                  />
+                </div>
+                <h5 className="text-xl font-bold text-indigo-950 mb-1">{grade.titleFa}</h5>
+                <p className="text-sm text-gray-500 mb-6">نسخه کامل همراه با حل تمرینات</p>
+
+                <a
+                  href={CAMBRIDGE_DRIVE_URLS[grade.id]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-medium rounded-xl transition-colors shadow-md text-sm"
+                >
+                  <span>📥</span> دانلود فایل PDF از گوگل درایو
+                </a>
+              </div>
+            ))}
           </div>
         )}
       </section>
