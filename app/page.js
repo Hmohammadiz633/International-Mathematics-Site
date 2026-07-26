@@ -1,8 +1,15 @@
 'use client';
 import { useState } from 'react';
 
-// لینک کانال/گروه تلگرام برای تمامی فایل‌ها
-const TELEGRAM_GROUP_URL = "https://t.me/International_Maths";
+// 🔗 آدرس مستقیم پست هر فایل در گروه تلگرام (لینک‌های مستقیم تلگرام خود را اینجا وارد کنید)
+const TELEGRAM_PDF_URLS = {
+  g7: "https://t.me/International_Maths/1400", // لینک اختصاصی فایل سال هفتم
+  g8: "https://t.me/International_Maths/1401", // لینک اختصاصی فایل سال هشتم
+  g9: "https://t.me/International_Maths/1402", // لینک اختصاصی فایل سال نهم
+  g10: "https://t.me/International_Maths/1403", // لینک اختصاصی فایل سال دهم
+  g11: "https://t.me/International_Maths", // لینک اختصاصی فایل سال یازدهم
+  g12: "https://t.me/International_Maths"  // لینک اختصاصی فایل سال دوازدهم
+};
 
 // لیست کشورها / سیستم‌ها
 const CATEGORIES = [
@@ -28,7 +35,7 @@ const SCHOOL_GRADES = [
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('cambridge');
-  const [selectedGrade, setSelectedGrade] = useState('g9');
+  const [selectedGrade, setSelectedGrade] = useState('g7');
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans rtl" dir="rtl">
@@ -123,8 +130,10 @@ export default function Home() {
               ))}
             </div>
 
-            {/* کارت نمایش تصویر و دکمه دانلود تلگرام */}
+            {/* کارت نمایش تصویر و دکمه دانلود تلگرام اختصاصی */}
             {SCHOOL_GRADES.filter(g => g.id === selectedGrade).map((grade) => {
+              const currentTelegramUrl = TELEGRAM_PDF_URLS[grade.id] || "https://t.me/International_Maths";
+
               return (
                 <div key={grade.id} className="flex flex-col items-center text-center">
                   <div className="w-64 h-80 bg-gray-100 rounded-2xl overflow-hidden shadow-md border border-gray-200 mb-4 relative">
@@ -145,12 +154,12 @@ export default function Home() {
                   <p className="text-sm text-gray-500 mb-6">نسخه کامل همراه با حل تمرینات</p>
 
                   <a
-                    href={TELEGRAM_GROUP_URL}
+                    href={currentTelegramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition-colors shadow-md text-sm"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition-colors shadow-md text-sm cursor-pointer"
                   >
-                    <span>📥</span> دانلود فایل pdf از گروه تلگرامی آموزش بین المللی ریاضیات
+                    <span>📥</span> دانلود فایل PDF از گروه تلگرامی آموزش بین المللی ریاضیات
                   </a>
                 </div>
               );
