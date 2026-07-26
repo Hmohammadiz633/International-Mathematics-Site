@@ -12,7 +12,7 @@ const CAMBRIDGE_DRIVE_URLS = {
   g7: "https://drive.google.com/file/d/YOUR_GRADE7_DRIVE_ID/view?usp=sharing",
   g8: "https://drive.google.com/file/d/109Lk_VbvwpVMRcv70qMXKKhfAyuAmNF_/view?usp=drivesdk",
   g9: "https://drive.google.com/file/d/1H7pXLr_yeHDPt-9XcPTWCuufu5NU_fWe/view?usp=drivesdk",
-  g10: "https://drive.google.com/file/d/YOUR_GRADE10_DRIVE_ID/view?usp=sharing",
+  g10: "https://drive.google.com/file/d/1L_K_GU80PxUQE2En2degEb6ISBtNwSOZ/view?usp=drivesdk",
   g11: "https://drive.google.com/file/d/YOUR_GRADE11_DRIVE_ID/view?usp=sharing",
   g12: "https://drive.google.com/file/d/YOUR_GRADE12_DRIVE_ID/view?usp=sharing",
 };
