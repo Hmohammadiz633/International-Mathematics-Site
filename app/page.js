@@ -1,46 +1,45 @@
 'use client';
 import { useState } from 'react';
 
-// 🔗 لینک‌های اختصاصی هر پایه در تلگرام
-// (لینک مستقیم پست فایل هر پایه را دقیقاً جلوی آن وارد کنید)
-const TELEGRAM_PDF_URLS = {
-  g7: "https://t.me/International_Maths/1400",  // لینک پست سال هفتم
-  g8: "https://t.me/International_Maths/1401",  // لینک پست سال هشتم
-  g9: "https://t.me/International_Maths/1402",  // لینک پست سال نهم
-  g10: "https://t.me/International_Maths/1403", // لینک پست سال دهم
-  g11: "https://t.me/International_Maths/1404", // لینک پست سال یازدهم
-  g12: "https://t.me/International_Maths/1405"  // لینک پست سال دوازدهم
+// 🔗 لینک‌های مستقیم پست تلگرام برای هر پایه (در صورت نیاز لینک مستقیم هر فایل را جایگزین کنید)
+const TELEGRAM_LINKS = {
+  g7: "https://t.me/International_Maths/1400",  // لینک پست فایل سال هفتم
+  g8: "https://t.me/International_Maths/1401",  // لینک پست فایل سال هشتم
+  g9: "https://t.me/International_Maths/1402",  // لینک پست فایل سال نهم
+  g10: "https://t.me/International_Maths/1403", // لینک پست فایل سال دهم
+  g11: "https://t.me/International_Maths/1404", // لینک پست فایل سال یازدهم
+  g12: "https://t.me/International_Maths/1405"  // لینک پست فایل سال دوازدهم
 };
 
-// لیست کشورها / سیستم‌ها
+// لیست کشورها / سیستم‌های آموزشی
 const CATEGORIES = [
-  { id: 'cambridge', titleFa: 'کمبریج', titleEn: 'Cambridge' },
-  { id: 'australia', titleFa: 'استرالیا', titleEn: 'Australia' },
-  { id: 'canada', titleFa: 'کانادا', titleEn: 'Canada' },
-  { id: 'uk', titleFa: 'انگلستان', titleEn: 'UK' },
-  { id: 'germany', titleFa: 'آلمان', titleEn: 'Germany' },
-  { id: 'california', titleFa: 'کالیفرنیا', titleEn: 'California' },
-  { id: 'turkey', titleFa: 'ترکیه', titleEn: 'Turkey' },
-  { id: 'university', titleFa: 'کتاب‌های دانشگاهی', titleEn: 'University Textbooks' }
+  { id: 'cambridge', titleFa: 'کمبریج' },
+  { id: 'australia', titleFa: 'استرالیا' },
+  { id: 'canada', titleFa: 'کانادا' },
+  { id: 'uk', titleFa: 'انگلستان' },
+  { id: 'germany', titleFa: 'آلمان' },
+  { id: 'california', titleFa: 'کالیفرنیا' },
+  { id: 'turkey', titleFa: 'ترکیه' },
+  { id: 'university', titleFa: 'کتاب‌های دانشگاهی' }
 ];
 
-// لیست مقاطع تحصیلی دانش‌آموزی (تمام لینک‌های قدیمی گوگل درایو کاملاً پاک شدند)
+// لیست مقاطع تحصیلی (سال هفتم تا دوازدهم)
 const SCHOOL_GRADES = [
-  { id: 'g7', titleFa: 'سال هفتم', titleEn: 'Grade 7' },
-  { id: 'g8', titleFa: 'سال هشتم', titleEn: 'Grade 8' },
-  { id: 'g9', titleFa: 'سال نهم', titleEn: 'Grade 9' },
-  { id: 'g10', titleFa: 'سال دهم', titleEn: 'Grade 10' },
-  { id: 'g11', titleFa: 'سال یازدهم', titleEn: 'Grade 11' },
-  { id: 'g12', titleFa: 'سال دوازدهم', titleEn: 'Grade 12' }
+  { id: 'g7', titleFa: 'سال هفتم' },
+  { id: 'g8', titleFa: 'سال هشتم' },
+  { id: 'g9', titleFa: 'سال نهم' },
+  { id: 'g10', titleFa: 'سال دهم' },
+  { id: 'g11', titleFa: 'سال یازدهم' },
+  { id: 'g12', titleFa: 'سال دوازدهم' }
 ];
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('cambridge');
-  const [selectedGrade, setSelectedGrade] = useState('g8'); // پیش‌فرض سال هشتم
+  const [selectedGrade, setSelectedGrade] = useState('g7');
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans rtl" dir="rtl">
-      {/* هدر سایت */}
+      {/* هدر اصلی سایت */}
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
           <nav className="flex gap-6 text-sm md:text-base font-medium text-gray-600">
@@ -57,7 +56,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* بخش معرفی اصلی (Hero Section) */}
+      {/* بخش بنر اصلی (Hero Section) */}
       <section className="bg-indigo-950 text-white py-16 px-4 text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto flex flex-col items-center">
           <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-white/20 shadow-xl mb-6">
@@ -91,7 +90,7 @@ export default function Home() {
           <p className="text-gray-500 text-sm">جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:</p>
         </div>
 
-        {/* دکمه‌های دسته‌بندی کشوری */}
+        {/* دکمه‌های انتخاب کشور / سیستم آموزشی */}
         <div className="flex flex-wrap gap-3 justify-center mb-8">
           {CATEGORIES.map((cat) => (
             <button
@@ -109,12 +108,12 @@ export default function Home() {
           ))}
         </div>
 
-        {/* بخش کمبریج و تب‌های پایه‌ها */}
+        {/* نمایش بخش کمبریج و تب‌های پایه‌ها */}
         {selectedCategory === 'cambridge' && (
           <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-gray-200 max-w-4xl mx-auto">
             <h4 className="text-xl font-semibold mb-6 text-center text-indigo-900">🏛️ پایه‌های تحصیلی مربوط به کمبریج</h4>
             
-            {/* دکمه‌های انتخاب پایه (۷ تا ۱۲) */}
+            {/* دکمه‌های انتخاب پایه تحصیلی */}
             <div className="flex flex-wrap gap-2 justify-center mb-8">
               {SCHOOL_GRADES.map((grade) => (
                 <button
@@ -131,10 +130,9 @@ export default function Home() {
               ))}
             </div>
 
-            {/* کارت اصلی - متصل به لینک تلگرام پایه انتخاب شده */}
+            {/* کارت نمایش تصویر جلد کتاب و دکمه دانلود تلگرام */}
             {SCHOOL_GRADES.filter(g => g.id === selectedGrade).map((grade) => {
-              // دریافت لینک اختصاصی تلگرام همان پایه
-              const telegramLink = TELEGRAM_PDF_URLS[grade.id] || "https://t.me/International_Maths";
+              const currentTelegramUrl = TELEGRAM_LINKS[grade.id] || "https://t.me/International_Maths";
 
               return (
                 <div key={grade.id} className="flex flex-col items-center text-center">
@@ -155,13 +153,17 @@ export default function Home() {
                   <h5 className="text-xl font-bold text-indigo-950 mb-1">{grade.titleFa}</h5>
                   <p className="text-sm text-gray-500 mb-6">نسخه کامل همراه با حل تمرینات</p>
 
+                  {/* دکمه اختصاصی تلگرام با آیکون رسمی تلگرام */}
                   <a
-                    href={telegramLink}
+                    href={currentTelegramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition-colors shadow-md text-sm cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-sky-500 hover:bg-sky-600 text-white font-medium rounded-xl transition-all shadow-md text-sm cursor-pointer"
                   >
-                    <span>📥</span> دانلود فایل PDF از گروه تلگرامی آموزش بین المللی ریاضیات
+                    <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.52c-.15.68-.55.84-1.12.52l-3.1-2.28-1.5 1.44c-.17.17-.31.31-.63.31l.22-3.17 5.77-5.21c.25-.22-.05-.34-.39-.12l-7.13 4.49-3.08-.96c-.67-.21-.68-.67.14-.99l12.03-4.64c.56-.2 1.05.14.83 1.09z" />
+                    </svg>
+                    <span>دانلود فایل PDF از گروه تلگرامی آموزش بین المللی ریاضیات</span>
                   </a>
                 </div>
               );
@@ -180,7 +182,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* سوابق علمی */}
+      {/* سوابق علمی و پژوهشی */}
       <section id="resume" className="py-12 px-4 max-w-4xl mx-auto">
         <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
           <h3 className="text-xl font-bold mb-6 text-indigo-950 flex items-center justify-center gap-2">
@@ -207,7 +209,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ارتباط با ما */}
+      {/* بخش راه ارتباطی */}
       <section id="contact" className="py-12 px-4 max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h3 className="text-2xl font-bold mb-2 text-indigo-950">ارتباط با استاد</h3>
@@ -249,7 +251,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* فوتر */}
+      {/* فوتر سایت */}
       <footer className="bg-indigo-950 text-indigo-300 py-6 text-center text-sm border-t border-indigo-900">
         <p>© 2026 دکتر هادی محمدی - تمامی حقوق محفوظ است</p>
       </footer>
