@@ -1,7 +1,7 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 
-// ۱. لینک‌های تلگرام برای پایه‌ها (سال ۷ تا ۱۲)
 const TELEGRAM_LINKS = {
   g7: "https://t.me/International_Maths/1400",
   g8: "https://t.me/International_Maths/1401",
@@ -13,7 +13,6 @@ const TELEGRAM_LINKS = {
 
 const DEFAULT_TELEGRAM = "https://t.me/International_Maths";
 
-// ۲. لیست تمام کشورها + بخش دانشگاهی
 const categories = [
   { id: 'cambridge', titleFa: 'کمبریج', titleEn: 'Cambridge' },
   { id: 'australia', titleFa: 'استرالیا', titleEn: 'Australia' },
@@ -25,7 +24,6 @@ const categories = [
   { id: 'university', titleFa: 'کتاب‌های دانشگاهی', titleEn: 'University Textbooks' }
 ];
 
-// ۳. سال هفتم تا دوازدهم
 const schoolGrades = [
   { id: 'g7', titleFa: 'سال هفتم', titleEn: 'Grade 7' },
   { id: 'g8', titleFa: 'سال هشتم', titleEn: 'Grade 8' },
@@ -35,7 +33,6 @@ const schoolGrades = [
   { id: 'g12', titleFa: 'سال دوازدهم', titleEn: 'Grade 12' }
 ];
 
-// ۴. تمامی ۱۱ کتاب دانشگاهی درخواستی
 const universityBooks = [
   { id: 'u-thomas', titleFa: 'ریاضی عمومی توماس', titleEn: 'Thomas Calculus', image: '/cambridge-g7.JPG' },
   { id: 'u-stewart', titleFa: 'ریاضی عمومی استوارت', titleEn: 'Stewart Calculus', image: '/cambridge-g8.JPG' },
@@ -56,7 +53,6 @@ export default function BooksSection({ lang: propLang }) {
   const [activeGrade, setActiveGrade] = useState('g7');
   const [activeUniBookId, setActiveUniBookId] = useState('u-thomas');
 
-  // آپدیت خودکار با تغییر زبان از هدر سایت
   useEffect(() => {
     if (propLang) {
       setCurrentLang(propLang);
@@ -79,18 +75,6 @@ export default function BooksSection({ lang: propLang }) {
 
   return (
     <section className="max-w-5xl mx-auto px-4 py-8" id="books" dir={isEn ? 'ltr' : 'rtl'}>
-      {/* دکمه اختصاصی سوییچ زبان جهت اطمینان ۱۰۰٪ */}
-      <div className="flex justify-end mb-4">
-        <button
-          type="button"
-          onClick={() => setCurrentLang(isEn ? 'fa' : 'en')}
-          className="px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-900 text-xs font-bold rounded-lg border border-indigo-200 transition-all shadow-sm"
-        >
-          🌐 {isEn ? 'فارسی' : 'English'}
-        </button>
-      </div>
-
-      {/* ۱. انتخاب سیستم آموزشی (کشورها) */}
       <div className="flex flex-wrap justify-center gap-2 mb-8">
         {categories.map((cat) => (
           <button
@@ -108,7 +92,6 @@ export default function BooksSection({ lang: propLang }) {
         ))}
       </div>
 
-      {/* ۲. دکمه‌های سال ۷ تا ۱۲ برای تمام کشورها */}
       {!isUni && (
         <div className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-gray-100 shadow-sm mb-8">
           <h3 className="text-center text-gray-700 font-bold mb-4 flex items-center justify-center gap-2">
@@ -139,7 +122,6 @@ export default function BooksSection({ lang: propLang }) {
         </div>
       )}
 
-      {/* ۳. دکمه‌های کتاب‌های دانشگاهی */}
       {isUni && (
         <div className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-gray-100 shadow-sm mb-8">
           <h3 className="text-center text-gray-700 font-bold mb-4 flex items-center justify-center gap-2">
@@ -166,7 +148,6 @@ export default function BooksSection({ lang: propLang }) {
         </div>
       )}
 
-      {/* ۴. کارت نمایش کتاب و لینک تلگرام */}
       <div className="flex justify-center">
         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm max-w-sm w-full text-center">
           <img
