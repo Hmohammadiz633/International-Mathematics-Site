@@ -11,7 +11,7 @@ const TELEGRAM_LINKS = {
   g12: "https://t.me/International_Maths/1405"
 };
 
-// ۲. لیست سیستم‌های آموزشی (کشورها)
+// ۲. لیست سیستم‌های آموزشی (کشورها + دانشگاهی)
 const CATEGORIES = [
   { id: 'cambridge', titleFa: 'کمبریج', titleEn: 'Cambridge' },
   { id: 'australia', titleFa: 'استرالیا', titleEn: 'Australia' },
@@ -23,7 +23,7 @@ const CATEGORIES = [
   { id: 'university', titleFa: 'کتاب‌های دانشگاهی', titleEn: 'University Textbooks' }
 ];
 
-// ۳. لیست مقاطع تحصیلی
+// ۳. لیست پایه‌های تحصیلی
 const SCHOOL_GRADES = [
   { id: 'g7', titleFa: 'سال هفتم', titleEn: 'Grade 7' },
   { id: 'g8', titleFa: 'سال هشتم', titleEn: 'Grade 8' },
@@ -33,7 +33,7 @@ const SCHOOL_GRADES = [
   { id: 'g12', titleFa: 'سال دوازدهم', titleEn: 'Grade 12' }
 ];
 
-// ۴. دیتا و تصاویر کتاب‌ها
+// ۴. دیتا و تصویر کتاب‌ها
 const BOOKS = [
   { id: 'c-g7', categoryId: 'cambridge', gradeId: 'g7', titleFa: 'سال هفتم', titleEn: 'Grade 7', image: '/cambridge-g7.JPG' },
   { id: 'c-g8', categoryId: 'cambridge', gradeId: 'g8', titleFa: 'سال هشتم', titleEn: 'Grade 8', image: '/cambridge-g8.JPG' },
@@ -53,7 +53,7 @@ export default function BooksSection({ lang = 'fa' }) {
     (b) => b.categoryId === selectedCategory && b.gradeId === selectedGrade
   );
 
-  // گرفتن لینک تلگرام مربوط به پایه انتخاب‌شده
+  // گرفتن لینک تلگرام پایه انتخاب‌شده
   const currentTelegramLink = TELEGRAM_LINKS[selectedGrade] || "https://t.me/International_Maths";
 
   return (
@@ -75,7 +75,7 @@ export default function BooksSection({ lang = 'fa' }) {
         ))}
       </div>
 
-      {/* انتخاب پایه تحصیلی */}
+      {/* بخش انتخاب پایه تحصیلی */}
       {selectedCategory !== 'university' && (
         <div className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-gray-100 shadow-sm mb-8">
           <h3 className="text-center text-gray-700 font-bold mb-4 flex items-center justify-center gap-2">
@@ -98,4 +98,44 @@ export default function BooksSection({ lang = 'fa' }) {
                     : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
                 }`}
               >
-                {isEn ? grade.titleEn : grade.
+                {isEn ? grade.titleEn : grade.titleFa}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* کارت کتاب و دکمه جدید تلگرام */}
+      {currentBook && (
+        <div className="flex justify-center">
+          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm max-w-sm w-full text-center">
+            <img
+              src={currentBook.image}
+              alt={isEn ? currentBook.titleEn : currentBook.titleFa}
+              className="w-48 h-64 object-cover mx-auto rounded-xl shadow-md mb-4"
+            />
+            <h4 className="font-bold text-gray-800 text-lg mb-1">
+              {isEn ? currentBook.titleEn : currentBook.titleFa}
+            </h4>
+            <p className="text-xs text-gray-500 mb-6">
+              {isEn ? 'Complete version with solutions' : 'نسخه کامل همراه با حل تمرینات'}
+            </p>
+
+            {/* دکمه اختصاصی تلگرام */}
+            <a
+              href={currentTelegramLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3.5 px-4 bg-[#24A1DE] hover:bg-[#1d82b3] text-white font-medium rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm"
+            >
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.52c-.15.68-.55.85-1.12.53l-3.08-2.27-1.48 1.43c-.16.16-.3.3-.62.3l.22-3.13 5.71-5.16c.25-.22-.05-.34-.38-.12l-7.06 4.44-3.04-.95c-.66-.21-.67-.66.14-.98l11.89-4.58c.55-.2 1.03.13.84.97z" />
+              </svg>
+              <span>{isEn ? 'International Mathematics' : 'آموزش بین‌المللی ریاضیات'}</span>
+            </a>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
