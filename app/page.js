@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import BooksSection from '@/components/BooksSection';
+import BooksSection from '../components/BooksSection';
 
 export default function Home() {
   const [lang, setLang] = useState('fa');
@@ -18,11 +18,11 @@ export default function Home() {
           <h1 className="text-xl font-bold text-indigo-900">
             {lang === 'fa' ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics'}
           </h1>
-          
+
           <button
             type="button"
             onClick={toggleLanguage}
-            className="px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-900 font-semibold rounded-xl text-sm border border-indigo-200 transition-all shadow-sm flex items-center gap-2 cursor-pointer"
+            className="px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-900 font-semibold rounded-lg flex items-center gap-2 transition"
           >
             <span>🌐</span>
             <span>{lang === 'fa' ? 'English' : 'فارسی'}</span>
@@ -36,7 +36,7 @@ export default function Home() {
       </main>
 
       {/* فوتر */}
-      <footer className="bg-white border-t border-gray-200 py-6 text-center text-sm text-gray-500 mt-12">
+      <footer className="bg-white border-t border-gray-200 py-6 text-center text-sm text-gray-500">
         <p>
           {lang === 'fa'
             ? 'تمامی حقوق محفوظ است © آموزش بین‌المللی ریاضیات'
