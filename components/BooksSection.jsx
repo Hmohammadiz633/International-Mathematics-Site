@@ -11,54 +11,12 @@ const COUNTRY_GRADE_LINKS = {
     g11: 'https://t.me/International_Maths/1404',
     g12: 'https://t.me/International_Maths/1405',
   },
-  australia: {
-    g7: 'https://t.me/International_Maths',
-    g8: 'https://t.me/International_Maths',
-    g9: 'https://t.me/International_Maths',
-    g10: 'https://t.me/International_Maths',
-    g11: 'https://t.me/International_Maths',
-    g12: 'https://t.me/International_Maths',
-  },
-  canada: {
-    g7: 'https://t.me/International_Maths',
-    g8: 'https://t.me/International_Maths',
-    g9: 'https://t.me/International_Maths',
-    g10: 'https://t.me/International_Maths',
-    g11: 'https://t.me/International_Maths',
-    g12: 'https://t.me/International_Maths',
-  },
-  uk: {
-    g7: 'https://t.me/International_Maths',
-    g8: 'https://t.me/International_Maths',
-    g9: 'https://t.me/International_Maths',
-    g10: 'https://t.me/International_Maths',
-    g11: 'https://t.me/International_Maths',
-    g12: 'https://t.me/International_Maths',
-  },
-  germany: {
-    g7: 'https://t.me/International_Maths',
-    g8: 'https://t.me/International_Maths',
-    g9: 'https://t.me/International_Maths',
-    g10: 'https://t.me/International_Maths',
-    g11: 'https://t.me/International_Maths',
-    g12: 'https://t.me/International_Maths',
-  },
-  california: {
-    g7: 'https://t.me/International_Maths',
-    g8: 'https://t.me/International_Maths',
-    g9: 'https://t.me/International_Maths',
-    g10: 'https://t.me/International_Maths',
-    g11: 'https://t.me/International_Maths',
-    g12: 'https://t.me/International_Maths',
-  },
-  turkey: {
-    g7: 'https://t.me/International_Maths',
-    g8: 'https://t.me/International_Maths',
-    g9: 'https://t.me/International_Maths',
-    g10: 'https://t.me/International_Maths',
-    g11: 'https://t.me/International_Maths',
-    g12: 'https://t.me/International_Maths',
-  },
+  australia: { g7: 'https://t.me/International_Maths', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths', g10: 'https://t.me/International_Maths', g11: 'https://t.me/International_Maths', g12: 'https://t.me/International_Maths' },
+  canada: { g7: 'https://t.me/International_Maths', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths', g10: 'https://t.me/International_Maths', g11: 'https://t.me/International_Maths', g12: 'https://t.me/International_Maths' },
+  uk: { g7: 'https://t.me/International_Maths', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths', g10: 'https://t.me/International_Maths', g11: 'https://t.me/International_Maths', g12: 'https://t.me/International_Maths' },
+  germany: { g7: 'https://t.me/International_Maths', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths', g10: 'https://t.me/International_Maths', g11: 'https://t.me/International_Maths', g12: 'https://t.me/International_Maths' },
+  california: { g7: 'https://t.me/International_Maths', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths', g10: 'https://t.me/International_Maths', g11: 'https://t.me/International_Maths', g12: 'https://t.me/International_Maths' },
+  turkey: { g7: 'https://t.me/International_Maths', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths', g10: 'https://t.me/International_Maths', g11: 'https://t.me/International_Maths', g12: 'https://t.me/International_Maths' },
 };
 
 const UNIVERSITY_BOOKS = [
@@ -101,58 +59,61 @@ export default function BooksSection({ lang = 'fa' }) {
   const activeCategory = categories.find((c) => c.id === selectedCategory);
 
   return (
-    <section className="py-8 bg-sky-200 rounded-3xl p-4">
-      <div className="text-center max-w-3xl mx-auto mb-10 p-6 bg-sky-400 rounded-3xl border-2 border-sky-600 shadow-xl">
-        <h2 className="text-3xl md:text-4xl font-black mb-3 text-black">
+    <section className="py-8 bg-white rounded-2xl p-4">
+      {/* عنوان بخش */}
+      <div className="text-center max-w-3xl mx-auto mb-8 p-6 bg-gray-100 rounded-2xl border border-gray-300">
+        <h2 className="text-2xl md:text-3xl font-bold mb-2 text-black">
           📚 {isFa ? 'کتاب‌های تدریس‌شده' : 'Taught Textbooks'}
         </h2>
-        <p className="text-black text-sm md:text-base font-bold leading-relaxed">
+        <p className="text-black text-sm md:text-base leading-relaxed">
           {isFa
             ? 'جهت مشاهده و دانلود کتاب‌ها، سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:'
             : 'Select an educational system, country, or university section to download books:'}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10">
+      {/* شبکه دکمه‌های دسته‌بندی با استایل خاکستری روشن */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mb-8">
         {categories.map((cat) => (
           <button
             key={cat.id}
             type="button"
             onClick={() => setSelectedCategory(cat.id)}
-            className={`p-4 rounded-2xl border-2 text-right transition-all duration-300 relative transform hover:-translate-y-1 ${
+            className={`p-4 rounded-xl border text-right transition duration-200 ${
               selectedCategory === cat.id
-                ? 'bg-sky-300 text-black border-black shadow-2xl scale-105 ring-2 ring-black'
-                : 'bg-sky-400 text-black border-sky-600 hover:border-black hover:bg-sky-300 shadow-lg'
+                ? 'bg-gray-300 text-black border-black font-bold shadow-sm'
+                : 'bg-gray-100 text-black border-gray-300 hover:bg-gray-200'
             }`}
           >
             <div className="flex items-center justify-between mb-2">
-              <span className="w-8 h-8 flex items-center justify-center text-sm rounded-lg bg-sky-100 border border-black text-black shadow-sm">
+              <span className="w-8 h-8 flex items-center justify-center text-sm rounded-lg bg-white border border-gray-300 text-black">
                 {cat.icon}
               </span>
-              <span className="text-lg filter drop-shadow">{cat.flag}</span>
+              <span className="text-lg">{cat.flag}</span>
             </div>
-            <h3 className="font-black text-sm text-black">
+            <h3 className="font-bold text-sm text-black">
               {isFa ? cat.titleFa : cat.titleEn}
             </h3>
-            <p className="text-[11px] mt-1 font-bold text-black">
+            <p className="text-[11px] mt-1 text-black opacity-80">
               {isFa ? cat.subtitleFa : cat.subtitleEn}
             </p>
           </button>
         ))}
       </div>
 
+      {/* نمایش لیست زیرمجموعه‌ها */}
       {selectedCategory && (
-        <div className="p-6 md:p-8 bg-sky-400 rounded-3xl border-2 border-sky-600 shadow-2xl max-w-6xl mx-auto">
-          <div className="flex items-center justify-between border-b-2 border-sky-600 pb-4 mb-6">
+        <div className="p-6 bg-gray-50 rounded-2xl border border-gray-300 max-w-6xl mx-auto">
+          <div className="flex items-center justify-between border-b border-gray-300 pb-4 mb-6">
             <div className="flex items-center gap-3">
-              <span className="w-10 h-10 flex items-center justify-center text-xl rounded-xl bg-sky-100 border border-black text-black">
+              <span className="w-10 h-10 flex items-center justify-center text-xl rounded-xl bg-white border border-gray-300 text-black">
                 {activeCategory?.icon}
               </span>
               <div>
-                <h3 className="text-xl font-black text-black">
+                <h3 className="text-lg font-bold text-black">
                   {isFa ? activeCategory?.titleFa : activeCategory?.titleEn}
                 </h3>
-                <p className="text-xs font-bold text-black mt-0.5">
+                <p className="text-xs text-black opacity-80 mt-0.5">
                   {isFa ? activeCategory?.subtitleFa : activeCategory?.subtitleEn}
                 </p>
               </div>
@@ -168,22 +129,22 @@ export default function BooksSection({ lang = 'fa' }) {
                   href={book.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 bg-sky-100 hover:bg-sky-200 border-2 border-black rounded-2xl transition duration-200 flex flex-col justify-between shadow-lg group"
+                  className="p-4 bg-white hover:bg-gray-100 border border-gray-300 rounded-xl transition flex flex-col justify-between shadow-sm"
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-sky-300 border border-black flex items-center justify-center text-xl text-black shadow-sm shrink-0 group-hover:scale-105 transition">
+                    <div className="w-10 h-10 rounded-lg bg-gray-100 border border-gray-300 flex items-center justify-center text-xl text-black shrink-0">
                       {book.icon}
                     </div>
                     <div>
-                      <div className="font-black text-black text-sm group-hover:underline transition">
+                      <div className="font-bold text-black text-sm">
                         {isFa ? book.titleFa : book.titleEn}
                       </div>
-                      <div className="text-[11px] text-black font-bold mt-0.5">
+                      <div className="text-[11px] text-black opacity-70 mt-0.5">
                         {book.subFa}
                       </div>
                     </div>
                   </div>
-                  <span className="w-full text-center py-2 bg-sky-500 hover:bg-sky-600 text-black font-black text-xs rounded-xl border border-black shadow transition">
+                  <span className="w-full text-center py-2 bg-gray-200 hover:bg-gray-300 text-black font-bold text-xs rounded-lg border border-gray-300 transition">
                     {isFa ? 'دانلود PDF از تلگرام' : 'Download PDF'}
                   </span>
                 </a>
@@ -202,20 +163,20 @@ export default function BooksSection({ lang = 'fa' }) {
                     href={targetLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 bg-sky-100 hover:bg-sky-200 border-2 border-black rounded-2xl transition flex flex-col items-center justify-between text-center shadow-lg group"
+                    className="p-3 bg-white hover:bg-gray-100 border border-gray-300 rounded-xl transition flex flex-col items-center justify-between text-center shadow-sm"
                   >
-                    <div className="w-9 h-9 rounded-lg bg-sky-300 border border-black flex items-center justify-center text-lg text-black shadow-sm mb-2 group-hover:scale-110 transition">
+                    <div className="w-9 h-9 rounded-lg bg-gray-100 border border-gray-300 flex items-center justify-center text-lg text-black mb-2">
                       {grade.icon}
                     </div>
                     <div>
-                      <div className="font-black text-black text-xs">
+                      <div className="font-bold text-black text-xs">
                         {isFa ? grade.titleFa : grade.titleEn}
                       </div>
-                      <div className="text-[10px] text-black font-bold mt-0.5">
+                      <div className="text-[10px] text-black opacity-70 mt-0.5">
                         {grade.subFa}
                       </div>
                     </div>
-                    <span className="mt-3 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-black border border-black text-[10px] font-black rounded-lg shadow transition">
+                    <span className="mt-3 px-3 py-1.5 bg-gray-200 hover:bg-gray-300 text-black border border-gray-300 text-[10px] font-bold rounded-lg transition">
                       {isFa ? 'دانلود PDF' : 'Download'}
                     </span>
                   </a>
