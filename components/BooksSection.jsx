@@ -11,7 +11,108 @@ const TELEGRAM_LINKS = {
   g12: "https://t.me/International_Maths/1405",
 };
 
-const DEFAULT_TELEGRAM = "https://t.me/International_Maths";
+// لیست کامل ۱۱ کتاب دانشگاهی درخواستی
+const UNIVERSITY_BOOKS = [
+  {
+    id: 'thomas',
+    titleFa: 'ریاضی عمومی توماس',
+    titleEn: "Thomas' Calculus",
+    subFa: 'جلد ۱ و ۲',
+    subEn: 'Vol 1 & 2',
+    icon: '📘',
+    link: 'https://t.me/International_Maths',
+  },
+  {
+    id: 'stewart',
+    titleFa: 'ریاضی عمومی استوارت',
+    titleEn: "Stewart Calculus",
+    subFa: 'مرجع کامل',
+    subEn: 'Full Edition',
+    icon: '📙',
+    link: 'https://t.me/International_Maths',
+  },
+  {
+    id: 'stewart_solutions',
+    titleFa: 'حل تمرین استوارت',
+    titleEn: 'Stewart Solutions',
+    subFa: 'پاسخ‌نامه گام‌به‌گام',
+    subEn: 'Step-by-Step Solutions',
+    icon: '📗',
+    link: 'https://t.me/International_Maths',
+  },
+  {
+    id: 'adams',
+    titleFa: 'ریاضی عمومی آدامز',
+    titleEn: 'Adams Calculus',
+    subFa: 'کتاب مرجع آدامز',
+    subEn: 'Single & Multivariable',
+    icon: '📕',
+    link: 'https://t.me/International_Maths',
+  },
+  {
+    id: 'adams_solutions',
+    titleFa: 'حل تمرین آدامز',
+    titleEn: 'Adams Solutions',
+    subFa: 'حل تشریحی مسائل',
+    subEn: 'Complete Solutions',
+    icon: '📓',
+    link: 'https://t.me/International_Maths',
+  },
+  {
+    id: 'math2',
+    titleFa: 'ریاضی عمومی ۲',
+    titleEn: 'General Math 2',
+    subFa: 'چند متغیره و برداری',
+    subEn: 'Multivariable Calculus',
+    icon: '📚',
+    link: 'https://t.me/International_Maths',
+  },
+  {
+    id: 'numerical',
+    titleFa: 'محاسبات عددی',
+    titleEn: 'Numerical Analysis',
+    subFa: 'روش‌ها و الگوریتم‌ها',
+    subEn: 'Numerical Methods',
+    icon: '💻',
+    link: 'https://t.me/International_Maths',
+  },
+  {
+    id: 'complex',
+    titleFa: 'اعداد مختلط',
+    titleEn: 'Complex Variables',
+    subFa: 'آنالیز و متغیرهای مختلط',
+    subEn: 'Complex Analysis',
+    icon: '🌀',
+    link: 'https://t.me/International_Maths',
+  },
+  {
+    id: 'linear_algebra',
+    titleFa: 'جبر خطی',
+    titleEn: 'Linear Algebra',
+    subFa: 'ماتریس‌ها و فضاهای برداری',
+    subEn: 'Matrices & Vector Spaces',
+    icon: '📐',
+    link: 'https://t.me/International_Maths',
+  },
+  {
+    id: 'applied_math',
+    titleFa: 'ریاضی کاربردی',
+    titleEn: 'Applied Mathematics',
+    subFa: 'ویژه مهندسی و علوم پایه',
+    subEn: 'Engineering Math',
+    icon: '⚙️',
+    link: 'https://t.me/International_Maths',
+  },
+  {
+    id: 'stat_prob',
+    titleFa: 'آمار و احتمالات مهندسی',
+    titleEn: 'Engineering Statistics',
+    subFa: 'آمار، احتمال و تحلیل داده',
+    subEn: 'Probability & Statistics',
+    icon: '📊',
+    link: 'https://t.me/International_Maths',
+  },
+];
 
 const categories = [
   {
@@ -106,81 +207,107 @@ export default function BooksSection({ lang = 'fa' }) {
   return (
     <section className="py-8">
       <div className="text-center max-w-3xl mx-auto mb-10">
-        <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-sky-950">
+        <h2 className="text-3xl md:text-4xl font-black mb-4 text-blue-950">
           📚 {isFa ? 'کتاب‌های تدریس‌شده' : 'Taught Textbooks'}
         </h2>
-        <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+        <p className="text-slate-700 text-sm md:text-base font-bold leading-relaxed">
           {isFa
             ? 'جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:'
             : 'Select an educational system, country, or university section to view books:'}
         </p>
       </div>
 
+      {/* کارت‌های ۳بعدی و برجسته با آیکون‌های کوچکتر و ضخیم */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto mb-12">
         {categories.map((cat) => (
           <button
             key={cat.id}
             type="button"
             onClick={() => setSelectedCategory(cat.id)}
-            className={`p-5 rounded-2xl border text-right transition-all duration-300 relative overflow-hidden group shadow-md ${
+            className={`p-4 rounded-2xl border-2 text-right transition-all duration-300 relative transform hover:-translate-y-1 active:translate-y-0.5 ${
               selectedCategory === cat.id
-                ? 'bg-sky-600 text-white border-sky-600 ring-2 ring-sky-400'
-                : 'bg-white text-slate-800 border-sky-100 hover:border-sky-300 hover:bg-sky-50/50'
+                ? 'bg-blue-600 text-white border-blue-700 shadow-xl shadow-blue-600/30 ring-2 ring-blue-400'
+                : 'bg-white text-slate-800 border-blue-200 hover:border-blue-500 hover:bg-blue-50/70 shadow-md shadow-blue-900/5'
             }`}
           >
-            <div className="flex items-start justify-between mb-3">
-              <span className="text-3xl p-2 rounded-xl bg-sky-50 border border-sky-100">
+            <div className="flex items-center justify-between mb-2">
+              {/* آیکون سه‌بعدی و کوچکتر با سایه و ضخامت */}
+              <span className="w-10 h-10 flex items-center justify-center text-xl rounded-xl bg-gradient-to-b from-white to-blue-100 border-2 border-blue-200 shadow-inner shadow-blue-300/50">
                 {cat.icon}
               </span>
-              <span className="text-2xl">{cat.flag}</span>
+              <span className="text-xl filter drop-shadow-md">{cat.flag}</span>
             </div>
-            <h3 className={`font-bold text-lg ${selectedCategory === cat.id ? 'text-white' : 'text-slate-900'}`}>
+            <h3 className={`font-black text-base ${selectedCategory === cat.id ? 'text-white' : 'text-blue-950'}`}>
               {isFa ? cat.titleFa : cat.titleEn}
             </h3>
-            <p className={`text-xs mt-1 ${selectedCategory === cat.id ? 'text-sky-100' : 'text-slate-500'}`}>
+            <p className={`text-xs mt-1 font-bold ${selectedCategory === cat.id ? 'text-blue-100' : 'text-slate-500'}`}>
               {isFa ? cat.subtitleFa : cat.subtitleEn}
             </p>
           </button>
         ))}
       </div>
 
+      {/* بخش نمایش کتاب‌ها */}
       {selectedCategory && (
-        <div className="p-6 md:p-8 bg-white rounded-3xl border border-sky-100 shadow-xl shadow-sky-500/5 max-w-6xl mx-auto transition-all">
-          <div className="flex items-center justify-between border-b border-sky-100 pb-5 mb-8">
+        <div className="p-6 md:p-8 bg-white rounded-3xl border-2 border-blue-200 shadow-2xl shadow-blue-600/10 max-w-6xl mx-auto transition-all">
+          <div className="flex items-center justify-between border-b-2 border-blue-100 pb-5 mb-8">
             <div className="flex items-center gap-3">
-              <span className="text-3xl">{activeCategory?.icon}</span>
+              <span className="w-12 h-12 flex items-center justify-center text-2xl rounded-2xl bg-gradient-to-b from-blue-50 to-blue-100 border-2 border-blue-300 shadow-md">
+                {activeCategory?.icon}
+              </span>
               <div>
-                <h3 className="text-2xl font-bold text-sky-950">
+                <h3 className="text-2xl font-black text-blue-950">
                   {isFa ? activeCategory?.titleFa : activeCategory?.titleEn}
                 </h3>
-                <p className="text-xs text-slate-500 mt-0.5">
+                <p className="text-xs font-bold text-slate-500 mt-0.5">
                   {isFa ? activeCategory?.subtitleFa : activeCategory?.subtitleEn}
                 </p>
               </div>
             </div>
-            <span className="text-3xl">{activeCategory?.flag}</span>
+            <span className="text-3xl filter drop-shadow-md">{activeCategory?.flag}</span>
           </div>
 
           {selectedCategory === 'university' ? (
-            <div className="text-center py-8">
-              <p className="text-slate-600 mb-6 text-sm md:text-base">
+            <div>
+              <p className="text-slate-700 text-xs md:text-sm font-extrabold mb-6">
                 {isFa
-                  ? 'جهت مشاهده و دریافت مستقیم کتاب‌های دانشگاهی کلیک کنید:'
-                  : 'Click below to access and download university textbooks directly:'}
+                  ? 'کتاب‌ها و مراجع اصلی دانشگاهی (جهت دانلود PDF روی کتاب مورد نظر کلیک کنید):'
+                  : 'University Textbooks & References (Click to download PDF):'}
               </p>
-              <a
-                href={DEFAULT_TELEGRAM}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl shadow-lg shadow-sky-600/20 transition"
-              >
-                <span>✈️</span>
-                <span>{isFa ? 'مشاهده در تلگرام' : 'View on Telegram'}</span>
-              </a>
+
+              {/* شبکه ۱۱ کتاب دانشگاهی */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {UNIVERSITY_BOOKS.map((book) => (
+                  <a
+                    key={book.id}
+                    href={book.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-5 bg-gradient-to-b from-blue-50/40 to-white hover:from-blue-100/60 hover:to-blue-50 border-2 border-blue-200 hover:border-blue-600 rounded-2xl transition duration-200 group flex flex-col justify-between shadow-md hover:shadow-xl shadow-blue-500/5"
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 rounded-2xl bg-white border-2 border-blue-200 flex items-center justify-center text-2xl shadow-md group-hover:scale-110 transition shrink-0">
+                        {book.icon}
+                      </div>
+                      <div>
+                        <div className="font-black text-blue-950 text-sm md:text-base group-hover:text-blue-600 transition">
+                          {isFa ? book.titleFa : book.titleEn}
+                        </div>
+                        <div className="text-xs text-slate-500 font-bold mt-0.5">
+                          {isFa ? book.subFa : book.subEn}
+                        </div>
+                      </div>
+                    </div>
+                    <span className="w-full text-center py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-extrabold rounded-xl shadow-md transition">
+                      {isFa ? 'دانلود PDF و توضیحات' : 'Download PDF'}
+                    </span>
+                  </a>
+                ))}
+              </div>
             </div>
           ) : (
             <div>
-              <p className="text-slate-500 text-xs md:text-sm mb-6">
+              <p className="text-slate-700 text-xs md:text-sm font-extrabold mb-6">
                 {isFa
                   ? 'پایه‌های تحصیلی (برای مشاهده یا دانلود PDF روی پایه مورد نظر کلیک کنید)'
                   : 'Select a grade to view or download the PDF:'}
@@ -193,20 +320,20 @@ export default function BooksSection({ lang = 'fa' }) {
                     href={TELEGRAM_LINKS[grade.id]}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-4 bg-sky-50/50 hover:bg-sky-100/60 border border-sky-100 hover:border-sky-300 rounded-2xl transition group flex flex-col items-center justify-between text-center shadow-xs"
+                    className="p-4 bg-gradient-to-b from-white to-blue-50/40 hover:to-blue-100/70 border-2 border-blue-200 hover:border-blue-600 rounded-2xl transition group flex flex-col items-center justify-between text-center shadow-sm hover:shadow-md"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-2xl shadow-sm mb-3 group-hover:scale-110 transition">
+                    <div className="w-11 h-11 rounded-xl bg-white border-2 border-blue-200 flex items-center justify-center text-xl shadow-md mb-3 group-hover:scale-110 transition">
                       {grade.icon}
                     </div>
                     <div>
-                      <div className="font-bold text-sky-950 text-sm">
+                      <div className="font-black text-blue-950 text-sm">
                         {isFa ? grade.titleFa : grade.titleEn}
                       </div>
-                      <div className="text-xs text-slate-500 mt-0.5">
+                      <div className="text-xs text-slate-500 font-bold mt-0.5">
                         {isFa ? grade.subFa : grade.subEn}
                       </div>
                     </div>
-                    <span className="mt-4 px-3 py-1 bg-white text-sky-700 border border-sky-200 text-xs font-semibold rounded-lg group-hover:bg-sky-600 group-hover:text-white transition">
+                    <span className="mt-4 px-3 py-1.5 bg-blue-600 text-white text-xs font-extrabold rounded-lg group-hover:bg-blue-700 shadow-sm transition">
                       {isFa ? 'دانلود PDF' : 'Download PDF'}
                     </span>
                   </a>
