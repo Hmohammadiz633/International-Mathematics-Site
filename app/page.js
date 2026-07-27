@@ -14,15 +14,15 @@ export default function Home() {
 
   return (
     <div className={`min-h-screen bg-slate-50 text-slate-800 ${isFa ? 'rtl' : 'ltr'}`} dir={isFa ? 'rtl' : 'ltr'}>
-      {/* هدر سایت با تم آبی آسمانی و روشن */}
+      {/* هدر سایت با تم روشن و آبی آسمانی */}
       <header className="bg-white/90 backdrop-blur border-b border-sky-100 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
           
-          {/* لوگو و عنوان سایت */}
+          {/* لوگو و عنوان اصلی */}
           <div className="flex items-center gap-3">
             <span className="text-3xl">📐</span>
             <div>
-              <h1 className="text-lg md:text-xl font-bold text-sky-900">
+              <h1 className="text-lg md:text-xl font-bold text-sky-950">
                 {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics'}
               </h1>
               <p className="text-xs text-sky-600">
@@ -39,7 +39,7 @@ export default function Home() {
             <a href="#contact" className="hover:text-sky-600 transition">{isFa ? 'ارتباط با استاد' : 'Contact'}</a>
           </nav>
 
-          {/* دکمه‌های اکشن و تغییر زبان */}
+          {/* دکمه‌های کانال تلگرام و تغییر زبان */}
           <div className="flex items-center gap-3">
             <a
               href="https://t.me/International_Maths"
@@ -63,7 +63,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* بنر اصلی / Hero Section */}
+      {/* بنر اصلی سایت */}
       <section id="hero" className="py-12 md:py-16 bg-gradient-to-b from-sky-100/60 via-sky-50/30 to-transparent border-b border-sky-100">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <span className="px-4 py-1.5 rounded-full bg-sky-500/10 text-sky-700 border border-sky-200 text-xs md:text-sm font-semibold inline-block mb-4">
@@ -117,11 +117,93 @@ export default function Home() {
         </div>
       </section>
 
-      {/* بخش اصلی کتاب‌ها */}
+      {/* بخش کتاب‌ها */}
       <main id="books" className="container mx-auto py-8 px-4">
         <BooksSection lang={lang} />
       </main>
 
-      {/* بخش ارتباط با استاد - کادرهای زیر هم با اطلاعات کامل */}
+      {/* بخش ارتباط با استاد - کادرهای زیر هم */}
       <section id="contact" className="py-12 bg-sky-50/50 border-t border-sky-100">
-        <div
+        <div className="max-w-2xl mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-sky-950 mb-3">
+              📞 {isFa ? 'ارتباط با استاد' : 'Contact Teacher'}
+            </h2>
+            <p className="text-slate-600 text-sm md:text-base">
+              {isFa
+                ? 'جهت مشاوره، هماهنگی و ثبت‌نام کلاس‌ها می‌توانید از طریق راه‌های زیر با استاد هادی محمدی زرندینی در تماس باشید:'
+                : 'For enrollment and consultation, feel free to reach out via the contacts below:'}
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            
+            {/* ۱. تلگرام */}
+            <a
+              href="https://t.me/International_Maths"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-5 bg-white hover:bg-sky-50/80 border border-sky-200 rounded-2xl transition duration-200 flex items-center justify-between shadow-md shadow-sky-500/5 group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-600 flex items-center justify-center text-2xl group-hover:scale-110 transition">
+                  ✈️
+                </div>
+                <div>
+                  <div className="font-bold text-sky-950 text-base">
+                    {isFa ? 'کانال تلگرام' : 'Telegram Channel'}
+                  </div>
+                  <div className="text-xs text-sky-600 font-mono mt-0.5" dir="ltr">
+                    @International_Maths
+                  </div>
+                </div>
+              </div>
+              <span className="text-xs font-semibold text-sky-600 bg-sky-50 px-3 py-1.5 rounded-lg border border-sky-200">
+                {isFa ? 'ورود به تلگرام ➔' : 'Open ➔'}
+              </span>
+            </a>
+
+            {/* ۲. اینستاگرام */}
+            <a
+              href="https://instagram.com/hadi_mohammadi_zarandini"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-5 bg-white hover:bg-pink-50/50 border border-pink-200 rounded-2xl transition duration-200 flex items-center justify-between shadow-md shadow-pink-500/5 group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-600 flex items-center justify-center text-2xl group-hover:scale-110 transition">
+                  📸
+                </div>
+                <div>
+                  <div className="font-bold text-slate-900 text-base">
+                    {isFa ? 'اینستاگرام' : 'Instagram Page'}
+                  </div>
+                  <div className="text-xs text-pink-600 font-mono mt-0.5" dir="ltr">
+                    hadi_mohammadi_zarandini
+                  </div>
+                </div>
+              </div>
+              <span className="text-xs font-semibold text-pink-600 bg-pink-50 px-3 py-1.5 rounded-lg border border-pink-200">
+                {isFa ? 'مشاهده پیج ➔' : 'Open ➔'}
+              </span>
+            </a>
+
+            {/* ۳. جیمیل */}
+            <a
+              href="mailto:hadi.mohammadi.zarandini@gmail.com"
+              className="p-5 bg-white hover:bg-rose-50/50 border border-rose-200 rounded-2xl transition duration-200 flex items-center justify-between shadow-md shadow-rose-500/5 group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-rose-500/10 text-rose-600 flex items-center justify-center text-2xl group-hover:scale-110 transition">
+                  ✉️
+                </div>
+                <div>
+                  <div className="font-bold text-slate-900 text-base">
+                    {isFa ? 'ایمیل / جیمیل' : 'Gmail / Email'}
+                  </div>
+                  <div className="text-xs text-rose-600 font-mono mt-0.5" dir="ltr">
+                    hadi.mohammadi.zarandini@gmail.com
+                  </div>
+                </div>
+              </div>
+              <span className="text-xs font
