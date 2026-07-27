@@ -14,11 +14,11 @@ export default function Home() {
 
   return (
     <div className={`min-h-screen bg-slate-50 text-slate-800 ${isFa ? 'rtl' : 'ltr'}`} dir={isFa ? 'rtl' : 'ltr'}>
-      {/* هدر سایت با تم روشن و آبی آسمانی */}
+      {/* هدر سایت با تم آبی آسمانی و روشن */}
       <header className="bg-white/90 backdrop-blur border-b border-sky-100 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
           
-          {/* لوگو و عنوان اصلی */}
+          {/* لوگو و تیتر اصلی */}
           <div className="flex items-center gap-3">
             <span className="text-3xl">📐</span>
             <div>
@@ -122,7 +122,7 @@ export default function Home() {
         <BooksSection lang={lang} />
       </main>
 
-      {/* بخش ارتباط با استاد - کادرهای زیر هم */}
+      {/* بخش ارتباط با استاد - کادرهای زیر هم با اطلاعات کامل */}
       <section id="contact" className="py-12 bg-sky-50/50 border-t border-sky-100">
         <div className="max-w-2xl mx-auto px-4">
           <div className="text-center mb-8">
@@ -206,4 +206,46 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <span className="text-xs font
+              <span className="text-xs font-semibold text-rose-600 bg-rose-50 px-3 py-1.5 rounded-lg border border-rose-200">
+                {isFa ? 'ارسال ایمیل ➔' : 'Send Email ➔'}
+              </span>
+            </a>
+
+            {/* ۴. تلفن تماس */}
+            <a
+              href="tel:+989123104844"
+              className="p-5 bg-white hover:bg-emerald-50/50 border border-emerald-200 rounded-2xl transition duration-200 flex items-center justify-between shadow-md shadow-emerald-500/5 group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-2xl group-hover:scale-110 transition">
+                  📞
+                </div>
+                <div>
+                  <div className="font-bold text-slate-900 text-base">
+                    {isFa ? 'شماره تلفن تماس' : 'Phone Number'}
+                  </div>
+                  <div className="text-xs text-emerald-600 font-mono mt-0.5" dir="ltr">
+                    +98 912 310 4844
+                  </div>
+                </div>
+              </div>
+              <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200">
+                {isFa ? 'تماس مستقیم ➔' : 'Call ➔'}
+              </span>
+            </a>
+
+          </div>
+        </div>
+      </section>
+
+      {/* فوتر */}
+      <footer className="bg-white border-t border-sky-100 py-6 text-center text-sm text-slate-500">
+        <p>
+          {isFa
+            ? 'تمامی حقوق محفوظ است © آموزش بین‌المللی ریاضیات'
+            : 'All rights reserved © International Mathematics'}
+        </p>
+      </footer>
+    </div>
+  );
+}
