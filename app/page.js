@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <div className={`min-h-screen bg-gradient-to-b from-blue-950 via-slate-900 to-blue-950 text-white ${isFa ? 'rtl' : 'ltr'}`} dir={isFa ? 'rtl' : 'ltr'}>
       
-      {/* هدر سایت با پس‌زمینه آبی تیره */}
+      {/* هدر */}
       <header className="bg-blue-950/90 backdrop-blur border-b border-blue-800/80 sticky top-0 z-50 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
           <div className="flex items-center gap-3">
@@ -90,7 +90,7 @@ export default function Home() {
         <BooksSection lang={lang} />
       </main>
 
-      {/* ۲. رزومه استاد (پایین‌تر از کتاب‌ها) */}
+      {/* ۲. رزومه استاد با مدرک دکتری امیرکبیر */}
       <section id="resume" className="py-12 border-t border-b border-blue-800/60 bg-blue-900/30">
         <div className="max-w-5xl mx-auto px-4">
           <div className="bg-blue-900/80 backdrop-blur-md rounded-3xl p-6 md:p-8 border-2 border-blue-700/80 shadow-2xl shadow-blue-950">
@@ -99,19 +99,22 @@ export default function Home() {
                 👨‍🏫
               </div>
               <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-black mb-3">
+                  🎓 {isFa ? 'دکتری تخصصی ریاضی از دانشگاه صنعتی امیرکبیر (پلی‌تکنیک تهران)' : 'Ph.D. in Mathematics from Amirkabir University of Technology (Tehran Polytechnic)'}
+                </div>
                 <h3 className="text-2xl font-black text-white mb-2">
                   {isFa ? 'درباره و رزومه استاد' : 'Teacher Profile & Resume'}
                 </h3>
                 <p className="text-blue-100 text-sm md:text-base leading-relaxed mb-4 font-bold">
                   {isFa
-                    ? 'مدرس بین‌المللی ریاضیات با سال‌ها تجربه در تدریس دوره‌های Cambridge IGCSE, A-Level, IB Math, SAT, AP Calculus و آزمون‌های ورودی دانشگاه‌های معتبر جهان.'
-                    : 'International Math Instructor with years of experience teaching Cambridge IGCSE, A-Level, IB Math, SAT, AP Calculus, and university entrance exams.'}
+                    ? 'مدرس بین‌المللی ریاضیات و فارغ‌التحصیل دکتری تخصصی ریاضی از دانشگاه صنعتی امیرکبیر (پلی‌تکنیک تهران)، با سال‌ها تجربه در تدریس دوره‌های Cambridge IGCSE, A-Level, IB Math, SAT, AP Calculus و آزمون‌های ورودی دانشگاه‌های معتبر جهان.'
+                    : 'International Math Instructor holding a Ph.D. in Mathematics from Amirkabir University of Technology (Tehran Polytechnic), with years of experience teaching Cambridge IGCSE, A-Level, IB Math, SAT, AP Calculus, and university entrance exams.'}
                 </p>
                 <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-blue-950 text-blue-200 border border-blue-600/60 rounded-lg text-xs font-black">Ph.D. Amirkabir PolyTechnic</span>
                   <span className="px-3 py-1 bg-blue-950 text-blue-200 border border-blue-600/60 rounded-lg text-xs font-black">IGCSE / A-Level</span>
                   <span className="px-3 py-1 bg-blue-950 text-blue-200 border border-blue-600/60 rounded-lg text-xs font-black">IB Mathematics</span>
                   <span className="px-3 py-1 bg-blue-950 text-blue-200 border border-blue-600/60 rounded-lg text-xs font-black">SAT & AP Math</span>
-                  <span className="px-3 py-1 bg-blue-950 text-blue-200 border border-blue-600/60 rounded-lg text-xs font-black">Calculus & Algebra</span>
                 </div>
               </div>
             </div>
@@ -119,7 +122,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ۳. ارتباط با استاد */}
+      {/* ۳. بخش ارتباط با استاد */}
       <section id="contact" className="py-12 bg-blue-950 border-t border-blue-800">
         <div className="max-w-2xl mx-auto px-4">
           <div className="text-center mb-8">
