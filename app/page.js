@@ -13,7 +13,7 @@ export default function Home() {
   const isFa = lang === 'fa';
 
   return (
-    <div className={`min-h-screen bg-gradient-to-b from-blue-950 via-slate-900 to-blue-950 text-white ${isFa ? 'rtl' : 'ltr'}`} dir={isFa ? 'rtl' : 'ltr'}>
+    <div className={`min-h-screen bg-slate-950 text-white ${isFa ? 'rtl' : 'ltr'}`} dir={isFa ? 'rtl' : 'ltr'}>
       
       {/* هدر */}
       <header className="bg-blue-950 border-b-2 border-blue-800 sticky top-0 z-50 shadow-xl">
@@ -24,7 +24,7 @@ export default function Home() {
               <h1 className="text-lg md:text-xl font-black text-white">
                 {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics'}
               </h1>
-              <p className="text-xs text-sky-200 font-black">
+              <p className="text-xs text-sky-200 font-bold">
                 {isFa ? 'تدریس تخصصی ریاضیات آزمون‌ها و مقاطع بین‌المللی' : 'Specialized International Math Tutoring'}
               </p>
             </div>
@@ -42,7 +42,7 @@ export default function Home() {
               href="https://t.me/International_Maths"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs md:text-sm font-black rounded-xl flex items-center gap-2 transition shadow-lg shadow-blue-600/30"
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs md:text-sm font-black rounded-xl flex items-center gap-2 transition shadow-lg"
             >
               <span>✈️</span>
               <span>{isFa ? 'کانال تلگرام' : 'Telegram Channel'}</span>
@@ -61,7 +61,7 @@ export default function Home() {
       </header>
 
       {/* بنر اصلی */}
-      <section id="hero" className="py-12 md:py-16 bg-gradient-to-b from-blue-900 via-blue-950 to-transparent border-b border-blue-800">
+      <section id="hero" className="py-12 md:py-16 bg-gradient-to-b from-blue-900 via-blue-950 to-slate-950 border-b border-blue-800">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <span className="px-4 py-1.5 rounded-full bg-blue-800 text-sky-200 border border-blue-500 text-xs md:text-sm font-black inline-block mb-4 shadow-md">
             🌟 {isFa ? 'تدریس خصوصی و آنلاین ریاضیات بین‌المللی' : 'Online & Private International Math Tutoring'}
@@ -69,7 +69,7 @@ export default function Home() {
           <h2 className="text-3xl md:text-5xl font-black mb-6 text-white leading-tight">
             {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics'}
           </h2>
-          <p className="text-sky-100 text-sm md:text-lg max-w-3xl mx-auto leading-relaxed mb-8 font-black">
+          <p className="text-sky-100 text-sm md:text-lg max-w-3xl mx-auto leading-relaxed mb-8 font-bold">
             {isFa 
               ? 'آموزش کاملاً مفهومی ریاضیات نظام‌های آموزشی کمبریج، انگلستان، آمریکا، کانادا، استرالیا، آلمان و ترکیه با استفاده از معتبرترین منابع آموزشی روز دنیا.'
               : 'Comprehensive math tutoring for Cambridge, UK, USA, Canada, Australia, Germany, and Turkey educational systems using official textbooks.'}
@@ -77,7 +77,7 @@ export default function Home() {
           <div className="flex justify-center gap-4">
             <a
               href="#contact"
-              className="px-7 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-black rounded-xl shadow-lg shadow-blue-600/40 transition transform hover:-translate-y-0.5"
+              className="px-7 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-black rounded-xl shadow-lg transition transform hover:-translate-y-0.5"
             >
               {isFa ? 'درخواست کلاس و مشاوره' : 'Request Class & Consultation'}
             </a>
@@ -90,10 +90,10 @@ export default function Home() {
         <BooksSection lang={lang} />
       </main>
 
-      {/* ۲. رزومه استاد با دکتری امیرکبیر و ۲۹ سال سابقه */}
+      {/* ۲. رزومه استاد */}
       <section id="resume" className="py-12 border-t border-b border-blue-800 bg-blue-950">
         <div className="max-w-5xl mx-auto px-4">
-          <div className="bg-blue-900/90 rounded-3xl p-6 md:p-8 border-2 border-blue-600 shadow-2xl">
+          <div className="bg-blue-900 rounded-3xl p-6 md:p-8 border-2 border-blue-500 shadow-2xl">
             <div className="flex flex-col md:flex-row items-center gap-6">
               <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-5xl text-white shadow-lg shrink-0">
                 👨‍🏫
@@ -110,7 +110,7 @@ export default function Home() {
                 <h3 className="text-2xl font-black text-white mb-2">
                   {isFa ? 'درباره و رزومه استاد' : 'Teacher Profile & Resume'}
                 </h3>
-                <p className="text-sky-100 text-sm md:text-base leading-relaxed mb-4 font-black">
+                <p className="text-sky-100 text-sm md:text-base leading-relaxed mb-4 font-bold">
                   {isFa
                     ? 'مدرس بین‌المللی ریاضیات دارای مدرک دکتری تخصصی ریاضی از دانشگاه صنعتی امیرکبیر (پلی‌تکنیک تهران) با ۲۹ سال سابقه تدریس درخشان در مقاطع دانشگاهی، مدارس برتر و دوره‌های بین‌المللی مانند Cambridge IGCSE, A-Level, IB Math, SAT, AP Calculus.'
                     : 'International Math Instructor holding a Ph.D. in Mathematics from Amirkabir University of Technology (Tehran Polytechnic) with 29 years of distinguished teaching experience in Cambridge IGCSE, A-Level, IB Math, SAT, AP Calculus, and university entrance exams.'}
@@ -127,14 +127,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ۳. بخش ارتباط با استاد */}
-      <section id="contact" className="py-12 bg-blue-950 border-t border-blue-800">
+      {/* ۳. ارتباط با استاد */}
+      <section id="contact" className="py-12 bg-slate-950 border-t border-blue-800">
         <div className="max-w-2xl mx-auto px-4">
           <div className="text-center mb-8">
             <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
               📞 {isFa ? 'ارتباط با استاد' : 'Contact Teacher'}
             </h2>
-            <p className="text-sky-100 text-sm md:text-base font-black">
+            <p className="text-sky-100 text-sm md:text-base font-bold">
               {isFa
                 ? 'جهت مشاوره، هماهنگی و ثبت‌نام کلاس‌ها می‌توانید از طریق راه‌های زیر با استاد هادی محمدی زرندینی در تماس باشید:'
                 : 'For enrollment and consultation, feel free to reach out via the contacts below:'}
@@ -156,7 +156,7 @@ export default function Home() {
                 </div>
                 <div>
                   <div className="font-black text-white text-base">{isFa ? 'کانال تلگرام' : 'Telegram Channel'}</div>
-                  <div className="text-xs text-sky-400 font-mono font-black mt-0.5" dir="ltr">@International_Maths</div>
+                  <div className="text-xs text-sky-400 font-mono font-bold mt-0.5" dir="ltr">@International_Maths</div>
                 </div>
               </div>
               <span className="text-xs font-black text-sky-200 bg-blue-950 px-3.5 py-2 rounded-xl border border-blue-600">{isFa ? 'ورود ➔' : 'Open ➔'}</span>
@@ -178,7 +178,7 @@ export default function Home() {
                 </div>
                 <div>
                   <div className="font-black text-white text-base">{isFa ? 'اینستاگرام' : 'Instagram Page'}</div>
-                  <div className="text-xs text-pink-400 font-mono font-black mt-0.5" dir="ltr">hadi_mohammadi_zarandini</div>
+                  <div className="text-xs text-pink-400 font-mono font-bold mt-0.5" dir="ltr">hadi_mohammadi_zarandini</div>
                 </div>
               </div>
               <span className="text-xs font-black text-pink-300 bg-blue-950 px-3.5 py-2 rounded-xl border border-pink-500/40">{isFa ? 'مشاهده ➔' : 'Open ➔'}</span>
@@ -196,7 +196,7 @@ export default function Home() {
                 </div>
                 <div>
                   <div className="font-black text-white text-base">{isFa ? 'ایمیل / جیمیل' : 'Gmail / Email'}</div>
-                  <div className="text-xs text-rose-300 font-mono font-black mt-0.5" dir="ltr">hadi.mohammadi.zarandini@gmail.com</div>
+                  <div className="text-xs text-rose-300 font-mono font-bold mt-0.5" dir="ltr">hadi.mohammadi.zarandini@gmail.com</div>
                 </div>
               </div>
               <span className="text-xs font-black text-rose-200 bg-blue-950 px-3.5 py-2 rounded-xl border border-red-500/40">{isFa ? 'ایمیل ➔' : 'Send Email ➔'}</span>
@@ -214,5 +214,23 @@ export default function Home() {
                 </div>
                 <div>
                   <div className="font-black text-white text-base">{isFa ? 'شماره تلفن تماس' : 'Phone Number'}</div>
-                  <div className="text-xs text-emerald-300 font-mono font-black mt-0.5" dir="ltr">+98 912 310 4844</div>
+                  <div className="text-xs text-emerald-300 font-mono font-bold mt-0.5" dir="ltr">+98 912 310 4844</div>
                 </div>
+              </div>
+              <span className="text-xs font-black text-emerald-200 bg-blue-950 px-3.5 py-2 rounded-xl border border-emerald-500/40">{isFa ? 'تماس ➔' : 'Call ➔'}</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* فوتر */}
+      <footer className="bg-blue-950 border-t border-blue-800 py-6 text-center text-sm font-bold text-sky-200">
+        <p>
+          {isFa
+            ? 'تمامی حقوق محفوظ است © آموزش بین‌المللی ریاضیات'
+            : 'All rights reserved © International Mathematics'}
+        </p>
+      </footer>
+    </div>
+  );
+}
