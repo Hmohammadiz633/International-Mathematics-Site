@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-// لینک‌های اختصاصی مقاطع کمبریج (از ۱۴۰۰ تا ۱۴۰۵ در انتها)
+// لینک‌های اختصاصی برای مقاطع مختلف کشورهای مختلف
 const COUNTRY_GRADE_LINKS = {
   cambridge: {
     g7: "https://t.me/International_Maths/1400",
@@ -62,7 +62,7 @@ const COUNTRY_GRADE_LINKS = {
   },
 };
 
-// ۱۱ کتاب دانشگاهی دقیقاً با لینک‌های ارسالی شما در گیت‌هاب
+// ۱۱ کتاب دانشگاهی با لینک‌های دقیق
 const UNIVERSITY_BOOKS = [
   { id: 'thomas', titleFa: 'ریاضی عمومی توماس', titleEn: "Thomas' Calculus", subFa: 'جلد ۱ و ۲', icon: '📘', link: 'https://t.me/International_Maths/88' },
   { id: 'stewart', titleFa: 'ریاضی عمومی استوارت', titleEn: "Stewart Calculus", subFa: 'مرجع کامل', icon: '📙', link: 'https://t.me/International_Maths/33' },
@@ -94,10 +94,3 @@ const schoolGrades = [
   { id: 'g9', titleFa: 'سال نهم', titleEn: 'Grade 9', subFa: 'Year 9', icon: '📘' },
   { id: 'g10', titleFa: 'سال دهم', titleEn: 'Grade 10', subFa: 'Year 10 / IGCSE', icon: '📚' },
   { id: 'g11', titleFa: 'سال یازدهم', titleEn: 'Grade 11', subFa: 'Year 11 / AS Level', icon: '📙' },
-  { id: 'g12', titleFa: 'سال دوازدهم', titleEn: 'Grade 12', subFa: 'Year 12 / A Level', icon: '📗' },
-];
-
-export default function BooksSection({ lang = 'fa' }) {
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const isFa = lang === 'fa';
-  const active
