@@ -11,7 +11,7 @@ const TELEGRAM_LINKS = {
   g12: "https://t.me/International_Maths/1405",
 };
 
-// ۱۱ کتاب دانشگاهی متصل به تلگرام
+// لیست ۱۱ کتاب دانشگاهی متصل به تلگرام
 const UNIVERSITY_BOOKS = [
   { id: 'thomas', titleFa: 'ریاضی عمومی توماس', titleEn: "Thomas' Calculus", subFa: 'جلد ۱ و ۲', icon: '📘', link: 'https://t.me/International_Maths' },
   { id: 'stewart', titleFa: 'ریاضی عمومی استوارت', titleEn: "Stewart Calculus", subFa: 'مرجع کامل', icon: '📙', link: 'https://t.me/International_Maths' },
@@ -54,17 +54,17 @@ export default function BooksSection({ lang = 'fa' }) {
   return (
     <section className="py-8">
       <div className="text-center max-w-3xl mx-auto mb-10">
-        <h2 className="text-3xl md:text-4xl font-black mb-4 text-blue-950">
+        <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">
           📚 {isFa ? 'کتاب‌های تدریس‌شده' : 'Taught Textbooks'}
         </h2>
-        <p className="text-slate-700 text-sm md:text-base font-bold leading-relaxed">
+        <p className="text-blue-100 text-sm md:text-base font-bold leading-relaxed">
           {isFa
             ? 'جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:'
             : 'Select an educational system, country, or university section to view books:'}
         </p>
       </div>
 
-      {/* کارت‌های سه‌بعدی با آیکون‌های کوچک‌تر */}
+      {/* کارت‌های کشورهای با پس‌زمینه آبی سرمه‌ای و آیکون‌های کوچک */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10">
         {categories.map((cat) => (
           <button
@@ -73,39 +73,39 @@ export default function BooksSection({ lang = 'fa' }) {
             onClick={() => setSelectedCategory(cat.id)}
             className={`p-3.5 rounded-2xl border-2 text-right transition-all duration-300 relative transform hover:-translate-y-1 ${
               selectedCategory === cat.id
-                ? 'bg-blue-600 text-white border-blue-700 shadow-lg shadow-blue-600/30'
-                : 'bg-white text-slate-800 border-blue-200 hover:border-blue-500 hover:bg-blue-50/70 shadow-sm'
+                ? 'bg-blue-600 text-white border-white shadow-xl shadow-blue-900/50'
+                : 'bg-blue-900/80 backdrop-blur-md text-white border-blue-700/60 hover:border-blue-400 hover:bg-blue-800/80 shadow-md'
             }`}
           >
             <div className="flex items-center justify-between mb-2">
-              <span className="w-8 h-8 flex items-center justify-center text-sm rounded-lg bg-gradient-to-b from-white to-blue-100 border border-blue-200 shadow-sm">
+              <span className="w-8 h-8 flex items-center justify-center text-sm rounded-lg bg-blue-950/80 border border-blue-500/30 text-white shadow-inner">
                 {cat.icon}
               </span>
-              <span className="text-lg filter drop-shadow-sm">{cat.flag}</span>
+              <span className="text-lg filter drop-shadow">{cat.flag}</span>
             </div>
-            <h3 className={`font-black text-sm ${selectedCategory === cat.id ? 'text-white' : 'text-blue-950'}`}>
+            <h3 className="font-black text-sm text-white">
               {isFa ? cat.titleFa : cat.titleEn}
             </h3>
-            <p className={`text-[11px] mt-0.5 font-bold ${selectedCategory === cat.id ? 'text-blue-100' : 'text-slate-500'}`}>
+            <p className="text-[11px] mt-0.5 font-bold text-blue-200">
               {isFa ? cat.subtitleFa : cat.subtitleEn}
             </p>
           </button>
         ))}
       </div>
 
-      {/* نمایش کتاب‌ها */}
+      {/* باکس نمایش کتاب‌های انتخاب‌شده */}
       {selectedCategory && (
-        <div className="p-6 md:p-8 bg-white rounded-3xl border-2 border-blue-200 shadow-xl shadow-blue-600/10 max-w-6xl mx-auto">
-          <div className="flex items-center justify-between border-b-2 border-blue-100 pb-4 mb-6">
+        <div className="p-6 md:p-8 bg-blue-900/90 backdrop-blur-md rounded-3xl border-2 border-blue-600 shadow-2xl shadow-blue-950 max-w-6xl mx-auto">
+          <div className="flex items-center justify-between border-b border-blue-700/80 pb-4 mb-6">
             <div className="flex items-center gap-3">
-              <span className="w-10 h-10 flex items-center justify-center text-xl rounded-xl bg-blue-100 border border-blue-300">
+              <span className="w-10 h-10 flex items-center justify-center text-xl rounded-xl bg-blue-800 border border-blue-500 text-white">
                 {activeCategory?.icon}
               </span>
               <div>
-                <h3 className="text-xl font-black text-blue-950">
+                <h3 className="text-xl font-black text-white">
                   {isFa ? activeCategory?.titleFa : activeCategory?.titleEn}
                 </h3>
-                <p className="text-xs font-bold text-slate-500">
+                <p className="text-xs font-bold text-blue-200">
                   {isFa ? activeCategory?.subtitleFa : activeCategory?.subtitleEn}
                 </p>
               </div>
@@ -121,22 +121,22 @@ export default function BooksSection({ lang = 'fa' }) {
                   href={book.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 bg-gradient-to-b from-blue-50/40 to-white hover:from-blue-100/60 hover:to-blue-50 border-2 border-blue-200 hover:border-blue-600 rounded-2xl transition duration-200 flex flex-col justify-between shadow-sm hover:shadow-md group"
+                  className="p-4 bg-blue-950/70 hover:bg-blue-800/80 border border-blue-600/60 hover:border-blue-400 rounded-2xl transition duration-200 flex flex-col justify-between shadow-md group"
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-white border border-blue-200 flex items-center justify-center text-xl shadow-sm shrink-0 group-hover:scale-105 transition">
+                    <div className="w-10 h-10 rounded-xl bg-blue-900 border border-blue-500/40 flex items-center justify-center text-xl text-white shadow-sm shrink-0 group-hover:scale-105 transition">
                       {book.icon}
                     </div>
                     <div>
-                      <div className="font-black text-blue-950 text-sm group-hover:text-blue-600 transition">
+                      <div className="font-black text-white text-sm group-hover:text-blue-300 transition">
                         {isFa ? book.titleFa : book.titleEn}
                       </div>
-                      <div className="text-[11px] text-slate-500 font-bold mt-0.5">
+                      <div className="text-[11px] text-blue-200 font-bold mt-0.5">
                         {book.subFa}
                       </div>
                     </div>
                   </div>
-                  <span className="w-full text-center py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-black rounded-lg shadow-sm transition">
+                  <span className="w-full text-center py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-black rounded-lg shadow transition">
                     {isFa ? 'دانلود PDF از تلگرام' : 'Download PDF'}
                   </span>
                 </a>
@@ -150,3 +150,28 @@ export default function BooksSection({ lang = 'fa' }) {
                   href={TELEGRAM_LINKS[grade.id]}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="p-3 bg-blue-950/70 hover:bg-blue-800/80 border border-blue-600/60 hover:border-blue-400 rounded-2xl transition flex flex-col items-center justify-between text-center shadow-sm"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-blue-900 border border-blue-500/40 flex items-center justify-center text-lg text-white shadow-sm mb-2">
+                    {grade.icon}
+                  </div>
+                  <div>
+                    <div className="font-black text-white text-xs">
+                      {isFa ? grade.titleFa : grade.titleEn}
+                    </div>
+                    <div className="text-[10px] text-blue-200 font-bold mt-0.5">
+                      {grade.subFa}
+                    </div>
+                  </div>
+                  <span className="mt-3 px-2.5 py-1 bg-blue-600 text-white text-[10px] font-black rounded-md transition">
+                    {isFa ? 'دانلود PDF' : 'Download'}
+                  </span>
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </section>
+  );
+}
