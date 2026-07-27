@@ -14,26 +14,25 @@ export default function Home() {
 
   return (
     <div className={`min-h-screen bg-slate-50 text-slate-800 ${isFa ? 'rtl' : 'ltr'}`} dir={isFa ? 'rtl' : 'ltr'}>
-      {/* هدر سایت با آبی پررنگ‌تر و شفاف */}
+      {/* هدر */}
       <header className="bg-white/95 backdrop-blur border-b-2 border-blue-200 sticky top-0 z-50 shadow-md">
         <div className="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
-          
           <div className="flex items-center gap-3">
             <span className="text-3xl filter drop-shadow-sm">📐</span>
             <div>
               <h1 className="text-lg md:text-xl font-black text-blue-950">
                 {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics'}
               </h1>
-              <p className="text-xs text-blue-700 font-bold">
+              <p className="text-xs text-blue-700 font-extrabold">
                 {isFa ? 'تدریس تخصصی ریاضیات آزمون‌ها و مقاطع بین‌المللی' : 'Specialized International Math Tutoring'}
               </p>
             </div>
           </div>
 
-          <nav className="hidden md:flex items-center gap-6 text-sm font-bold text-slate-700">
+          <nav className="hidden md:flex items-center gap-6 text-sm font-extrabold text-slate-700">
             <a href="#hero" className="hover:text-blue-600 transition">{isFa ? 'صفحه اصلی' : 'Home'}</a>
-            <a href="#resume" className="hover:text-blue-600 transition">{isFa ? 'رزومه استاد' : 'Resume'}</a>
             <a href="#books" className="hover:text-blue-600 transition">{isFa ? 'کتاب‌های تدریس‌شده' : 'Taught Books'}</a>
+            <a href="#resume" className="hover:text-blue-600 transition">{isFa ? 'رزومه استاد' : 'Resume'}</a>
             <a href="#contact" className="hover:text-blue-600 transition">{isFa ? 'ارتباط با استاد' : 'Contact'}</a>
           </nav>
 
@@ -42,7 +41,7 @@ export default function Home() {
               href="https://t.me/International_Maths"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs md:text-sm font-bold rounded-xl flex items-center gap-2 transition shadow-md shadow-blue-600/30"
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs md:text-sm font-black rounded-xl flex items-center gap-2 transition shadow-md shadow-blue-600/30"
             >
               <span>✈️</span>
               <span>{isFa ? 'کانال تلگرام' : 'Telegram Channel'}</span>
@@ -51,7 +50,7 @@ export default function Home() {
             <button
               type="button"
               onClick={toggleLanguage}
-              className="px-3.5 py-2 bg-blue-50 hover:bg-blue-100 text-blue-800 text-xs md:text-sm font-bold rounded-xl flex items-center gap-1.5 transition border-2 border-blue-200"
+              className="px-3.5 py-2 bg-blue-50 hover:bg-blue-100 text-blue-800 text-xs md:text-sm font-black rounded-xl flex items-center gap-1.5 transition border-2 border-blue-200"
             >
               <span>🌐</span>
               <span>{isFa ? 'English' : 'فارسی'}</span>
@@ -60,16 +59,16 @@ export default function Home() {
         </div>
       </header>
 
-      {/* بنر اصلی با تم آبی پررنگ‌تر */}
+      {/* بنر اصلی */}
       <section id="hero" className="py-12 md:py-16 bg-gradient-to-b from-blue-100 via-blue-50/50 to-transparent border-b border-blue-200">
         <div className="max-w-5xl mx-auto px-4 text-center">
-          <span className="px-4 py-1.5 rounded-full bg-blue-600/10 text-blue-800 border-2 border-blue-300 text-xs md:text-sm font-extrabold inline-block mb-4 shadow-sm">
+          <span className="px-4 py-1.5 rounded-full bg-blue-600/10 text-blue-900 border-2 border-blue-300 text-xs md:text-sm font-black inline-block mb-4 shadow-sm">
             🌟 {isFa ? 'تدریس خصوصی و آنلاین ریاضیات بین‌المللی' : 'Online & Private International Math Tutoring'}
           </span>
           <h2 className="text-3xl md:text-5xl font-black mb-6 text-blue-950 leading-tight">
             {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics'}
           </h2>
-          <p className="text-slate-700 text-sm md:text-lg max-w-3xl mx-auto leading-relaxed mb-8 font-medium">
+          <p className="text-slate-700 text-sm md:text-lg max-w-3xl mx-auto leading-relaxed mb-8 font-bold">
             {isFa 
               ? 'آموزش کاملاً مفهومی ریاضیات نظام‌های آموزشی کمبریج، انگلستان، آمریکا، کانادا، استرالیا، آلمان و ترکیه با استفاده از معتبرترین منابع آموزشی روز دنیا.'
               : 'Comprehensive math tutoring for Cambridge, UK, USA, Canada, Australia, Germany, and Turkey educational systems using official textbooks.'}
@@ -77,7 +76,7 @@ export default function Home() {
           <div className="flex justify-center gap-4">
             <a
               href="#contact"
-              className="px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-extrabold rounded-xl shadow-lg shadow-blue-600/30 transition transform hover:-translate-y-0.5"
+              className="px-7 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-xl shadow-lg shadow-blue-600/30 transition transform hover:-translate-y-0.5"
             >
               {isFa ? 'درخواست کلاس و مشاوره' : 'Request Class & Consultation'}
             </a>
@@ -85,10 +84,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* رزومه استاد */}
-      <section id="resume" className="py-12 border-b border-blue-100">
+      {/* ۱. ابتدا بخش کتاب‌ها */}
+      <main id="books" className="container mx-auto py-8 px-4">
+        <BooksSection lang={lang} />
+      </main>
+
+      {/* ۲. رزومه استاد (پایین‌تر از کتاب‌ها قرار داده شد) */}
+      <section id="resume" className="py-12 border-t border-b border-blue-100 bg-white">
         <div className="max-w-5xl mx-auto px-4">
-          <div className="bg-white rounded-3xl p-6 md:p-8 border-2 border-blue-200 shadow-xl shadow-blue-500/10">
+          <div className="bg-gradient-to-b from-blue-50/50 to-white rounded-3xl p-6 md:p-8 border-2 border-blue-200 shadow-xl shadow-blue-600/5">
             <div className="flex flex-col md:flex-row items-center gap-6">
               <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-5xl text-white shadow-lg shadow-blue-600/40 shrink-0">
                 👨‍🏫
@@ -97,16 +101,16 @@ export default function Home() {
                 <h3 className="text-2xl font-black text-blue-950 mb-2">
                   {isFa ? 'درباره و رزومه استاد' : 'Teacher Profile & Resume'}
                 </h3>
-                <p className="text-slate-700 text-sm md:text-base leading-relaxed mb-4 font-medium">
+                <p className="text-slate-700 text-sm md:text-base leading-relaxed mb-4 font-bold">
                   {isFa
                     ? 'مدرس بین‌المللی ریاضیات با سال‌ها تجربه در تدریس دوره‌های Cambridge IGCSE, A-Level, IB Math, SAT, AP Calculus و آزمون‌های ورودی دانشگاه‌های معتبر جهان.'
                     : 'International Math Instructor with years of experience teaching Cambridge IGCSE, A-Level, IB Math, SAT, AP Calculus, and university entrance exams.'}
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-blue-100/70 text-blue-900 border border-blue-300 rounded-lg text-xs font-bold">IGCSE / A-Level</span>
-                  <span className="px-3 py-1 bg-blue-100/70 text-blue-900 border border-blue-300 rounded-lg text-xs font-bold">IB Mathematics</span>
-                  <span className="px-3 py-1 bg-blue-100/70 text-blue-900 border border-blue-300 rounded-lg text-xs font-bold">SAT & AP Math</span>
-                  <span className="px-3 py-1 bg-blue-100/70 text-blue-900 border border-blue-300 rounded-lg text-xs font-bold">Calculus & Algebra</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-900 border border-blue-300 rounded-lg text-xs font-black">IGCSE / A-Level</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-900 border border-blue-300 rounded-lg text-xs font-black">IB Mathematics</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-900 border border-blue-300 rounded-lg text-xs font-black">SAT & AP Math</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-900 border border-blue-300 rounded-lg text-xs font-black">Calculus & Algebra</span>
                 </div>
               </div>
             </div>
@@ -114,19 +118,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* بخش کتاب‌ها */}
-      <main id="books" className="container mx-auto py-8 px-4">
-        <BooksSection lang={lang} />
-      </main>
-
-      {/* بخش ارتباط با استاد با لوگوهای اصلی تلگرام، اینستاگرام، جیمیل و تلفن */}
+      {/* ۳. ارتباط با استاد */}
       <section id="contact" className="py-12 bg-blue-50/60 border-t-2 border-blue-200">
         <div className="max-w-2xl mx-auto px-4">
           <div className="text-center mb-8">
             <h2 className="text-2xl md:text-3xl font-black text-blue-950 mb-3">
               📞 {isFa ? 'ارتباط با استاد' : 'Contact Teacher'}
             </h2>
-            <p className="text-slate-700 text-sm md:text-base font-medium">
+            <p className="text-slate-700 text-sm md:text-base font-bold">
               {isFa
                 ? 'جهت مشاوره، هماهنگی و ثبت‌نام کلاس‌ها می‌توانید از طریق راه‌های زیر با استاد هادی محمدی زرندینی در تماس باشید:'
                 : 'For enrollment and consultation, feel free to reach out via the contacts below:'}
@@ -134,8 +133,6 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col gap-4">
-            
-            {/* ۱. تلگرام با لوگوی اصلی */}
             <a
               href="https://t.me/International_Maths"
               target="_blank"
@@ -149,20 +146,13 @@ export default function Home() {
                   </svg>
                 </div>
                 <div>
-                  <div className="font-extrabold text-blue-950 text-base">
-                    {isFa ? 'کانال تلگرام' : 'Telegram Channel'}
-                  </div>
-                  <div className="text-xs text-[#0088cc] font-mono font-bold mt-0.5" dir="ltr">
-                    @International_Maths
-                  </div>
+                  <div className="font-black text-blue-950 text-base">{isFa ? 'کانال تلگرام' : 'Telegram Channel'}</div>
+                  <div className="text-xs text-[#0088cc] font-mono font-black mt-0.5" dir="ltr">@International_Maths</div>
                 </div>
               </div>
-              <span className="text-xs font-bold text-[#0088cc] bg-blue-50 px-3.5 py-2 rounded-xl border border-blue-200">
-                {isFa ? 'ورود ➔' : 'Open ➔'}
-              </span>
+              <span className="text-xs font-black text-[#0088cc] bg-blue-50 px-3.5 py-2 rounded-xl border border-blue-200">{isFa ? 'ورود ➔' : 'Open ➔'}</span>
             </a>
 
-            {/* ۲. اینستاگرام با لوگوی اصلی */}
             <a
               href="https://instagram.com/hadi_mohammadi_zarandini"
               target="_blank"
@@ -178,20 +168,13 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
-                  <div className="font-extrabold text-slate-900 text-base">
-                    {isFa ? 'اینستاگرام' : 'Instagram Page'}
-                  </div>
-                  <div className="text-xs text-rose-600 font-mono font-bold mt-0.5" dir="ltr">
-                    hadi_mohammadi_zarandini
-                  </div>
+                  <div className="font-black text-slate-900 text-base">{isFa ? 'اینستاگرام' : 'Instagram Page'}</div>
+                  <div className="text-xs text-rose-600 font-mono font-black mt-0.5" dir="ltr">hadi_mohammadi_zarandini</div>
                 </div>
               </div>
-              <span className="text-xs font-bold text-rose-600 bg-pink-50 px-3.5 py-2 rounded-xl border border-pink-200">
-                {isFa ? 'مشاهده ➔' : 'Open ➔'}
-              </span>
+              <span className="text-xs font-black text-rose-600 bg-pink-50 px-3.5 py-2 rounded-xl border border-pink-200">{isFa ? 'مشاهده ➔' : 'Open ➔'}</span>
             </a>
 
-            {/* ۳. جیمیل با لوگوی اصلی */}
             <a
               href="mailto:hadi.mohammadi.zarandini@gmail.com"
               className="p-5 bg-white hover:bg-rose-50/80 border-2 border-rose-200 rounded-2xl transition duration-200 flex items-center justify-between shadow-md hover:shadow-lg shadow-rose-500/10 group"
@@ -203,20 +186,13 @@ export default function Home() {
                   </svg>
                 </div>
                 <div>
-                  <div className="font-extrabold text-slate-900 text-base">
-                    {isFa ? 'ایمیل / جیمیل' : 'Gmail / Email'}
-                  </div>
-                  <div className="text-xs text-rose-600 font-mono font-bold mt-0.5" dir="ltr">
-                    hadi.mohammadi.zarandini@gmail.com
-                  </div>
+                  <div className="font-black text-slate-900 text-base">{isFa ? 'ایمیل / جیمیل' : 'Gmail / Email'}</div>
+                  <div className="text-xs text-rose-600 font-mono font-black mt-0.5" dir="ltr">hadi.mohammadi.zarandini@gmail.com</div>
                 </div>
               </div>
-              <span className="text-xs font-bold text-rose-600 bg-rose-50 px-3.5 py-2 rounded-xl border border-rose-200">
-                {isFa ? 'ایمیل ➔' : 'Send Email ➔'}
-              </span>
+              <span className="text-xs font-black text-rose-600 bg-rose-50 px-3.5 py-2 rounded-xl border border-rose-200">{isFa ? 'ایمیل ➔' : 'Send Email ➔'}</span>
             </a>
 
-            {/* ۴. تلفن با لوگوی اصلی */}
             <a
               href="tel:+989123104844"
               className="p-5 bg-white hover:bg-emerald-50/80 border-2 border-emerald-200 rounded-2xl transition duration-200 flex items-center justify-between shadow-md hover:shadow-lg shadow-emerald-500/10 group"
@@ -228,25 +204,18 @@ export default function Home() {
                   </svg>
                 </div>
                 <div>
-                  <div className="font-extrabold text-slate-900 text-base">
-                    {isFa ? 'شماره تلفن تماس' : 'Phone Number'}
-                  </div>
-                  <div className="text-xs text-emerald-600 font-mono font-bold mt-0.5" dir="ltr">
-                    +98 912 310 4844
-                  </div>
+                  <div className="font-black text-slate-900 text-base">{isFa ? 'شماره تلفن تماس' : 'Phone Number'}</div>
+                  <div className="text-xs text-emerald-600 font-mono font-black mt-0.5" dir="ltr">+98 912 310 4844</div>
                 </div>
               </div>
-              <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3.5 py-2 rounded-xl border border-emerald-200">
-                {isFa ? 'تماس ➔' : 'Call ➔'}
-              </span>
+              <span className="text-xs font-black text-emerald-600 bg-emerald-50 px-3.5 py-2 rounded-xl border border-emerald-200">{isFa ? 'تماس ➔' : 'Call ➔'}</span>
             </a>
-
           </div>
         </div>
       </section>
 
       {/* فوتر */}
-      <footer className="bg-white border-t-2 border-blue-100 py-6 text-center text-sm font-bold text-slate-600">
+      <footer className="bg-white border-t-2 border-blue-100 py-6 text-center text-sm font-black text-slate-600">
         <p>
           {isFa
             ? 'تمامی حقوق محفوظ است © آموزش بین‌المللی ریاضیات'
