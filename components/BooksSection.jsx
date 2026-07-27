@@ -1,27 +1,28 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
+// لینک‌های اختصاصی تلگرام برای هر پایه
 const TELEGRAM_LINKS = {
-  g7: 'https://t.me/International_Maths/1400',
-  g8: 'https://t.me/International_Maths/1401',
-  g9: 'https://t.me/International_Maths/1402',
-  g10: 'https://t.me/International_Maths/1403',
-  g11: 'https://t.me/International_Maths/1404',
-  g12: 'https://t.me/International_Maths/1405'
+  g7: "https://t.me/International_Maths/1400",
+  g8: "https://t.me/International_Maths/1401",
+  g9: "https://t.me/International_Maths/1402",
+  g10: "https://t.me/International_Maths/1403",
+  g11: "https://t.me/International_Maths/1404",
+  g12: "https://t.me/International_Maths/1405",
 };
 
-const DEFAULT_TELEGRAM = 'https://t.me/International_Maths';
+const DEFAULT_TELEGRAM = "https://t.me/International_Maths";
 
 const categories = [
-  { id: 'cambridge', titleFa: 'کمبریج', titleEn: 'Cambridge', icon: '📚' },
-  { id: 'australia', titleFa: 'استرالیا', titleEn: 'Australia', icon: '🇦🇺' },
-  { id: 'canada', titleFa: 'کانادا', titleEn: 'Canada', icon: '🇨🇦' },
-  { id: 'uk', titleFa: 'انگلستان', titleEn: 'UK', icon: '🇬🇧' },
-  { id: 'germany', titleFa: 'آلمان', titleEn: 'Germany', icon: '🇩🇪' },
-  { id: 'california', titleFa: 'کالیفرنیا', titleEn: 'California', icon: '🇺🇸' },
-  { id: 'turkey', titleFa: 'ترکیه', titleEn: 'Turkey', icon: '🇹🇷' },
-  { id: 'university', titleFa: 'کتاب‌های دانشگاهی', titleEn: 'University Textbooks', icon: '🎓' }
+  { id: 'cambridge', titleFa: 'کمبریج', titleEn: 'Cambridge' },
+  { id: 'australia', titleFa: 'استرالیا', titleEn: 'Australia' },
+  { id: 'canada', titleFa: 'کانادا', titleEn: 'Canada' },
+  { id: 'uk', titleFa: 'انگلستان', titleEn: 'UK' },
+  { id: 'germany', titleFa: 'آلمان', titleEn: 'Germany' },
+  { id: 'california', titleFa: 'کالیفرنیا', titleEn: 'California' },
+  { id: 'turkey', titleFa: 'ترکیه', titleEn: 'Turkey' },
+  { id: 'university', titleFa: 'کتاب‌های دانشگاهی', titleEn: 'University Textbooks' },
 ];
 
 const schoolGrades = [
@@ -30,171 +31,88 @@ const schoolGrades = [
   { id: 'g9', titleFa: 'سال نهم', titleEn: 'Grade 9' },
   { id: 'g10', titleFa: 'سال دهم', titleEn: 'Grade 10' },
   { id: 'g11', titleFa: 'سال یازدهم', titleEn: 'Grade 11' },
-  { id: 'g12', titleFa: 'سال دوازدهم', titleEn: 'Grade 12' }
+  { id: 'g12', titleFa: 'سال دوازدهم', titleEn: 'Grade 12' },
 ];
 
-const universityBooks = [
-  { id: 'u-thomas', titleFa: 'ریاضی عمومی توماس', titleEn: 'Thomas Calculus', image: '/cambridge-g7.JPG' },
-  { id: 'u-stewart', titleFa: 'ریاضی عمومی استوارت', titleEn: 'Stewart Calculus', image: '/cambridge-g8.JPG' },
-  { id: 'u-stewart-sol', titleFa: 'حل تمرین ریاضی استوارت', titleEn: 'Stewart Calculus Solutions', image: '/cambridge-g9.JPG' },
-  { id: 'u-adams', titleFa: 'ریاضی عمومی آدامز', titleEn: 'Adams Calculus', image: '/cambridge-g10.JPG' },
-  { id: 'u-adams-sol', titleFa: 'حل تمرین ریاضی آدامز', titleEn: 'Adams Calculus Solutions', image: '/cambridge-g7.JPG' },
-  { id: 'u-math2', titleFa: 'ریاضی عمومی ۲', titleEn: 'Calculus 2', image: '/cambridge-g8.JPG' },
-  { id: 'u-stat', titleFa: 'آمار و احتمالات مهندسی', titleEn: 'Engineering Statistics', image: '/cambridge-g9.JPG' },
-  { id: 'u-complex', titleFa: 'اعداد مختلط', titleEn: 'Complex Numbers', image: '/cambridge-g10.JPG' },
-  { id: 'u-linear', titleFa: 'جبر خطی', titleEn: 'Linear Algebra', image: '/cambridge-g7.JPG' },
-  { id: 'u-numerical', titleFa: 'محاسبات عددی', titleEn: 'Numerical Methods', image: '/cambridge-g8.JPG' },
-  { id: 'u-applied', titleFa: 'ریاضی کاربردی', titleEn: 'Applied Mathematics', image: '/cambridge-g9.JPG' }
-];
+export default function BooksSection({ lang = 'fa' }) {
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-export default function BooksSection({ lang: propLang }) {
-  const [currentLang, setCurrentLang] = useState(propLang || 'fa');
-  const [activeCategory, setActiveCategory] = useState('cambridge');
-  const [activeGrade, setActiveGrade] = useState('g7');
-  const [activeUniBookId, setActiveUniBookId] = useState('u-thomas');
-
-  useEffect(() => {
-    if (propLang) {
-      setCurrentLang(propLang);
-    }
-  }, [propLang]);
-
-  const isEn = currentLang === 'en';
-  const isUni = activeCategory === 'university';
-
-  const currentCategory = categories.find((c) => c.id === activeCategory);
-  const currentSchoolGrade = schoolGrades.find((g) => g.id === activeGrade);
-  const currentUniBook = universityBooks.find((b) => b.id === activeUniBookId);
-
-  const bookTitle = isUni
-    ? (isEn ? currentUniBook?.titleEn : currentUniBook?.titleFa)
-    : (isEn ? `${currentCategory?.titleEn || ''} - ${currentSchoolGrade?.titleEn || ''}` : `${currentCategory?.titleFa || ''} - ${currentSchoolGrade?.titleFa || ''}`);
-
-  const bookImage = isUni ? (currentUniBook?.image || '/cambridge-g7.JPG') : `/cambridge-${activeGrade}.JPG`;
-  const telegramUrl = isUni ? DEFAULT_TELEGRAM : (TELEGRAM_LINKS[activeGrade] || DEFAULT_TELEGRAM);
+  const isFa = lang === 'fa';
 
   return (
-    <section className="max-w-5xl mx-auto px-4 py-8" id="books" dir={isEn ? 'ltr' : 'rtl'}>
-      {/* تیتر اصلی */}
-      <div className="text-center mb-8">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-indigo-950 mb-2 flex items-center justify-center gap-2">
-          <span>📚</span>
-          <span>{isEn ? 'Taught Books' : 'کتاب‌های تدریس‌شده'}</span>
-        </h2>
-        <p className="text-sm text-gray-500">
-          {isEn
-            ? 'To view books, first select the educational system/country or university section:'
-            : 'جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:'}
-        </p>
-      </div>
+    <section className="py-8 text-center">
+      <h2 className="text-3xl font-bold mb-3">
+        📚 {isFa ? 'کتاب‌های تدریس‌شده' : 'Taught Books'}
+      </h2>
+      <p className="text-gray-600 dark:text-gray-400 mb-8">
+        {isFa 
+          ? 'جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:' 
+          : 'Select an educational system, country, or university section to view books:'}
+      </p>
 
-      {/* مرحله ۱: انتخاب کشور / دانشگاه */}
-      <div className="flex flex-wrap justify-center gap-2.5 mb-8">
+      {/* لیست دکمه‌های کشورهای انتخابی */}
+      <div className="flex flex-wrap justify-center gap-3 mb-10">
         {categories.map((cat) => (
           <button
             key={cat.id}
-            type="button"
-            onClick={() => setActiveCategory(cat.id)}
-            className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center gap-2 cursor-pointer ${
-              activeCategory === cat.id
-                ? 'bg-indigo-900 text-white shadow-lg scale-105'
-                : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+            onClick={() => setSelectedCategory(cat.id)}
+            className={`px-5 py-2.5 rounded-xl border transition-all font-medium ${
+              selectedCategory === cat.id
+                ? 'bg-indigo-900 text-white border-indigo-900 shadow-md scale-105'
+                : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-300'
             }`}
           >
-            <span>{cat.icon}</span>
-            <span>{isEn ? cat.titleEn : cat.titleFa}</span>
+            📖 {isFa ? cat.titleFa : cat.titleEn}
           </button>
         ))}
       </div>
 
-      {/* مرحله ۲: انتخاب پایه مدرسه‌ای */}
-      {!isUni && (
-        <div className="bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-gray-200 shadow-sm mb-8">
-          <h3 className="text-center text-gray-800 font-bold mb-4 flex items-center justify-center gap-2 text-base">
-            <span>🏫</span>
-            <span>
-              {isEn
-                ? `Grades for ${currentCategory?.titleEn || ''}`
-                : `پایه‌های تحصیلی مربوط به ${currentCategory?.titleFa || ''}`}
-            </span>
-          </h3>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-            {schoolGrades.map((grade) => (
-              <button
-                key={grade.id}
-                type="button"
-                onClick={() => setActiveGrade(grade.id)}
-                className={`py-3 px-2 rounded-xl text-sm font-semibold transition-all cursor-pointer ${
-                  activeGrade === grade.id
-                    ? 'bg-blue-600 text-white shadow-md'
-                    : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-100'
-                }`}
+      {/* نمایش مقاطع و لینک‌ها پس از انتخاب کشور */}
+      {selectedCategory && (
+        <div className="p-6 bg-white rounded-2xl shadow-sm border border-gray-200 max-w-5xl mx-auto transition-all">
+          {selectedCategory === 'university' ? (
+            <div className="py-4">
+              <h3 className="text-xl font-bold mb-4 text-indigo-900">
+                🎓 {isFa ? 'کتاب‌های دانشگاهی' : 'University Textbooks'}
+              </h3>
+              <a
+                href={DEFAULT_TELEGRAM}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-6 py-3 bg-indigo-900 text-white font-medium rounded-xl shadow hover:bg-indigo-800 transition"
               >
-                {isEn ? grade.titleEn : grade.titleFa}
-              </button>
-            ))}
-          </div>
+                {isFa ? 'مشاهده در تلگرام' : 'View on Telegram'}
+              </a>
+            </div>
+          ) : (
+            <div>
+              <h3 className="text-xl font-bold mb-6 text-indigo-900">
+                {isFa ? 'مقاطع تحصیلی' : 'School Grades'}
+              </h3>
+              {/* آیکون و لینک سال هفتم تا دوازدهم برای همه کشورها */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                {schoolGrades.map((grade) => (
+                  <a
+                    key={grade.id}
+                    href={TELEGRAM_LINKS[grade.id]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-4 bg-gray-50 rounded-xl hover:bg-indigo-50 border border-gray-200 hover:border-indigo-200 transition group flex flex-col items-center justify-between"
+                  >
+                    <div className="text-3xl mb-2">📘</div>
+                    <div className="font-semibold text-gray-800 group-hover:text-indigo-900">
+                      {isFa ? grade.titleFa : grade.titleEn}
+                    </div>
+                    <span className="text-xs text-indigo-600 font-medium underline mt-3">
+                      {isFa ? 'دانلود PDF' : 'Download PDF'}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
-
-      {/* مرحله ۲: انتخاب کتاب دانشگاهی */}
-      {isUni && (
-        <div className="bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-gray-200 shadow-sm mb-8">
-          <h3 className="text-center text-gray-800 font-bold mb-4 flex items-center justify-center gap-2 text-base">
-            <span>🎓</span>
-            <span>{isEn ? 'Select University Book' : 'انتخاب کتاب دانشگاهی'}</span>
-          </h3>
-
-          <div className="flex flex-wrap justify-center gap-2.5">
-            {universityBooks.map((uBook) => (
-              <button
-                key={uBook.id}
-                type="button"
-                onClick={() => setActiveUniBookId(uBook.id)}
-                className={`py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all cursor-pointer ${
-                  activeUniBookId === uBook.id
-                    ? 'bg-blue-600 text-white shadow-md'
-                    : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border border-gray-100'
-                }`}
-              >
-                {isEn ? uBook.titleEn : uBook.titleFa}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* مرحله ۳: کارت نمایش کتاب و دکمه تلگرام */}
-      <div className="flex justify-center">
-        <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-lg max-w-sm w-full text-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={bookImage}
-            alt={bookTitle || 'Book'}
-            className="w-48 h-64 object-cover mx-auto rounded-xl shadow-md mb-4 border border-gray-100"
-            onError={(e) => {
-              e.currentTarget.src = '/cambridge-g7.JPG';
-            }}
-          />
-          <h4 className="font-bold text-gray-900 text-lg mb-1">{bookTitle}</h4>
-          <p className="text-xs text-gray-500 mb-6">
-            {isEn ? 'Complete version with exercise solutions' : 'نسخه کامل همراه با حل تمرینات'}
-          </p>
-
-          <a
-            href={telegramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full py-3.5 px-4 bg-[#24A1DE] hover:bg-[#1d82b3] text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-md active:scale-95"
-          >
-            <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-              <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.02 9.52c-.15.68-.55.85-1.12.53l-3.08-2.27-1.48 1.43c-.16.16-.3.3-.62.3l.22-3.13 5.71-5.16c.25-.22-.05-.34-.38-.12l-7.06 4.44-3.04-.95c-.66-.21-.67-.66.14-.98l11.89-4.58c.55-.2 1.03.13.84.97z" />
-            </svg>
-            <span>{isEn ? 'Download / View in Telegram' : 'دانلود / مشاهده در تلگرام'}</span>
-          </a>
-        </div>
-      </div>
     </section>
   );
 }
