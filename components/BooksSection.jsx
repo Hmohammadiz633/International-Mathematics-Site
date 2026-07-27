@@ -103,9 +103,9 @@ export default function BooksSection({ lang = 'fa' }) {
   const activeCategory = categories.find((c) => c.id === selectedCategory);
 
   return (
-    <section className="py-8 bg-sky-200 rounded-3xl p-4 md:p-6 border-2 border-black shadow-xl">
-      {/* عنوان اصلی */}
-      <div className="text-center max-w-3xl mx-auto mb-10 p-6 bg-sky-400 rounded-3xl border-2 border-black shadow-md">
+    <section className="py-8 bg-sky-200 rounded-3xl p-4">
+      {/* هدر بخش */}
+      <div className="text-center max-w-3xl mx-auto mb-10 p-6 bg-sky-400 rounded-3xl border-2 border-sky-600 shadow-xl">
         <h2 className="text-3xl md:text-4xl font-black mb-3 text-black">
           📚 {isFa ? 'کتاب‌های تدریس‌شده' : 'Taught Textbooks'}
         </h2>
@@ -116,7 +116,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* انتخاب دسته‌بندی */}
+      {/* کارت‌های انتخاب دسته‌بندی */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10">
         {categories.map((cat) => (
           <button
@@ -125,8 +125,8 @@ export default function BooksSection({ lang = 'fa' }) {
             onClick={() => setSelectedCategory(cat.id)}
             className={`p-4 rounded-2xl border-2 text-right transition-all duration-300 relative transform hover:-translate-y-1 ${
               selectedCategory === cat.id
-                ? 'bg-sky-500 text-black border-black shadow-2xl scale-105 ring-2 ring-black'
-                : 'bg-sky-400 text-black border-black hover:bg-sky-500 shadow-md'
+                ? 'bg-sky-300 text-black border-black shadow-2xl scale-105 ring-2 ring-black'
+                : 'bg-sky-400 text-black border-sky-600 hover:border-black hover:bg-sky-300 shadow-lg'
             }`}
           >
             <div className="flex items-center justify-between mb-2">
@@ -145,10 +145,10 @@ export default function BooksSection({ lang = 'fa' }) {
         ))}
       </div>
 
-      {/* لیست کتاب‌ها */}
+      {/* نمایش زیرمجموعه‌ها پس از انتخاب */}
       {selectedCategory && (
-        <div className="p-6 md:p-8 bg-sky-400 rounded-3xl border-2 border-black shadow-2xl max-w-6xl mx-auto">
-          <div className="flex items-center justify-between border-b-2 border-black pb-4 mb-6">
+        <div className="p-6 md:p-8 bg-sky-400 rounded-3xl border-2 border-sky-600 shadow-2xl max-w-6xl mx-auto">
+          <div className="flex items-center justify-between border-b-2 border-sky-600 pb-4 mb-6">
             <div className="flex items-center gap-3">
               <span className="w-10 h-10 flex items-center justify-center text-xl rounded-xl bg-sky-100 border border-black text-black">
                 {activeCategory?.icon}
@@ -173,7 +173,7 @@ export default function BooksSection({ lang = 'fa' }) {
                   href={book.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 bg-sky-100 hover:bg-sky-200 border-2 border-black rounded-2xl transition duration-200 flex flex-col justify-between shadow-md group"
+                  className="p-4 bg-sky-100 hover:bg-sky-200 border-2 border-black rounded-2xl transition duration-200 flex flex-col justify-between shadow-lg group"
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 rounded-xl bg-sky-300 border border-black flex items-center justify-center text-xl text-black shadow-sm shrink-0 group-hover:scale-105 transition">
@@ -196,4 +196,40 @@ export default function BooksSection({ lang = 'fa' }) {
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-              {schoolGrades.map((grade
+              {schoolGrades.map((grade) => {
+                const targetLink =
+                  COUNTRY_GRADE_LINKS[selectedCategory]?.[grade.id] ||
+                  'https://t.me/International_Maths';
+
+                return (
+                  <a
+                    key={grade.id}
+                    href={targetLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-sky-100 hover:bg-sky-200 border-2 border-black rounded-2xl transition flex flex-col items-center justify-between text-center shadow-lg group"
+                  >
+                    <div className="w-9 h-9 rounded-lg bg-sky-300 border border-black flex items-center justify-center text-lg text-black shadow-sm mb-2 group-hover:scale-110 transition">
+                      {grade.icon}
+                    </div>
+                    <div>
+                      <div className="font-black text-black text-xs">
+                        {isFa ? grade.titleFa : grade.titleEn}
+                      </div>
+                      <div className="text-[10px] text-black font-bold mt-0.5">
+                        {grade.subFa}
+                      </div>
+                    </div>
+                    <span className="mt-3 px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-black border border-black text-[10px] font-black rounded-lg shadow transition">
+                      {isFa ? 'دانلود PDF' : 'Download'}
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
+    </section>
+  );
+}
