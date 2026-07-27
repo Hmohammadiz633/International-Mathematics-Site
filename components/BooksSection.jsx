@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 
-// لینک‌های اختصاصی مقاطع کمبریج (از ۱۴۰۰ تا ۱۴۰۵)
 const COUNTRY_GRADE_LINKS = {
   cambridge: {
     g7: 'https://t.me/International_Maths/1400',
@@ -62,7 +61,6 @@ const COUNTRY_GRADE_LINKS = {
   },
 };
 
-// ۱۱ کتاب دانشگاهی با لینک‌های تلگرام
 const UNIVERSITY_BOOKS = [
   { id: 'thomas', titleFa: 'ریاضی عمومی توماس', titleEn: 'Thomas Calculus', subFa: 'جلد ۱ و ۲', icon: '📘', link: 'https://t.me/International_Maths/88' },
   { id: 'stewart', titleFa: 'ریاضی عمومی استوارت', titleEn: 'Stewart Calculus', subFa: 'مرجع کامل', icon: '📙', link: 'https://t.me/International_Maths/33' },
@@ -104,7 +102,6 @@ export default function BooksSection({ lang = 'fa' }) {
 
   return (
     <section className="py-8 bg-sky-200 rounded-3xl p-4">
-      {/* هدر بخش */}
       <div className="text-center max-w-3xl mx-auto mb-10 p-6 bg-sky-400 rounded-3xl border-2 border-sky-600 shadow-xl">
         <h2 className="text-3xl md:text-4xl font-black mb-3 text-black">
           📚 {isFa ? 'کتاب‌های تدریس‌شده' : 'Taught Textbooks'}
@@ -116,7 +113,6 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* کارت‌های انتخاب دسته‌بندی */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10">
         {categories.map((cat) => (
           <button
@@ -145,7 +141,6 @@ export default function BooksSection({ lang = 'fa' }) {
         ))}
       </div>
 
-      {/* نمایش زیرمجموعه‌ها پس از انتخاب */}
       {selectedCategory && (
         <div className="p-6 md:p-8 bg-sky-400 rounded-3xl border-2 border-sky-600 shadow-2xl max-w-6xl mx-auto">
           <div className="flex items-center justify-between border-b-2 border-sky-600 pb-4 mb-6">
