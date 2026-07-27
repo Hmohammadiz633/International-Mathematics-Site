@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-// لینک‌های اختصاصی برای هر کشور و هر پایه تحصیلی (لینک‌های دلخواه خود را جایگزین کنید)
+// لینک‌های اختصاصی برای هر کشور و هر پایه تحصیلی (۷ تا ۱۲)
 const COUNTRY_GRADE_LINKS = {
   cambridge: {
     g7: "https://t.me/International_Maths",
@@ -62,7 +62,7 @@ const COUNTRY_GRADE_LINKS = {
   },
 };
 
-// لیست ۱۱ کتاب دانشگاهی با لینک‌های مجزا
+// ۱۱ کتاب دانشگاهی با لینک‌های تلگرام
 const UNIVERSITY_BOOKS = [
   { id: 'thomas', titleFa: 'ریاضی عمومی توماس', titleEn: "Thomas' Calculus", subFa: 'جلد ۱ و ۲', icon: '📘', link: 'https://t.me/International_Maths/1' },
   { id: 'stewart', titleFa: 'ریاضی عمومی استوارت', titleEn: "Stewart Calculus", subFa: 'مرجع کامل', icon: '📙', link: 'https://t.me/International_Maths/2' },
@@ -105,10 +105,10 @@ export default function BooksSection({ lang = 'fa' }) {
   return (
     <section className="py-8">
       <div className="text-center max-w-3xl mx-auto mb-10">
-        <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">
+        <h2 className="text-3xl md:text-4xl font-black mb-4 text-black">
           📚 {isFa ? 'کتاب‌های تدریس‌شده' : 'Taught Textbooks'}
         </h2>
-        <p className="text-blue-100 text-sm md:text-base font-bold leading-relaxed">
+        <p className="text-black text-sm md:text-base font-bold leading-relaxed">
           {isFa
             ? 'جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:'
             : 'Select an educational system, country, or university section to view books:'}
@@ -123,20 +123,20 @@ export default function BooksSection({ lang = 'fa' }) {
             onClick={() => setSelectedCategory(cat.id)}
             className={`p-3.5 rounded-2xl border-2 text-right transition-all duration-300 relative transform hover:-translate-y-1 ${
               selectedCategory === cat.id
-                ? 'bg-blue-600 text-white border-white shadow-xl shadow-blue-900/50'
-                : 'bg-blue-900/80 backdrop-blur-md text-white border-blue-700/60 hover:border-blue-400 hover:bg-blue-800/80 shadow-md'
+                ? 'bg-blue-600 text-white border-blue-900 shadow-xl'
+                : 'bg-white text-black border-blue-300 hover:border-blue-600 hover:bg-blue-50 shadow-md'
             }`}
           >
             <div className="flex items-center justify-between mb-2">
-              <span className="w-8 h-8 flex items-center justify-center text-sm rounded-lg bg-blue-950/80 border border-blue-500/30 text-white shadow-inner">
+              <span className="w-8 h-8 flex items-center justify-center text-sm rounded-lg bg-blue-100 border border-blue-300 text-black shadow-sm">
                 {cat.icon}
               </span>
               <span className="text-lg filter drop-shadow">{cat.flag}</span>
             </div>
-            <h3 className="font-black text-sm text-white">
+            <h3 className={`font-black text-sm ${selectedCategory === cat.id ? 'text-white' : 'text-black'}`}>
               {isFa ? cat.titleFa : cat.titleEn}
             </h3>
-            <p className="text-[11px] mt-0.5 font-bold text-blue-200">
+            <p className={`text-[11px] mt-0.5 font-bold ${selectedCategory === cat.id ? 'text-blue-100' : 'text-black'}`}>
               {isFa ? cat.subtitleFa : cat.subtitleEn}
             </p>
           </button>
@@ -144,17 +144,17 @@ export default function BooksSection({ lang = 'fa' }) {
       </div>
 
       {selectedCategory && (
-        <div className="p-6 md:p-8 bg-blue-900/90 backdrop-blur-md rounded-3xl border-2 border-blue-600 shadow-2xl shadow-blue-950 max-w-6xl mx-auto">
-          <div className="flex items-center justify-between border-b border-blue-700/80 pb-4 mb-6">
+        <div className="p-6 md:p-8 bg-white rounded-3xl border-2 border-blue-600 shadow-2xl max-w-6xl mx-auto">
+          <div className="flex items-center justify-between border-b border-slate-300 pb-4 mb-6">
             <div className="flex items-center gap-3">
-              <span className="w-10 h-10 flex items-center justify-center text-xl rounded-xl bg-blue-800 border border-blue-500 text-white">
+              <span className="w-10 h-10 flex items-center justify-center text-xl rounded-xl bg-blue-100 border border-blue-400 text-black">
                 {activeCategory?.icon}
               </span>
               <div>
-                <h3 className="text-xl font-black text-white">
+                <h3 className="text-xl font-black text-black">
                   {isFa ? activeCategory?.titleFa : activeCategory?.titleEn}
                 </h3>
-                <p className="text-xs font-bold text-blue-200">
+                <p className="text-xs font-bold text-black">
                   {isFa ? activeCategory?.subtitleFa : activeCategory?.subtitleEn}
                 </p>
               </div>
@@ -170,22 +170,22 @@ export default function BooksSection({ lang = 'fa' }) {
                   href={book.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 bg-blue-950/70 hover:bg-blue-800/80 border border-blue-600/60 hover:border-blue-400 rounded-2xl transition duration-200 flex flex-col justify-between shadow-md group"
+                  className="p-4 bg-blue-50/80 hover:bg-blue-100 border-2 border-blue-300 hover:border-blue-600 rounded-2xl transition duration-200 flex flex-col justify-between shadow-md group"
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-blue-900 border border-blue-500/40 flex items-center justify-center text-xl text-white shadow-sm shrink-0 group-hover:scale-105 transition">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-blue-400 flex items-center justify-center text-xl text-black shadow-sm shrink-0 group-hover:scale-105 transition">
                       {book.icon}
                     </div>
                     <div>
-                      <div className="font-black text-white text-sm group-hover:text-blue-300 transition">
+                      <div className="font-black text-black text-sm group-hover:text-blue-800 transition">
                         {isFa ? book.titleFa : book.titleEn}
                       </div>
-                      <div className="text-[11px] text-blue-200 font-bold mt-0.5">
+                      <div className="text-[11px] text-black font-bold mt-0.5">
                         {book.subFa}
                       </div>
                     </div>
                   </div>
-                  <span className="w-full text-center py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-black rounded-lg shadow transition">
+                  <span className="w-full text-center py-1.5 bg-blue-700 hover:bg-blue-800 text-white text-xs font-black rounded-lg shadow transition">
                     {isFa ? 'دانلود PDF از تلگرام' : 'Download PDF'}
                   </span>
                 </a>
@@ -199,3 +199,31 @@ export default function BooksSection({ lang = 'fa' }) {
                   <a
                     key={grade.id}
                     href={targetLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-blue-50/80 hover:bg-blue-100 border-2 border-blue-300 hover:border-blue-600 rounded-2xl transition flex flex-col items-center justify-between text-center shadow-sm"
+                  >
+                    <div className="w-9 h-9 rounded-lg bg-white border border-blue-400 flex items-center justify-center text-lg text-black shadow-sm mb-2">
+                      {grade.icon}
+                    </div>
+                    <div>
+                      <div className="font-black text-black text-xs">
+                        {isFa ? grade.titleFa : grade.titleEn}
+                      </div>
+                      <div className="text-[10px] text-black font-bold mt-0.5">
+                        {grade.subFa}
+                      </div>
+                    </div>
+                    <span className="mt-3 px-2.5 py-1 bg-blue-700 text-white text-[10px] font-black rounded-md transition">
+                      {isFa ? 'دانلود PDF' : 'Download'}
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
+    </section>
+  );
+}
