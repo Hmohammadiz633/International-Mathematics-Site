@@ -2,28 +2,79 @@
 
 import { useState } from 'react';
 
-const TELEGRAM_LINKS = {
-  g7: "https://t.me/International_Maths/1400",
-  g8: "https://t.me/International_Maths/1401",
-  g9: "https://t.me/International_Maths/1402",
-  g10: "https://t.me/International_Maths/1403",
-  g11: "https://t.me/International_Maths/1404",
-  g12: "https://t.me/International_Maths/1405",
+// لینک‌های اختصاصی برای هر کشور و هر پایه تحصیلی (لینک‌های دلخواه خود را جایگزین کنید)
+const COUNTRY_GRADE_LINKS = {
+  cambridge: {
+    g7: "https://t.me/International_Maths",
+    g8: "https://t.me/International_Maths",
+    g9: "https://t.me/International_Maths",
+    g10: "https://t.me/International_Maths",
+    g11: "https://t.me/International_Maths",
+    g12: "https://t.me/International_Maths",
+  },
+  australia: {
+    g7: "https://t.me/International_Maths",
+    g8: "https://t.me/International_Maths",
+    g9: "https://t.me/International_Maths",
+    g10: "https://t.me/International_Maths",
+    g11: "https://t.me/International_Maths",
+    g12: "https://t.me/International_Maths",
+  },
+  canada: {
+    g7: "https://t.me/International_Maths",
+    g8: "https://t.me/International_Maths",
+    g9: "https://t.me/International_Maths",
+    g10: "https://t.me/International_Maths",
+    g11: "https://t.me/International_Maths",
+    g12: "https://t.me/International_Maths",
+  },
+  uk: {
+    g7: "https://t.me/International_Maths",
+    g8: "https://t.me/International_Maths",
+    g9: "https://t.me/International_Maths",
+    g10: "https://t.me/International_Maths",
+    g11: "https://t.me/International_Maths",
+    g12: "https://t.me/International_Maths",
+  },
+  germany: {
+    g7: "https://t.me/International_Maths",
+    g8: "https://t.me/International_Maths",
+    g9: "https://t.me/International_Maths",
+    g10: "https://t.me/International_Maths",
+    g11: "https://t.me/International_Maths",
+    g12: "https://t.me/International_Maths",
+  },
+  california: {
+    g7: "https://t.me/International_Maths",
+    g8: "https://t.me/International_Maths",
+    g9: "https://t.me/International_Maths",
+    g10: "https://t.me/International_Maths",
+    g11: "https://t.me/International_Maths",
+    g12: "https://t.me/International_Maths",
+  },
+  turkey: {
+    g7: "https://t.me/International_Maths",
+    g8: "https://t.me/International_Maths",
+    g9: "https://t.me/International_Maths",
+    g10: "https://t.me/International_Maths",
+    g11: "https://t.me/International_Maths",
+    g12: "https://t.me/International_Maths",
+  },
 };
 
-// لیست ۱۱ کتاب دانشگاهی متصل به تلگرام
+// لیست ۱۱ کتاب دانشگاهی با لینک‌های مجزا
 const UNIVERSITY_BOOKS = [
-  { id: 'thomas', titleFa: 'ریاضی عمومی توماس', titleEn: "Thomas' Calculus", subFa: 'جلد ۱ و ۲', icon: '📘', link: 'https://t.me/International_Maths' },
-  { id: 'stewart', titleFa: 'ریاضی عمومی استوارت', titleEn: "Stewart Calculus", subFa: 'مرجع کامل', icon: '📙', link: 'https://t.me/International_Maths' },
-  { id: 'stewart_sol', titleFa: 'حل تمرین استوارت', titleEn: 'Stewart Solutions', subFa: 'پاسخ‌نامه تشریحی', icon: '📗', link: 'https://t.me/International_Maths' },
-  { id: 'adams', titleFa: 'ریاضی عمومی آدامز', titleEn: 'Adams Calculus', subFa: 'مرجع آدامز', icon: '📕', link: 'https://t.me/International_Maths' },
-  { id: 'adams_sol', titleFa: 'حل تمرین آدامز', titleEn: 'Adams Solutions', subFa: 'حل تشریحی مسائل', icon: '📓', link: 'https://t.me/International_Maths' },
-  { id: 'math2', titleFa: 'ریاضی عمومی ۲', titleEn: 'General Math 2', subFa: 'چند متغیره و برداری', icon: '📚', link: 'https://t.me/International_Maths' },
-  { id: 'numerical', titleFa: 'محاسبات عددی', titleEn: 'Numerical Analysis', subFa: 'روش‌ها و الگوریتم‌ها', icon: '💻', link: 'https://t.me/International_Maths' },
-  { id: 'complex', titleFa: 'اعداد مختلط', titleEn: 'Complex Variables', subFa: 'آنالیز مختلط', icon: '🌀', link: 'https://t.me/International_Maths' },
-  { id: 'linear_alg', titleFa: 'جبر خطی', titleEn: 'Linear Algebra', subFa: 'ماتریس و فضاهای برداری', icon: '📐', link: 'https://t.me/International_Maths' },
-  { id: 'applied_math', titleFa: 'ریاضی کاربردی', titleEn: 'Applied Math', subFa: 'ویژه مهندسی', icon: '⚙️', link: 'https://t.me/International_Maths' },
-  { id: 'stat_prob', titleFa: 'آمار و احتمالات مهندسی', titleEn: 'Engineering Statistics', subFa: 'تحلیل داده و احتمال', icon: '📊', link: 'https://t.me/International_Maths' },
+  { id: 'thomas', titleFa: 'ریاضی عمومی توماس', titleEn: "Thomas' Calculus", subFa: 'جلد ۱ و ۲', icon: '📘', link: 'https://t.me/International_Maths/1' },
+  { id: 'stewart', titleFa: 'ریاضی عمومی استوارت', titleEn: "Stewart Calculus", subFa: 'مرجع کامل', icon: '📙', link: 'https://t.me/International_Maths/2' },
+  { id: 'stewart_sol', titleFa: 'حل تمرین استوارت', titleEn: 'Stewart Solutions', subFa: 'پاسخ‌نامه تشریحی', icon: '📗', link: 'https://t.me/International_Maths/3' },
+  { id: 'adams', titleFa: 'ریاضی عمومی آدامز', titleEn: 'Adams Calculus', subFa: 'مرجع آدامز', icon: '📕', link: 'https://t.me/International_Maths/4' },
+  { id: 'adams_sol', titleFa: 'حل تمرین آدامز', titleEn: 'Adams Solutions', subFa: 'حل تشریحی مسائل', icon: '📓', link: 'https://t.me/International_Maths/5' },
+  { id: 'math2', titleFa: 'ریاضی عمومی ۲', titleEn: 'General Math 2', subFa: 'چند متغیره و برداری', icon: '📚', link: 'https://t.me/International_Maths/6' },
+  { id: 'numerical', titleFa: 'محاسبات عددی', titleEn: 'Numerical Analysis', subFa: 'روش‌ها و الگوریتم‌ها', icon: '💻', link: 'https://t.me/International_Maths/7' },
+  { id: 'complex', titleFa: 'اعداد مختلط', titleEn: 'Complex Variables', subFa: 'آنالیز مختلط', icon: '🌀', link: 'https://t.me/International_Maths/8' },
+  { id: 'linear_alg', titleFa: 'جبر خطی', titleEn: 'Linear Algebra', subFa: 'ماتریس و فضاهای برداری', icon: '📐', link: 'https://t.me/International_Maths/9' },
+  { id: 'applied_math', titleFa: 'ریاضی کاربردی', titleEn: 'Applied Math', subFa: 'ویژه مهندسی', icon: '⚙️', link: 'https://t.me/International_Maths/10' },
+  { id: 'stat_prob', titleFa: 'آمار و احتمالات مهندسی', titleEn: 'Engineering Statistics', subFa: 'تحلیل داده و احتمال', icon: '📊', link: 'https://t.me/International_Maths/11' },
 ];
 
 const categories = [
@@ -64,7 +115,6 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* کارت‌های کشورهای با پس‌زمینه آبی سرمه‌ای و آیکون‌های کوچک */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10">
         {categories.map((cat) => (
           <button
@@ -93,7 +143,6 @@ export default function BooksSection({ lang = 'fa' }) {
         ))}
       </div>
 
-      {/* باکس نمایش کتاب‌های انتخاب‌شده */}
       {selectedCategory && (
         <div className="p-6 md:p-8 bg-blue-900/90 backdrop-blur-md rounded-3xl border-2 border-blue-600 shadow-2xl shadow-blue-950 max-w-6xl mx-auto">
           <div className="flex items-center justify-between border-b border-blue-700/80 pb-4 mb-6">
@@ -144,34 +193,9 @@ export default function BooksSection({ lang = 'fa' }) {
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-              {schoolGrades.map((grade) => (
-                <a
-                  key={grade.id}
-                  href={TELEGRAM_LINKS[grade.id]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-blue-950/70 hover:bg-blue-800/80 border border-blue-600/60 hover:border-blue-400 rounded-2xl transition flex flex-col items-center justify-between text-center shadow-sm"
-                >
-                  <div className="w-9 h-9 rounded-lg bg-blue-900 border border-blue-500/40 flex items-center justify-center text-lg text-white shadow-sm mb-2">
-                    {grade.icon}
-                  </div>
-                  <div>
-                    <div className="font-black text-white text-xs">
-                      {isFa ? grade.titleFa : grade.titleEn}
-                    </div>
-                    <div className="text-[10px] text-blue-200 font-bold mt-0.5">
-                      {grade.subFa}
-                    </div>
-                  </div>
-                  <span className="mt-3 px-2.5 py-1 bg-blue-600 text-white text-[10px] font-black rounded-md transition">
-                    {isFa ? 'دانلود PDF' : 'Download'}
-                  </span>
-                </a>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-    </section>
-  );
-}
+              {schoolGrades.map((grade) => {
+                const targetLink = COUNTRY_GRADE_LINKS[selectedCategory]?.[grade.id] || "https://t.me/International_Maths";
+                return (
+                  <a
+                    key={grade.id}
+                    href={targetLink}
