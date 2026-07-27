@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-// لینک‌های اختصاصی برای مقاطع مختلف کشورهای مختلف
+// لینک‌های اختصاصی مقاطع کمبریج (از ۱۴۰۰ تا ۱۴۰۵)
 const COUNTRY_GRADE_LINKS = {
   cambridge: {
     g7: "https://t.me/International_Maths/1400",
@@ -62,10 +62,10 @@ const COUNTRY_GRADE_LINKS = {
   },
 };
 
-// ۱۱ کتاب دانشگاهی با لینک‌های دقیق
+// ۱۱ کتاب دانشگاهی دقیقاً طبق آدرس‌های تلگرام شما در گیت‌هاب
 const UNIVERSITY_BOOKS = [
-  { id: 'thomas', titleFa: 'ریاضی عمومی توماس', titleEn: "Thomas' Calculus", subFa: 'جلد ۱ و ۲', icon: '📘', link: 'https://t.me/International_Maths/88' },
-  { id: 'stewart', titleFa: 'ریاضی عمومی استوارت', titleEn: "Stewart Calculus", subFa: 'مرجع کامل', icon: '📙', link: 'https://t.me/International_Maths/33' },
+  { id: 'thomas', titleFa: 'ریاضی عمومی توماس', titleEn: 'Thomas Calculus', subFa: 'جلد ۱ و ۲', icon: '📘', link: 'https://t.me/International_Maths/88' },
+  { id: 'stewart', titleFa: 'ریاضی عمومی استوارت', titleEn: 'Stewart Calculus', subFa: 'مرجع کامل', icon: '📙', link: 'https://t.me/International_Maths/33' },
   { id: 'stewart_sol', titleFa: 'حل تمرین استوارت', titleEn: 'Stewart Solutions', subFa: 'پاسخ‌نامه تشریحی', icon: '📗', link: 'https://t.me/International_Maths/37' },
   { id: 'adams', titleFa: 'ریاضی عمومی آدامز', titleEn: 'Adams Calculus', subFa: 'مرجع آدامز', icon: '📕', link: 'https://t.me/International_Maths/1786' },
   { id: 'adams_sol', titleFa: 'حل تمرین آدامز', titleEn: 'Adams Solutions', subFa: 'حل تشریحی مسائل', icon: '📓', link: 'https://t.me/International_Maths/1787' },
@@ -94,3 +94,84 @@ const schoolGrades = [
   { id: 'g9', titleFa: 'سال نهم', titleEn: 'Grade 9', subFa: 'Year 9', icon: '📘' },
   { id: 'g10', titleFa: 'سال دهم', titleEn: 'Grade 10', subFa: 'Year 10 / IGCSE', icon: '📚' },
   { id: 'g11', titleFa: 'سال یازدهم', titleEn: 'Grade 11', subFa: 'Year 11 / AS Level', icon: '📙' },
+  { id: 'g12', titleFa: 'سال دوازدهم', titleEn: 'Grade 12', subFa: 'Year 12 / A Level', icon: '📗' },
+];
+
+export default function BooksSection({ lang = 'fa' }) {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const isFa = lang === 'fa';
+  const activeCategory = categories.find((c) => c.id === selectedCategory);
+
+  return (
+    <section className="py-8">
+      {/* عنوان اصلی */}
+      <div className="text-center max-w-3xl mx-auto mb-10 p-6 bg-blue-900 rounded-3xl border-2 border-blue-500 shadow-2xl">
+        <h2 className="text-3xl md:text-4xl font-black mb-3 text-white">
+          📚 {isFa ? 'کتاب‌های تدریس‌شده' : 'Taught Textbooks'}
+        </h2>
+        <p className="text-sky-200 text-sm md:text-base font-bold leading-relaxed">
+          {isFa
+            ? 'جهت مشاهده و دانلود کتاب‌ها، سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:'
+            : 'Select an educational system, country, or university section to download books:'}
+        </p>
+      </div>
+
+      {/* انتخاب دسته‌بندی */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10">
+        {categories.map((cat) => (
+          <button
+            key={cat.id}
+            type="button"
+            onClick={() => setSelectedCategory(cat.id)}
+            className={`p-4 rounded-2xl border-2 text-right transition-all duration-300 relative transform hover:-translate-y-1 ${
+              selectedCategory === cat.id
+                ? 'bg-blue-600 text-white border-white shadow-2xl scale-105'
+                : 'bg-blue-900 text-white border-blue-500 hover:border-sky-300 hover:bg-blue-800 shadow-lg'
+            }`}
+          >
+            <div className="flex items-center justify-between mb-2">
+              <span className="w-8 h-8 flex items-center justify-center text-sm rounded-lg bg-blue-950 border border-blue-400 text-white shadow-sm">
+                {cat.icon}
+              </span>
+              <span className="text-lg filter drop-shadow">{cat.flag}</span>
+            </div>
+            <h3 className="font-black text-sm text-white">
+              {isFa ? cat.titleFa : cat.titleEn}
+            </h3>
+            <p className="text-[11px] mt-1 font-bold text-sky-200">
+              {isFa ? cat.subtitleFa : cat.subtitleEn}
+            </p>
+          </button>
+        ))}
+      </div>
+
+      {/* نمایش لیست کتاب‌ها پس از انتخاب دسته‌بندی */}
+      {selectedCategory && (
+        <div className="p-6 md:p-8 bg-blue-900 rounded-3xl border-2 border-blue-500 shadow-2xl max-w-6xl mx-auto">
+          <div className="flex items-center justify-between border-b-2 border-blue-700 pb-4 mb-6">
+            <div className="flex items-center gap-3">
+              <span className="w-10 h-10 flex items-center justify-center text-xl rounded-xl bg-blue-950 border border-blue-400 text-white">
+                {activeCategory?.icon}
+              </span>
+              <div>
+                <h3 className="text-xl font-black text-white">
+                  {isFa ? activeCategory?.titleFa : activeCategory?.titleEn}
+                </h3>
+                <p className="text-xs font-bold text-sky-200 mt-0.5">
+                  {isFa ? activeCategory?.subtitleFa : activeCategory?.subtitleEn}
+                </p>
+              </div>
+            </div>
+            <span className="text-2xl">{activeCategory?.flag}</span>
+          </div>
+
+          {/* ۱. کتاب‌های دانشگاهی */}
+          {selectedCategory === 'university' ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {UNIVERSITY_BOOKS.map((book) => (
+                <a
+                  key={book.id}
+                  href={book.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-4 bg-blue-950 hover:bg-blue-800 border-2 border-blue-600 hover:border-sky-300 rounded-2
