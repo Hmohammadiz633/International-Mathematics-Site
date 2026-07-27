@@ -104,16 +104,22 @@ export default function BooksSection({ lang = 'fa' }) {
 
   return (
     <section className="py-8">
-      {/* عنوان و زیرنویس بخش کتاب‌ها با فونت مشکی و پررنگ */}
-      <div className="text-center max-w-3xl mx-auto mb-10">
-        <h2 className="text-3xl md:text-4xl font-black mb-3 text-black">
+      {/* عنوان و جمله زیر آن با فونت سفید و آبی بسیار روشن در پس‌زمینه آبی پررنگ */}
+      <div className="text-center max-w-3xl mx-auto mb-10 p-6 bg-blue-900/90 rounded-2xl border-2 border-blue-500 shadow-xl">
+        <h2 className="text-3xl md:text-4xl font-black mb-3 text-white filter drop-shadow">
           📚 {isFa ? 'کتاب‌های تدریس‌شده' : 'Taught Textbooks'}
         </h2>
-        <p className="text-black text-sm md:text-base font-black leading-relaxed">
+        <p className="text-sky-200 text-sm md:text-base font-black leading-relaxed">
           {isFa
             ? 'جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:'
             : 'Select an educational system, country, or university section to view books:'}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10">
+        {categories.map((cat) => (
+          <button
+            key={cat.id}
+            type="button"
+            onClick={() => setSelectedCategory(cat.id)}
+            className={`p-4 rounded-2xl border-2 text-right transition-all duration-300 relative transform hover:-translate-
