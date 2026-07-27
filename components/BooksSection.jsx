@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-// لینک‌های تلگرام اختصاصی برای هر پایه
+// لینک‌های تلگرام برای مقاطع تحصیلی
 const TELEGRAM_LINKS = {
   g7: "https://t.me/International_Maths/1400",
   g8: "https://t.me/International_Maths/1401",
@@ -14,19 +14,91 @@ const TELEGRAM_LINKS = {
 
 const DEFAULT_TELEGRAM = "https://t.me/International_Maths";
 
-// همان لیست دسته‌بندی‌ها و کشورها از کدهای اصلی شما
+// دقیقاً آرایه اولیه شما همراه با پشتیبانی زبان
 const categories = [
-  { id: 'cambridge', titleFa: 'سیستم آموزشی کمبریج', titleEn: 'Cambridge Curriculum', flag: '🇬🇧' },
-  { id: 'australia', titleFa: 'ریاضیات استرالیا', titleEn: 'Australian Mathematics', flag: '🇦🇺' },
-  { id: 'canada', titleFa: 'ریاضیات کانادا', titleEn: 'Canadian Mathematics', flag: '🇨🇦' },
-  { id: 'uk', titleFa: 'انگلستان (GCSE / A-Level)', titleEn: 'UK (GCSE / A-Level)', flag: '🇬🇧' },
-  { id: 'germany', titleFa: 'ریاضیات آلمان (Abitur)', titleEn: 'Germany (Abitur)', flag: '🇩🇪' },
-  { id: 'california', titleFa: 'ریاضیات کالیفرنیا (آمریکا)', titleEn: 'California Math (USA)', flag: '🇺🇸' },
-  { id: 'turkey', titleFa: 'ریاضیات ترکیه (YÖS / MEB)', titleEn: 'Turkey (YÖS / MEB)', flag: '🇹🇷' },
-  { id: 'university', titleFa: 'کتاب‌های دانشگاهی', titleEn: 'University Textbooks', flag: '🎓' },
+  {
+    id: 'cambridge',
+    titleFa: 'کمبریج',
+    titleEn: 'Cambridge',
+    subtitleFa: 'سیستم آموزشی کمبریج',
+    subtitleEn: 'Cambridge Curriculum',
+    icon: '🎓',
+    flag: '🇬🇧',
+    color: 'from-blue-600 to-indigo-700',
+  },
+  {
+    id: 'australia',
+    titleFa: 'استرالیا',
+    titleEn: 'Australia',
+    subtitleFa: 'ریاضیات استرالیا',
+    subtitleEn: 'Australian Mathematics',
+    icon: '🦘',
+    flag: '🇦🇺',
+    color: 'from-amber-500 to-orange-600',
+  },
+  {
+    id: 'canada',
+    titleFa: 'کانادا',
+    titleEn: 'Canada',
+    subtitleFa: 'ریاضیات کانادا',
+    subtitleEn: 'Canadian Mathematics',
+    icon: '🍁',
+    flag: '🇨🇦',
+    color: 'from-red-500 to-rose-700',
+  },
+  {
+    id: 'uk',
+    titleFa: 'انگلستان',
+    titleEn: 'UK',
+    subtitleFa: 'GCSE / A-Level',
+    subtitleEn: 'GCSE / A-Level',
+    icon: '👑',
+    flag: '🇬🇧',
+    color: 'from-sky-500 to-blue-700',
+  },
+  {
+    id: 'germany',
+    titleFa: 'آلمان',
+    titleEn: 'Germany',
+    subtitleFa: 'Abitur / Gymnasium',
+    subtitleEn: 'Abitur / Gymnasium',
+    icon: '🦅',
+    flag: '🇩🇪',
+    color: 'from-yellow-500 to-amber-700',
+  },
+  {
+    id: 'california',
+    titleFa: 'کالیفرنیا',
+    titleEn: 'California',
+    subtitleFa: 'ریاضیات آمریکا',
+    subtitleEn: 'US Curriculum',
+    icon: '🐻',
+    flag: '🇺🇸',
+    color: 'from-emerald-500 to-teal-700',
+  },
+  {
+    id: 'turkey',
+    titleFa: 'ترکیه',
+    titleEn: 'Turkey',
+    subtitleFa: 'YÖS / MEB',
+    subtitleEn: 'YÖS / MEB',
+    icon: '🌙',
+    flag: '🇹🇷',
+    color: 'from-red-600 to-red-800',
+  },
+  {
+    id: 'university',
+    titleFa: 'کتاب‌های دانشگاهی',
+    titleEn: 'University Textbooks',
+    subtitleFa: 'مرجع کتب دانشگاهی',
+    subtitleEn: 'Higher Education Textbooks',
+    icon: '🏛️',
+    flag: '🎓',
+    color: 'from-purple-600 to-indigo-800',
+  },
 ];
 
-// سال هفتم تا دوازدهم (پایه‌های کامل مشابه کمبریج)
+// پایه‌های ۷ تا ۱۲ با همان استایل کدهای قبلی شما
 const schoolGrades = [
   { id: 'g7', titleFa: 'سال هفتم', titleEn: 'Grade 7', subFa: 'Year 7', subEn: 'Year 7', icon: '📘' },
   { id: 'g8', titleFa: 'سال هشتم', titleEn: 'Grade 8', subFa: 'Year 8', subEn: 'Year 8', icon: '📘' },
@@ -43,63 +115,79 @@ export default function BooksSection({ lang = 'fa' }) {
   const activeCategory = categories.find((c) => c.id === selectedCategory);
 
   return (
-    <section className="py-6">
-      {/* عنوان اصلی و توضیحات */}
-      <div className="text-center max-w-3xl mx-auto mb-8">
-        <h2 className="text-3xl font-extrabold text-indigo-950 mb-3 flex items-center justify-center gap-2">
-          <span>📚</span>
-          <span>{isFa ? 'کتاب‌های تدریس‌شده' : 'Taught Textbooks'}</span>
+    <section className="py-8">
+      {/* عنوان اصلی و زیرعنوان */}
+      <div className="text-center max-w-3xl mx-auto mb-10">
+        <h2 className="text-3xl md:text-4xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">
+          📚 {isFa ? 'کتاب‌های تدریس‌شده' : 'Taught Textbooks'}
         </h2>
-        <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+        <p className="text-slate-300 text-sm md:text-base leading-relaxed">
           {isFa
             ? 'جهت مشاهده کتاب‌ها، ابتدا سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:'
             : 'Select an educational system, country, or university section to view books:'}
         </p>
       </div>
 
-      {/* شبکه دکمه‌ها و پرچم‌های اصلی پروژه‌تان */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-w-5xl mx-auto mb-10">
+      {/* لیست کارت‌های اولیه با گرادینت و آیکون اختصاصی شما */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto mb-12">
         {categories.map((cat) => (
           <button
             key={cat.id}
             type="button"
             onClick={() => setSelectedCategory(cat.id)}
-            className={`p-4 rounded-2xl border text-center transition-all flex flex-col items-center justify-center gap-2 shadow-sm ${
+            className={`p-5 rounded-2xl border text-right transition-all duration-300 relative overflow-hidden group ${
               selectedCategory === cat.id
-                ? 'bg-indigo-900 text-white border-indigo-900 shadow-md scale-105'
-                : 'bg-white text-gray-800 border-gray-200 hover:border-indigo-300 hover:shadow-md'
+                ? 'bg-slate-800 border-blue-500 shadow-lg shadow-blue-500/20 ring-2 ring-blue-500'
+                : 'bg-slate-800/60 border-slate-700/80 hover:border-slate-500 hover:bg-slate-800'
             }`}
           >
-            <span className="text-3xl">{cat.flag}</span>
-            <span className="font-bold text-sm md:text-base">
+            <div className={`absolute top-0 right-0 left-0 h-1 bg-gradient-to-r ${cat.color}`} />
+            <div className="flex items-start justify-between mb-3">
+              <span className="text-3xl p-2 rounded-xl bg-slate-700/50 border border-slate-600/50">
+                {cat.icon}
+              </span>
+              <span className="text-2xl">{cat.flag}</span>
+            </div>
+            <h3 className="font-bold text-lg text-slate-100 group-hover:text-blue-300 transition">
               {isFa ? cat.titleFa : cat.titleEn}
-            </span>
+            </h3>
+            <p className="text-xs text-slate-400 mt-1">
+              {isFa ? cat.subtitleFa : cat.subtitleEn}
+            </p>
           </button>
         ))}
       </div>
 
-      {/* نمایش مقاطع و کتاب‌ها پس از انتخاب دسته‌بندی */}
+      {/* بخش مقاطع و کتاب‌ها پس از انتخاب دسته‌بندی */}
       {selectedCategory && (
-        <div className="p-6 md:p-8 bg-white rounded-3xl shadow-md border border-gray-100 max-w-5xl mx-auto transition-all">
-          <div className="flex items-center justify-center gap-2 mb-6 border-b pb-4">
-            <span className="text-2xl">{activeCategory?.flag}</span>
-            <h3 className="text-2xl font-bold text-indigo-950">
-              {isFa ? activeCategory?.titleFa : activeCategory?.titleEn}
-            </h3>
+        <div className="p-6 md:p-8 bg-slate-800/90 rounded-3xl border border-slate-700/80 shadow-2xl max-w-6xl mx-auto backdrop-blur transition-all">
+          <div className="flex items-center justify-between border-b border-slate-700 pb-5 mb-8">
+            <div className="flex items-center gap-3">
+              <span className="text-3xl">{activeCategory?.icon}</span>
+              <div>
+                <h3 className="text-2xl font-bold text-slate-100">
+                  {isFa ? activeCategory?.titleFa : activeCategory?.titleEn}
+                </h3>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  {isFa ? activeCategory?.subtitleFa : activeCategory?.subtitleEn}
+                </p>
+              </div>
+            </div>
+            <span className="text-3xl">{activeCategory?.flag}</span>
           </div>
 
           {selectedCategory === 'university' ? (
-            <div className="text-center py-6">
-              <p className="text-gray-600 mb-6">
+            <div className="text-center py-8">
+              <p className="text-slate-300 mb-6 text-sm md:text-base">
                 {isFa
-                  ? 'جهت مشاهده و دریافت کتاب‌های دانشگاهی کلیک کنید:'
-                  : 'Click below to view and download university textbooks:'}
+                  ? 'جهت مشاهده و دریافت مستقیم کتاب‌های دانشگاهی کلیک کنید:'
+                  : 'Click below to access and download university textbooks directly:'}
               </p>
               <a
                 href={DEFAULT_TELEGRAM}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-blue-600 text-white font-bold rounded-xl shadow-lg hover:bg-blue-700 transition scale-105"
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-blue-600/30 transition transform hover:-translate-y-0.5"
               >
                 <span>✈️</span>
                 <span>{isFa ? 'مشاهده در تلگرام' : 'View on Telegram'}</span>
@@ -107,13 +195,13 @@ export default function BooksSection({ lang = 'fa' }) {
             </div>
           ) : (
             <div>
-              <p className="text-center text-gray-500 text-sm mb-6">
+              <p className="text-slate-400 text-xs md:text-sm mb-6">
                 {isFa
                   ? 'پایه‌های تحصیلی (برای مشاهده یا دانلود PDF روی پایه مورد نظر کلیک کنید)'
                   : 'Select a grade to view or download the PDF:'}
               </p>
 
-              {/* آیکون‌ها و لینک‌های دانلود مانند کمبریج برای همه کشورها (سال ۷ تا ۱۲) */}
+              {/* شبکه پایه‌های ۷ تا ۱۲ برای تمام سیستم‌ها به‌صورت یکسان */}
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
                 {schoolGrades.map((grade) => (
                   <a
@@ -121,20 +209,20 @@ export default function BooksSection({ lang = 'fa' }) {
                     href={TELEGRAM_LINKS[grade.id]}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-4 bg-indigo-50/50 rounded-2xl border border-indigo-100 hover:border-indigo-400 hover:bg-indigo-100/60 transition group flex flex-col items-center justify-between text-center shadow-sm"
+                    className="p-4 bg-slate-700/50 hover:bg-slate-700 border border-slate-600/60 hover:border-blue-500/80 rounded-2xl transition group flex flex-col items-center justify-between text-center shadow-sm"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-2xl shadow-sm mb-3 group-hover:scale-110 transition">
+                    <div className="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-2xl shadow-inner mb-3 group-hover:scale-110 transition">
                       {grade.icon}
                     </div>
                     <div>
-                      <div className="font-bold text-indigo-950 text-sm">
+                      <div className="font-bold text-slate-200 text-sm group-hover:text-blue-300 transition">
                         {isFa ? grade.titleFa : grade.titleEn}
                       </div>
-                      <div className="text-xs text-gray-500 mt-0.5">
+                      <div className="text-xs text-slate-400 mt-0.5">
                         {isFa ? grade.subFa : grade.subEn}
                       </div>
                     </div>
-                    <span className="mt-3 px-3 py-1 bg-white text-indigo-700 text-xs font-semibold rounded-lg shadow-xs group-hover:bg-indigo-600 group-hover:text-white transition">
+                    <span className="mt-4 px-3 py-1 bg-blue-600/20 text-blue-300 text-xs font-semibold rounded-lg border border-blue-500/30 group-hover:bg-blue-600 group-hover:text-white transition">
                       {isFa ? 'دانلود PDF' : 'Download PDF'}
                     </span>
                   </a>
