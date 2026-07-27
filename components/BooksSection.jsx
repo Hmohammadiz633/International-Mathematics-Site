@@ -2,67 +2,65 @@
 
 import { useState } from 'react';
 
-// لینک‌های اختصاصی مقاطع کمبریج (از ۱۴۰۰ تا ۱۴۰۵)
 const COUNTRY_GRADE_LINKS = {
   cambridge: {
-    g7: "https://t.me/International_Maths/1400",
-    g8: "https://t.me/International_Maths/1401",
-    g9: "https://t.me/International_Maths/1402",
-    g10: "https://t.me/International_Maths/1403",
-    g11: "https://t.me/International_Maths/1404",
-    g12: "https://t.me/International_Maths/1405",
+    g7: 'https://t.me/International_Maths/1400',
+    g8: 'https://t.me/International_Maths/1401',
+    g9: 'https://t.me/International_Maths/1402',
+    g10: 'https://t.me/International_Maths/1403',
+    g11: 'https://t.me/International_Maths/1404',
+    g12: 'https://t.me/International_Maths/1405',
   },
   australia: {
-    g7: "https://t.me/International_Maths",
-    g8: "https://t.me/International_Maths",
-    g9: "https://t.me/International_Maths",
-    g10: "https://t.me/International_Maths",
-    g11: "https://t.me/International_Maths",
-    g12: "https://t.me/International_Maths",
+    g7: 'https://t.me/International_Maths',
+    g8: 'https://t.me/International_Maths',
+    g9: 'https://t.me/International_Maths',
+    g10: 'https://t.me/International_Maths',
+    g11: 'https://t.me/International_Maths',
+    g12: 'https://t.me/International_Maths',
   },
   canada: {
-    g7: "https://t.me/International_Maths",
-    g8: "https://t.me/International_Maths",
-    g9: "https://t.me/International_Maths",
-    g10: "https://t.me/International_Maths",
-    g11: "https://t.me/International_Maths",
-    g12: "https://t.me/International_Maths",
+    g7: 'https://t.me/International_Maths',
+    g8: 'https://t.me/International_Maths',
+    g9: 'https://t.me/International_Maths',
+    g10: 'https://t.me/International_Maths',
+    g11: 'https://t.me/International_Maths',
+    g12: 'https://t.me/International_Maths',
   },
   uk: {
-    g7: "https://t.me/International_Maths",
-    g8: "https://t.me/International_Maths",
-    g9: "https://t.me/International_Maths",
-    g10: "https://t.me/International_Maths",
-    g11: "https://t.me/International_Maths",
-    g12: "https://t.me/International_Maths",
+    g7: 'https://t.me/International_Maths',
+    g8: 'https://t.me/International_Maths',
+    g9: 'https://t.me/International_Maths',
+    g10: 'https://t.me/International_Maths',
+    g11: 'https://t.me/International_Maths',
+    g12: 'https://t.me/International_Maths',
   },
   germany: {
-    g7: "https://t.me/International_Maths",
-    g8: "https://t.me/International_Maths",
-    g9: "https://t.me/International_Maths",
-    g10: "https://t.me/International_Maths",
-    g11: "https://t.me/International_Maths",
-    g12: "https://t.me/International_Maths",
+    g7: 'https://t.me/International_Maths',
+    g8: 'https://t.me/International_Maths',
+    g9: 'https://t.me/International_Maths',
+    g10: 'https://t.me/International_Maths',
+    g11: 'https://t.me/International_Maths',
+    g12: 'https://t.me/International_Maths',
   },
   california: {
-    g7: "https://t.me/International_Maths",
-    g8: "https://t.me/International_Maths",
-    g9: "https://t.me/International_Maths",
-    g10: "https://t.me/International_Maths",
-    g11: "https://t.me/International_Maths",
-    g12: "https://t.me/International_Maths",
+    g7: 'https://t.me/International_Maths',
+    g8: 'https://t.me/International_Maths',
+    g9: 'https://t.me/International_Maths',
+    g10: 'https://t.me/International_Maths',
+    g11: 'https://t.me/International_Maths',
+    g12: 'https://t.me/International_Maths',
   },
   turkey: {
-    g7: "https://t.me/International_Maths",
-    g8: "https://t.me/International_Maths",
-    g9: "https://t.me/International_Maths",
-    g10: "https://t.me/International_Maths",
-    g11: "https://t.me/International_Maths",
-    g12: "https://t.me/International_Maths",
+    g7: 'https://t.me/International_Maths',
+    g8: 'https://t.me/International_Maths',
+    g9: 'https://t.me/International_Maths',
+    g10: 'https://t.me/International_Maths',
+    g11: 'https://t.me/International_Maths',
+    g12: 'https://t.me/International_Maths',
   },
 };
 
-// ۱۱ کتاب دانشگاهی دقیقاً طبق آدرس‌های تلگرام شما در گیت‌هاب
 const UNIVERSITY_BOOKS = [
   { id: 'thomas', titleFa: 'ریاضی عمومی توماس', titleEn: 'Thomas Calculus', subFa: 'جلد ۱ و ۲', icon: '📘', link: 'https://t.me/International_Maths/88' },
   { id: 'stewart', titleFa: 'ریاضی عمومی استوارت', titleEn: 'Stewart Calculus', subFa: 'مرجع کامل', icon: '📙', link: 'https://t.me/International_Maths/33' },
@@ -104,7 +102,6 @@ export default function BooksSection({ lang = 'fa' }) {
 
   return (
     <section className="py-8">
-      {/* عنوان اصلی */}
       <div className="text-center max-w-3xl mx-auto mb-10 p-6 bg-blue-900 rounded-3xl border-2 border-blue-500 shadow-2xl">
         <h2 className="text-3xl md:text-4xl font-black mb-3 text-white">
           📚 {isFa ? 'کتاب‌های تدریس‌شده' : 'Taught Textbooks'}
@@ -116,7 +113,6 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* انتخاب دسته‌بندی */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10">
         {categories.map((cat) => (
           <button
@@ -145,7 +141,6 @@ export default function BooksSection({ lang = 'fa' }) {
         ))}
       </div>
 
-      {/* نمایش لیست کتاب‌ها پس از انتخاب دسته‌بندی */}
       {selectedCategory && (
         <div className="p-6 md:p-8 bg-blue-900 rounded-3xl border-2 border-blue-500 shadow-2xl max-w-6xl mx-auto">
           <div className="flex items-center justify-between border-b-2 border-blue-700 pb-4 mb-6">
@@ -165,7 +160,6 @@ export default function BooksSection({ lang = 'fa' }) {
             <span className="text-2xl">{activeCategory?.flag}</span>
           </div>
 
-          {/* ۱. کتاب‌های دانشگاهی */}
           {selectedCategory === 'university' ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {UNIVERSITY_BOOKS.map((book) => (
@@ -174,4 +168,63 @@ export default function BooksSection({ lang = 'fa' }) {
                   href={book.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 bg-blue-950 hover:bg-blue-800 border-2 border-blue-600 hover:border-sky-300 rounded-2
+                  className="p-4 bg-blue-950 hover:bg-blue-800 border-2 border-blue-600 hover:border-sky-300 rounded-2xl transition duration-200 flex flex-col justify-between shadow-lg group"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-blue-900 border border-blue-400 flex items-center justify-center text-xl text-white shadow-sm shrink-0 group-hover:scale-105 transition">
+                      {book.icon}
+                    </div>
+                    <div>
+                      <div className="font-black text-white text-sm group-hover:text-sky-300 transition">
+                        {isFa ? book.titleFa : book.titleEn}
+                      </div>
+                      <div className="text-[11px] text-sky-200 font-bold mt-0.5">
+                        {book.subFa}
+                      </div>
+                    </div>
+                  </div>
+                  <span className="w-full text-center py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-black rounded-xl shadow transition">
+                    {isFa ? 'دانلود PDF از تلگرام' : 'Download PDF'}
+                  </span>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+              {schoolGrades.map((grade) => {
+                const targetLink =
+                  COUNTRY_GRADE_LINKS[selectedCategory]?.[grade.id] ||
+                  'https://t.me/International_Maths';
+
+                return (
+                  <a
+                    key={grade.id}
+                    href={targetLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-blue-950 hover:bg-blue-800 border-2 border-blue-600 hover:border-sky-300 rounded-2xl transition flex flex-col items-center justify-between text-center shadow-lg group"
+                  >
+                    <div className="w-9 h-9 rounded-lg bg-blue-900 border border-blue-400 flex items-center justify-center text-lg text-white shadow-sm mb-2 group-hover:scale-110 transition">
+                      {grade.icon}
+                    </div>
+                    <div>
+                      <div className="font-black text-white text-xs">
+                        {isFa ? grade.titleFa : grade.titleEn}
+                      </div>
+                      <div className="text-[10px] text-sky-200 font-bold mt-0.5">
+                        {grade.subFa}
+                      </div>
+                    </div>
+                    <span className="mt-3 px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-black rounded-lg shadow transition">
+                      {isFa ? 'دانلود PDF' : 'Download'}
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
+    </section>
+  );
+}
