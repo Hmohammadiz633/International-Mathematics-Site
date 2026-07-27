@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-// لینک‌های تلگرام برای مقاطع تحصیلی
+// لینک‌های تلگرام اختصاصی برای هر پایه
 const TELEGRAM_LINKS = {
   g7: "https://t.me/International_Maths/1400",
   g8: "https://t.me/International_Maths/1401",
@@ -14,7 +14,7 @@ const TELEGRAM_LINKS = {
 
 const DEFAULT_TELEGRAM = "https://t.me/International_Maths";
 
-// دقیقاً آرایه اولیه شما همراه با پشتیبانی زبان
+// دسته‌بندی‌ها با تمام جزئیات اولیه شما
 const categories = [
   {
     id: 'cambridge',
@@ -98,7 +98,7 @@ const categories = [
   },
 ];
 
-// پایه‌های ۷ تا ۱۲ با همان استایل کدهای قبلی شما
+// سال ۷ تا ۱۲ کامل
 const schoolGrades = [
   { id: 'g7', titleFa: 'سال هفتم', titleEn: 'Grade 7', subFa: 'Year 7', subEn: 'Year 7', icon: '📘' },
   { id: 'g8', titleFa: 'سال هشتم', titleEn: 'Grade 8', subFa: 'Year 8', subEn: 'Year 8', icon: '📘' },
@@ -128,7 +128,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* لیست کارت‌های اولیه با گرادینت و آیکون اختصاصی شما */}
+      {/* کارت‌های اصلی سیستم‌ها */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto mb-12">
         {categories.map((cat) => (
           <button
@@ -158,7 +158,7 @@ export default function BooksSection({ lang = 'fa' }) {
         ))}
       </div>
 
-      {/* بخش مقاطع و کتاب‌ها پس از انتخاب دسته‌بندی */}
+      {/* بخش مقاطع و دانلود PDF */}
       {selectedCategory && (
         <div className="p-6 md:p-8 bg-slate-800/90 rounded-3xl border border-slate-700/80 shadow-2xl max-w-6xl mx-auto backdrop-blur transition-all">
           <div className="flex items-center justify-between border-b border-slate-700 pb-5 mb-8">
@@ -201,7 +201,7 @@ export default function BooksSection({ lang = 'fa' }) {
                   : 'Select a grade to view or download the PDF:'}
               </p>
 
-              {/* شبکه پایه‌های ۷ تا ۱۲ برای تمام سیستم‌ها به‌صورت یکسان */}
+              {/* شبکه پایه‌های ۷ تا ۱۲ برای همه سیستم‌ها */}
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
                 {schoolGrades.map((grade) => (
                   <a
