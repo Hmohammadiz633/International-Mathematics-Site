@@ -12,17 +12,20 @@ export default function Home() {
 
   return (
     <div className={`min-h-screen bg-gray-50 text-gray-900 ${lang === 'en' ? 'ltr' : 'rtl'}`} dir={lang === 'en' ? 'ltr' : 'rtl'}>
-      {/* هدر سایت همراه با دکمه تغییر زبان */}
+      {/* هدر اصلی سایت */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-bold text-indigo-900">
-            {lang === 'fa' ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics'}
-          </h1>
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">📐</span>
+            <h1 className="text-xl font-bold text-indigo-950">
+              {lang === 'fa' ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics'}
+            </h1>
+          </div>
 
           <button
             type="button"
             onClick={toggleLanguage}
-            className="px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-900 font-semibold rounded-lg flex items-center gap-2 transition"
+            className="px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-900 font-semibold rounded-lg flex items-center gap-2 transition border border-indigo-200 shadow-sm"
           >
             <span>🌐</span>
             <span>{lang === 'fa' ? 'English' : 'فارسی'}</span>
@@ -30,13 +33,13 @@ export default function Home() {
         </div>
       </header>
 
-      {/* بخش اصلی کتاب‌ها */}
+      {/* محتوای اصلی */}
       <main className="container mx-auto py-8 px-4">
         <BooksSection lang={lang} />
       </main>
 
       {/* فوتر */}
-      <footer className="bg-white border-t border-gray-200 py-6 text-center text-sm text-gray-500">
+      <footer className="bg-white border-t border-gray-200 py-6 text-center text-sm text-gray-500 mt-12">
         <p>
           {lang === 'fa'
             ? 'تمامی حقوق محفوظ است © آموزش بین‌المللی ریاضیات'
