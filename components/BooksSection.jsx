@@ -11,7 +11,7 @@ const COUNTRY_GRADE_LINKS = {
     g11: 'https://t.me/International_Maths/1404',
     g12: 'https://t.me/International_Maths/1405',
   },
-  australia: { g7: 'https://t.me/International_Maths', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths', g10: 'https://t.me/International_Maths', g11: 'https://t.me/International_Maths', g12: 'https://t.me/International_Maths' },
+  australia: { g7: 'https://t.me/International_Maths/768', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths/769', g10: 'https://t.me/International_Maths/43', g11: 'https://t.me/International_Maths/85', g12: 'https://t.me/International_Maths/23' },
   canada: { g7: 'https://t.me/International_Maths', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths', g10: 'https://t.me/International_Maths', g11: 'https://t.me/International_Maths', g12: 'https://t.me/International_Maths' },
   uk: { g7: 'https://t.me/International_Maths', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths', g10: 'https://t.me/International_Maths', g11: 'https://t.me/International_Maths', g12: 'https://t.me/International_Maths' },
   germany: { g7: 'https://t.me/International_Maths', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths', g10: 'https://t.me/International_Maths', g11: 'https://t.me/International_Maths', g12: 'https://t.me/International_Maths' },
