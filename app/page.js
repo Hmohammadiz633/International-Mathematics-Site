@@ -8,6 +8,7 @@ export default function Home() {
   const [lang, setLang] = useState('fa');
   const [isEducationOpen, setIsEducationOpen] = useState(false);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
+  const [isMathSitesOpen, setIsMathSitesOpen] = useState(false);
 
   const isFa = lang === 'fa';
 
@@ -26,6 +27,13 @@ export default function Home() {
     { flag: '🇹🇷', fa: 'نظام آموزشی ترکیه', en: 'Turkey Educational System', link: 'https://t.me/International_Maths/395' },
     { flag: '🇮🇹', fa: 'نظام آموزشی ایتالیا', en: 'Italy Educational System', link: 'https://t.me/International_Maths/389' },
     { flag: '🇨🇦', fa: 'نظام آموزشی کانادا', en: 'Canada Educational System', link: 'https://t.me/International_Maths/302' },
+  ];
+
+  const mathSites = [
+    { flag: '🇺🇸', fa: 'آمریکا (Khan Academy)', en: 'USA (Khan Academy)', link: 'https://www.khanacademy.org/_render' },
+    { flag: '🇨🇦', fa: 'کانادا (IXL Math)', en: 'Canada (IXL Math)', link: 'https://ca.ixl.com/math' },
+    { flag: '🇬🇧', fa: 'انگلستان (Maths Genie)', en: 'UK (Maths Genie)', link: 'https://mathsgenie.co.uk/' },
+    { flag: '🇦🇺', fa: 'استرالیا (Art of Smart)', en: 'Australia (Art of Smart)', link: 'https://artofsmart.com.au/maths/hsc-maths-past-papers/' },
   ];
 
   const feedbacks = [
@@ -75,7 +83,11 @@ export default function Home() {
               {/* نظام آموزشی */}
               <button 
                 type="button"
-                onClick={() => { setIsEducationOpen(!isEducationOpen); setIsFeedbackOpen(false); }} 
+                onClick={() => { 
+                  setIsEducationOpen(!isEducationOpen); 
+                  setIsFeedbackOpen(false); 
+                  setIsMathSitesOpen(false); 
+                }} 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
                 <span>🌐 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}</span>
@@ -91,10 +103,28 @@ export default function Home() {
                 📚 {isFa ? 'کتب آموزشی' : 'Books'}
               </button>
 
+              {/* سایت‌های ریاضی کشورها */}
+              <button 
+                type="button"
+                onClick={() => { 
+                  setIsMathSitesOpen(!isMathSitesOpen); 
+                  setIsEducationOpen(false); 
+                  setIsFeedbackOpen(false); 
+                }} 
+                className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
+              >
+                <span>💻 {isFa ? 'سایت‌های ریاضی کشورها' : 'Math Websites'}</span>
+                <span className="text-[10px]">{isMathSitesOpen ? '▲' : '▼'}</span>
+              </button>
+
               {/* بازخورد کلاس‌ها */}
               <button 
                 type="button"
-                onClick={() => { setIsFeedbackOpen(!isFeedbackOpen); setIsEducationOpen(false); }} 
+                onClick={() => { 
+                  setIsFeedbackOpen(!isFeedbackOpen); 
+                  setIsEducationOpen(false); 
+                  setIsMathSitesOpen(false); 
+                }} 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
                 <span>💬 {isFa ? 'بازخورد کلاس‌ها' : 'Class Feedback'}</span>
@@ -124,6 +154,25 @@ export default function Home() {
                   >
                     <span>{item.flag}</span>
                     <span>{isFa ? item.fa : item.en}</span>
+                  </a>
+                ))}
+              </div>
+            )}
+
+            {/* زیرمنوی کشویی سایت‌های ریاضی کشورها */}
+            {isMathSitesOpen && (
+              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
+                {mathSites.map((item, idx) => (
+                  <a 
+                    key={idx} 
+                    href={item.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-300 shadow-sm transition flex items-center gap-1.5"
+                  >
+                    <span>{item.flag}</span>
+                    <span>{isFa ? item.fa : item.en}</span>
+                    <span className="text-[10px] text-gray-400">↗</span>
                   </a>
                 ))}
               </div>
