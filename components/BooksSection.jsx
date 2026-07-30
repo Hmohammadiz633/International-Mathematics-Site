@@ -13,8 +13,8 @@ const COUNTRY_GRADE_LINKS = {
   },
   australia: { g7: 'https://t.me/International_Maths/768', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths/769', g10: 'https://t.me/International_Maths/43', g11: 'https://t.me/International_Maths/85', g12: 'https://t.me/International_Maths/23' },
   canada: { g7: 'https://t.me/International_Maths/482', g8: 'https://t.me/International_Maths/481', g9: 'https://t.me/International_Maths/571', g10: 'https://t.me/International_Maths/571', g11: 'https://t.me/International_Maths/18', g12: 'https://t.me/International_Maths/52' },
-  uk: { g7: 'https://t.me/International_Maths', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths', g10: 'https://t.me/International_Maths', g11: 'https://t.me/International_Maths', g12: 'https://t.me/International_Maths' },
-  germany: { g7: 'https://t.me/International_Maths', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths', g10: 'https://t.me/International_Maths', g11: 'https://t.me/International_Maths', g12: 'https://t.me/International_Maths' },
+  uk: { g7: 'https://t.me/International_Maths/2740', g8: 'https://t.me/International_Maths/2739', g9: 'https://t.me/International_Maths/13', g10: 'https://t.me/International_Maths/21', g11: 'https://t.me/International_Maths/10', g12: 'https://t.me/International_Maths/2743' },
+  germany: { g7: 'https://t.me/International_Maths', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths', g10: 'https://t.me/International_Maths', g11: 'https://t.me/International_Maths/10', g12: 'https://t.me/International_Maths' },
   california: { g7: 'https://t.me/International_Maths', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths', g10: 'https://t.me/International_Maths', g11: 'https://t.me/International_Maths', g12: 'https://t.me/International_Maths' },
   turkey: { g7: 'https://t.me/International_Maths', g8: 'https://t.me/International_Maths', g9: 'https://t.me/International_Maths', g10: 'https://t.me/International_Maths', g11: 'https://t.me/International_Maths', g12: 'https://t.me/International_Maths' },
 };
