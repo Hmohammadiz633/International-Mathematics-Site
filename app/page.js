@@ -9,7 +9,7 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEducationOpen, setIsEducationOpen] = useState(false);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
-  
+
   const isFa = lang === 'fa';
 
   const scrollToSection = (id) => {
@@ -59,7 +59,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* سمت چپ: پکیج تغییر زبان */}
+          {/* سمت چپ: تغییر زبان */}
           <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300">
             <button
               onClick={() => setLang('fa')}
@@ -81,7 +81,7 @@ export default function Home() {
         {isMenuOpen && (
           <div className="max-w-6xl mx-auto mt-3 pt-3 border-t border-gray-200 flex flex-col gap-2">
             
-            {/* ۱. نظام آموزشی کشورها (در بالاترین قسمت) */}
+            {/* ۱. نظام آموزشی کشورها */}
             <div className="flex flex-col gap-1">
               <button
                 onClick={() => setIsEducationOpen(!isEducationOpen)}
@@ -98,7 +98,6 @@ export default function Home() {
                 </svg>
               </button>
 
-              {/* زیرمجموعه‌های نظام آموزشی کشورها */}
               {isEducationOpen && (
                 <div className="flex flex-col gap-1.5 pr-4 pl-2 py-1 border-r-2 border-gray-300 mr-2 my-1">
                   <a
@@ -200,78 +199,4 @@ export default function Home() {
                 </svg>
               </button>
 
-              {/* زیرمجموعه‌های بازخورد */}
               {isFeedbackOpen && (
-                <div className="flex flex-col gap-1.5 pr-4 pl-2 py-1 border-r-2 border-gray-300 mr-2 my-1">
-                  <a
-                    href="https://t.me/International_Maths"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={closeAllMenus}
-                    className="text-right px-3 py-1.5 text-xs font-semibold text-black bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 transition flex items-center justify-between"
-                  >
-                    <span>⭐ {isFa ? 'بازخورد ۱' : 'Feedback 1'}</span>
-                    <span className="text-[10px] text-gray-500">Telegram ↗</span>
-                  </a>
-                  <a
-                    href="https://t.me/International_Maths"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={closeAllMenus}
-                    className="text-right px-3 py-1.5 text-xs font-semibold text-black bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 transition flex items-center justify-between"
-                  >
-                    <span>⭐ {isFa ? 'بازخورد ۲' : 'Feedback 2'}</span>
-                    <span className="text-[10px] text-gray-500">Telegram ↗</span>
-                  </a>
-                </div>
-              )}
-            </div>
-
-            {/* ۴. کتب آموزشی */}
-            <button
-              onClick={() => scrollToSection('books')}
-              className="text-right px-4 py-2 text-sm font-bold text-black bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition"
-            >
-              📚 {isFa ? 'کتب آموزشی' : 'Books'}
-            </button>
-
-            {/* ۵. ارتباط با استاد */}
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="text-right px-4 py-2 text-sm font-bold text-black bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition"
-            >
-              📞 {isFa ? 'ارتباط با استاد' : 'Contact'}
-            </button>
-          </div>
-        )}
-      </header>
-
-      {/* بخش بنر اصلی */}
-      <section className="max-w-4xl mx-auto text-center px-4 pt-10 pb-6">
-        <h2 className="text-3xl md:text-5xl font-extrabold text-black mb-4">
-          {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics Tutoring'}
-        </h2>
-        <p className="text-black text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-medium">
-          {isFa
-            ? 'تدریس تخصصی و مفهومی ریاضیات نظام‌های آموزشی بین‌المللی (امریكا، كانادا، انگلیس، استرالیا، آلمان و تركیه)'
-            : 'Specialized math education for international curricula (USA, Canada, UK, Australia, Germany, Turkey).'}
-        </p>
-
-        <div className="mt-6 flex justify-center">
-          <a
-            href="https://t.me/International_Maths"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-black font-bold rounded-xl border border-gray-400 shadow-sm transition"
-          >
-            {isFa ? 'درخواست کلاس و مشاوره' : 'Request Tutoring'}
-          </a>
-        </div>
-      </section>
-
-      {/* بخش کامل درباره من همراه با عکس پرتره و عنوان زیر عکس */}
-      <section id="about" className="max-w-5xl mx-auto px-4 py-8">
-        <div className="bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-300 shadow-sm">
-          
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-            {
