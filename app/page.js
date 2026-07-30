@@ -7,10 +7,12 @@ import ContactButtons from '@/components/ContactButtons';
 export default function Home() {
   const [lang, setLang] = useState('fa');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false); // مدیریت حالت باز/بسته شدن فلش بازخورد
   const isFa = lang === 'fa';
 
   const scrollToSection = (id) => {
     setIsMenuOpen(false);
+    setIsFeedbackOpen(false);
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -77,54 +79,55 @@ export default function Home() {
               👤 {isFa ? 'درباره من' : 'About Me'}
             </button>
 
-            {/* نمونه تدریس‌ها */}
-            <div className="flex flex-col gap-1 pr-3 border-r-2 border-gray-300 my-1">
-              <span className="text-xs font-bold text-gray-600 px-2 py-1">
-                🎥 {isFa ? 'نمونه تدریس‌ها:' : 'Sample Lessons:'}
-              </span>
-              <a
-                href="https://t.me/International_Maths"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-right px-4 py-1.5 text-xs font-semibold text-black bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 transition"
+            {/* بازخورد تدریس به همراه فلش */}
+            <div className="flex flex-col gap-1">
+              <button
+                onClick={() => setIsFeedbackOpen(!isFeedbackOpen)}
+                className="w-full flex items-center justify-between px-4 py-2 text-sm font-bold text-black bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition"
               >
-                🔹 {isFa ? 'نمونه تدریس ۱' : 'Sample Lesson 1'}
-              </a>
-              <a
-                href="https://t.me/International_Maths"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-right px-4 py-1.5 text-xs font-semibold text-black bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 transition"
-              >
-                🔹 {isFa ? 'نمونه تدریس ۲' : 'Sample Lesson 2'}
-              </a>
-            </div>
+                <span>💬 {isFa ? 'بازخورد تدریس' : 'Teaching Feedback'}</span>
+                {/* آیکون فلش با قابلیت چرخش */}
+                <svg
+                  className={`w-4 h-4 transition-transform duration-200 ${isFeedbackOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
 
-            {/* بازخورد تدریس‌ها */}
-            <div className="flex flex-col gap-1 pr-3 border-r-2 border-gray-300 my-1">
-              <span className="text-xs font-bold text-gray-600 px-2 py-1">
-                💬 {isFa ? 'بازخورد و نظرات:' : 'Feedbacks:'}
-              </span>
-              <a
-                href="https://t.me/International_Maths/111"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-right px-4 py-1.5 text-xs font-semibold text-black bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 transition"
-              >
-                ⭐ {isFa ? 'بازخورد ۱' : 'Feedback 1'}
-              </a>
-              <a
-                href="https://t.me/International_Maths/110"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-right px-4 py-1.5 text-xs font-semibold text-black bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 transition"
-              >
-                ⭐ {isFa ? 'بازخورد ۲' : 'Feedback 2'}
-              </a>
+              {/* زیرمجموعه‌های بازخورد با کلیک روی فلش/دکمه */}
+              {isFeedbackOpen && (
+                <div className="flex flex-col gap-1.5 pr-4 pl-2 py-1 border-r-2 border-gray-300 mr-2 my-1">
+                  <a
+                    href="https://t.me/International_Maths"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsFeedbackOpen(false);
+                    }}
+                    className="text-right px-3 py-1.5 text-xs font-semibold text-black bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 transition flex items-center justify-between"
+                  >
+                    <span>⭐ {isFa ? 'بازخورد ۱' : 'Feedback 1'}</span>
+                    <span className="text-[10px] text-gray-500"> Telegram ↗</span>
+                  </a>
+                  <a
+                    href="https://t.me/International_Maths"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsFeedbackOpen(false);
+                    }}
+                    className="text-right px-3 py-1.5 text-xs font-semibold text-black bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 transition flex items-center justify-between"
+                  >
+                    <span>⭐ {isFa ? 'بازخورد ۲' : 'Feedback 2'}</span>
+                    <span className="text-[10px] text-gray-500"> Telegram ↗</span>
+                  </a>
+                </div>
+              )}
             </div>
 
             {/* کتب آموزشی */}
