@@ -95,17 +95,17 @@ export default function Home() {
               {isEducationOpen && (
                 <div className="flex flex-col gap-1.5 pr-4 pl-2 py-1 border-r-2 border-gray-300 mr-2 my-1">
                   {[
-                    { flag: '🇺🇸', fa: 'نظام آموزشی آمریکا', en: 'US Educational System' },
-                    { flag: '🇬🇧', fa: 'نظام آموزشی انگلستان', en: 'UK Educational System' },
-                    { flag: '🇩🇪', fa: 'نظام آموزشی آلمان', en: 'Germany Educational System' },
-                    { flag: '🇦🇺', fa: 'نظام آموزشی استرالیا', en: 'Australia Educational System' },
-                    { flag: '🇹🇷', fa: 'نظام آموزشی ترکیه', en: 'Turkey Educational System' },
-                    { flag: '🇮🇹', fa: 'نظام آموزشی ایتالیا', en: 'Italy Educational System' },
-                    { flag: '🇨🇦', fa: 'نظام آموزشی کانادا', en: 'Canada Educational System' },
+                    { flag: '🇺🇸', fa: 'نظام آموزشی آمریکا', en: 'US Educational System', link: 'https://t.me/International_Maths/379' },
+                    { flag: '🇬🇧', fa: 'نظام آموزشی انگلستان', en: 'UK Educational System', link: 'https://t.me/International_Maths/297' },
+                    { flag: '🇩🇪', fa: 'نظام آموزشی آلمان', en: 'Germany Educational System', link: 'https://t.me/International_Maths/375' },
+                    { flag: '🇦🇺', fa: 'نظام آموزشی استرالیا', en: 'Australia Educational System', link: 'https://t.me/International_Maths/299' },
+                    { flag: '🇹🇷', fa: 'نظام آموزشی ترکیه', en: 'Turkey Educational System', link: 'https://t.me/International_Maths/395' },
+                    { flag: '🇮🇹', fa: 'نظام آموزشی ایتالیا', en: 'Italy Educational System', link: 'https://t.me/International_Maths/389' },
+                    { flag: '🇨🇦', fa: 'نظام آموزشی کانادا', en: 'Canada Educational System', link: 'https://t.me/International_Maths/302' },
                   ].map((item, idx) => (
                     <a
                       key={idx}
-                      href="https://t.me/International_Maths"
+                      href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={closeAll}
