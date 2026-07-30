@@ -71,9 +71,11 @@ export default function Home() {
           </div>
         </div>
 
-        {/* منوی کشویی */}
+        {/* منوی کشویی هدر */}
         {isMenuOpen && (
           <div className="max-w-6xl mx-auto mt-3 pt-3 border-t border-gray-200 flex flex-col gap-2">
+            
+            {/* ۱. نظام آموزشی کشورها */}
             <div className="flex flex-col gap-1">
               <button
                 onClick={() => setIsEducationOpen(!isEducationOpen)}
@@ -117,13 +119,15 @@ export default function Home() {
               )}
             </div>
 
+            {/* ۲. کتب آموزشی */}
             <button
-              onClick={() => scrollToSection('about')}
+              onClick={() => scrollToSection('books')}
               className="text-right px-4 py-2 text-sm font-bold text-black bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition"
             >
-              👤 {isFa ? 'درباره من' : 'About Me'}
+              📚 {isFa ? 'کتب آموزشی' : 'Books'}
             </button>
 
+            {/* ۳. بازخورد تدریس */}
             <div className="flex flex-col gap-1">
               <button
                 onClick={() => setIsFeedbackOpen(!isFeedbackOpen)}
@@ -159,13 +163,15 @@ export default function Home() {
               )}
             </div>
 
+            {/* ۴. درباره من */}
             <button
-              onClick={() => scrollToSection('books')}
+              onClick={() => scrollToSection('about')}
               className="text-right px-4 py-2 text-sm font-bold text-black bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition"
             >
-              📚 {isFa ? 'کتب آموزشی' : 'Books'}
+              👤 {isFa ? 'درباره من' : 'About Me'}
             </button>
 
+            {/* ۵. ارتباط با استاد */}
             <button
               onClick={() => scrollToSection('contact')}
               className="text-right px-4 py-2 text-sm font-bold text-black bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition"
