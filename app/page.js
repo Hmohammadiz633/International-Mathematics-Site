@@ -69,7 +69,6 @@ export default function Home() {
                 <span className="text-[10px]">{isFeedbackOpen ? '▲' : '▼'}</span>
               </button>
 
-              <button onClick={() => scrollToSection('about')} className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition">👤 {isFa ? 'هادی محمدی' : 'Hadi Mohammadi'}</button>
               <button onClick={() => scrollToSection('contact')} className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition">📞 {isFa ? 'ارتباط با استاد' : 'Contact'}</button>
             </div>
 
@@ -103,7 +102,7 @@ export default function Home() {
         </p>
       </section>
 
-      {/* بخش درباره استاد (هادی محمدی) */}
+      {/* بخش هادی محمدی */}
       <section id="about" className="max-w-5xl mx-auto px-4 py-8">
         <div className="bg-slate-800 text-white rounded-3xl p-6 md:p-10 border border-slate-700 shadow-2xl">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
@@ -129,41 +128,4 @@ export default function Home() {
                       در اینجا و به طور کامل‌تر در گروه تلگرامی این مجموعه، کتاب‌های ریاضی مدارس و دانشگاه‌های کشورهای مختلف از جمله آمریکا، کانادا، آلمان، انگلستان، استرالیا و ترکیه گردآوری شده و به صورت کاملاً رایگان در اختیار تمام اعضاء قرار می‌گیرد.
                     </p>
                     <p>
-                      فرآیند آموزش به صورت تدریس زنده و تصویری و کاملاً منطبق با همان کتاب درسی دانش‌آموز یا دانشجو انجام می‌شود و برای درک بهتر مفاهیم، تدریس به صورت ترکیبی از زبان فارسی و انگلیسی همراه با توضیح دقیق اصطلاحات تخصصی ریاضی ارائه می‌گردد.
-                    </p>
-                    <p>
-                      همچنین کلاس‌های تقویتی ویژه تابستان برای تثبیت پایه ریاضی و آمادگی برای سال جدید تحصیلی با شهریه دوره‌ها به صورت ترمیک و با قیمتی مناسب برگزار می‌شود.
-                    </p>
-                    <p>
-                      من با تکیه بر تجربیات چندین دهه تدریس در نظام‌های آموزشی گوناگون، متعهد به ارائه دقیق‌ترین و کاربردی‌ترین آموزش ریاضی مطابق با استانداردهای مدارس خارج از ایران هستم و از شما دعوت می‌کنم که با پیوستن به این دوره، ریاضی را به شیوه‌ای صحیح، اصولی و متناسب با نیازهای تحصیلی خود فرا گیرید.
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p>
-                      Holder of a Ph.D. in Mathematics from Amirkabir University of Technology, with over <strong className="text-white font-bold">29 years</strong> of continuous experience in teaching mathematics both nationally and internationally.
-                    </p>
-                    <p>
-                      The goal of this program is to provide targeted, specialized math tutoring for students living abroad, aligning perfectly with their local school standard curricula, alongside free daily Q&A sessions on social media platforms.
-                    </p>
-                    <p>
-                      Special summer prep classes are also offered to reinforce mathematical foundations and prepare students for the upcoming academic year.
-                    </p>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div id="books" className="max-w-6xl mx-auto px-4 mt-4">
-        <BooksSection lang={lang} />
-      </div>
-
-      <div id="contact">
-        <ContactButtons lang={lang} />
-      </div>
-    </main>
-  );
-}
+                      فرآیند آموزش به صورت تدریس زنده و تصویری و کاملاً منطبق با همان کتاب درسی دانش‌آموز یا دانشجو انجام می‌شود و برای درک بهتر مفاهیم، تدریس به صورت ترکیبی از زبان فارسی و انگلیسی همراه با
