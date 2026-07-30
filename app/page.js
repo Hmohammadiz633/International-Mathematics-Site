@@ -23,7 +23,7 @@ export default function Home() {
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200 px-4 py-3 shadow-sm">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           
-          {/* سمت راست: منوی همبرگری */}
+          {/* سمت راست: منوی همبرگری (سه خط) */}
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -48,7 +48,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* سمت چپ: تغییر زبان */}
+          {/* سمت چپ: پکیج تغییر زبان */}
           <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300">
             <button
               onClick={() => setLang('fa')}
@@ -69,18 +69,73 @@ export default function Home() {
         {/* منوی کشویی همبرگری */}
         {isMenuOpen && (
           <div className="max-w-6xl mx-auto mt-3 pt-3 border-t border-gray-200 flex flex-col gap-2">
+            {/* درباره من */}
             <button
               onClick={() => scrollToSection('about')}
               className="text-right px-4 py-2 text-sm font-bold text-black bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition"
             >
               👤 {isFa ? 'درباره من' : 'About Me'}
             </button>
+
+            {/* نمونه تدریس‌ها */}
+            <div className="flex flex-col gap-1 pr-3 border-r-2 border-gray-300 my-1">
+              <span className="text-xs font-bold text-gray-600 px-2 py-1">
+                🎥 {isFa ? 'نمونه تدریس‌ها:' : 'Sample Lessons:'}
+              </span>
+              <a
+                href="https://t.me/International_Maths"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-right px-4 py-1.5 text-xs font-semibold text-black bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 transition"
+              >
+                🔹 {isFa ? 'نمونه تدریس ۱' : 'Sample Lesson 1'}
+              </a>
+              <a
+                href="https://t.me/International_Maths"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-right px-4 py-1.5 text-xs font-semibold text-black bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 transition"
+              >
+                🔹 {isFa ? 'نمونه تدریس ۲' : 'Sample Lesson 2'}
+              </a>
+            </div>
+
+            {/* بازخورد تدریس‌ها */}
+            <div className="flex flex-col gap-1 pr-3 border-r-2 border-gray-300 my-1">
+              <span className="text-xs font-bold text-gray-600 px-2 py-1">
+                💬 {isFa ? 'بازخورد و نظرات:' : 'Feedbacks:'}
+              </span>
+              <a
+                href="https://t.me/International_Maths"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-right px-4 py-1.5 text-xs font-semibold text-black bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 transition"
+              >
+                ⭐ {isFa ? 'بازخورد ۱' : 'Feedback 1'}
+              </a>
+              <a
+                href="https://t.me/International_Maths"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-right px-4 py-1.5 text-xs font-semibold text-black bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 transition"
+              >
+                ⭐ {isFa ? 'بازخورد ۲' : 'Feedback 2'}
+              </a>
+            </div>
+
+            {/* کتب آموزشی */}
             <button
               onClick={() => scrollToSection('books')}
               className="text-right px-4 py-2 text-sm font-bold text-black bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition"
             >
               📚 {isFa ? 'کتب آموزشی' : 'Books'}
             </button>
+
+            {/* ارتباط با استاد */}
             <button
               onClick={() => scrollToSection('contact')}
               className="text-right px-4 py-2 text-sm font-bold text-black bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition"
