@@ -47,7 +47,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ردیف دوم: منوی افقی در یک ردیف زیر زبان‌ها */}
+          {/* ردیف دوم: منوی افقی زیر زبان‌ها */}
           <div className="w-full flex items-center justify-center gap-2 md:gap-4 overflow-x-auto py-1 text-xs md:text-sm font-bold border-t border-gray-100 pt-2">
             <a
               href="https://t.me/International_Maths"
@@ -115,34 +115,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* درباره من */}
+      {/* درباره من (کادر خاکستری پررنگ با متن سفید و زوایای گرد زیباسازی‌شده) */}
       <section id="about" className="max-w-5xl mx-auto px-4 py-8">
-        <div className="bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-300 shadow-sm">
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+        <div className="bg-slate-800 text-white rounded-3xl p-6 md:p-10 border border-slate-700 shadow-2xl backdrop-blur-sm">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
             <div className="shrink-0 flex flex-col items-center">
               <img
                 src="/profile.jpg"
                 alt="دکتر هادی محمدی"
-                className="w-48 h-60 object-cover rounded-2xl border-2 border-gray-300 shadow-md mb-3"
+                className="w-48 h-60 object-cover rounded-2xl border-2 border-slate-600 shadow-lg mb-3"
               />
-              <span className="text-xs font-bold text-gray-800 bg-gray-200 px-3 py-1.5 rounded-lg border border-gray-300 text-center">
+              <span className="text-xs font-bold text-slate-100 bg-slate-700/80 px-3 py-1.5 rounded-xl border border-slate-600 text-center shadow-inner">
                 {isFa ? 'هیئت علمی بازنشسته دانشگاه' : 'Retired University Faculty Member'}
               </span>
             </div>
 
             <div className="flex-1">
-              <div className="flex items-center gap-3 mb-4 border-b border-gray-300 pb-3 mt-4 md:mt-0">
+              <div className="flex items-center gap-3 mb-6 border-b border-slate-700 pb-4 mt-2 md:mt-0">
                 <span className="text-3xl">👨‍🏫</span>
-                <h3 className="text-2xl font-bold text-black">
+                <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-wide">
                   {isFa ? 'درباره من' : 'About Me'}
                 </h3>
               </div>
 
-              <div className="text-black leading-loose text-sm md:text-base space-y-4 text-justify">
+              <div className="text-slate-100 leading-loose text-sm md:text-base space-y-4 text-justify font-light">
                 {isFa ? (
                   <>
                     <p>
-                      اینجانب <strong>هادی محمدی</strong>، دارنده مدرک دکترای تخصصی ریاضی از دانشگاه صنعتی امیرکبیر هستم و به مدت <strong>۲۹ سال</strong> به طور مستمر در عرصه آموزش ریاضی در داخل و خارج از کشور فعالیت داشته‌ام.
+                      اینجانب <strong className="text-white font-bold">هادی محمدی</strong>، دارنده مدرک دکترای تخصصی ریاضی از دانشگاه صنعتی امیرکبیر هستم و به مدت <strong className="text-white font-bold">۲۹ سال</strong> به طور مستمر در عرصه آموزش ریاضی در داخل و خارج از کشور فعالیت داشته‌ام.
                     </p>
                     <p>
                       هدف از راه‌اندازی این وب‌سایت و گروه آموزشی مرتبط، ارائه خدمات تدریس تخصصی و هدفمند به ایرانیان عزیز مقیم خارج از کشور است تا بتوانند ریاضی را دقیقاً مطابق با کتاب‌های درسی و نظام آموزشی کشور محل سکونت خود بیاموزند.
@@ -163,7 +163,7 @@ export default function Home() {
                 ) : (
                   <>
                     <p>
-                      I am <strong>Dr. Hadi Mohammadi</strong>, holding a Ph.D. in Mathematics from Amirkabir University of Technology, with over <strong>29 years</strong> of continuous experience in teaching mathematics both nationally and internationally.
+                      I am <strong className="text-white font-bold">Dr. Hadi Mohammadi</strong>, holding a Ph.D. in Mathematics from Amirkabir University of Technology, with over <strong className="text-white font-bold">29 years</strong> of continuous experience in teaching mathematics both nationally and internationally.
                     </p>
                     <p>
                       The goal of establishing this website and educational group is to provide targeted, specialized math tutoring for students living abroad, aligning perfectly with their local school standard curricula.
