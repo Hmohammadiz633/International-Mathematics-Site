@@ -6,6 +6,8 @@ import ContactButtons from '@/components/ContactButtons';
 
 export default function Home() {
   const [lang, setLang] = useState('fa');
+  const [isEducationOpen, setIsEducationOpen] = useState(false);
+
   const isFa = lang === 'fa';
 
   const scrollToSection = (id) => {
@@ -14,6 +16,16 @@ export default function Home() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const countries = [
+    { flag: '🇺🇸', fa: 'آمریکا', en: 'USA', link: 'https://t.me/International_Maths/379' },
+    { flag: '🇬🇧', fa: 'انگلستان', en: 'UK', link: 'https://t.me/International_Maths/297' },
+    { flag: '🇩🇪', fa: 'آلمان', en: 'Germany', link: 'https://t.me/International_Maths/375' },
+    { flag: '🇦🇺', fa: 'استرالیا', en: 'Australia', link: 'https://t.me/International_Maths/299' },
+    { flag: '🇹🇷', fa: 'ترکیه', en: 'Turkey', link: 'https://t.me/International_Maths/395' },
+    { flag: '🇮🇹', fa: 'ایتالیا', en: 'Italy', link: 'https://t.me/International_Maths/389' },
+    { flag: '🇨🇦', fa: 'کانادا', en: 'Canada', link: 'https://t.me/International_Maths/302' },
+  ];
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-white text-black font-sans pb-12">
@@ -47,46 +59,87 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ردیف دوم: منوی افقی زیر زبان‌ها */}
-          <div className="w-full flex items-center justify-center gap-2 md:gap-4 overflow-x-auto py-1 text-xs md:text-sm font-bold border-t border-gray-100 pt-2">
-            <a
-              href="https://t.me/International_Maths"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition"
-            >
-              🌐 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
-            </a>
+          {/* ردیف دوم: منوی افقی بالا */}
+          <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-2">
+            <div className="w-full flex items-center justify-center gap-2 md:gap-3 overflow-x-auto py-1 text-xs md:text-sm font-bold">
+              
+              {/* دکمه کشویی نظام آموزشی کشورها */}
+              <button
+                onClick={() => setIsEducationOpen(!isEducationOpen)}
+                className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
+              >
+                <span>🌐 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}</span>
+                <span className="text-[10px]">{isEducationOpen ? '▲' : '▼'}</span>
+              </button>
 
-            <button
-              onClick={() => scrollToSection('books')}
-              className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition"
-            >
-              📚 {isFa ? 'کتب آموزشی' : 'Books'}
-            </button>
+              <button
+                onClick={() => scrollToSection('books')}
+                className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition"
+              >
+                📚 {isFa ? 'کتب آموزشی' : 'Books'}
+              </button>
 
-            <a
-              href="https://t.me/International_Maths/110"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition"
-            >
-              💬 {isFa ? 'بازخورد تدریس' : 'Feedback'}
-            </a>
+              <a
+                href="https://t.me/International_Maths/110"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition"
+              >
+                💬 {isFa ? 'بازخورد ۱' : 'Feedback 1'}
+              </a>
 
-            <button
-              onClick={() => scrollToSection('about')}
-              className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition"
-            >
-              👤 {isFa ? 'درباره من' : 'About Me'}
-            </button>
+              <a
+                href="https://t.me/International_Maths/111"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition"
+              >
+                💬 {isFa ? 'بازخورد ۲' : 'Feedback 2'}
+              </a>
 
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition"
-            >
-              📞 {isFa ? 'ارتباط با استاد' : 'Contact'}
-            </button>
+              <a
+                href="https://t.me/International_Maths/1352"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition"
+              >
+                💬 {isFa ? 'بازخورد ۳' : 'Feedback 3'}
+              </a>
+
+              <button
+                onClick={() => scrollToSection('about')}
+                className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition"
+              >
+                👤 {isFa ? 'درباره من' : 'About Me'}
+              </button>
+
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition"
+              >
+                📞 {isFa ? 'ارتباط با استاد' : 'Contact'}
+              </button>
+            </div>
+
+            {/* زیرمنوی کشویی تمام کشورها با لینک‌های اختصاصی */}
+            {isEducationOpen && (
+              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
+                {countries.map((item, idx) => (
+                  <a
+                    key={idx}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsEducationOpen(false)}
+                    className="px-3 py-1 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-md border border-gray-300 shadow-sm transition flex items-center gap-1.5"
+                  >
+                    <span>{item.flag}</span>
+                    <span>{isFa ? item.fa : item.en}</span>
+                    <span className="text-[10px] text-gray-400">↗</span>
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
         </div>
@@ -115,85 +168,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* درباره من (کادر خاکستری پررنگ با متن سفید و زوایای گرد زیباسازی‌شده) */}
+      {/* درباره من */}
       <section id="about" className="max-w-5xl mx-auto px-4 py-8">
         <div className="bg-slate-800 text-white rounded-3xl p-6 md:p-10 border border-slate-700 shadow-2xl backdrop-blur-sm">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
             <div className="shrink-0 flex flex-col items-center">
               <img
                 src="/profile.jpg"
-                alt="دکتر هادی محمدی"
-                className="w-48 h-60 object-cover rounded-2xl border-2 border-slate-600 shadow-lg mb-3"
-              />
-              <span className="text-xs font-bold text-slate-100 bg-slate-700/80 px-3 py-1.5 rounded-xl border border-slate-600 text-center shadow-inner">
-                {isFa ? 'هیئت علمی بازنشسته دانشگاه' : 'Retired University Faculty Member'}
-              </span>
-            </div>
-
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-6 border-b border-slate-700 pb-4 mt-2 md:mt-0">
-                <span className="text-3xl">👨‍🏫</span>
-                <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-wide">
-                  {isFa ? 'درباره من' : 'About Me'}
-                </h3>
-              </div>
-
-              <div className="text-slate-100 leading-loose text-sm md:text-base space-y-4 text-justify font-light">
-                {isFa ? (
-                  <>
-                    <p>
-                      اینجانب <strong className="text-white font-bold">هادی محمدی</strong>، دارنده مدرک دکترای تخصصی ریاضی از دانشگاه صنعتی امیرکبیر هستم و به مدت <strong className="text-white font-bold">۲۹ سال</strong> به طور مستمر در عرصه آموزش ریاضی در داخل و خارج از کشور فعالیت داشته‌ام.
-                    </p>
-                    <p>
-                      هدف از راه‌اندازی این وب‌سایت و گروه آموزشی مرتبط، ارائه خدمات تدریس تخصصی و هدفمند به ایرانیان عزیز مقیم خارج از کشور است تا بتوانند ریاضی را دقیقاً مطابق با کتاب‌های درسی و نظام آموزشی کشور محل سکونت خود بیاموزند.
-                    </p>
-                    <p>
-                      در اینجا و به طور کامل‌تر در گروه تلگرامی این مجموعه، کتاب‌های ریاضی مدارس و دانشگاه‌های کشورهای مختلف از جمله آمریکا، کانادا، آلمان، انگلستان، استرالیا و ترکیه گردآوری شده و به صورت کاملاً رایگان در اختیار تمام اعضاء قرار می‌گیرد.
-                    </p>
-                    <p>
-                      فرآیند آموزش به صورت تدریس زنده و تصویری و کاملاً منطبق با همان کتاب درسی دانش‌آموز یا دانشجو انجام می‌شود و برای درک بهتر مفاهیم، تدریس به صورت ترکیبی از زبان فارسی و انگلیسی همراه با توضیح دقیق اصطلاحات تخصصی ریاضی ارائه می‌گردد.
-                    </p>
-                    <p>
-                      به منظور تضمین کیفیت یادگیری، جلسات رفع اشکال به صورت روزانه برگزار می‌شود تا ابهامات درسی به سرعت برطرف گردد و شهریه دوره‌ها نیز به صورت ترمیک و با قیمتی مناسب تعیین شده است.
-                    </p>
-                    <p>
-                      من با تکیه بر تجربیات چندین دهه تدریس در نظام‌های آموزشی گوناگون، متعهد به ارائه دقیق‌ترین و کاربردی‌ترین آموزش ریاضی مطابق با استانداردهای مدارس خارج از ایران هستم و از شما دعوت می‌کنم که با پیوستن به این دوره، ریاضی را به شیوه‌ای صحیح، اصولی و متناسب با نیازهای تحصیلی خود فرا گیرید.
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p>
-                      I am <strong className="text-white font-bold">Dr. Hadi Mohammadi</strong>, holding a Ph.D. in Mathematics from Amirkabir University of Technology, with over <strong className="text-white font-bold">29 years</strong> of continuous experience in teaching mathematics both nationally and internationally.
-                    </p>
-                    <p>
-                      The goal of establishing this website and educational group is to provide targeted, specialized math tutoring for students living abroad, aligning perfectly with their local school standard curricula.
-                    </p>
-                    <p>
-                      Mathematics textbooks for schools and universities across various countries—including the US, Canada, Germany, UK, Australia, and Turkey—are gathered and made available completely free in our Telegram channel.
-                    </p>
-                    <p>
-                      Classes are delivered live and interactive, tailored directly to your textbook. Instruction utilizes a bilingual approach (English and Persian) to ensure maximum conceptual clarity and terminology mastery.
-                    </p>
-                    <p>
-                      Daily Q&A sessions are held to quickly address any course doubts, ensuring high learning standards with reasonable tuition fees.
-                    </p>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* بخش کتاب‌ها */}
-      <div id="books" className="max-w-6xl mx-auto px-4 mt-4">
-        <BooksSection lang={lang} />
-      </div>
-
-      {/* دکمه‌های ارتباط */}
-      <div id="contact">
-        <ContactButtons lang={lang} />
-      </div>
-    </main>
-  );
-}
