@@ -108,7 +108,7 @@ export default function Home() {
                 💬 {isFa ? 'بازخورد و نظرات:' : 'Feedbacks:'}
               </span>
               <a
-                href="https://t.me/International_Maths"
+                href="https://t.me/International_Maths/111"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMenuOpen(false)}
@@ -117,7 +117,7 @@ export default function Home() {
                 ⭐ {isFa ? 'بازخورد ۱' : 'Feedback 1'}
               </a>
               <a
-                href="https://t.me/International_Maths"
+                href="https://t.me/International_Maths/110"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMenuOpen(false)}
