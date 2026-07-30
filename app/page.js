@@ -6,184 +6,90 @@ import ContactButtons from '@/components/ContactButtons';
 
 export default function Home() {
   const [lang, setLang] = useState('fa');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isEducationOpen, setIsEducationOpen] = useState(false);
-  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
-
   const isFa = lang === 'fa';
 
   const scrollToSection = (id) => {
-    setIsMenuOpen(false);
-    setIsEducationOpen(false);
-    setIsFeedbackOpen(false);
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  const closeAll = () => {
-    setIsMenuOpen(false);
-    setIsEducationOpen(false);
-    setIsFeedbackOpen(false);
-  };
-
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-white text-black font-sans pb-12">
       {/* هدر */}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200 px-4 py-3 shadow-sm">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-black bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 transition"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 18h16" />
-                )}
-              </svg>
-            </button>
+        <div className="max-w-6xl mx-auto flex flex-col items-center gap-3">
+          
+          {/* ردیف اول: عنوان و دکمه تغییر زبان */}
+          <div className="w-full flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="text-2xl">📐</span>
               <h1 className="font-bold text-base md:text-lg text-black">
                 {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Math'}
               </h1>
             </div>
-          </div>
 
-          <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300">
-            <button
-              onClick={() => setLang('fa')}
-              className={`text-xs font-bold transition ${isFa ? 'text-black underline' : 'text-gray-500 hover:text-black'}`}
-            >
-              فارسی
-            </button>
-            <span className="text-gray-400 font-light">|</span>
-            <button
-              onClick={() => setLang('en')}
-              className={`text-xs font-bold transition ${!isFa ? 'text-black underline' : 'text-gray-500 hover:text-black'}`}
-            >
-              English
-            </button>
-          </div>
-        </div>
-
-        {/* منوی کشویی هدر */}
-        {isMenuOpen && (
-          <div className="max-w-6xl mx-auto mt-3 pt-3 border-t border-gray-200 flex flex-col gap-2">
-            
-            {/* ۱. نظام آموزشی کشورها */}
-            <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300">
               <button
-                onClick={() => setIsEducationOpen(!isEducationOpen)}
-                className="w-full flex items-center justify-between px-4 py-2 text-sm font-bold text-black bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition"
+                onClick={() => setLang('fa')}
+                className={`text-xs font-bold transition ${isFa ? 'text-black underline' : 'text-gray-500 hover:text-black'}`}
               >
-                <span>🌐 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}</span>
-                <svg
-                  className={`w-4 h-4 transition-transform duration-200 ${isEducationOpen ? 'rotate-180' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
+                فارسی
               </button>
-
-              {isEducationOpen && (
-                <div className="flex flex-col gap-1.5 pr-4 pl-2 py-1 border-r-2 border-gray-300 mr-2 my-1">
-                  {[
-                    { flag: '🇺🇸', fa: 'نظام آموزشی آمریکا', en: 'US Educational System', link: 'https://t.me/International_Maths/379' },
-                    { flag: '🇬🇧', fa: 'نظام آموزشی انگلستان', en: 'UK Educational System', link: 'https://t.me/International_Maths/297' },
-                    { flag: '🇩🇪', fa: 'نظام آموزشی آلمان', en: 'Germany Educational System', link: 'https://t.me/International_Maths/375' },
-                    { flag: '🇦🇺', fa: 'نظام آموزشی استرالیا', en: 'Australia Educational System', link: 'https://t.me/International_Maths/299' },
-                    { flag: '🇹🇷', fa: 'نظام آموزشی ترکیه', en: 'Turkey Educational System', link: 'https://t.me/International_Maths/395' },
-                    { flag: '🇮🇹', fa: 'نظام آموزشی ایتالیا', en: 'Italy Educational System', link: 'https://t.me/International_Maths/389' },
-                    { flag: '🇨🇦', fa: 'نظام آموزشی کانادا', en: 'Canada Educational System', link: 'https://t.me/International_Maths/302' },
-                  ].map((item, idx) => (
-                    <a
-                      key={idx}
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={closeAll}
-                      className="text-right px-3 py-1.5 text-xs font-semibold text-black bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 transition flex items-center justify-between"
-                    >
-                      <span>{item.flag} {isFa ? item.fa : item.en}</span>
-                      <span className="text-[10px] text-gray-500">Telegram ↗</span>
-                    </a>
-                  ))}
-                </div>
-              )}
+              <span className="text-gray-400 font-light">|</span>
+              <button
+                onClick={() => setLang('en')}
+                className={`text-xs font-bold transition ${!isFa ? 'text-black underline' : 'text-gray-500 hover:text-black'}`}
+              >
+                English
+              </button>
             </div>
+          </div>
 
-            {/* ۲. کتب آموزشی */}
+          {/* ردیف دوم: منوی افقی در یک ردیف زیر زبان‌ها */}
+          <div className="w-full flex items-center justify-center gap-2 md:gap-4 overflow-x-auto py-1 text-xs md:text-sm font-bold border-t border-gray-100 pt-2">
+            <a
+              href="https://t.me/International_Maths"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition"
+            >
+              🌐 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
+            </a>
+
             <button
               onClick={() => scrollToSection('books')}
-              className="text-right px-4 py-2 text-sm font-bold text-black bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition"
+              className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition"
             >
               📚 {isFa ? 'کتب آموزشی' : 'Books'}
             </button>
 
-            {/* ۳. بازخورد تدریس */}
-            <div className="flex flex-col gap-1">
-              <button
-                onClick={() => setIsFeedbackOpen(!isFeedbackOpen)}
-                className="w-full flex items-center justify-between px-4 py-2 text-sm font-bold text-black bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition"
-              >
-                <span>💬 {isFa ? 'بازخورد تدریس' : 'Teaching Feedback'}</span>
-                <svg
-                  className={`w-4 h-4 transition-transform duration-200 ${isFeedbackOpen ? 'rotate-180' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
+            <a
+              href="https://t.me/International_Maths/110"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition"
+            >
+              💬 {isFa ? 'بازخورد تدریس' : 'Feedback'}
+            </a>
 
-              {isFeedbackOpen && (
-                <div className="flex flex-col gap-1.5 pr-4 pl-2 py-1 border-r-2 border-gray-300 mr-2 my-1">
-                  {[
-                    { fa: 'بازخورد ۱', en: 'Feedback 1', link: 'https://t.me/International_Maths/110' },
-                    { fa: 'بازخورد ۲', en: 'Feedback 2', link: 'https://t.me/International_Maths/111' },
-                    { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
-                  ].map((item, idx) => (
-                    <a
-                      key={idx}
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={closeAll}
-                      className="text-right px-3 py-1.5 text-xs font-semibold text-black bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 transition flex items-center justify-between"
-                    >
-                      <span>⭐ {isFa ? item.fa : item.en}</span>
-                      <span className="text-[10px] text-gray-500">Telegram ↗</span>
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* ۴. درباره من */}
             <button
               onClick={() => scrollToSection('about')}
-              className="text-right px-4 py-2 text-sm font-bold text-black bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition"
+              className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition"
             >
               👤 {isFa ? 'درباره من' : 'About Me'}
             </button>
 
-            {/* ۵. ارتباط با استاد */}
             <button
               onClick={() => scrollToSection('contact')}
-              className="text-right px-4 py-2 text-sm font-bold text-black bg-gray-50 hover:bg-gray-100 rounded-lg border border-gray-200 transition"
+              className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition"
             >
               📞 {isFa ? 'ارتباط با استاد' : 'Contact'}
             </button>
           </div>
-        )}
+
+        </div>
       </header>
 
       {/* بنر اصلی */}
