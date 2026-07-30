@@ -42,7 +42,7 @@ export default function Home() {
                 {isMenuOpen ? (
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 18h16" />
                 )}
               </svg>
             </button>
@@ -146,16 +146,20 @@ export default function Home() {
 
               {isFeedbackOpen && (
                 <div className="flex flex-col gap-1.5 pr-4 pl-2 py-1 border-r-2 border-gray-300 mr-2 my-1">
-                  {[1, 2].map((num) => (
+                  {[
+                    { fa: 'بازخورد ۱', en: 'Feedback 1', link: 'https://t.me/International_Maths/110' },
+                    { fa: 'بازخورد ۲', en: 'Feedback 2', link: 'https://t.me/International_Maths/111' },
+                    { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
+                  ].map((item, idx) => (
                     <a
-                      key={num}
-                      href="https://t.me/International_Maths"
+                      key={idx}
+                      href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={closeAll}
                       className="text-right px-3 py-1.5 text-xs font-semibold text-black bg-gray-100 hover:bg-gray-200 rounded-md border border-gray-200 transition flex items-center justify-between"
                     >
-                      <span>⭐ {isFa ? `بازخورد ${num}` : `Feedback ${num}`}</span>
+                      <span>⭐ {isFa ? item.fa : item.en}</span>
                       <span className="text-[10px] text-gray-500">Telegram ↗</span>
                     </a>
                   ))}
