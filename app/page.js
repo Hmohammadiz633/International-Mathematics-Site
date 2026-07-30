@@ -69,7 +69,7 @@ export default function Home() {
                 <span className="text-[10px]">{isFeedbackOpen ? '▲' : '▼'}</span>
               </button>
 
-              <button onClick={() => scrollToSection('about')} className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition">👤 {isFa ? 'درباره من' : 'About Me'}</button>
+              <button onClick={() => scrollToSection('about')} className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition">👤 {isFa ? 'هادی محمدی' : 'Hadi Mohammadi'}</button>
               <button onClick={() => scrollToSection('contact')} className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg border border-gray-300 whitespace-nowrap transition">📞 {isFa ? 'ارتباط با استاد' : 'Contact'}</button>
             </div>
 
@@ -103,6 +103,7 @@ export default function Home() {
         </p>
       </section>
 
+      {/* بخش درباره استاد (هادی محمدی) */}
       <section id="about" className="max-w-5xl mx-auto px-4 py-8">
         <div className="bg-slate-800 text-white rounded-3xl p-6 md:p-10 border border-slate-700 shadow-2xl">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
@@ -113,17 +114,42 @@ export default function Home() {
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-6 border-b border-slate-700 pb-4 mt-2 md:mt-0">
                 <span className="text-3xl">👨‍🏫</span>
-                <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-wide">{isFa ? 'درباره من' : 'About Me'}</h3>
+                <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-wide">{isFa ? 'هادی محمدی' : 'Hadi Mohammadi'}</h3>
               </div>
               <div className="text-slate-100 leading-loose text-sm md:text-base space-y-4 text-justify font-light">
                 {isFa ? (
                   <>
-                    <p>اینجانب <strong className="text-white">هادی محمدی</strong>، دارنده دکترای تخصصی ریاضی از دانشگاه صنعتی امیرکبیر، با <strong className="text-white">۲۹ سال</strong> تجربه تدریس مستمر هستم.</p>
-                    <p>هدف این مجموعه، ارائه تدریس تخصصی به ایرانیان عزیز مقیم خارج از کشور مطابق با کتاب‌های درسی همان کشور محل سکونت است.</p>
-                    <p>فرآیند آموزش به صورت زنده و تصویری، منطبق با کتاب دانش‌آموز و به صورت ترکیبی (فارسی و انگلیسی) برای درک بهتر اصطلاحات ارائه می‌گردد.</p>
+                    <p>
+                      دارنده مدرک دکترای تخصصی ریاضی از دانشگاه صنعتی امیرکبیر هستم و به مدت <strong className="text-white font-bold">۲۹ سال</strong> به طور مستمر در عرصه آموزش ریاضی در داخل و خارج از کشور فعالیت داشته‌ام.
+                    </p>
+                    <p>
+                      هدف این مجموعه، ارائه خدمات تدریس تخصصی و هدفمند به ایرانیان عزیز مقیم خارج از کشور است تا بتوانند ریاضی را دقیقاً مطابق با کتاب‌های درسی و نظام آموزشی کشور محل سکونت خود بیاموزند و همچنین رفع اشکال روزانه به صورت کاملاً رایگان در پلتفرم‌های فضای مجازی انجام می‌شود.
+                    </p>
+                    <p>
+                      در اینجا و به طور کامل‌تر در گروه تلگرامی این مجموعه، کتاب‌های ریاضی مدارس و دانشگاه‌های کشورهای مختلف از جمله آمریکا، کانادا، آلمان، انگلستان، استرالیا و ترکیه گردآوری شده و به صورت کاملاً رایگان در اختیار تمام اعضاء قرار می‌گیرد.
+                    </p>
+                    <p>
+                      فرآیند آموزش به صورت تدریس زنده و تصویری و کاملاً منطبق با همان کتاب درسی دانش‌آموز یا دانشجو انجام می‌شود و برای درک بهتر مفاهیم، تدریس به صورت ترکیبی از زبان فارسی و انگلیسی همراه با توضیح دقیق اصطلاحات تخصصی ریاضی ارائه می‌گردد.
+                    </p>
+                    <p>
+                      همچنین کلاس‌های تقویتی ویژه تابستان برای تثبیت پایه ریاضی و آمادگی برای سال جدید تحصیلی با شهریه دوره‌ها به صورت ترمیک و با قیمتی مناسب برگزار می‌شود.
+                    </p>
+                    <p>
+                      من با تکیه بر تجربیات چندین دهه تدریس در نظام‌های آموزشی گوناگون، متعهد به ارائه دقیق‌ترین و کاربردی‌ترین آموزش ریاضی مطابق با استانداردهای مدارس خارج از ایران هستم و از شما دعوت می‌کنم که با پیوستن به این دوره، ریاضی را به شیوه‌ای صحیح، اصولی و متناسب با نیازهای تحصیلی خود فرا گیرید.
+                    </p>
                   </>
                 ) : (
-                  <p>I am <strong className="text-white">Dr. Hadi Mohammadi</strong>, holding a Ph.D. in Math from Amirkabir University, with over <strong className="text-white">29 years</strong> of teaching experience internationally.</p>
+                  <>
+                    <p>
+                      Holder of a Ph.D. in Mathematics from Amirkabir University of Technology, with over <strong className="text-white font-bold">29 years</strong> of continuous experience in teaching mathematics both nationally and internationally.
+                    </p>
+                    <p>
+                      The goal of this program is to provide targeted, specialized math tutoring for students living abroad, aligning perfectly with their local school standard curricula, alongside free daily Q&A sessions on social media platforms.
+                    </p>
+                    <p>
+                      Special summer prep classes are also offered to reinforce mathematical foundations and prepare students for the upcoming academic year.
+                    </p>
+                  </>
                 )}
               </div>
             </div>
