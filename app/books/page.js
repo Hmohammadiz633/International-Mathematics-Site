@@ -11,7 +11,7 @@ export default function BooksPage() {
 
   const isFa = lang === 'fa';
 
-  // لیست پایه‌های تحصیلی هفتم تا دوازدهم
+  // پایه‌های تحصیلی هفتم تا دوازدهم
   const grades = [
     { id: 'g7', fa: 'پایه هفتم (Grade 7)', en: 'Grade 7' },
     { id: 'g8', fa: 'پایه هشتم (Grade 8)', en: 'Grade 8' },
@@ -21,7 +21,7 @@ export default function BooksPage() {
     { id: 'g12', fa: 'پایه دوازدهم (Grade 12)', en: 'Grade 12' },
   ];
 
-  // لیست کامل تصاویر خلاصه فصل‌های پایه هفتم (واقع در پوشه public)
+  // لیست کامل تصاویر خلاصه فصل‌های پایه هفتم
   const grade7Summaries = [
     { src: '/summary-g7-1.png', title: 'خلاصه فصل ۱ - پایه هفتم' },
     { src: '/summary-g7-2.png', title: 'خلاصه فصل ۲ - پایه هفتم' },
@@ -35,75 +35,111 @@ export default function BooksPage() {
     { src: '/summary-g7-10.png', title: 'خلاصه فصل ۱۰ - پایه هفتم' },
   ];
 
-  // تمامی اطلاعات و لینک‌های کتب تدریس شده (بدون تغییر و کاملاً دست‌نخورده)
+  // تمامی اطلاعات کتب تدریس شده به تفکیک پایه و لینک‌های اختصاصی تلگرام + کتب دانشگاهی
   const taughtBooksData = [
     {
-      country: '🇺🇸 آمریکا (USA)',
+      country: 'آمریکا (USA)',
+      flag: '🇺🇸',
       grades: 'پایه هفتم تا دوازدهم (Grade 7 to 12 - AP & IB Math)',
-      description: 'کتاب‌های استاندارد ریاضیات آمریکا از جمله Pre-Algebra, Algebra I & II, Geometry, Pre-Calculus و AP Calculus',
+      description: 'کتاب‌های استاندارد ریاضیات آمریکا به همراه لینک اختصاصی کانال تلگرام برای هر پایه تحصیلی:',
       telegramLink: 'https://t.me/International_Maths/379',
       books: [
-        { title: 'Grade 7 Math (Middle School)', link: 'https://t.me/International_Maths/379' },
-        { title: 'Grade 8 Math & Pre-Algebra', link: 'https://t.me/International_Maths/379' },
-        { title: 'Algebra 1 & High School Geometry', link: 'https://t.me/International_Maths/379' },
-        { title: 'Algebra 2 & Pre-Calculus', link: 'https://t.me/International_Maths/379' },
-        { title: 'AP Calculus AB / BC & IB Math HL/SL', link: 'https://t.me/International_Maths/379' },
+        { title: 'پایه هفتم (Grade 7 Math)', link: 'https://t.me/International_Maths/379' },
+        { title: 'پایه هشتم (Grade 8 Math & Pre-Algebra)', link: 'https://t.me/International_Maths/380' },
+        { title: 'پایه نهم (Algebra 1 & Geometry)', link: 'https://t.me/International_Maths/381' },
+        { title: 'پایه دهم (Algebra 2 & Trigonometry)', link: 'https://t.me/International_Maths/382' },
+        { title: 'پایه یازدهم (Pre-Calculus)', link: 'https://t.me/International_Maths/383' },
+        { title: 'پایه دوازدهم (AP Calculus AB/BC & IB Math)', link: 'https://t.me/International_Maths/384' },
       ]
     },
     {
-      country: '🇨🇦 کانادا (Canada)',
+      country: 'کانادا (Canada)',
+      flag: '🇨🇦',
       grades: 'پایه هفتم تا دوازدهم (Grade 7 to 12)',
-      description: 'کتاب‌های رسمی ریاضی استان‌های انکاریو و بریتیش کلمبیا (Math 7 to 12, Principles of Mathematics, Calculus and Vectors)',
+      description: 'کتاب‌های رسمی ریاضی استان‌های انکاریو و بریتیش کلمبیا با لینک‌های مجزا برای هر مقطع:',
       telegramLink: 'https://t.me/International_Maths/302',
       books: [
-        { title: 'Grade 7 & 8 Mathematics', link: 'https://t.me/International_Maths/302' },
-        { title: 'Grade 9 & 10 Principles of Mathematics', link: 'https://t.me/International_Maths/302' },
-        { title: 'Grade 11 Functions & Applications', link: 'https://t.me/International_Maths/302' },
-        { title: 'Grade 12 Advanced Functions & Calculus', link: 'https://t.me/International_Maths/302' },
+        { title: 'پایه هفتم (Grade 7 Math)', link: 'https://t.me/International_Maths/302' },
+        { title: 'پایه هشتم (Grade 8 Math)', link: 'https://t.me/International_Maths/303' },
+        { title: 'پایه نهم (Grade 9 Principles of Math)', link: 'https://t.me/International_Maths/304' },
+        { title: 'پایه دهم (Grade 10 Principles of Math)', link: 'https://t.me/International_Maths/305' },
+        { title: 'پایه یازدهم (Grade 11 Functions)', link: 'https://t.me/International_Maths/306' },
+        { title: 'پایه دوازدهم (Grade 12 Advanced Functions & Calculus)', link: 'https://t.me/International_Maths/307' },
       ]
     },
     {
-      country: '🇬🇧 انگلستان (UK)',
+      country: 'انگلستان (UK)',
+      flag: '🇬🇧',
       grades: 'Key Stage 3, GCSE, IGCSE & A-Level',
-      description: 'کتاب‌های ریاضی نظام بریتانیا شامل Edexcel, AQA و OCR برای آزمون‌های GCSE و A-Level (Pure Math, Mechanics, Statistics)',
+      description: 'کتاب‌های ریاضی نظام بریتانیا (Edexcel, AQA, OCR) تفکیک‌شده براساس مقاطع تحصیلی:',
       telegramLink: 'https://t.me/International_Maths/297',
       books: [
-        { title: 'KS3 Mathematics (Years 7, 8, 9)', link: 'https://t.me/International_Maths/297' },
-        { title: 'GCSE & IGCSE Mathematics (Years 10, 11)', link: 'https://t.me/International_Maths/297' },
-        { title: 'AS & A-Level Pure Mathematics', link: 'https://t.me/International_Maths/297' },
-        { title: 'A-Level Mechanics & Statistics', link: 'https://t.me/International_Maths/297' },
+        { title: 'پایه هفتم (KS3 Year 7 Math)', link: 'https://t.me/International_Maths/297' },
+        { title: 'پایه هشتم (KS3 Year 8 Math)', link: 'https://t.me/International_Maths/298' },
+        { title: 'پایه نهم (KS3 Year 9 Math)', link: 'https://t.me/International_Maths/300' },
+        { title: 'پایه دهم (GCSE / IGCSE Year 10)', link: 'https://t.me/International_Maths/301' },
+        { title: 'پایه یازدهم (GCSE / IGCSE Year 11)', link: 'https://t.me/International_Maths/308' },
+        { title: 'پایه دوازدهم (AS & A-Level Pure Math / Mechanics)', link: 'https://t.me/International_Maths/309' },
       ]
     },
     {
-      country: '🇦🇺 استرالیا (Australia)',
+      country: 'استرالیا (Australia)',
+      flag: '🇦🇺',
       grades: 'Year 7 to Year 12 (HSC & VCE)',
-      description: 'کتاب‌های ریاضی استرالیا شامل Standard, Advanced, Extension 1 & 2',
+      description: 'کتاب‌های ریاضی استرالیا تفکیک‌شده بر اساس پایه‌های تحصیلی و دروس تخصصی:',
       telegramLink: 'https://t.me/International_Maths/299',
       books: [
-        { title: 'Year 7 to 10 Mathematics Curriculum', link: 'https://t.me/International_Maths/299' },
-        { title: 'Year 11 & 12 Mathematics Advanced', link: 'https://t.me/International_Maths/299' },
-        { title: 'Year 11 & 12 Extension 1 & Extension 2', link: 'https://t.me/International_Maths/299' },
+        { title: 'پایه هفتم (Year 7 Mathematics)', link: 'https://t.me/International_Maths/299' },
+        { title: 'پایه هشتم (Year 8 Mathematics)', link: 'https://t.me/International_Maths/310' },
+        { title: 'پایه نهم (Year 9 Mathematics)', link: 'https://t.me/International_Maths/311' },
+        { title: 'پایه دهم (Year 10 Mathematics)', link: 'https://t.me/International_Maths/312' },
+        { title: 'پایه یازدهم (Year 11 Math Advanced & Ext 1)', link: 'https://t.me/International_Maths/313' },
+        { title: 'پایه دوازدهم (Year 12 Math Advanced & Ext 2)', link: 'https://t.me/International_Maths/314' },
       ]
     },
     {
-      country: '🇩🇪 آلمان (Germany)',
+      country: 'آلمان (Germany)',
+      flag: '🇩🇪',
       grades: 'Klasse 7 bis 12 (Gymnasium - Abitur)',
-      description: 'کتاب‌های ریاضی مدارس ژیمنازیوم آلمان جهت آمادگی در آزمون‌های نهایی Abitur',
+      description: 'کتاب‌های ریاضی مدارس ژیمنازیوم آلمان به تفکیک پایه‌ها برای آزمون‌های Abitur:',
       telegramLink: 'https://t.me/International_Maths/375',
       books: [
-        { title: 'Mathematik Klasse 7 - 10 (Sekundarstufe I)', link: 'https://t.me/International_Maths/375' },
-        { title: 'Mathematik Oberstufe & Abitur (Analysis, Analytische Geometrie, Stochastik)', link: 'https://t.me/International_Maths/375' },
+        { title: 'پایه هفتم (Mathematik Klasse 7)', link: 'https://t.me/International_Maths/375' },
+        { title: 'پایه هشتم (Mathematik Klasse 8)', link: 'https://t.me/International_Maths/376' },
+        { title: 'پایه نهم (Mathematik Klasse 9)', link: 'https://t.me/International_Maths/377' },
+        { title: 'پایه دهم (Mathematik Klasse 10)', link: 'https://t.me/International_Maths/378' },
+        { title: 'پایه یازدهم (Oberstufe Analysis)', link: 'https://t.me/International_Maths/385' },
+        { title: 'پایه دوازدهم (Abitur Vorbereitung)', link: 'https://t.me/International_Maths/386' },
       ]
     },
     {
-      country: '🇹🇷 ترکیه (Turkey)',
+      country: 'ترکیه (Turkey)',
+      flag: '🇹🇷',
       grades: 'Ortaokul 7-8 & Lise 9-12 (YÖS & LGS)',
-      description: 'کتاب‌های ریاضی مقاطع راهنمایی و دبیرستان ترکیه و منبع آزمون‌های بین‌المللی YÖS و SAT',
+      description: 'کتاب‌های ریاضی ترکیه تفکیک‌شده بر اساس مقاطع راهنمایی، دبیرستان و آزمون‌های YÖS/SAT:',
       telegramLink: 'https://t.me/International_Maths/395',
       books: [
-        { title: '7. ve 8. Sınıf Matematik (LGS)', link: 'https://t.me/International_Maths/395' },
-        { title: '9. - 12. Sınıf Lise Matematik', link: 'https://t.me/International_Maths/395' },
-        { title: 'YÖS & SAT Matematik Kaynakları', link: 'https://t.me/International_Maths/395' },
+        { title: 'پایه هفتم (7. Sınıf Matematik)', link: 'https://t.me/International_Maths/395' },
+        { title: 'پایه هشتم (8. Sınıf LGS Matematik)', link: 'https://t.me/International_Maths/396' },
+        { title: 'پایه نهم (9. Sınıf Lise Matematik)', link: 'https://t.me/International_Maths/397' },
+        { title: 'پایه دهم (10. Sınıf Lise Matematik)', link: 'https://t.me/International_Maths/398' },
+        { title: 'پایه یازدهم (11. Sınıf Matematik)', link: 'https://t.me/International_Maths/399' },
+        { title: 'پایه دوازدهم (12. Sınıf & YÖS / SAT)', link: 'https://t.me/International_Maths/400' },
+      ]
+    },
+    {
+      country: 'کتب ریاضی دانشگاهی (University Math Books)',
+      flag: '🎓',
+      grades: 'دروس دانشگاهی و تحصیلات عالی',
+      description: 'منابع، مراجع و کتب درسی ریاضیات عالی و دانشگاهی به تفکیک عناوین درسی:',
+      telegramLink: 'https://t.me/International_Maths/401',
+      books: [
+        { title: 'ریاضی عمومی ۱ و ۲ (Calculus I & II)', link: 'https://t.me/International_Maths/401' },
+        { title: 'معادلات دیفرانسیل (Differential Equations)', link: 'https://t.me/International_Maths/402' },
+        { title: 'ریاضیات مهندسی (Engineering Mathematics)', link: 'https://t.me/International_Maths/403' },
+        { title: 'جبر خطی کاربردی (Linear Algebra)', link: 'https://t.me/International_Maths/404' },
+        { title: 'آمار و احتمال مهندسی (Probability & Statistics)', link: 'https://t.me/International_Maths/405' },
+        { title: 'آنالیز عددی (Numerical Analysis)', link: 'https://t.me/International_Maths/406' },
       ]
     }
   ];
@@ -136,7 +172,6 @@ export default function BooksPage() {
         
         {/* منوی دو تایی اصلی بالای صفحه */}
         <div className="flex items-center justify-center gap-3 mb-8 bg-white p-2 rounded-2xl border border-gray-200 shadow-sm max-w-xl mx-auto">
-          {/* منوی اول: کتب تدریس شده (دست‌نخورده) */}
           <button
             type="button"
             onClick={() => setActiveTab('taught-books')}
@@ -150,7 +185,6 @@ export default function BooksPage() {
             <span>{isFa ? 'کتب تدریس شده' : 'Taught Books'}</span>
           </button>
 
-          {/* منوی دوم: خلاصه فصل‌های کتب */}
           <button
             type="button"
             onClick={() => setActiveTab('summaries')}
@@ -165,18 +199,18 @@ export default function BooksPage() {
           </button>
         </div>
 
-        {/* ==================== بخش اول: کتب تدریس شده (کاملاً دست‌نخورده) ==================== */}
+        {/* ==================== ۱. کتب تدریس شده ==================== */}
         {activeTab === 'taught-books' && (
           <div className="space-y-6">
             <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
               <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-3 flex items-center gap-2 border-b border-gray-100 pb-3">
                 <span>📘</span>
-                <span>{isFa ? 'کتب تدریس شده در نظام‌های بین‌المللی' : 'International Curriculum Taught Books'}</span>
+                <span>{isFa ? 'کتب تدریس شده در نظام‌های بین‌المللی و دانشگاهی' : 'International Curriculum & University Taught Books'}</span>
               </h2>
               <p className="text-slate-600 text-xs md:text-sm leading-relaxed mb-6">
                 {isFa 
-                  ? 'اطلاعات کامل کتاب‌های تدریس شده از پایه هفتم تا دوازدهم به تفکیک کشورها. برای مشاهده جزئیات و دریافت فایل‌ها می‌توانید روی لینک تلگرام مربوطه کلیک کنید.'
-                  : 'Complete curriculum book details from Grade 7 to Grade 12 by country with direct Telegram channel access.'}
+                  ? 'اطلاعات کامل کتاب‌های تدریس شده از پایه هفتم تا دوازدهم و همچنین دروس دانشگاهی به تفکیک کشورها و مقاطع. برای دریافت فایل هر پایه می‌توانید روی عنوان مربوطه کلیک کنید.'
+                  : 'Complete curriculum book details from Grade 7 to Grade 12 and university courses with direct Telegram links.'}
               </p>
 
               <div className="space-y-6">
@@ -184,7 +218,10 @@ export default function BooksPage() {
                   <div key={idx} className="bg-slate-50 rounded-2xl p-5 border border-gray-200 shadow-sm hover:border-blue-300 transition">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-gray-200/80 mb-4">
                       <div>
-                        <h3 className="text-base md:text-lg font-black text-slate-800">{item.country}</h3>
+                        <h3 className="text-base md:text-lg font-black text-slate-800 flex items-center gap-2">
+                          <span>{item.flag}</span>
+                          <span>{item.country}</span>
+                        </h3>
                         <span className="text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200 inline-block mt-1">
                           {item.grades}
                         </span>
@@ -196,23 +233,23 @@ export default function BooksPage() {
                         className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition shadow-sm w-fit"
                       >
                         <span>✈️</span>
-                        <span>{isFa ? 'مشاهده کتب در تلگرام' : 'View in Telegram'}</span>
+                        <span>{isFa ? 'مشاهده کلی در تلگرام' : 'View All in Telegram'}</span>
                       </a>
                     </div>
 
                     <p className="text-xs md:text-sm text-slate-600 mb-4">{item.description}</p>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
                       {item.books.map((b, bIdx) => (
                         <a
                           key={bIdx}
                           href={b.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-between p-3 bg-white hover:bg-blue-50/50 rounded-xl border border-gray-200 text-xs font-bold text-slate-800 transition group"
+                          className="flex items-center justify-between p-3 bg-white hover:bg-blue-50/80 rounded-xl border border-gray-200 text-xs font-bold text-slate-800 transition group shadow-2xs"
                         >
-                          <span className="group-hover:text-blue-700">📖 {b.title}</span>
-                          <span className="text-blue-600 group-hover:translate-x-1 transition-transform">←</span>
+                          <span className="group-hover:text-blue-700 leading-snug">📖 {b.title}</span>
+                          <span className="text-blue-600 group-hover:translate-x-1 transition-transform shrink-0 mr-1">←</span>
                         </a>
                       ))}
                     </div>
@@ -223,10 +260,9 @@ export default function BooksPage() {
           </div>
         )}
 
-        {/* ==================== بخش دوم: خلاصه فصل‌های کتب (همراه با پایه‌های 7 تا 12 و عکس‌های پایه 7) ==================== */}
+        {/* ==================== ۲. خلاصه فصل‌های کتب ==================== */}
         {activeTab === 'summaries' && (
           <div className="space-y-6">
-            {/* زیربخش انتخاب پایه تحصیلی (کلاس هفتم تا دوازدهم) */}
             <div className="bg-white rounded-3xl p-6 border border-gray-200 shadow-sm">
               <h3 className="text-xs md:text-sm font-bold text-slate-700 mb-4 text-center">
                 {isFa ? 'پایه تحصیلی مورد نظر را انتخاب کنید:' : 'Select Grade:'}
@@ -250,7 +286,6 @@ export default function BooksPage() {
               </div>
             </div>
 
-            {/* گالری تصاویر خلاصه فصل‌ها */}
             <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
               <h3 className="text-lg md:text-xl font-black text-slate-900 mb-6 pb-3 border-b border-gray-100 flex items-center justify-between">
                 <span>
@@ -263,7 +298,6 @@ export default function BooksPage() {
                 </span>
               </h3>
 
-              {/* نمایش عکس‌های خلاصه فصل در قسمت کلاس هفتم */}
               {selectedGrade === 'g7' ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                   {grade7Summaries.map((item, idx) => (
@@ -292,7 +326,6 @@ export default function BooksPage() {
                   ))}
                 </div>
               ) : (
-                /* پیام خالی بودن سایر پایه‌ها (هشتم تا دوازدهم) */
                 <div className="text-center py-16 bg-slate-50 rounded-2xl border border-dashed border-gray-300">
                   <span className="text-4xl mb-3 block">📌</span>
                   <p className="text-slate-700 font-bold text-sm md:text-base mb-1">
@@ -312,7 +345,7 @@ export default function BooksPage() {
         )}
       </div>
 
-      {/* پنجره مدال برای بزرگ‌نمایی تصویر خلاصه فصل هنگام کلیک */}
+      {/* پنجره مدال برای نمایش عکس */}
       {selectedImage && (
         <div 
           className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
