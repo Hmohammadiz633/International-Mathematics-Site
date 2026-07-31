@@ -42,8 +42,40 @@ export default function Home() {
     { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
   ];
 
+  // ساختار داده برای گوگل (Schema Markup / JSON-LD)
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'دکتر هادی محمدی',
+    jobTitle: 'عضو هیات علمی دانشگاه و مدرس ریاضیات بین‌الملل',
+    worksFor: {
+      '@type': 'EducationalOrganization',
+      name: 'دانشگاه ملی مهارت تهران',
+    },
+    alumniOf: [
+      {
+        '@type': 'EducationalOrganization',
+        name: 'دانشگاه صنعتی امیرکبیر',
+      },
+      {
+        '@type': 'EducationalOrganization',
+        name: 'دانشگاه خوارزمی',
+      },
+    ],
+    sameAs: [
+      'https://t.me/International_Maths',
+      'https://instagram.com/Hadi_mohammadi_zarandini',
+    ],
+  };
+
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
+      {/* اسکیما کد اختصاصی سئو برای گوگل */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
+
       {/* هدر */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 py-3 shadow-sm">
         <div className="max-w-6xl mx-auto flex flex-col items-center gap-3">
@@ -176,7 +208,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* بنر اصلی */}
+      {/* بنر اصلی و عنوان سئومحور */}
       <section className="max-w-4xl mx-auto text-center px-4 pt-12 pb-6">
         <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-5 leading-tight tracking-tight bg-gradient-to-r from-blue-900 via-indigo-800 to-slate-900 bg-clip-text text-transparent">
           {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics Tutoring'}
@@ -195,7 +227,7 @@ export default function Home() {
             <div className="shrink-0 flex flex-col items-center">
               <img 
                 src="/profile.jpg" 
-                alt="دکتر هادی محمدی" 
+                alt="دکتر هادی محمدی مدرس ریاضی بین الملل" 
                 className="w-48 h-60 object-cover rounded-2xl border-2 border-slate-700 shadow-lg mb-3" 
               />
               <span className="text-xs font-bold text-slate-200 bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-700 text-center">
