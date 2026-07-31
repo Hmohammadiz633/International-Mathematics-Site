@@ -43,6 +43,7 @@ export default function Home() {
     { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
   ];
 
+  // کتب تألیفی استاد (در صفحه اصلی قرار دارند)
   const authoredBooks = [
     { title: 'ریاضیات پایه و مقدماتی', titleEn: 'Basic & Elementary Mathematics', img: '/book1.JPG' },
     { title: 'ریاضیات کاربردی (ریاضی عمومی ۲)', titleEn: 'Applied Mathematics (Calculus II)', img: '/book2.JPG' },
@@ -54,7 +55,7 @@ export default function Home() {
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
-      {/* هدر */}
+      {/* هدر صفحه اصلی */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 py-3 shadow-sm">
         <div className="max-w-6xl mx-auto flex flex-col items-center gap-3">
           <div className="w-full flex items-center justify-between">
@@ -110,20 +111,13 @@ export default function Home() {
                 <span className="text-[10px]">{isEducationOpen ? '▲' : '▼'}</span>
               </button>
 
-              {/* ۲. سرتیتر: کتاب و منابع آموزشی */}
-              <button 
-                type="button"
-                onClick={() => { 
-                  setIsBooksResourcesOpen(!isBooksResourcesOpen);
-                  setIsEducationOpen(false); 
-                  setIsFeedbackOpen(false); 
-                  setIsMathSitesOpen(false); 
-                }} 
-                className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-900 rounded-lg border border-blue-200 whitespace-nowrap transition flex items-center gap-1"
+              {/* ۲. دکمه مستقیم برای رفتن به صفحه کتاب و منابع آموزشی */}
+              <Link 
+                href="/books" 
+                className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg border border-blue-700 whitespace-nowrap transition flex items-center gap-1 shadow-sm"
               >
                 <span>📚 {isFa ? 'کتاب و منابع آموزشی' : 'Books & Resources'}</span>
-                <span className="text-[10px]">{isBooksResourcesOpen ? '▲' : '▼'}</span>
-              </button>
+              </Link>
 
               {/* ۳. سایت‌های ریاضی کشورها */}
               <button 
@@ -165,28 +159,7 @@ export default function Home() {
               </button>
             </div>
 
-            {/* زیرمنوی سرتیتر "کتاب و منابع آموزشی" */}
-            {isBooksResourcesOpen && (
-              <div className="w-full flex items-center justify-center gap-3 flex-wrap bg-blue-50/90 p-3 rounded-xl border border-blue-200 my-1 shadow-inner">
-                <Link 
-                  href="/books" 
-                  className="px-4 py-2 bg-white hover:bg-blue-100 text-blue-950 font-bold text-xs rounded-lg border border-blue-300 shadow-sm transition flex items-center gap-1.5"
-                >
-                  <span>📘</span>
-                  <span>{isFa ? 'کتب تدریس شده' : 'Taught Books'}</span>
-                </Link>
-
-                <Link 
-                  href="/books" 
-                  className="px-4 py-2 bg-white hover:bg-blue-100 text-blue-950 font-bold text-xs rounded-lg border border-blue-300 shadow-sm transition flex items-center gap-1.5"
-                >
-                  <span>📝</span>
-                  <span>{isFa ? 'خلاصه فصل‌های کتب' : 'Chapter Summaries'}</span>
-                </Link>
-              </div>
-            )}
-
-            {/* زیرمنوی نظام آموزشی کشورها */}
+            {/* کشویی‌های منو در صورت باز شدن */}
             {isEducationOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
                 {countries.map((item, idx) => (
@@ -198,7 +171,6 @@ export default function Home() {
               </div>
             )}
 
-            {/* زیرمنوی سایت‌های ریاضی */}
             {isMathSitesOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
                 {mathSites.map((item, idx) => (
@@ -210,7 +182,6 @@ export default function Home() {
               </div>
             )}
 
-            {/* زیرمنوی بازخورد کلاس‌ها */}
             {isFeedbackOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
                 {feedbacks.map((item, idx) => (
@@ -267,20 +238,11 @@ export default function Home() {
                     <p>
                       هدف این مجموعه، ارائه خدمات تدریس تخصصی و هدفمند به ایرانیان عزیز مقیم خارج از کشور است تا بتوانند ریاضی را دقیقاً مطابق با کتاب‌های درسی و نظام آموزشی کشور محل سکونت خود بیاموزند و همچنین رفع اشکال روزانه به صورت کاملاً رایگان در پلتفرم‌های فضای مجازی انجام می‌شود.
                     </p>
-                    <p>
-                      من با تکیه بر تجربیات چندین دهه تدریس در نظام‌های آموزشی گوناگون، متعهد به ارائه دقیق‌ترین و کاربردی‌ترین آموزش ریاضی مطابق با استانداردهای مدارس خارج از ایران هستم و از شما دعوت می‌کنم که با پیوستن به این دوره، ریاضی را به شیوه‌ای صحیح، اصولی و متناسب با نیازهای تحصیلی خود فرا گیرید.
-                    </p>
                   </>
                 ) : (
                   <>
                     <p>
-                      Holder of a Ph.D. in Mathematics from Amirkabir University of Technology, with over <strong className="text-white font-black underline decoration-blue-500 underline-offset-4">29 years</strong> of continuous experience in teaching mathematics both nationally and internationally.
-                    </p>
-                    <p>
-                      The goal of this program is to provide targeted, specialized math tutoring for students living abroad, aligning perfectly with their local school standard curricula, alongside free daily Q&A sessions on social media platforms.
-                    </p>
-                    <p>
-                      Special summer prep classes are also offered to reinforce mathematical foundations and prepare students for the upcoming academic year.
+                      Holder of a Ph.D. in Mathematics from Amirkabir University of Technology, with over <strong className="text-white font-black underline decoration-blue-500 underline-offset-4">29 years</strong> of continuous experience in teaching mathematics.
                     </p>
                   </>
                 )}
@@ -290,12 +252,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* کتب تألیفی */}
+      {/* بخش کتب تألیفی استاد در صفحه اصلی */}
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
           <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-6 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
             <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">📚</span>
-            <span>{isFa ? 'کتب تألیفی' : 'Authored Books'}</span>
+            <span>{isFa ? 'کتب تألیفی استاد' : 'Authored Books'}</span>
           </h4>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
