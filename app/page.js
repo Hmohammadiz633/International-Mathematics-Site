@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import BooksSection from '@/components/BooksSection';
+import Link from 'next/link';
 import ContactButtons from '@/components/ContactButtons';
 
 export default function Home() {
@@ -42,7 +42,7 @@ export default function Home() {
     { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
   ];
 
-  // آرم اختصاصی و برداری دانشگاه صنعتی امیرکبیر
+  // آرم اختصاصی دانشگاه صنعتی امیرکبیر
   const AmirkabirLogo = () => (
     <svg className="w-full h-full text-blue-900" viewBox="0 0 100 100" fill="currentColor">
       <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="6"/>
@@ -53,7 +53,7 @@ export default function Home() {
     </svg>
   );
 
-  // آرم اختصاصی و برداری دانشگاه خوارزمی
+  // آرم اختصاصی دانشگاه خوارزمی
   const KharazmiLogo = () => (
     <svg className="w-full h-full text-blue-900" viewBox="0 0 100 100" fill="currentColor">
       <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" strokeWidth="5"/>
@@ -73,7 +73,6 @@ export default function Home() {
           {/* لوگو و عنوان بالا سمت راست */}
           <div className="w-full flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              {/* آیکون استاد در حال تدریس پای تخته */}
               <div className="w-9 h-9 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl flex items-center justify-center p-1.5 shadow-sm">
                 <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M2 3h20v14H2z" />
@@ -125,13 +124,13 @@ export default function Home() {
                 <span className="text-[10px]">{isEducationOpen ? '▲' : '▼'}</span>
               </button>
 
-              <button 
-                type="button"
-                onClick={() => scrollToSection('books')} 
-                className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition"
+              {/* لینک به صفحه مجزای کتب آموزشی */}
+              <Link 
+                href="/books" 
+                className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-900 rounded-lg border border-blue-200 whitespace-nowrap transition flex items-center gap-1"
               >
                 📚 {isFa ? 'کتب آموزشی' : 'Books'}
-              </button>
+              </Link>
 
               <button 
                 type="button"
@@ -252,7 +251,7 @@ export default function Home() {
                       من با تکیه بر تجربیات چندین دهه تدریس در نظام‌های آموزشی گوناگون، متعهد به ارائه دقیق‌ترین و کاربردی‌ترین آموزش ریاضی مطابق با استانداردهای مدارس خارج از ایران هستم و از شما دعوت می‌کنم که با پیوستن به این دوره، ریاضی را به شیوه‌ای صحیح، اصولی و متناسب با نیازهای تحصیلی خود فرا گیرید.
                     </p>
 
-                    {/* بخش سوابق تحصیلی همراه با لوگوی کاملا شفاف و اختصاصی دانشگاه‌ها */}
+                    {/* سوابق تحصیلی */}
                     <div className="mt-8 border-t border-slate-700 pt-6">
                       <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                         <span>🎓</span>
@@ -260,7 +259,6 @@ export default function Home() {
                       </h4>
                       
                       <div className="space-y-4">
-                        {/* دکتری امیرکبیر */}
                         <div className="flex items-center gap-4 bg-slate-700/60 p-3.5 rounded-2xl border border-slate-600">
                           <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-2 flex items-center justify-center shadow-md">
                             <AmirkabirLogo />
@@ -271,7 +269,6 @@ export default function Home() {
                           </div>
                         </div>
 
-                        {/* کارشناسی ارشد امیرکبیر */}
                         <div className="flex items-center gap-4 bg-slate-700/60 p-3.5 rounded-2xl border border-slate-600">
                           <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-2 flex items-center justify-center shadow-md">
                             <AmirkabirLogo />
@@ -282,7 +279,6 @@ export default function Home() {
                           </div>
                         </div>
 
-                        {/* کارشناسی خوارزمی */}
                         <div className="flex items-center gap-4 bg-slate-700/60 p-3.5 rounded-2xl border border-slate-600">
                           <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-2 flex items-center justify-center shadow-md">
                             <KharazmiLogo />
@@ -307,7 +303,6 @@ export default function Home() {
                       Special summer prep classes are also offered to reinforce mathematical foundations and prepare students for the upcoming academic year.
                     </p>
 
-                    {/* Education English */}
                     <div className="mt-8 border-t border-slate-700 pt-6">
                       <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                         <span>🎓</span>
@@ -352,11 +347,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* کتب آموزشی */}
-      <div id="books" className="max-w-6xl mx-auto px-4 mt-4">
-        <BooksSection lang={lang} />
-      </div>
 
       {/* ارتباط با استاد */}
       <div id="contact">
