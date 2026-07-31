@@ -274,10 +274,10 @@ export default function Home() {
               : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran.'}
           </p>
           
-          {/* کادربندی اصلاح‌شده عکس‌ها */}
+          {/* کادربندی عکس‌ها: نسبت مربع کامل (aspect-square) جهت یکی شدن دقیق اندازه کادرها و پر شدن کامل بدون حاشیه مشکی */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {/* عکس سمت راست */}
-            <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm flex items-center justify-center">
+            <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
                 src="/teaching1.JPG" 
                 onError={(e) => { e.currentTarget.src = '/teaching1.jpg'; }} 
@@ -286,13 +286,13 @@ export default function Home() {
               />
             </div>
 
-            {/* عکس سمت چپ (نمایش کامل بدون برش و زوم) */}
-            <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-gray-200 bg-slate-900 shadow-sm flex items-center justify-center p-2">
+            {/* عکس سمت چپ (دقیقاً هم‌اندازه با کادر عکس راست بدون هیچ حاشیه اضافه) */}
+            <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
                 src="/teaching2.PNG" 
                 onError={(e) => { e.currentTarget.src = '/teaching2.png'; }} 
                 alt="تدریس ریاضیات دکتر هادی محمدی" 
-                className="w-full h-full object-contain hover:scale-105 transition duration-300"
+                className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
             </div>
           </div>
