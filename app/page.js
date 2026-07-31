@@ -42,7 +42,6 @@ export default function Home() {
     { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
   ];
 
-  // آرم اختصاصی دانشگاه صنعتی امیرکبیر
   const AmirkabirLogo = () => (
     <svg className="w-full h-full text-blue-900" viewBox="0 0 100 100" fill="currentColor">
       <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="6"/>
@@ -53,7 +52,6 @@ export default function Home() {
     </svg>
   );
 
-  // آرم اختصاصی دانشگاه خوارزمی
   const KharazmiLogo = () => (
     <svg className="w-full h-full text-blue-900" viewBox="0 0 100 100" fill="currentColor">
       <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" strokeWidth="5"/>
@@ -70,7 +68,6 @@ export default function Home() {
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200 px-4 py-3 shadow-sm">
         <div className="max-w-6xl mx-auto flex flex-col items-center gap-3">
           
-          {/* لوگو و عنوان بالا سمت راست */}
           <div className="w-full flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl flex items-center justify-center p-1.5 shadow-sm">
@@ -87,7 +84,6 @@ export default function Home() {
               </h1>
             </div>
 
-            {/* سوییچ زبان */}
             <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300">
               <button 
                 type="button"
@@ -107,10 +103,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* منوی بالا */}
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-2">
             <div className="w-full flex items-center justify-center gap-2 md:gap-3 overflow-x-auto py-1 text-xs md:text-sm font-bold">
-              
               <button 
                 type="button"
                 onClick={() => { 
@@ -124,7 +118,6 @@ export default function Home() {
                 <span className="text-[10px]">{isEducationOpen ? '▲' : '▼'}</span>
               </button>
 
-              {/* لینک به صفحه مجزای کتب آموزشی */}
               <Link 
                 href="/books" 
                 className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-900 rounded-lg border border-blue-200 whitespace-nowrap transition flex items-center gap-1"
@@ -167,7 +160,6 @@ export default function Home() {
               </button>
             </div>
 
-            {/* کشویی‌ها */}
             {isEducationOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
                 {countries.map((item, idx) => (
@@ -251,6 +243,35 @@ export default function Home() {
                       من با تکیه بر تجربیات چندین دهه تدریس در نظام‌های آموزشی گوناگون، متعهد به ارائه دقیق‌ترین و کاربردی‌ترین آموزش ریاضی مطابق با استانداردهای مدارس خارج از ایران هستم و از شما دعوت می‌کنم که با پیوستن به این دوره، ریاضی را به شیوه‌ای صحیح، اصولی و متناسب با نیازهای تحصیلی خود فرا گیرید.
                     </p>
 
+                    {/* بخش سوابق تدریس */}
+                    <div className="mt-8 border-t border-slate-700 pt-6">
+                      <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span>📖</span>
+                        <span>سوابق تدریس</span>
+                      </h4>
+                      <p className="text-slate-200 leading-relaxed mb-4 text-sm md:text-base font-normal">
+                        تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲- معادلات دیفرانسیل- محاسبات عددی و آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران
+                      </p>
+                      
+                      {/* تصاویر تدریس */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                        <div className="overflow-hidden rounded-2xl border border-slate-600 bg-slate-900/50 shadow-md">
+                          <img 
+                            src="/teaching1.jpg" 
+                            alt="تدریس دکتر هادی محمدی در دانشگاه" 
+                            className="w-full h-52 object-cover hover:scale-105 transition duration-300"
+                          />
+                        </div>
+                        <div className="overflow-hidden rounded-2xl border border-slate-600 bg-slate-900/50 shadow-md">
+                          <img 
+                            src="/teaching2.png" 
+                            alt="تدریس ریاضیات دکتر هادی محمدی" 
+                            className="w-full h-52 object-cover hover:scale-105 transition duration-300"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
                     {/* سوابق تحصیلی */}
                     <div className="mt-8 border-t border-slate-700 pt-6">
                       <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
@@ -302,6 +323,34 @@ export default function Home() {
                     <p>
                       Special summer prep classes are also offered to reinforce mathematical foundations and prepare students for the upcoming academic year.
                     </p>
+
+                    {/* Teaching Experience EN */}
+                    <div className="mt-8 border-t border-slate-700 pt-6">
+                      <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span>📖</span>
+                        <span>Teaching Experience</span>
+                      </h4>
+                      <p className="text-slate-200 leading-relaxed mb-4 text-sm md:text-base font-normal">
+                        Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran.
+                      </p>
+                      
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                        <div className="overflow-hidden rounded-2xl border border-slate-600 bg-slate-900/50 shadow-md">
+                          <img 
+                            src="/teaching1.jpg" 
+                            alt="Dr. Hadi Mohammadi Teaching" 
+                            className="w-full h-52 object-cover hover:scale-105 transition duration-300"
+                          />
+                        </div>
+                        <div className="overflow-hidden rounded-2xl border border-slate-600 bg-slate-900/50 shadow-md">
+                          <img 
+                            src="/teaching2.png" 
+                            alt="Dr. Hadi Mohammadi Mathematics Lecture" 
+                            className="w-full h-52 object-cover hover:scale-105 transition duration-300"
+                          />
+                        </div>
+                      </div>
+                    </div>
 
                     <div className="mt-8 border-t border-slate-700 pt-6">
                       <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
