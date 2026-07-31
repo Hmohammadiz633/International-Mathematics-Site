@@ -19,7 +19,7 @@ export default function BooksPage() {
     { id: 'g12', fa: 'پایه دوازدهم (Grade 12)', en: 'Grade 12' },
   ];
 
-  // لیست تصاویر خلاصه فصل هفتم (دقت کنید فایل‌ها در پوشه public قرار دارند)
+  // لیست دقیق تصاویر خلاصه فصل هفتم
   const grade7Summaries = [
     '/summary-g7-1.png',
     '/summary-g7-2.png',
@@ -33,18 +33,9 @@ export default function BooksPage() {
     '/summary-g7-10.png',
   ];
 
-  const booksList = [
-    { title: 'ریاضیات پایه و مقدماتی', titleEn: 'Basic Mathematics', img: '/book1.JPG' },
-    { title: 'ریاضیات کاربردی (ریاضی عمومی ۲)', titleEn: 'Applied Mathematics II', img: '/book2.JPG' },
-    { title: 'ریاضی عمومی ۲ (کاربردی +۷)', titleEn: 'Calculus II', img: '/book3.JPG' },
-    { title: 'ریاضی عمومی', titleEn: 'General Mathematics', img: '/book4.JPG' },
-    { title: 'ریاضی عمومی ۲ (آموزش نرم‌افزارها)', titleEn: 'Calculus & Softwares', img: '/book5.JPG' },
-    { title: 'ریاضیات مهندسی', titleEn: 'Engineering Mathematics', img: '/book6.JPG' },
-  ];
-
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
-      {/* هدر صفحه */}
+      {/* هدر صفحه کتاب و منابع آموزشی */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 px-4 py-4 shadow-sm">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 text-blue-700 font-bold text-sm hover:underline">
@@ -53,7 +44,7 @@ export default function BooksPage() {
           </Link>
 
           <h1 className="text-base md:text-xl font-black text-slate-800">
-            📚 {isFa ? 'کتاب و منابع آموزشی' : 'Books & Resources'}
+            📚 {isFa ? 'کتاب و منابع آموزشی' : 'Books & Educational Resources'}
           </h1>
 
           <button 
@@ -67,8 +58,9 @@ export default function BooksPage() {
       </header>
 
       <div className="max-w-5xl mx-auto px-4 pt-8">
-        {/* سرتیترها / تب‌های اصلی بخش کتاب و منابع آموزشی */}
-        <div className="flex items-center justify-center gap-3 mb-8 bg-white p-2 rounded-2xl border border-gray-200 shadow-sm max-w-md mx-auto">
+        
+        {/* دو دکمه اصلی زیر سرتیتر */}
+        <div className="flex items-center justify-center gap-3 mb-8 bg-white p-2 rounded-2xl border border-gray-200 shadow-sm max-w-lg mx-auto">
           <button
             type="button"
             onClick={() => setActiveTab('taught-books')}
@@ -96,37 +88,46 @@ export default function BooksPage() {
           </button>
         </div>
 
-        {/* محتوای تب ۱: کتب تدریس شده */}
+        {/* دکمه ۱: اطلاعات کتب تدریس شده */}
         {activeTab === 'taught-books' && (
           <section className="bg-white rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
-            <h2 className="text-xl font-black text-slate-900 mb-6 pb-3 border-b border-gray-100 flex items-center gap-2">
+            <h2 className="text-xl font-black text-slate-900 mb-4 pb-3 border-b border-gray-100 flex items-center gap-2">
               <span>📘</span>
-              <span>{isFa ? 'کتب تدریس شده و تألیفی' : 'Taught & Authored Books'}</span>
+              <span>{isFa ? 'کتب تدریس شده در نظام‌های بین‌المللی' : 'Taught Curriculum Books'}</span>
             </h2>
+            
+            <p className="text-slate-700 leading-relaxed text-sm md:text-base mb-6">
+              {isFa 
+                ? 'تدریس دقیق کتاب‌های ریاضی مدارس آمریکا، کانادا، انگلستان، استرالیا، آلمان و ترکیه مطابق با سرفصل‌های رسمی هر پایه تحصیلی.'
+                : 'Teaching standard mathematics books for schools in the USA, Canada, UK, Australia, Germany, and Turkey.'}
+            </p>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-6">
-              {booksList.map((book, idx) => (
-                <div key={idx} className="bg-slate-50 p-4 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
-                  <div className="w-full aspect-[3/4] rounded-xl overflow-hidden bg-white border border-gray-200 mb-3">
-                    <img 
-                      src={book.img} 
-                      alt={isFa ? book.title : book.titleEn}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="font-bold text-slate-800 text-xs md:text-sm text-center">
-                    {isFa ? book.title : book.titleEn}
-                  </h3>
-                </div>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="bg-slate-50 p-4 rounded-2xl border border-gray-200 text-center">
+                <span className="text-2xl mb-2 block">🇺🇸 🇨🇦</span>
+                <h3 className="font-bold text-sm text-slate-800">{isFa ? 'ریاضیات سیستم آمریکا و کانادا' : 'US & Canada Math'}</h3>
+                <p className="text-xs text-slate-500 mt-1">Grade 7 to Grade 12 (AP & IB Math)</p>
+              </div>
+
+              <div className="bg-slate-50 p-4 rounded-2xl border border-gray-200 text-center">
+                <span className="text-2xl mb-2 block">🇬🇧</span>
+                <h3 className="font-bold text-sm text-slate-800">{isFa ? 'ریاضیات سیستم انگلستان' : 'UK Math System'}</h3>
+                <p className="text-xs text-slate-500 mt-1">KS3, GCSE & A-Level Mathematics</p>
+              </div>
+
+              <div className="bg-slate-50 p-4 rounded-2xl border border-gray-200 text-center">
+                <span className="text-2xl mb-2 block">🇩🇪 🇦🇺 🇹🇷</span>
+                <h3 className="font-bold text-sm text-slate-800">{isFa ? 'آلمان، استرالیا و ترکیه' : 'Germany, Australia & Turkey'}</h3>
+                <p className="text-xs text-slate-500 mt-1">Gymnasium, HSC & YÖS Mathematics</p>
+              </div>
             </div>
           </section>
         )}
 
-        {/* محتوای تب ۲: خلاصه فصل‌های کتب */}
+        {/* دکمه ۲: خلاصه فصل‌های کتب همراه با تمام عکس‌ها */}
         {activeTab === 'summaries' && (
           <section className="space-y-6">
-            {/* انتخاب پایه تحصیلی */}
+            {/* انتخاب پایه */}
             <div className="bg-white rounded-3xl p-6 border border-gray-200 shadow-sm">
               <h3 className="text-xs md:text-sm font-bold text-slate-700 mb-4 text-center">
                 {isFa ? 'پایه تحصیلی مورد نظر را انتخاب کنید:' : 'Select Grade:'}
@@ -149,7 +150,7 @@ export default function BooksPage() {
               </div>
             </div>
 
-            {/* گالری عکس‌های خلاصه فصل */}
+            {/* گالری تصاویر خلاصه فصل‌ها */}
             <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
               <h3 className="text-lg md:text-xl font-black text-slate-900 mb-6 pb-3 border-b border-gray-100">
                 {isFa 
@@ -179,7 +180,7 @@ export default function BooksPage() {
                 <div className="text-center py-12 bg-slate-50 rounded-2xl border border-dashed border-gray-300">
                   <p className="text-slate-500 font-semibold text-sm md:text-base">
                     {isFa 
-                      ? 'خلاصه فصل‌های این پایه به‌زودی قرار خواهند گرفت.' 
+                      ? 'خلاصه فصل‌های این پایه به‌زودی آپلود خواهند شد.' 
                       : 'Summaries for this grade will be uploaded soon.'}
                   </p>
                 </div>
