@@ -42,9 +42,9 @@ export default function Home() {
     { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
   ];
 
-  // آدرس آرم دانشگاه‌ها
-  const logoAmirkabir = "https://aut.ac.ir/files/site1/files/amirkabir-logo.png";
-  const logoKharazmi = "https://khu.ac.ir/files/site1/files/khu_logo.png";
+  // آدرس پایداری برای لوگوی دانشگاه‌ها
+  const logoAmirkabir = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Amirkabir-University-of-Technology-Logo.png/240px-Amirkabir-University-of-Technology-Logo.png";
+  const logoKharazmi = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Kharazmi_University_logo.svg/240px-Kharazmi_University_logo.svg.png";
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-white text-black font-sans pb-12">
@@ -264,7 +264,6 @@ export default function Home() {
                               src={logoAmirkabir} 
                               alt="آرم دانشگاه صنعتی امیرکبیر" 
                               className="max-w-full max-h-full object-contain"
-                              onError={(e) => { e.currentTarget.style.display = 'none'; }}
                             />
                           </div>
                           <div>
@@ -280,7 +279,6 @@ export default function Home() {
                               src={logoAmirkabir} 
                               alt="آرم دانشگاه صنعتی امیرکبیر" 
                               className="max-w-full max-h-full object-contain"
-                              onError={(e) => { e.currentTarget.style.display = 'none'; }}
                             />
                           </div>
                           <div>
@@ -296,7 +294,6 @@ export default function Home() {
                               src={logoKharazmi} 
                               alt="آرم دانشگاه خوارزمی" 
                               className="max-w-full max-h-full object-contain"
-                              onError={(e) => { e.currentTarget.style.display = 'none'; }}
                             />
                           </div>
                           <div>
@@ -327,4 +324,65 @@ export default function Home() {
                       </h4>
                       <div className="space-y-4">
                         <div className="flex items-center gap-4 bg-slate-700/50 p-3.5 rounded-2xl border border-slate-600">
-                          <div className="w-12 h-12 shrink-
+                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md">
+                            <img 
+                              src={logoAmirkabir} 
+                              alt="AUT Logo" 
+                              className="max-w-full max-h-full object-contain"
+                            />
+                          </div>
+                          <div>
+                            <div className="font-bold text-white text-base">Ph.D. in Mathematics</div>
+                            <div className="text-xs text-slate-300 font-normal mt-0.5">Optimization - Amirkabir University of Technology</div>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-4 bg-slate-700/50 p-3.5 rounded-2xl border border-slate-600">
+                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md">
+                            <img 
+                              src={logoAmirkabir} 
+                              alt="AUT Logo" 
+                              className="max-w-full max-h-full object-contain"
+                            />
+                          </div>
+                          <div>
+                            <div className="font-bold text-white text-base">M.Sc. in Applied Mathematics</div>
+                            <div className="text-xs text-slate-300 font-normal mt-0.5">Amirkabir University of Technology</div>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-4 bg-slate-700/50 p-3.5 rounded-2xl border border-slate-600">
+                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md">
+                            <img 
+                              src={logoKharazmi} 
+                              alt="Kharazmi Logo" 
+                              className="max-w-full max-h-full object-contain"
+                            />
+                          </div>
+                          <div>
+                            <div className="font-bold text-white text-base">B.Sc. in Mathematics</div>
+                            <div className="text-xs text-slate-300 font-normal mt-0.5">Kharazmi University</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* کتب آموزشی */}
+      <div id="books" className="max-w-6xl mx-auto px-4 mt-4">
+        <BooksSection lang={lang} />
+      </div>
+
+      {/* ارتباط با استاد */}
+      <div id="contact">
+        <ContactButtons lang={lang} />
+      </div>
+    </main>
+  );
+}
