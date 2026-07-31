@@ -42,11 +42,10 @@ export default function Home() {
     { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
   ];
 
-  // ساختار داده برای گوگل (Schema Markup / JSON-LD)
   const schemaData = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'هادی محمدی زرندینی',
+    name: 'دکتر هادی محمدی',
     jobTitle: 'عضو هیات علمی دانشگاه و مدرس ریاضیات بین‌الملل',
     worksFor: {
       '@type': 'EducationalOrganization',
@@ -70,7 +69,6 @@ export default function Home() {
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
-      {/* اسکیما کد اختصاصی سئو برای گوگل */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
@@ -129,11 +127,12 @@ export default function Home() {
                 <span className="text-[10px]">{isEducationOpen ? '▲' : '▼'}</span>
               </button>
 
+              {/* تغییر نام دکمه به کتب و منابع آموزشی */}
               <Link 
                 href="/books" 
                 className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-900 rounded-lg border border-blue-200 whitespace-nowrap transition flex items-center gap-1"
               >
-                📚 {isFa ? 'کتب آموزشی' : 'Books'}
+                📚 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
               </Link>
 
               <button 
@@ -220,14 +219,14 @@ export default function Home() {
         </p>
       </section>
 
-      {/* معرفی هادی محمدی زرندینی */}
+      {/* معرفی دکتر هادی محمدی */}
       <section id="about" className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-slate-900 text-white rounded-3xl p-6 md:p-10 border border-slate-800 shadow-2xl">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
             <div className="shrink-0 flex flex-col items-center">
               <img 
                 src="/profile.jpg" 
-                alt="هادی محمدی زرندینی مدرس ریاضی بین الملل" 
+                alt="دکتر هادی محمدی مدرس ریاضی بین الملل" 
                 className="w-48 h-60 object-cover rounded-2xl border-2 border-slate-700 shadow-lg mb-3" 
               />
               <span className="text-xs font-bold text-slate-200 bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-700 text-center">
@@ -238,7 +237,7 @@ export default function Home() {
               <div className="flex items-center gap-3 mb-6 border-b border-slate-800 pb-4 mt-2 md:mt-0">
                 <span className="text-3xl">👨‍🏫</span>
                 <h3 className="text-2xl md:text-3xl font-black text-white leading-snug tracking-tight">
-                  {isFa ? 'هادی محمدی زرندینی' : 'Hadi Mohammadi Zarandini'}
+                  {isFa ? 'دکتر هادی محمدی' : 'Dr. Hadi Mohammadi'}
                 </h3>
               </div>
               <div className="text-slate-200 leading-loose text-sm md:text-base space-y-4 text-justify font-normal">
@@ -282,15 +281,15 @@ export default function Home() {
           </h4>
           <p className="text-slate-700 leading-relaxed text-sm md:text-base font-normal mb-6">
             {isFa 
-              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲، معادلات دیفرانسیل، محاسبات عددی، آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران و همچنین تدریس کتب ریاضی دبیرستان‌های برتر تهران'
-              : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran, as well as teaching mathematics curricula of top high schools in Tehran.'}
+              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲، معادلات دیفرانسیل، محاسبات عددی، آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران'
+              : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran.'}
           </p>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
                 src="/teaching1.JPG" 
-                alt="تدریس هادی محمدی زرندینی در دانشگاه" 
+                alt="تدریس دکتر هادی محمدی در دانشگاه" 
                 className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
             </div>
@@ -298,7 +297,7 @@ export default function Home() {
             <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
                 src="/teaching2.PNG" 
-                alt="تدریس ریاضیات هادی محمدی زرندینی" 
+                alt="تدریس ریاضیات دکتر هادی محمدی" 
                 className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
             </div>
@@ -315,7 +314,6 @@ export default function Home() {
           </h4>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* دکتری - امیرکبیر */}
             <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
               <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
                 <img 
@@ -334,7 +332,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* ارشد - امیرکبیر */}
             <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
               <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
                 <img 
@@ -353,7 +350,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* کارشناسی - خوارزمی */}
             <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
               <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
                 <img 
