@@ -2,371 +2,61 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import BooksSection from '@/components/BooksSection';
 
 export default function BooksPage() {
   const [lang, setLang] = useState('fa');
-  const [activeTab, setActiveTab] = useState('taught-books'); // 'taught-books' یا 'summaries'
-  const [selectedGrade, setSelectedGrade] = useState('g7');
-  const [selectedImage, setSelectedImage] = useState(null);
-
   const isFa = lang === 'fa';
 
-  // پایه‌های تحصیلی هفتم تا دوازدهم
-  const grades = [
-    { id: 'g7', fa: 'پایه هفتم (Grade 7)', en: 'Grade 7' },
-    { id: 'g8', fa: 'پایه هشتم (Grade 8)', en: 'Grade 8' },
-    { id: 'g9', fa: 'پایه نهم (Grade 9)', en: 'Grade 9' },
-    { id: 'g10', fa: 'پایه دهم (Grade 10)', en: 'Grade 10' },
-    { id: 'g11', fa: 'پایه یازدهم (Grade 11)', en: 'Grade 11' },
-    { id: 'g12', fa: 'پایه دوازدهم (Grade 12)', en: 'Grade 12' },
-  ];
-
-  // لیست کامل تصاویر خلاصه فصل‌های پایه هفتم
-  const grade7Summaries = [
-    { src: '/summary-g7-1.png', title: 'خلاصه فصل ۱ - پایه هفتم' },
-    { src: '/summary-g7-2.png', title: 'خلاصه فصل ۲ - پایه هفتم' },
-    { src: '/summary-g7-3.png', title: 'خلاصه فصل ۳ - پایه هفتم' },
-    { src: '/summary-g7-4.png', title: 'خلاصه فصل ۴ - پایه هفتم' },
-    { src: '/summary-g7-5.png', title: 'خلاصه فصل ۵ - پایه هفتم' },
-    { src: '/summary-g7-6.png', title: 'خلاصه فصل ۶ - پایه هفتم' },
-    { src: '/summary-g7-7.png', title: 'خلاصه فصل ۷ - پایه هفتم' },
-    { src: '/summary-g7-8.png', title: 'خلاصه فصل ۸ - پایه هفتم' },
-    { src: '/summary-g7-9.png', title: 'خلاصه فصل ۹ - پایه هفتم' },
-    { src: '/summary-g7-10.png', title: 'خلاصه فصل ۱۰ - پایه هفتم' },
-  ];
-
-  // تمامی اطلاعات کتب تدریس شده به تفکیک پایه و لینک‌های اختصاصی تلگرام + کتب دانشگاهی
-  const taughtBooksData = [
-    {
-      country: 'آمریکا (USA)',
-      flag: '🇺🇸',
-      grades: 'پایه هفتم تا دوازدهم (Grade 7 to 12 - AP & IB Math)',
-      description: 'کتاب‌های استاندارد ریاضیات آمریکا به همراه لینک اختصاصی کانال تلگرام برای هر پایه تحصیلی:',
-      telegramLink: 'https://t.me/International_Maths/379',
-      books: [
-        { title: 'پایه هفتم (Grade 7 Math)', link: 'https://t.me/International_Maths/379' },
-        { title: 'پایه هشتم (Grade 8 Math & Pre-Algebra)', link: 'https://t.me/International_Maths/380' },
-        { title: 'پایه نهم (Algebra 1 & Geometry)', link: 'https://t.me/International_Maths/381' },
-        { title: 'پایه دهم (Algebra 2 & Trigonometry)', link: 'https://t.me/International_Maths/382' },
-        { title: 'پایه یازدهم (Pre-Calculus)', link: 'https://t.me/International_Maths/383' },
-        { title: 'پایه دوازدهم (AP Calculus AB/BC & IB Math)', link: 'https://t.me/International_Maths/384' },
-      ]
-    },
-    {
-      country: 'کانادا (Canada)',
-      flag: '🇨🇦',
-      grades: 'پایه هفتم تا دوازدهم (Grade 7 to 12)',
-      description: 'کتاب‌های رسمی ریاضی استان‌های انکاریو و بریتیش کلمبیا با لینک‌های مجزا برای هر مقطع:',
-      telegramLink: 'https://t.me/International_Maths/302',
-      books: [
-        { title: 'پایه هفتم (Grade 7 Math)', link: 'https://t.me/International_Maths/302' },
-        { title: 'پایه هشتم (Grade 8 Math)', link: 'https://t.me/International_Maths/303' },
-        { title: 'پایه نهم (Grade 9 Principles of Math)', link: 'https://t.me/International_Maths/304' },
-        { title: 'پایه دهم (Grade 10 Principles of Math)', link: 'https://t.me/International_Maths/305' },
-        { title: 'پایه یازدهم (Grade 11 Functions)', link: 'https://t.me/International_Maths/306' },
-        { title: 'پایه دوازدهم (Grade 12 Advanced Functions & Calculus)', link: 'https://t.me/International_Maths/307' },
-      ]
-    },
-    {
-      country: 'انگلستان (UK)',
-      flag: '🇬🇧',
-      grades: 'Key Stage 3, GCSE, IGCSE & A-Level',
-      description: 'کتاب‌های ریاضی نظام بریتانیا (Edexcel, AQA, OCR) تفکیک‌شده براساس مقاطع تحصیلی:',
-      telegramLink: 'https://t.me/International_Maths/297',
-      books: [
-        { title: 'پایه هفتم (KS3 Year 7 Math)', link: 'https://t.me/International_Maths/297' },
-        { title: 'پایه هشتم (KS3 Year 8 Math)', link: 'https://t.me/International_Maths/298' },
-        { title: 'پایه نهم (KS3 Year 9 Math)', link: 'https://t.me/International_Maths/300' },
-        { title: 'پایه دهم (GCSE / IGCSE Year 10)', link: 'https://t.me/International_Maths/301' },
-        { title: 'پایه یازدهم (GCSE / IGCSE Year 11)', link: 'https://t.me/International_Maths/308' },
-        { title: 'پایه دوازدهم (AS & A-Level Pure Math / Mechanics)', link: 'https://t.me/International_Maths/309' },
-      ]
-    },
-    {
-      country: 'استرالیا (Australia)',
-      flag: '🇦🇺',
-      grades: 'Year 7 to Year 12 (HSC & VCE)',
-      description: 'کتاب‌های ریاضی استرالیا تفکیک‌شده بر اساس پایه‌های تحصیلی و دروس تخصصی:',
-      telegramLink: 'https://t.me/International_Maths/299',
-      books: [
-        { title: 'پایه هفتم (Year 7 Mathematics)', link: 'https://t.me/International_Maths/299' },
-        { title: 'پایه هشتم (Year 8 Mathematics)', link: 'https://t.me/International_Maths/310' },
-        { title: 'پایه نهم (Year 9 Mathematics)', link: 'https://t.me/International_Maths/311' },
-        { title: 'پایه دهم (Year 10 Mathematics)', link: 'https://t.me/International_Maths/312' },
-        { title: 'پایه یازدهم (Year 11 Math Advanced & Ext 1)', link: 'https://t.me/International_Maths/313' },
-        { title: 'پایه دوازدهم (Year 12 Math Advanced & Ext 2)', link: 'https://t.me/International_Maths/314' },
-      ]
-    },
-    {
-      country: 'آلمان (Germany)',
-      flag: '🇩🇪',
-      grades: 'Klasse 7 bis 12 (Gymnasium - Abitur)',
-      description: 'کتاب‌های ریاضی مدارس ژیمنازیوم آلمان به تفکیک پایه‌ها برای آزمون‌های Abitur:',
-      telegramLink: 'https://t.me/International_Maths/375',
-      books: [
-        { title: 'پایه هفتم (Mathematik Klasse 7)', link: 'https://t.me/International_Maths/375' },
-        { title: 'پایه هشتم (Mathematik Klasse 8)', link: 'https://t.me/International_Maths/376' },
-        { title: 'پایه نهم (Mathematik Klasse 9)', link: 'https://t.me/International_Maths/377' },
-        { title: 'پایه دهم (Mathematik Klasse 10)', link: 'https://t.me/International_Maths/378' },
-        { title: 'پایه یازدهم (Oberstufe Analysis)', link: 'https://t.me/International_Maths/385' },
-        { title: 'پایه دوازدهم (Abitur Vorbereitung)', link: 'https://t.me/International_Maths/386' },
-      ]
-    },
-    {
-      country: 'ترکیه (Turkey)',
-      flag: '🇹🇷',
-      grades: 'Ortaokul 7-8 & Lise 9-12 (YÖS & LGS)',
-      description: 'کتاب‌های ریاضی ترکیه تفکیک‌شده بر اساس مقاطع راهنمایی، دبیرستان و آزمون‌های YÖS/SAT:',
-      telegramLink: 'https://t.me/International_Maths/395',
-      books: [
-        { title: 'پایه هفتم (7. Sınıf Matematik)', link: 'https://t.me/International_Maths/395' },
-        { title: 'پایه هشتم (8. Sınıf LGS Matematik)', link: 'https://t.me/International_Maths/396' },
-        { title: 'پایه نهم (9. Sınıf Lise Matematik)', link: 'https://t.me/International_Maths/397' },
-        { title: 'پایه دهم (10. Sınıf Lise Matematik)', link: 'https://t.me/International_Maths/398' },
-        { title: 'پایه یازدهم (11. Sınıf Matematik)', link: 'https://t.me/International_Maths/399' },
-        { title: 'پایه دوازدهم (12. Sınıf & YÖS / SAT)', link: 'https://t.me/International_Maths/400' },
-      ]
-    },
-    {
-      country: 'کتب ریاضی دانشگاهی (University Math Books)',
-      flag: '🎓',
-      grades: 'دروس دانشگاهی و تحصیلات عالی',
-      description: 'منابع، مراجع و کتب درسی ریاضیات عالی و دانشگاهی به تفکیک عناوین درسی:',
-      telegramLink: 'https://t.me/International_Maths/401',
-      books: [
-        { title: 'ریاضی عمومی ۱ و ۲ (Calculus I & II)', link: 'https://t.me/International_Maths/401' },
-        { title: 'معادلات دیفرانسیل (Differential Equations)', link: 'https://t.me/International_Maths/402' },
-        { title: 'ریاضیات مهندسی (Engineering Mathematics)', link: 'https://t.me/International_Maths/403' },
-        { title: 'جبر خطی کاربردی (Linear Algebra)', link: 'https://t.me/International_Maths/404' },
-        { title: 'آمار و احتمال مهندسی (Probability & Statistics)', link: 'https://t.me/International_Maths/405' },
-        { title: 'آنالیز عددی (Numerical Analysis)', link: 'https://t.me/International_Maths/406' },
-      ]
-    }
-  ];
-
   return (
-    <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
-      {/* هدر بالای صفحه */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 px-4 py-4 shadow-sm">
+    <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-white text-black font-sans pb-12">
+      {/* هدر صفحه کتاب‌ها */}
+      <header className="sticky top-0 z-50 bg-white border-b border-gray-200 px-4 py-3 shadow-sm">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 text-blue-700 font-bold text-xs md:text-sm hover:underline">
-            <span>←</span>
-            <span>{isFa ? 'بازگشت به صفحه اصلی' : 'Back to Home'}</span>
+          
+          {/* دکمه بازگشت به صفحه اصلی */}
+          <Link 
+            href="/" 
+            className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black text-xs font-bold rounded-lg border border-gray-300 transition"
+          >
+            <span>{isFa ? '← بازگشت به صفحه اصلی' : '← Back to Home'}</span>
           </Link>
 
-          <h1 className="text-base md:text-xl font-black text-slate-800">
-            📚 {isFa ? 'کتاب و منابع آموزشی' : 'Books & Educational Resources'}
-          </h1>
-
-          <button 
-            type="button"
-            onClick={() => setLang(isFa ? 'en' : 'fa')} 
-            className="text-xs font-bold px-3 py-1.5 bg-gray-100 rounded-lg border border-gray-300 hover:bg-gray-200 transition"
-          >
-            {isFa ? 'English' : 'فارسی'}
-          </button>
+          {/* تغییر زبان */}
+          <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300">
+            <button 
+              type="button"
+              onClick={() => setLang('fa')} 
+              className={`text-xs font-bold transition ${isFa ? 'text-black underline' : 'text-gray-500 hover:text-black'}`}
+            >
+              فارسی
+            </button>
+            <span className="text-gray-400 font-light">|</span>
+            <button 
+              type="button"
+              onClick={() => setLang('en')} 
+              className={`text-xs font-bold transition ${!isFa ? 'text-black underline' : 'text-gray-500 hover:text-black'}`}
+            >
+              English
+            </button>
+          </div>
         </div>
       </header>
 
-      <div className="max-w-5xl mx-auto px-4 pt-8">
-        
-        {/* منوی دو تایی اصلی بالای صفحه */}
-        <div className="flex items-center justify-center gap-3 mb-8 bg-white p-2 rounded-2xl border border-gray-200 shadow-sm max-w-xl mx-auto">
-          <button
-            type="button"
-            onClick={() => setActiveTab('taught-books')}
-            className={`flex-1 py-3 px-4 text-xs md:text-sm font-bold rounded-xl transition flex items-center justify-center gap-2 ${
-              activeTab === 'taught-books'
-                ? 'bg-blue-600 text-white shadow-md'
-                : 'bg-transparent text-slate-600 hover:bg-slate-100'
-            }`}
-          >
-            <span>📘</span>
-            <span>{isFa ? 'کتب تدریس شده' : 'Taught Books'}</span>
-          </button>
+      {/* عنوان صفحه */}
+      <section className="max-w-4xl mx-auto text-center px-4 pt-8 pb-4">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-black mb-2">
+          📚 {isFa ? 'کتب و منابع آموزشی' : 'Educational Books & Resources'}
+        </h1>
+        <p className="text-gray-600 text-sm md:text-base">
+          {isFa ? 'مجموعه کامل کتاب‌های آموزشی ریاضیات نظام‌های بین‌المللی' : 'Comprehensive collection of international math textbooks'}
+        </p>
+      </section>
 
-          <button
-            type="button"
-            onClick={() => setActiveTab('summaries')}
-            className={`flex-1 py-3 px-4 text-xs md:text-sm font-bold rounded-xl transition flex items-center justify-center gap-2 ${
-              activeTab === 'summaries'
-                ? 'bg-blue-600 text-white shadow-md'
-                : 'bg-transparent text-slate-600 hover:bg-slate-100'
-            }`}
-          >
-            <span>📝</span>
-            <span>{isFa ? 'خلاصه فصل‌های کتب' : 'Chapter Summaries'}</span>
-          </button>
-        </div>
-
-        {/* ==================== ۱. کتب تدریس شده ==================== */}
-        {activeTab === 'taught-books' && (
-          <div className="space-y-6">
-            <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
-              <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-3 flex items-center gap-2 border-b border-gray-100 pb-3">
-                <span>📘</span>
-                <span>{isFa ? 'کتب تدریس شده در نظام‌های بین‌المللی و دانشگاهی' : 'International Curriculum & University Taught Books'}</span>
-              </h2>
-              <p className="text-slate-600 text-xs md:text-sm leading-relaxed mb-6">
-                {isFa 
-                  ? 'اطلاعات کامل کتاب‌های تدریس شده از پایه هفتم تا دوازدهم و همچنین دروس دانشگاهی به تفکیک کشورها و مقاطع. برای دریافت فایل هر پایه می‌توانید روی عنوان مربوطه کلیک کنید.'
-                  : 'Complete curriculum book details from Grade 7 to Grade 12 and university courses with direct Telegram links.'}
-              </p>
-
-              <div className="space-y-6">
-                {taughtBooksData.map((item, idx) => (
-                  <div key={idx} className="bg-slate-50 rounded-2xl p-5 border border-gray-200 shadow-sm hover:border-blue-300 transition">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-gray-200/80 mb-4">
-                      <div>
-                        <h3 className="text-base md:text-lg font-black text-slate-800 flex items-center gap-2">
-                          <span>{item.flag}</span>
-                          <span>{item.country}</span>
-                        </h3>
-                        <span className="text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200 inline-block mt-1">
-                          {item.grades}
-                        </span>
-                      </div>
-                      <a 
-                        href={item.telegramLink} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition shadow-sm w-fit"
-                      >
-                        <span>✈️</span>
-                        <span>{isFa ? 'مشاهده کلی در تلگرام' : 'View All in Telegram'}</span>
-                      </a>
-                    </div>
-
-                    <p className="text-xs md:text-sm text-slate-600 mb-4">{item.description}</p>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
-                      {item.books.map((b, bIdx) => (
-                        <a
-                          key={bIdx}
-                          href={b.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-between p-3 bg-white hover:bg-blue-50/80 rounded-xl border border-gray-200 text-xs font-bold text-slate-800 transition group shadow-2xs"
-                        >
-                          <span className="group-hover:text-blue-700 leading-snug">📖 {b.title}</span>
-                          <span className="text-blue-600 group-hover:translate-x-1 transition-transform shrink-0 mr-1">←</span>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ==================== ۲. خلاصه فصل‌های کتب ==================== */}
-        {activeTab === 'summaries' && (
-          <div className="space-y-6">
-            <div className="bg-white rounded-3xl p-6 border border-gray-200 shadow-sm">
-              <h3 className="text-xs md:text-sm font-bold text-slate-700 mb-4 text-center">
-                {isFa ? 'پایه تحصیلی مورد نظر را انتخاب کنید:' : 'Select Grade:'}
-              </h3>
-              <div className="flex items-center justify-center gap-2 flex-wrap">
-                {grades.map((grade) => (
-                  <button
-                    key={grade.id}
-                    type="button"
-                    onClick={() => setSelectedGrade(grade.id)}
-                    className={`px-4 py-2.5 text-xs md:text-sm font-bold rounded-xl border transition flex items-center gap-1.5 ${
-                      selectedGrade === grade.id
-                        ? 'bg-blue-600 text-white border-blue-700 shadow-md scale-105'
-                        : 'bg-slate-50 hover:bg-blue-50 text-slate-700 border-gray-300'
-                    }`}
-                  >
-                    <span>📖</span>
-                    <span>{isFa ? grade.fa : grade.en}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
-              <h3 className="text-lg md:text-xl font-black text-slate-900 mb-6 pb-3 border-b border-gray-100 flex items-center justify-between">
-                <span>
-                  {isFa 
-                    ? `خلاصه فصل‌های ${grades.find(g => g.id === selectedGrade)?.fa}`
-                    : `Summaries for ${grades.find(g => g.id === selectedGrade)?.en}`}
-                </span>
-                <span className="text-xs font-normal text-slate-500">
-                  {isFa ? 'روی هر تصویر کلیک کنید تا بزرگ‌نمایی شود' : 'Click any image to enlarge'}
-                </span>
-              </h3>
-
-              {selectedGrade === 'g7' ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                  {grade7Summaries.map((item, idx) => (
-                    <div 
-                      key={idx} 
-                      onClick={() => setSelectedImage(item.src)}
-                      className="bg-slate-50 p-3.5 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md hover:border-blue-300 transition cursor-pointer group"
-                    >
-                      <div className="w-full h-64 rounded-xl overflow-hidden bg-white border border-gray-200 flex items-center justify-center p-1">
-                        <img 
-                          src={item.src} 
-                          alt={item.title}
-                          className="w-full h-full object-contain rounded-lg group-hover:scale-102 transition duration-200"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="flex items-center justify-between mt-3 px-1">
-                        <span className="text-xs font-bold text-slate-800">
-                          {isFa ? item.title : `Summary Part ${idx + 1}`}
-                        </span>
-                        <span className="text-[10px] bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
-                          🔍 {isFa ? 'مشاهده' : 'View'}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-16 bg-slate-50 rounded-2xl border border-dashed border-gray-300">
-                  <span className="text-4xl mb-3 block">📌</span>
-                  <p className="text-slate-700 font-bold text-sm md:text-base mb-1">
-                    {isFa 
-                      ? `خلاصه فصل‌های ${grades.find(g => g.id === selectedGrade)?.fa}` 
-                      : `Summaries for ${grades.find(g => g.id === selectedGrade)?.en}`}
-                  </p>
-                  <p className="text-slate-500 text-xs">
-                    {isFa 
-                      ? 'عکس‌های خلاصه فصل‌های این پایه به‌زودی افزوده خواهند شد.' 
-                      : 'Chapter summaries for this grade will be added soon.'}
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
+      {/* کامپوننت کتاب‌ها */}
+      <div className="max-w-6xl mx-auto px-4 mt-6">
+        <BooksSection lang={lang} />
       </div>
-
-      {/* پنجره مدال برای نمایش عکس */}
-      {selectedImage && (
-        <div 
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div className="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center justify-center">
-            <button 
-              type="button"
-              onClick={() => setSelectedImage(null)}
-              className="absolute -top-10 right-0 text-white font-bold text-xs md:text-sm bg-gray-800/90 px-3.5 py-1.5 rounded-lg border border-gray-600 hover:bg-gray-700 transition"
-            >
-              ✕ {isFa ? 'بستن' : 'Close'}
-            </button>
-            <img 
-              src={selectedImage} 
-              alt="بزرگنمایی خلاصه فصل" 
-              className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl bg-white p-2"
-            />
-          </div>
-        </div>
-      )}
     </main>
   );
 }
