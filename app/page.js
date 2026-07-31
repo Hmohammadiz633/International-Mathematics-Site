@@ -241,7 +241,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* کادر دوم سفید: سوابق تدریس با پسوند jpg به حروف کوچک */}
+      {/* سوابق تدریس */}
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
           <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2.5 border-b border-gray-100 pb-3">
@@ -257,8 +257,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
-                src="/teaching1.jpg" 
-                onError={(e) => { e.currentTarget.src = '/teaching1.JPG'; }} 
+                src="/teaching1.JPG" 
                 alt="تدریس دکتر هادی محمدی در دانشگاه" 
                 className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
@@ -266,8 +265,7 @@ export default function Home() {
 
             <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
-                src="/teaching2.jpg" 
-                onError={(e) => { e.currentTarget.src = '/teaching2.JPG'; }} 
+                src="/teaching2.PNG" 
                 alt="تدریس ریاضیات دکتر هادی محمدی" 
                 className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
@@ -276,7 +274,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* کادر سوم سفید: سوابق تحصیلی */}
+      {/* سوابق تحصیلی */}
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
           <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2.5 border-b border-gray-100 pb-3">
@@ -289,10 +287,9 @@ export default function Home() {
             <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
               <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
                 <img 
-                  src="/amirkabir.png" 
+                  src="/amirkabir.jpg" 
                   alt="دانشگاه صنعتی امیرکبیر" 
                   className="w-full h-full object-contain"
-                  onError={(e) => { e.currentTarget.src = '/amirkabir.svg'; }}
                 />
               </div>
               <div>
@@ -309,10 +306,9 @@ export default function Home() {
             <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
               <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
                 <img 
-                  src="/amirkabir.png" 
+                  src="/amirkabir.jpg" 
                   alt="دانشگاه صنعتی امیرکبیر" 
                   className="w-full h-full object-contain"
-                  onError={(e) => { e.currentTarget.src = '/amirkabir.svg'; }}
                 />
               </div>
               <div>
@@ -329,10 +325,9 @@ export default function Home() {
             <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
               <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
                 <img 
-                  src="/kharazmi.png" 
+                  src="/kharazmi.jpg" 
                   alt="دانشگاه خوارزمی" 
                   className="w-full h-full object-contain"
-                  onError={(e) => { e.currentTarget.src = '/kharazmi.svg'; }}
                 />
               </div>
               <div>
