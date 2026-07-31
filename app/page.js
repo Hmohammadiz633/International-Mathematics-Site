@@ -274,22 +274,22 @@ export default function Home() {
               : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran.'}
           </p>
           
-          {/* بخش تصاویر: نمایش کامل تصویر بدون برش (object-contain) */}
+          {/* کادرها و عکس‌های دقیقاً هم‌اندازه و هماهنگ */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="flex items-center justify-center rounded-2xl border border-gray-200 bg-gray-100/60 p-2 shadow-inner h-64 md:h-72">
+            <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
                 src="/teaching1.JPG" 
                 onError={(e) => { e.currentTarget.src = '/teaching1.jpg'; }} 
                 alt="تدریس دکتر هادی محمدی در دانشگاه" 
-                className="w-full h-full object-contain rounded-xl hover:scale-105 transition duration-300"
+                className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
             </div>
-            <div className="flex items-center justify-center rounded-2xl border border-gray-200 bg-gray-100/60 p-2 shadow-inner h-64 md:h-72">
+            <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
                 src="/teaching2.PNG" 
                 onError={(e) => { e.currentTarget.src = '/teaching2.png'; }} 
                 alt="تدریس ریاضیات دکتر هادی محمدی" 
-                className="w-full h-full object-contain rounded-xl hover:scale-105 transition duration-300"
+                className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
             </div>
           </div>
