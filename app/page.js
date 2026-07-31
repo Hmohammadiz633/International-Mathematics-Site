@@ -42,39 +42,6 @@ export default function Home() {
     { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
   ];
 
-  const authoredBooks = [
-    {
-      title: 'ریاضیات پایه و مقدماتی',
-      titleEn: 'Basic & Elementary Mathematics',
-      img: '/book1.JPG',
-    },
-    {
-      title: 'ریاضیات کاربردی (ریاضی عمومی ۲)',
-      titleEn: 'Applied Mathematics (Calculus II)',
-      img: '/book2.JPG',
-    },
-    {
-      title: 'ریاضی عمومی ۲ (کاربردی +۷)',
-      titleEn: 'Calculus II (Applied +7)',
-      img: '/book3.JPG',
-    },
-    {
-      title: 'ریاضی عمومی',
-      titleEn: 'General Mathematics',
-      img: '/book4.JPG',
-    },
-    {
-      title: 'ریاضی عمومی ۲ (آموزش نرم‌افزارها)',
-      titleEn: 'Calculus II & Software',
-      img: '/book5.JPG',
-    },
-    {
-      title: 'ریاضیات مهندسی',
-      titleEn: 'Engineering Mathematics',
-      img: '/book6.JPG',
-    },
-  ];
-
   // ساختار داده برای گوگل (Schema Markup / JSON-LD)
   const schemaData = {
     '@context': 'https://schema.org',
@@ -335,36 +302,6 @@ export default function Home() {
                 className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* کتب تألیفی */}
-      <section className="max-w-5xl mx-auto px-4 pt-6">
-        <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
-          <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-6 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
-            <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">📚</span>
-            <span>{isFa ? 'کتب تألیفی' : 'Authored Books'}</span>
-          </h4>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
-            {authoredBooks.map((book, idx) => (
-              <div 
-                key={idx} 
-                className="flex flex-col bg-slate-50 p-2.5 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition group"
-              >
-                <div className="w-full aspect-[3/4] rounded-xl overflow-hidden bg-white border border-gray-200 mb-2.5 shadow-xs">
-                  <img 
-                    src={book.img} 
-                    alt={isFa ? book.title : book.titleEn} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-                  />
-                </div>
-                <h5 className="font-bold text-slate-800 text-xs text-center leading-snug line-clamp-2 mt-auto">
-                  {isFa ? book.title : book.titleEn}
-                </h5>
-              </div>
-            ))}
           </div>
         </div>
       </section>
