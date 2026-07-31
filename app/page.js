@@ -9,11 +9,7 @@ export default function Home() {
   const [isEducationOpen, setIsEducationOpen] = useState(false);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const [isMathSitesOpen, setIsMathSitesOpen] = useState(false);
-  
-  // استیت‌های منوی اصلی منابع آموزشی و زیرمنوها
   const [isBooksResourcesOpen, setIsBooksResourcesOpen] = useState(false);
-  const [isSummariesSubMenuOpen, setIsSummariesSubMenuOpen] = useState(false);
-  const [selectedGrade, setSelectedGrade] = useState(null);
 
   const isFa = lang === 'fa';
 
@@ -47,29 +43,6 @@ export default function Home() {
     { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
   ];
 
-  const grades = [
-    { id: 'g7', fa: 'پایه هفتم (Grade 7)', en: 'Grade 7' },
-    { id: 'g8', fa: 'پایه هشتم (Grade 8)', en: 'Grade 8' },
-    { id: 'g9', fa: 'پایه نهم (Grade 9)', en: 'Grade 9' },
-    { id: 'g10', fa: 'پایه دهم (Grade 10)', en: 'Grade 10' },
-    { id: 'g11', fa: 'پایه یازدهم (Grade 11)', en: 'Grade 11' },
-    { id: 'g12', fa: 'پایه دوازدهم (Grade 12)', en: 'Grade 12' },
-  ];
-
-  // اصلاح پسوند به .png مطابق نام‌گذاری دقیق در گیت‌هاب شما
-  const grade7Summaries = [
-    '/summary-g7-1.png',
-    '/summary-g7-2.png',
-    '/summary-g7-3.png',
-    '/summary-g7-4.png',
-    '/summary-g7-5.png',
-    '/summary-g7-6.png',
-    '/summary-g7-7.png',
-    '/summary-g7-8.png',
-    '/summary-g7-9.png',
-    '/summary-g7-10.png',
-  ];
-
   const authoredBooks = [
     { title: 'ریاضیات پایه و مقدماتی', titleEn: 'Basic & Elementary Mathematics', img: '/book1.JPG' },
     { title: 'ریاضیات کاربردی (ریاضی عمومی ۲)', titleEn: 'Applied Mathematics (Calculus II)', img: '/book2.JPG' },
@@ -79,29 +52,8 @@ export default function Home() {
     { title: 'ریاضیات مهندسی', titleEn: 'Engineering Mathematics', img: '/book6.JPG' },
   ];
 
-  const schemaData = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'هادی محمدی زرندینی',
-    jobTitle: 'عضو هیات علمی دانشگاه و مدرس ریاضیات بین‌الملل',
-    worksFor: { '@type': 'EducationalOrganization', name: 'دانشگاه ملی مهارت تهران' },
-    alumniOf: [
-      { '@type': 'EducationalOrganization', name: 'دانشگاه صنعتی امیرکبیر' },
-      { '@type': 'EducationalOrganization', name: 'دانشگاه خوارزمی' },
-    ],
-    sameAs: [
-      'https://t.me/International_Maths',
-      'https://instagram.com/Hadi_mohammadi_zarandini',
-    ],
-  };
-
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
-
       {/* هدر */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 py-3 shadow-sm">
         <div className="max-w-6xl mx-auto flex flex-col items-center gap-3">
@@ -158,7 +110,7 @@ export default function Home() {
                 <span className="text-[10px]">{isEducationOpen ? '▲' : '▼'}</span>
               </button>
 
-              {/* ۲. سرتیتر جدید: کتاب و منابع آموزشی */}
+              {/* ۲. سرتیتر: کتاب و منابع آموزشی */}
               <button 
                 type="button"
                 onClick={() => { 
@@ -166,7 +118,6 @@ export default function Home() {
                   setIsEducationOpen(false); 
                   setIsFeedbackOpen(false); 
                   setIsMathSitesOpen(false); 
-                  setIsSummariesSubMenuOpen(false);
                 }} 
                 className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-900 rounded-lg border border-blue-200 whitespace-nowrap transition flex items-center gap-1"
               >
@@ -214,6 +165,27 @@ export default function Home() {
               </button>
             </div>
 
+            {/* زیرمنوی سرتیتر "کتاب و منابع آموزشی" */}
+            {isBooksResourcesOpen && (
+              <div className="w-full flex items-center justify-center gap-3 flex-wrap bg-blue-50/90 p-3 rounded-xl border border-blue-200 my-1 shadow-inner">
+                <Link 
+                  href="/books" 
+                  className="px-4 py-2 bg-white hover:bg-blue-100 text-blue-950 font-bold text-xs rounded-lg border border-blue-300 shadow-sm transition flex items-center gap-1.5"
+                >
+                  <span>📘</span>
+                  <span>{isFa ? 'کتب تدریس شده' : 'Taught Books'}</span>
+                </Link>
+
+                <Link 
+                  href="/books" 
+                  className="px-4 py-2 bg-white hover:bg-blue-100 text-blue-950 font-bold text-xs rounded-lg border border-blue-300 shadow-sm transition flex items-center gap-1.5"
+                >
+                  <span>📝</span>
+                  <span>{isFa ? 'خلاصه فصل‌های کتب' : 'Chapter Summaries'}</span>
+                </Link>
+              </div>
+            )}
+
             {/* زیرمنوی نظام آموزشی کشورها */}
             {isEducationOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
@@ -226,59 +198,6 @@ export default function Home() {
               </div>
             )}
 
-            {/* زیرمنوی سرتیتر "کتاب و منابع آموزشی" */}
-            {isBooksResourcesOpen && (
-              <div className="w-full flex flex-col items-center gap-2 bg-blue-50/90 p-3 rounded-xl border border-blue-200 my-1 shadow-inner">
-                <div className="flex items-center justify-center gap-3 flex-wrap">
-                  {/* زیرمنو ۱: کتب تدریس شده */}
-                  <Link 
-                    href="/books" 
-                    className="px-4 py-2 bg-white hover:bg-blue-100 text-blue-950 font-bold text-xs rounded-lg border border-blue-300 shadow-sm transition flex items-center gap-1.5"
-                  >
-                    <span>📘</span>
-                    <span>{isFa ? 'کتب تدریس شده' : 'Taught Books'}</span>
-                  </Link>
-
-                  {/* زیرمنو ۲: خلاصه فصل‌های کتب */}
-                  <button
-                    type="button"
-                    onClick={() => setIsSummariesSubMenuOpen(!isSummariesSubMenuOpen)}
-                    className="px-4 py-2 bg-white hover:bg-blue-100 text-blue-950 font-bold text-xs rounded-lg border border-blue-300 shadow-sm transition flex items-center gap-1.5"
-                  >
-                    <span>📝</span>
-                    <span>{isFa ? 'خلاصه فصل‌های کتب' : 'Chapter Summaries'}</span>
-                    <span className="text-[10px]">{isSummariesSubMenuOpen ? '▲' : '▼'}</span>
-                  </button>
-                </div>
-
-                {/* زیرمنوی کشویی پایه‌ها (هفتم تا دوازدهم) */}
-                {isSummariesSubMenuOpen && (
-                  <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-white p-2.5 rounded-lg border border-blue-200 mt-2 shadow-xs">
-                    {grades.map((grade) => (
-                      <button
-                        key={grade.id}
-                        type="button"
-                        onClick={() => {
-                          setSelectedGrade(grade.id);
-                          setIsBooksResourcesOpen(false);
-                          setIsSummariesSubMenuOpen(false);
-                          setTimeout(() => scrollToSection('summaries-section'), 100);
-                        }}
-                        className={`px-3 py-1.5 text-xs font-bold rounded-lg border shadow-xs transition flex items-center gap-1 ${
-                          selectedGrade === grade.id 
-                            ? 'bg-blue-600 text-white border-blue-700' 
-                            : 'bg-slate-50 hover:bg-blue-50 text-slate-800 border-gray-300'
-                        }`}
-                      >
-                        <span>📖</span>
-                        <span>{isFa ? grade.fa : grade.en}</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-
             {/* زیرمنوی سایت‌های ریاضی */}
             {isMathSitesOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
@@ -286,7 +205,6 @@ export default function Home() {
                   <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-300 shadow-sm transition flex items-center gap-1.5">
                     <span>{item.flag}</span>
                     <span>{isFa ? item.fa : item.en}</span>
-                    <span className="text-[10px] text-gray-400">↗</span>
                   </a>
                 ))}
               </div>
@@ -307,57 +225,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* بخش نمایش عکس‌های خلاصه فصل‌ها با کلیک روی پایه */}
-      {selectedGrade && (
-        <section id="summaries-section" className="max-w-5xl mx-auto px-4 pt-6">
-          <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-blue-200 shadow-lg">
-            <div className="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
-              <h4 className="text-xl md:text-2xl font-black text-slate-900 flex items-center gap-2">
-                <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">📝</span>
-                <span>
-                  {isFa 
-                    ? `خلاصه فصل‌های ${grades.find(g => g.id === selectedGrade)?.fa}`
-                    : `Summaries for ${grades.find(g => g.id === selectedGrade)?.en}`}
-                </span>
-              </h4>
-              <button 
-                type="button"
-                onClick={() => setSelectedGrade(null)} 
-                className="text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg border border-red-200 transition"
-              >
-                ✕ {isFa ? 'بستن' : 'Close'}
-              </button>
-            </div>
-
-            {selectedGrade === 'g7' ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {grade7Summaries.map((imgPath, idx) => (
-                  <div key={idx} className="bg-slate-50 p-2.5 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
-                    <img 
-                      src={imgPath} 
-                      alt={`خلاصه فصل پایه هفتم ${idx + 1}`} 
-                      className="w-full h-auto object-cover rounded-xl border border-gray-200"
-                    />
-                    <p className="text-xs text-center font-bold text-slate-700 mt-2">
-                      {isFa ? `خلاصه بخش ${idx + 1}` : `Summary Part ${idx + 1}`}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-10 bg-slate-50 rounded-2xl border border-dashed border-gray-300">
-                <p className="text-slate-600 font-semibold text-sm md:text-base">
-                  {isFa 
-                    ? 'خلاصه فصل‌های این پایه به‌زودی آپلود خواهند شد.' 
-                    : 'Summaries for this grade will be uploaded soon.'}
-                </p>
-              </div>
-            )}
-          </div>
-        </section>
-      )}
-
-      {/* بنر اصلی و عنوان سئومحور */}
+      {/* بنر اصلی */}
       <section className="max-w-4xl mx-auto text-center px-4 pt-12 pb-6">
         <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-5 leading-tight tracking-tight bg-gradient-to-r from-blue-900 via-indigo-800 to-slate-900 bg-clip-text text-transparent">
           {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics Tutoring'}
@@ -422,39 +290,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* سوابق تدریس */}
-      <section className="max-w-5xl mx-auto px-4 pt-6">
-        <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
-          <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-4 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
-            <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">📖</span>
-            <span>{isFa ? 'سوابق تدریس' : 'Teaching Experience'}</span>
-          </h4>
-          <p className="text-slate-700 leading-relaxed text-sm md:text-base font-normal mb-6">
-            {isFa 
-              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲، معادلات دیفرانسیل، محاسبات عددی، آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران و همچنین تدریس کتب ریاضی دبیرستان‌های برتر تهران'
-              : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran, as well as teaching mathematics curricula of top high schools in Tehran.'}
-          </p>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
-              <img 
-                src="/teaching1.JPG" 
-                alt="تدریس هادی محمدی زرندینی در دانشگاه" 
-                className="w-full h-full object-cover hover:scale-105 transition duration-300"
-              />
-            </div>
-
-            <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
-              <img 
-                src="/teaching2.PNG" 
-                alt="تدریس ریاضیات هادی محمدی زرندینی" 
-                className="w-full h-full object-cover hover:scale-105 transition duration-300"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* کتب تألیفی */}
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
@@ -481,75 +316,6 @@ export default function Home() {
                 </h5>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* سوابق تحصیلی */}
-      <section className="max-w-5xl mx-auto px-4 pt-6">
-        <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
-          <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-6 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
-            <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">🎓</span>
-            <span>{isFa ? 'سوابق تحصیلی' : 'Education'}</span>
-          </h4>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* دکتری - امیرکبیر */}
-            <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
-              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
-                <img 
-                  src="/amirkabir.jpg" 
-                  alt="دانشگاه صنعتی امیرکبیر" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div>
-                <h5 className="font-bold text-slate-900 text-sm md:text-base leading-snug">
-                  {isFa ? 'دکتری تخصصی ریاضی' : 'Ph.D. in Mathematics'}
-                </h5>
-                <p className="text-xs text-slate-500 font-normal mt-0.5">
-                  {isFa ? 'گرایش بهینه سازی - دانشگاه صنعتی امیرکبیر' : 'Optimization - Amirkabir University'}
-                </p>
-              </div>
-            </div>
-
-            {/* ارشد - امیرکبیر */}
-            <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
-              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
-                <img 
-                  src="/amirkabir.jpg" 
-                  alt="دانشگاه صنعتی امیرکبیر" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div>
-                <h5 className="font-bold text-slate-900 text-sm md:text-base leading-snug">
-                  {isFa ? 'کارشناسی ارشد' : 'M.Sc. in Applied Mathematics'}
-                </h5>
-                <p className="text-xs text-slate-500 font-normal mt-0.5">
-                  {isFa ? 'گرایش ریاضی کاربردی - دانشگاه صنعتی امیرکبیر' : 'Amirkabir University of Technology'}
-                </p>
-              </div>
-            </div>
-
-            {/* کارشناسی - خوارزمی */}
-            <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
-              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
-                <img 
-                  src="/kharazmi.jpg" 
-                  alt="دانشگاه خوارزمی" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div>
-                <h5 className="font-bold text-slate-900 text-sm md:text-base leading-snug">
-                  {isFa ? 'کارشناسی ریاضی' : 'B.Sc. in Mathematics'}
-                </h5>
-                <p className="text-xs text-slate-500 font-normal mt-0.5">
-                  {isFa ? 'دانشگاه خوارزمی' : 'Kharazmi University'}
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
