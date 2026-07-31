@@ -9,7 +9,10 @@ export default function Home() {
   const [isEducationOpen, setIsEducationOpen] = useState(false);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const [isMathSitesOpen, setIsMathSitesOpen] = useState(false);
-  const [isSummariesOpen, setIsSummariesOpen] = useState(false);
+  
+  // استیت‌های منوی اصلی منابع آموزشی و زیرمنوها
+  const [isBooksResourcesOpen, setIsBooksResourcesOpen] = useState(false);
+  const [isSummariesSubMenuOpen, setIsSummariesSubMenuOpen] = useState(false);
   const [selectedGrade, setSelectedGrade] = useState(null);
 
   const isFa = lang === 'fa';
@@ -53,17 +56,18 @@ export default function Home() {
     { id: 'g12', fa: 'پایه دوازدهم (Grade 12)', en: 'Grade 12' },
   ];
 
+  // اصلاح پسوند به .png مطابق نام‌گذاری دقیق در گیت‌هاب شما
   const grade7Summaries = [
-    '/summary-g7-1.jpeg',
-    '/summary-g7-2.jpeg',
-    '/summary-g7-3.jpeg',
-    '/summary-g7-4.jpeg',
-    '/summary-g7-5.jpeg',
-    '/summary-g7-6.jpeg',
-    '/summary-g7-7.jpeg',
-    '/summary-g7-8.jpeg',
-    '/summary-g7-9.jpeg',
-    '/summary-g7-10.jpeg',
+    '/summary-g7-1.png',
+    '/summary-g7-2.png',
+    '/summary-g7-3.png',
+    '/summary-g7-4.png',
+    '/summary-g7-5.png',
+    '/summary-g7-6.png',
+    '/summary-g7-7.png',
+    '/summary-g7-8.png',
+    '/summary-g7-9.png',
+    '/summary-g7-10.png',
   ];
 
   const authoredBooks = [
@@ -138,13 +142,15 @@ export default function Home() {
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-2">
             <div className="w-full flex items-center justify-center gap-2 md:gap-3 overflow-x-auto py-1 text-xs md:text-sm font-bold">
+              
+              {/* ۱. نظام آموزشی کشورها */}
               <button 
                 type="button"
                 onClick={() => { 
                   setIsEducationOpen(!isEducationOpen); 
                   setIsFeedbackOpen(false); 
                   setIsMathSitesOpen(false); 
-                  setIsSummariesOpen(false);
+                  setIsBooksResourcesOpen(false);
                 }} 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
@@ -152,34 +158,30 @@ export default function Home() {
                 <span className="text-[10px]">{isEducationOpen ? '▲' : '▼'}</span>
               </button>
 
-              <Link 
-                href="/books" 
-                className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-900 rounded-lg border border-blue-200 whitespace-nowrap transition flex items-center gap-1"
-              >
-                📚 {isFa ? 'کتب تدریس شده' : 'Taught Books'}
-              </Link>
-
+              {/* ۲. سرتیتر جدید: کتاب و منابع آموزشی */}
               <button 
                 type="button"
                 onClick={() => { 
-                  setIsSummariesOpen(!isSummariesOpen);
+                  setIsBooksResourcesOpen(!isBooksResourcesOpen);
                   setIsEducationOpen(false); 
                   setIsFeedbackOpen(false); 
                   setIsMathSitesOpen(false); 
+                  setIsSummariesSubMenuOpen(false);
                 }} 
                 className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-900 rounded-lg border border-blue-200 whitespace-nowrap transition flex items-center gap-1"
               >
-                <span>📝 {isFa ? 'خلاصه فصل‌های کتب' : 'Chapter Summaries'}</span>
-                <span className="text-[10px]">{isSummariesOpen ? '▲' : '▼'}</span>
+                <span>📚 {isFa ? 'کتاب و منابع آموزشی' : 'Books & Resources'}</span>
+                <span className="text-[10px]">{isBooksResourcesOpen ? '▲' : '▼'}</span>
               </button>
 
+              {/* ۳. سایت‌های ریاضی کشورها */}
               <button 
                 type="button"
                 onClick={() => { 
                   setIsMathSitesOpen(!isMathSitesOpen); 
                   setIsEducationOpen(false); 
                   setIsFeedbackOpen(false); 
-                  setIsSummariesOpen(false);
+                  setIsBooksResourcesOpen(false);
                 }} 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
@@ -187,13 +189,14 @@ export default function Home() {
                 <span className="text-[10px]">{isMathSitesOpen ? '▲' : '▼'}</span>
               </button>
 
+              {/* ۴. بازخورد کلاس‌ها */}
               <button 
                 type="button"
                 onClick={() => { 
                   setIsFeedbackOpen(!isFeedbackOpen); 
                   setIsEducationOpen(false); 
                   setIsMathSitesOpen(false); 
-                  setIsSummariesOpen(false);
+                  setIsBooksResourcesOpen(false);
                 }} 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
@@ -201,6 +204,7 @@ export default function Home() {
                 <span className="text-[10px]">{isFeedbackOpen ? '▲' : '▼'}</span>
               </button>
 
+              {/* ۵. ارتباط با استاد */}
               <button 
                 type="button"
                 onClick={() => scrollToSection('contact')} 
@@ -222,28 +226,56 @@ export default function Home() {
               </div>
             )}
 
-            {/* زیرمنوی کشویی خلاصه فصل‌های کتب (هفتم تا دوازدهم) */}
-            {isSummariesOpen && (
-              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-blue-50/80 p-2.5 rounded-xl border border-blue-200 my-1 shadow-inner">
-                {grades.map((grade) => (
-                  <button
-                    key={grade.id}
-                    type="button"
-                    onClick={() => {
-                      setSelectedGrade(grade.id);
-                      setIsSummariesOpen(false);
-                      setTimeout(() => scrollToSection('summaries-section'), 100);
-                    }}
-                    className={`px-3 py-1.5 text-xs font-bold rounded-lg border shadow-sm transition flex items-center gap-1 ${
-                      selectedGrade === grade.id 
-                        ? 'bg-blue-600 text-white border-blue-700' 
-                        : 'bg-white hover:bg-blue-100 text-slate-800 border-gray-300'
-                    }`}
+            {/* زیرمنوی سرتیتر "کتاب و منابع آموزشی" */}
+            {isBooksResourcesOpen && (
+              <div className="w-full flex flex-col items-center gap-2 bg-blue-50/90 p-3 rounded-xl border border-blue-200 my-1 shadow-inner">
+                <div className="flex items-center justify-center gap-3 flex-wrap">
+                  {/* زیرمنو ۱: کتب تدریس شده */}
+                  <Link 
+                    href="/books" 
+                    className="px-4 py-2 bg-white hover:bg-blue-100 text-blue-950 font-bold text-xs rounded-lg border border-blue-300 shadow-sm transition flex items-center gap-1.5"
                   >
-                    <span>📖</span>
-                    <span>{isFa ? grade.fa : grade.en}</span>
+                    <span>📘</span>
+                    <span>{isFa ? 'کتب تدریس شده' : 'Taught Books'}</span>
+                  </Link>
+
+                  {/* زیرمنو ۲: خلاصه فصل‌های کتب */}
+                  <button
+                    type="button"
+                    onClick={() => setIsSummariesSubMenuOpen(!isSummariesSubMenuOpen)}
+                    className="px-4 py-2 bg-white hover:bg-blue-100 text-blue-950 font-bold text-xs rounded-lg border border-blue-300 shadow-sm transition flex items-center gap-1.5"
+                  >
+                    <span>📝</span>
+                    <span>{isFa ? 'خلاصه فصل‌های کتب' : 'Chapter Summaries'}</span>
+                    <span className="text-[10px]">{isSummariesSubMenuOpen ? '▲' : '▼'}</span>
                   </button>
-                ))}
+                </div>
+
+                {/* زیرمنوی کشویی پایه‌ها (هفتم تا دوازدهم) */}
+                {isSummariesSubMenuOpen && (
+                  <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-white p-2.5 rounded-lg border border-blue-200 mt-2 shadow-xs">
+                    {grades.map((grade) => (
+                      <button
+                        key={grade.id}
+                        type="button"
+                        onClick={() => {
+                          setSelectedGrade(grade.id);
+                          setIsBooksResourcesOpen(false);
+                          setIsSummariesSubMenuOpen(false);
+                          setTimeout(() => scrollToSection('summaries-section'), 100);
+                        }}
+                        className={`px-3 py-1.5 text-xs font-bold rounded-lg border shadow-xs transition flex items-center gap-1 ${
+                          selectedGrade === grade.id 
+                            ? 'bg-blue-600 text-white border-blue-700' 
+                            : 'bg-slate-50 hover:bg-blue-50 text-slate-800 border-gray-300'
+                        }`}
+                      >
+                        <span>📖</span>
+                        <span>{isFa ? grade.fa : grade.en}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
 
@@ -275,7 +307,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* بخش نمایش خلاصه فصل‌ها با کلیک روی پایه */}
+      {/* بخش نمایش عکس‌های خلاصه فصل‌ها با کلیک روی پایه */}
       {selectedGrade && (
         <section id="summaries-section" className="max-w-5xl mx-auto px-4 pt-6">
           <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-blue-200 shadow-lg">
