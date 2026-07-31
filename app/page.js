@@ -241,7 +241,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* سوابق تدریس (با پسوند jpg حروف کوچک) */}
+      {/* سوابق تدریس - پسوندها دقیقاً بر اساس گیت‌هاب تنظیم شده اند */}
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
           <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2.5 border-b border-gray-100 pb-3">
@@ -257,7 +257,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
-                src="/teaching1.jpg" 
+                src="/teaching1.JPG" 
                 alt="تدریس دکتر هادی محمدی در دانشگاه" 
                 className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
@@ -265,7 +265,7 @@ export default function Home() {
 
             <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
-                src="/teaching2.jpg" 
+                src="/teaching2.PNG" 
                 alt="تدریس ریاضیات دکتر هادی محمدی" 
                 className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
@@ -343,7 +343,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* بخش راه ارتباطی با استاد */}
+      {/* ارتباط با استاد */}
       <div id="contact" className="mt-8">
         <ContactButtons lang={lang} />
       </div>
