@@ -127,7 +127,7 @@ export default function Home() {
                 <span className="text-[10px]">{isEducationOpen ? '▲' : '▼'}</span>
               </button>
 
-              {/* تغییر نام دکمه به کتب و منابع آموزشی */}
+              {/* تغییر عنوان دکمه اصلی به کتب و منابع آموزشی */}
               <Link 
                 href="/books" 
                 className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-900 rounded-lg border border-blue-200 whitespace-nowrap transition flex items-center gap-1"
