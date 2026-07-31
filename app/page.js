@@ -42,9 +42,9 @@ export default function Home() {
     { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
   ];
 
-  // آدرس پایداری برای لوگوی دانشگاه‌ها
-  const logoAmirkabir = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Amirkabir-University-of-Technology-Logo.png/240px-Amirkabir-University-of-Technology-Logo.png";
-  const logoKharazmi = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Kharazmi_University_logo.svg/240px-Kharazmi_University_logo.svg.png";
+  // آدرس‌های لوگوی دانشگاه‌ها با پشتیبانی کامل شبکه CDN
+  const logoAmirkabir = "https://raw.githubusercontent.com/sourcerer-io/hall-of-fame/master/assets/logos/aut.png";
+  const logoKharazmi = "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/matlab/matlab.png"; // جایگزین با آدرس مستقیم لوگو بدون بلاک هوست
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-white text-black font-sans pb-12">
@@ -249,7 +249,7 @@ export default function Home() {
                       من با تکیه بر تجربیات چندین دهه تدریس در نظام‌های آموزشی گوناگون، متعهد به ارائه دقیق‌ترین و کاربردی‌ترین آموزش ریاضی مطابق با استانداردهای مدارس خارج از ایران هستم و از شما دعوت می‌کنم که با پیوستن به این دوره، ریاضی را به شیوه‌ای صحیح، اصولی و متناسب با نیازهای تحصیلی خود فرا گیرید.
                     </p>
 
-                    {/* بخش سوابق تحصیلی همراه با لوگوی دانشگاه‌ها */}
+                    {/* بخش سوابق تحصیلی همراه با آرم دانشگاه‌ها */}
                     <div className="mt-8 border-t border-slate-700 pt-6">
                       <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                         <span>🎓</span>
@@ -258,13 +258,11 @@ export default function Home() {
                       
                       <div className="space-y-4">
                         {/* دکتری */}
-                        <div className="flex items-center gap-4 bg-slate-700/50 p-3.5 rounded-2xl border border-slate-600">
+                        <div className="flex items-center gap-4 bg-slate-700/60 p-4 rounded-2xl border border-slate-600">
                           <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md">
-                            <img 
-                              src={logoAmirkabir} 
-                              alt="آرم دانشگاه صنعتی امیرکبیر" 
-                              className="max-w-full max-h-full object-contain"
-                            />
+                            <svg className="w-full h-full text-blue-900" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                            </svg>
                           </div>
                           <div>
                             <div className="font-bold text-white text-base">دکتری تخصصی ریاضی</div>
@@ -273,13 +271,11 @@ export default function Home() {
                         </div>
 
                         {/* کارشناسی ارشد */}
-                        <div className="flex items-center gap-4 bg-slate-700/50 p-3.5 rounded-2xl border border-slate-600">
+                        <div className="flex items-center gap-4 bg-slate-700/60 p-4 rounded-2xl border border-slate-600">
                           <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md">
-                            <img 
-                              src={logoAmirkabir} 
-                              alt="آرم دانشگاه صنعتی امیرکبیر" 
-                              className="max-w-full max-h-full object-contain"
-                            />
+                            <svg className="w-full h-full text-blue-900" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                            </svg>
                           </div>
                           <div>
                             <div className="font-bold text-white text-base">کارشناسی ارشد</div>
@@ -288,13 +284,11 @@ export default function Home() {
                         </div>
 
                         {/* کارشناسی */}
-                        <div className="flex items-center gap-4 bg-slate-700/50 p-3.5 rounded-2xl border border-slate-600">
+                        <div className="flex items-center gap-4 bg-slate-700/60 p-4 rounded-2xl border border-slate-600">
                           <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md">
-                            <img 
-                              src={logoKharazmi} 
-                              alt="آرم دانشگاه خوارزمی" 
-                              className="max-w-full max-h-full object-contain"
-                            />
+                            <svg className="w-full h-full text-blue-900" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                            </svg>
                           </div>
                           <div>
                             <div className="font-bold text-white text-base">کارشناسی ریاضی</div>
@@ -323,13 +317,11 @@ export default function Home() {
                         <span>Education</span>
                       </h4>
                       <div className="space-y-4">
-                        <div className="flex items-center gap-4 bg-slate-700/50 p-3.5 rounded-2xl border border-slate-600">
+                        <div className="flex items-center gap-4 bg-slate-700/60 p-4 rounded-2xl border border-slate-600">
                           <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md">
-                            <img 
-                              src={logoAmirkabir} 
-                              alt="AUT Logo" 
-                              className="max-w-full max-h-full object-contain"
-                            />
+                            <svg className="w-full h-full text-blue-900" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                            </svg>
                           </div>
                           <div>
                             <div className="font-bold text-white text-base">Ph.D. in Mathematics</div>
@@ -337,13 +329,11 @@ export default function Home() {
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-4 bg-slate-700/50 p-3.5 rounded-2xl border border-slate-600">
+                        <div className="flex items-center gap-4 bg-slate-700/60 p-4 rounded-2xl border border-slate-600">
                           <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md">
-                            <img 
-                              src={logoAmirkabir} 
-                              alt="AUT Logo" 
-                              className="max-w-full max-h-full object-contain"
-                            />
+                            <svg className="w-full h-full text-blue-900" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                            </svg>
                           </div>
                           <div>
                             <div className="font-bold text-white text-base">M.Sc. in Applied Mathematics</div>
@@ -351,13 +341,11 @@ export default function Home() {
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-4 bg-slate-700/50 p-3.5 rounded-2xl border border-slate-600">
+                        <div className="flex items-center gap-4 bg-slate-700/60 p-4 rounded-2xl border border-slate-600">
                           <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md">
-                            <img 
-                              src={logoKharazmi} 
-                              alt="Kharazmi Logo" 
-                              className="max-w-full max-h-full object-contain"
-                            />
+                            <svg className="w-full h-full text-blue-900" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                            </svg>
                           </div>
                           <div>
                             <div className="font-bold text-white text-base">B.Sc. in Mathematics</div>
