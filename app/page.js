@@ -270,26 +270,26 @@ export default function Home() {
           </h4>
           <p className="text-gray-700 leading-relaxed text-sm md:text-base font-normal mb-6">
             {isFa 
-              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲- معادلات دیفرانسیل- محاسبات عددی و آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران'
+              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲، معادلات دیفرانسیل، محاسبات عددی، آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران'
               : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran.'}
           </p>
           
-          {/* مسیر دقیق فایل‌های GitHub */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 shadow-sm">
+          {/* بخش تصاویر: نمایش کامل تصویر بدون برش (object-contain) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="flex items-center justify-center rounded-2xl border border-gray-200 bg-gray-100/60 p-2 shadow-inner h-64 md:h-72">
               <img 
                 src="/teaching1.JPG" 
                 onError={(e) => { e.currentTarget.src = '/teaching1.jpg'; }} 
                 alt="تدریس دکتر هادی محمدی در دانشگاه" 
-                className="w-full h-56 object-cover hover:scale-105 transition duration-300"
+                className="w-full h-full object-contain rounded-xl hover:scale-105 transition duration-300"
               />
             </div>
-            <div className="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 shadow-sm">
+            <div className="flex items-center justify-center rounded-2xl border border-gray-200 bg-gray-100/60 p-2 shadow-inner h-64 md:h-72">
               <img 
                 src="/teaching2.PNG" 
                 onError={(e) => { e.currentTarget.src = '/teaching2.png'; }} 
                 alt="تدریس ریاضیات دکتر هادی محمدی" 
-                className="w-full h-56 object-cover hover:scale-105 transition duration-300"
+                className="w-full h-full object-contain rounded-xl hover:scale-105 transition duration-300"
               />
             </div>
           </div>
