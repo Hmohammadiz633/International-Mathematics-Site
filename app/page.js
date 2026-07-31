@@ -63,11 +63,10 @@ export default function Home() {
   );
 
   return (
-    <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-white text-black font-sans pb-12">
+    <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-black font-sans pb-12">
       {/* هدر */}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200 px-4 py-3 shadow-sm">
         <div className="max-w-6xl mx-auto flex flex-col items-center gap-3">
-          
           <div className="w-full flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl flex items-center justify-center p-1.5 shadow-sm">
@@ -202,16 +201,16 @@ export default function Home() {
         <h2 className="text-3xl md:text-5xl font-extrabold text-black mb-4">
           {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics Tutoring'}
         </h2>
-        <p className="text-black text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-medium">
+        <p className="text-gray-700 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-medium">
           {isFa 
             ? 'تدریس تخصصی و مفهومی ریاضیات نظام‌های آموزشی بین‌المللی (امریكا، كانادا، انگلیس، استرالیا، آلمان و تركیه)' 
             : 'Specialized math education for international curricula (USA, Canada, UK, Australia, Germany, Turkey).'}
         </p>
       </section>
 
-      {/* بخش هادی محمدی */}
-      <section id="about" className="max-w-5xl mx-auto px-4 py-8">
-        <div className="bg-slate-800 text-white rounded-3xl p-6 md:p-10 border border-slate-700 shadow-2xl">
+      {/* کادر اول: معرفی هادی محمدی */}
+      <section id="about" className="max-w-5xl mx-auto px-4 pt-6">
+        <div className="bg-slate-800 text-white rounded-3xl p-6 md:p-10 border border-slate-700 shadow-xl">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
             <div className="shrink-0 flex flex-col items-center">
               <img 
@@ -242,75 +241,6 @@ export default function Home() {
                     <p>
                       من با تکیه بر تجربیات چندین دهه تدریس در نظام‌های آموزشی گوناگون، متعهد به ارائه دقیق‌ترین و کاربردی‌ترین آموزش ریاضی مطابق با استانداردهای مدارس خارج از ایران هستم و از شما دعوت می‌کنم که با پیوستن به این دوره، ریاضی را به شیوه‌ای صحیح، اصولی و متناسب با نیازهای تحصیلی خود فرا گیرید.
                     </p>
-
-                    {/* بخش سوابق تدریس */}
-                    <div className="mt-8 border-t border-slate-700 pt-6">
-                      <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                        <span>📖</span>
-                        <span>سوابق تدریس</span>
-                      </h4>
-                      <p className="text-slate-200 leading-relaxed mb-4 text-sm md:text-base font-normal">
-                        تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲- معادلات دیفرانسیل- محاسبات عددی و آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران
-                      </p>
-                      
-                      {/* تصاویر تدریس */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                        <div className="overflow-hidden rounded-2xl border border-slate-600 bg-slate-900/50 shadow-md">
-                          <img 
-                            src="/teaching1.jpg" 
-                            alt="تدریس دکتر هادی محمدی در دانشگاه" 
-                            className="w-full h-52 object-cover hover:scale-105 transition duration-300"
-                          />
-                        </div>
-                        <div className="overflow-hidden rounded-2xl border border-slate-600 bg-slate-900/50 shadow-md">
-                          <img 
-                            src="/teaching2.png" 
-                            alt="تدریس ریاضیات دکتر هادی محمدی" 
-                            className="w-full h-52 object-cover hover:scale-105 transition duration-300"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* سوابق تحصیلی */}
-                    <div className="mt-8 border-t border-slate-700 pt-6">
-                      <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                        <span>🎓</span>
-                        <span>سوابق تحصیلی</span>
-                      </h4>
-                      
-                      <div className="space-y-4">
-                        <div className="flex items-center gap-4 bg-slate-700/60 p-3.5 rounded-2xl border border-slate-600">
-                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-2 flex items-center justify-center shadow-md">
-                            <AmirkabirLogo />
-                          </div>
-                          <div>
-                            <div className="font-bold text-white text-base">دکتری تخصصی ریاضی</div>
-                            <div className="text-xs text-slate-300 font-normal mt-0.5">گرایش بهینه سازی - دانشگاه صنعتی امیرکبیر</div>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center gap-4 bg-slate-700/60 p-3.5 rounded-2xl border border-slate-600">
-                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-2 flex items-center justify-center shadow-md">
-                            <AmirkabirLogo />
-                          </div>
-                          <div>
-                            <div className="font-bold text-white text-base">کارشناسی ارشد</div>
-                            <div className="text-xs text-slate-300 font-normal mt-0.5">گرایش ریاضی کاربردی - دانشگاه صنعتی امیرکبیر</div>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center gap-4 bg-slate-700/60 p-3.5 rounded-2xl border border-slate-600">
-                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-2 flex items-center justify-center shadow-md">
-                            <KharazmiLogo />
-                          </div>
-                          <div>
-                            <div className="font-bold text-white text-base">کارشناسی ریاضی</div>
-                            <div className="text-xs text-slate-300 font-normal mt-0.5">دانشگاه خوارزمی</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </>
                 ) : (
                   <>
@@ -323,72 +253,6 @@ export default function Home() {
                     <p>
                       Special summer prep classes are also offered to reinforce mathematical foundations and prepare students for the upcoming academic year.
                     </p>
-
-                    {/* Teaching Experience EN */}
-                    <div className="mt-8 border-t border-slate-700 pt-6">
-                      <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                        <span>📖</span>
-                        <span>Teaching Experience</span>
-                      </h4>
-                      <p className="text-slate-200 leading-relaxed mb-4 text-sm md:text-base font-normal">
-                        Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran.
-                      </p>
-                      
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                        <div className="overflow-hidden rounded-2xl border border-slate-600 bg-slate-900/50 shadow-md">
-                          <img 
-                            src="/teaching1.jpg" 
-                            alt="Dr. Hadi Mohammadi Teaching" 
-                            className="w-full h-52 object-cover hover:scale-105 transition duration-300"
-                          />
-                        </div>
-                        <div className="overflow-hidden rounded-2xl border border-slate-600 bg-slate-900/50 shadow-md">
-                          <img 
-                            src="/teaching2.png" 
-                            alt="Dr. Hadi Mohammadi Mathematics Lecture" 
-                            className="w-full h-52 object-cover hover:scale-105 transition duration-300"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="mt-8 border-t border-slate-700 pt-6">
-                      <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                        <span>🎓</span>
-                        <span>Education</span>
-                      </h4>
-                      <div className="space-y-4">
-                        <div className="flex items-center gap-4 bg-slate-700/60 p-3.5 rounded-2xl border border-slate-600">
-                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-2 flex items-center justify-center shadow-md">
-                            <AmirkabirLogo />
-                          </div>
-                          <div>
-                            <div className="font-bold text-white text-base">Ph.D. in Mathematics</div>
-                            <div className="text-xs text-slate-300 font-normal mt-0.5">Optimization - Amirkabir University of Technology</div>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center gap-4 bg-slate-700/60 p-3.5 rounded-2xl border border-slate-600">
-                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-2 flex items-center justify-center shadow-md">
-                            <AmirkabirLogo />
-                          </div>
-                          <div>
-                            <div className="font-bold text-white text-base">M.Sc. in Applied Mathematics</div>
-                            <div className="text-xs text-slate-300 font-normal mt-0.5">Amirkabir University of Technology</div>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center gap-4 bg-slate-700/60 p-3.5 rounded-2xl border border-slate-600">
-                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-2 flex items-center justify-center shadow-md">
-                            <KharazmiLogo />
-                          </div>
-                          <div>
-                            <div className="font-bold text-white text-base">B.Sc. in Mathematics</div>
-                            <div className="text-xs text-slate-300 font-normal mt-0.5">Kharazmi University</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </>
                 )}
               </div>
@@ -397,8 +261,97 @@ export default function Home() {
         </div>
       </section>
 
+      {/* کادر دوم سفید: سوابق تدریس */}
+      <section className="max-w-5xl mx-auto px-4 pt-6">
+        <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
+          <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2.5 border-b border-gray-100 pb-3">
+            <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">📖</span>
+            <span>{isFa ? 'سوابق تدریس' : 'Teaching Experience'}</span>
+          </h4>
+          <p className="text-gray-700 leading-relaxed text-sm md:text-base font-normal mb-6">
+            {isFa 
+              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲- معادلات دیفرانسیل- محاسبات عددی و آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت  و دانشگاه الزهرا و علوم تحقیقات تهران'
+              : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran.'}
+          </p>
+          
+          {/* تصاویر کنار هم با پشتیبانی کامل از پسوندهای مختلف */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 shadow-sm">
+              <img 
+                src="/teaching1.jpg" 
+                onError={(e) => { e.currentTarget.src = '/teaching1.jpeg'; }} 
+                alt="تدریس دکتر هادی محمدی در دانشگاه" 
+                className="w-full h-56 object-cover hover:scale-105 transition duration-300"
+              />
+            </div>
+            <div className="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 shadow-sm">
+              <img 
+                src="/teaching2.png" 
+                onError={(e) => { e.currentTarget.src = '/teaching2.jpeg'; }} 
+                alt="تدریس ریاضیات دکتر هادی محمدی" 
+                className="w-full h-56 object-cover hover:scale-105 transition duration-300"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* کادر سوم سفید: سوابق تحصیلی */}
+      <section className="max-w-5xl mx-auto px-4 pt-6">
+        <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
+          <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2.5 border-b border-gray-100 pb-3">
+            <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">🎓</span>
+            <span>{isFa ? 'سوابق تحصیلی' : 'Education'}</span>
+          </h4>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200/80">
+              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-2 flex items-center justify-center shadow-sm">
+                <AmirkabirLogo />
+              </div>
+              <div>
+                <div className="font-bold text-gray-900 text-sm md:text-base">
+                  {isFa ? 'دکتری تخصصی ریاضی' : 'Ph.D. in Mathematics'}
+                </div>
+                <div className="text-xs text-gray-500 font-normal mt-0.5">
+                  {isFa ? 'گرایش بهینه سازی - دانشگاه صنعتی امیرکبیر' : 'Optimization - Amirkabir University'}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200/80">
+              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-2 flex items-center justify-center shadow-md">
+                <AmirkabirLogo />
+              </div>
+              <div>
+                <div className="font-bold text-gray-900 text-sm md:text-base">
+                  {isFa ? 'کارشناسی ارشد' : 'M.Sc. in Applied Mathematics'}
+                </div>
+                <div className="text-xs text-gray-500 font-normal mt-0.5">
+                  {isFa ? 'گرایش ریاضی کاربردی - دانشگاه صنعتی امیرکبیر' : 'Amirkabir University of Technology'}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200/80">
+              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-2 flex items-center justify-center shadow-md">
+                <KharazmiLogo />
+              </div>
+              <div>
+                <div className="font-bold text-gray-900 text-sm md:text-base">
+                  {isFa ? 'کارشناسی ریاضی' : 'B.Sc. in Mathematics'}
+                </div>
+                <div className="text-xs text-gray-500 font-normal mt-0.5">
+                  {isFa ? 'دانشگاه خوارزمی' : 'Kharazmi University'}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ارتباط با استاد */}
-      <div id="contact">
+      <div id="contact" className="mt-8">
         <ContactButtons lang={lang} />
       </div>
     </main>
