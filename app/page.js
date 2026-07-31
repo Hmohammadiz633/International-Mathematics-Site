@@ -204,4 +204,167 @@ export default function Home() {
         <h2 className="text-3xl md:text-5xl font-extrabold text-black mb-4">
           {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics Tutoring'}
         </h2>
-        <p className="text-black text-base md:text-
+        <p className="text-black text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-medium">
+          {isFa 
+            ? 'تدریس تخصصی و مفهومی ریاضیات نظام‌های آموزشی بین‌المللی (امریكا، كانادا، انگلیس، استرالیا، آلمان و تركیه)' 
+            : 'Specialized math education for international curricula (USA, Canada, UK, Australia, Germany, Turkey).'}
+        </p>
+      </section>
+
+      {/* بخش هادی محمدی */}
+      <section id="about" className="max-w-5xl mx-auto px-4 py-8">
+        <div className="bg-slate-800 text-white rounded-3xl p-6 md:p-10 border border-slate-700 shadow-2xl">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+            <div className="shrink-0 flex flex-col items-center">
+              <img 
+                src="/profile.jpg" 
+                alt="دکتر هادی محمدی" 
+                className="w-48 h-60 object-cover rounded-2xl border-2 border-slate-600 shadow-lg mb-3" 
+              />
+              <span className="text-xs font-bold text-slate-100 bg-slate-700/80 px-3 py-1.5 rounded-xl border border-slate-600 text-center">
+                {isFa ? 'هیات علمی دانشگاه ملی مهارت تهران' : 'Faculty Member at National Skills University of Tehran'}
+              </span>
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-6 border-b border-slate-700 pb-4 mt-2 md:mt-0">
+                <span className="text-3xl">👨‍🏫</span>
+                <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-wide">
+                  {isFa ? 'هادی محمدی' : 'Hadi Mohammadi'}
+                </h3>
+              </div>
+              <div className="text-slate-100 leading-loose text-sm md:text-base space-y-4 text-justify font-light">
+                {isFa ? (
+                  <>
+                    <p>
+                      دارای مدرک دکترای تخصصی ریاضی از دانشگاه صنعتی امیرکبیر هستم و به مدت <strong className="text-white font-bold">۲۹ سال</strong> به طور مستمر در عرصه آموزش ریاضی در داخل و خارج از کشور فعالیت داشته‌ام.
+                    </p>
+                    <p>
+                      هدف این مجموعه، ارائه خدمات تدریس تخصصی و هدفمند به ایرانیان عزیز مقیم خارج از کشور است تا بتوانند ریاضی را دقیقاً مطابق با کتاب‌های درسی و نظام آموزشی کشور محل سکونت خود بیاموزند و همچنین رفع اشکال روزانه به صورت کاملاً رایگان در پلتفرم‌های فضای مجازی انجام می‌شود.
+                    </p>
+                    <p>
+                      من با تکیه بر تجربیات چندین دهه تدریس در نظام‌های آموزشی گوناگون، متعهد به ارائه دقیق‌ترین و کاربردی‌ترین آموزش ریاضی مطابق با استانداردهای مدارس خارج از ایران هستم و از شما دعوت می‌کنم که با پیوستن به این دوره، ریاضی را به شیوه‌ای صحیح، اصولی و متناسب با نیازهای تحصیلی خود فرا گیرید.
+                    </p>
+
+                    {/* بخش سوابق تحصیلی */}
+                    <div className="mt-8 border-t border-slate-700 pt-6">
+                      <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span>🎓</span>
+                        <span>سوابق تحصیلی</span>
+                      </h4>
+                      
+                      <div className="space-y-4">
+                        {/* دکتری */}
+                        <div className="flex items-center gap-3 bg-slate-700/50 p-3.5 rounded-xl border border-slate-600">
+                          <img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Amirkabir-University-of-Technology-Logo.png/600px-Amirkabir-University-of-Technology-Logo.png" 
+                            alt="آرم دانشگاه صنعتی امیرکبیر" 
+                            className="w-10 h-10 object-contain bg-white rounded-full p-1"
+                          />
+                          <div>
+                            <div className="font-bold text-white text-base">دکتری تخصصی ریاضی</div>
+                            <div className="text-xs text-slate-300">گرایش بهینه سازی - دانشگاه صنعتی امیرکبیر</div>
+                          </div>
+                        </div>
+
+                        {/* کارشناسی ارشد */}
+                        <div className="flex items-center gap-3 bg-slate-700/50 p-3.5 rounded-xl border border-slate-600">
+                          <img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Amirkabir-University-of-Technology-Logo.png/600px-Amirkabir-University-of-Technology-Logo.png" 
+                            alt="آرم دانشگاه صنعتی امیرکبیر" 
+                            className="w-10 h-10 object-contain bg-white rounded-full p-1"
+                          />
+                          <div>
+                            <div className="font-bold text-white text-base">کارشناسی ارشد</div>
+                            <div className="text-xs text-slate-300">گرایش ریاضی کاربردی - دانشگاه صنعتی امیرکبیر</div>
+                          </div>
+                        </div>
+
+                        {/* کارشناسی */}
+                        <div className="flex items-center gap-3 bg-slate-700/50 p-3.5 rounded-xl border border-slate-600">
+                          <img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Kharazmi_University_logo.svg/600px-Kharazmi_University_logo.svg.png" 
+                            alt="آرم دانشگاه خوارزمی" 
+                            className="w-10 h-10 object-contain bg-white rounded-full p-1"
+                          />
+                          <div>
+                            <div className="font-bold text-white text-base">کارشناسی ریاضی</div>
+                            <div className="text-xs text-slate-300">دانشگاه خوارزمی</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      Holder of a Ph.D. in Mathematics from Amirkabir University of Technology, with over <strong className="text-white font-bold">29 years</strong> of continuous experience in teaching mathematics both nationally and internationally.
+                    </p>
+                    <p>
+                      The goal of this program is to provide targeted, specialized math tutoring for students living abroad, aligning perfectly with their local school standard curricula, alongside free daily Q&A sessions on social media platforms.
+                    </p>
+                    <p>
+                      Special summer prep classes are also offered to reinforce mathematical foundations and prepare students for the upcoming academic year.
+                    </p>
+
+                    {/* Education English */}
+                    <div className="mt-8 border-t border-slate-700 pt-6">
+                      <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <span>🎓</span>
+                        <span>Education</span>
+                      </h4>
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-3 bg-slate-700/50 p-3.5 rounded-xl border border-slate-600">
+                          <img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Amirkabir-University-of-Technology-Logo.png/600px-Amirkabir-University-of-Technology-Logo.png" 
+                            alt="AUT Logo" 
+                            className="w-10 h-10 object-contain bg-white rounded-full p-1"
+                          />
+                          <div>
+                            <div className="font-bold text-white text-base">Ph.D. in Mathematics</div>
+                            <div className="text-xs text-slate-300">Optimization - Amirkabir University of Technology</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3 bg-slate-700/50 p-3.5 rounded-xl border border-slate-600">
+                          <img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Amirkabir-University-of-Technology-Logo.png/600px-Amirkabir-University-of-Technology-Logo.png" 
+                            alt="AUT Logo" 
+                            className="w-10 h-10 object-contain bg-white rounded-full p-1"
+                          />
+                          <div>
+                            <div className="font-bold text-white text-base">M.Sc. in Applied Mathematics</div>
+                            <div className="text-xs text-slate-300">Amirkabir University of Technology</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3 bg-slate-700/50 p-3.5 rounded-xl border border-slate-600">
+                          <img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Kharazmi_University_logo.svg/600px-Kharazmi_University_logo.svg.png" 
+                            alt="Kharazmi Logo" 
+                            className="w-10 h-10 object-contain bg-white rounded-full p-1"
+                          />
+                          <div>
+                            <div className="font-bold text-white text-base">B.Sc. in Mathematics</div>
+                            <div className="text-xs text-slate-300">Kharazmi University</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* کتب آموزشی */}
+      <div id="books" className="max-w-6xl mx-auto px-4 mt-4">
+        <BooksSection lang={lang} />
+      </div>
+
+      {/* ارتباط با استاد */}
+      <div id="contact">
+        <ContactButtons lang={lang} />
+      </div>
+    </main>
+  );
+}
