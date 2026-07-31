@@ -42,27 +42,6 @@ export default function Home() {
     { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
   ];
 
-  {/* لوگوی رسمی و دقیق دانشگاه صنعتی امیرکبیر */}
-  const AmirkabirLogo = () => (
-    <svg className="w-full h-full text-blue-900" viewBox="0 0 100 100" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="42" strokeWidth="4" strokeDasharray="6 3" />
-      <polygon points="50,16 80,34 80,68 50,86 20,68 20,34" strokeWidth="4" fill="none" />
-      <polygon points="50,26 70,38 70,62 50,74 30,62 30,38" strokeWidth="3" fill="currentColor" fillOpacity="0.1" />
-      <circle cx="50" cy="50" r="10" fill="currentColor" />
-      <path d="M50 16 V86 M20 34 L80 68 M20 68 L80 34" strokeWidth="2.5" />
-    </svg>
-  );
-
-  {/* لوگوی رسمی و دقیق دانشگاه خوارزمی */}
-  const KharazmiLogo = () => (
-    <svg className="w-full h-full text-blue-900" viewBox="0 0 100 100" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="42" strokeWidth="4" />
-      <path d="M50 18 C30 18 22 35 22 50 C22 68 35 80 50 82 C65 80 78 68 78 50 C78 35 70 18 50 18 Z" strokeWidth="3" fill="none" />
-      <path d="M50 25 L50 75 M32 40 C42 40 50 48 50 60 C50 48 58 40 68 40" strokeWidth="3" strokeLinecap="round" />
-      <circle cx="50" cy="34" r="5" fill="currentColor" />
-    </svg>
-  );
-
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-black font-sans pb-12">
       {/* هدر */}
@@ -262,7 +241,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* کادر دوم سفید: سوابق تدریس */}
+      {/* کادر دوم سفید: سوابق تدریس با پسوند jpg به حروف کوچک */}
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
           <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2.5 border-b border-gray-100 pb-3">
@@ -275,23 +254,20 @@ export default function Home() {
               : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran.'}
           </p>
           
-          {/* کادربندی عکس‌ها (هر دو عکس مربع دقیق بدون حاشیه) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {/* عکس سمت راست */}
             <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
-                src="/teaching1.JPG" 
-                onError={(e) => { e.currentTarget.src = '/teaching1.jpg'; }} 
+                src="/teaching1.jpg" 
+                onError={(e) => { e.currentTarget.src = '/teaching1.JPG'; }} 
                 alt="تدریس دکتر هادی محمدی در دانشگاه" 
                 className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
             </div>
 
-            {/* عکس سمت چپ */}
             <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
-                src="/teaching2.PNG" 
-                onError={(e) => { e.currentTarget.src = '/teaching2.png'; }} 
+                src="/teaching2.jpg" 
+                onError={(e) => { e.currentTarget.src = '/teaching2.JPG'; }} 
                 alt="تدریس ریاضیات دکتر هادی محمدی" 
                 className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
@@ -300,7 +276,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* کادر سوم سفید: سوابق تحصیلی با لوگوهای شفاف و کامل */}
+      {/* کادر سوم سفید: سوابق تحصیلی */}
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
           <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2.5 border-b border-gray-100 pb-3">
@@ -311,8 +287,13 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* دکتری - امیرکبیر */}
             <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
-              <div className="w-12 h-12 shrink-0 bg-blue-50/80 border border-blue-200/80 rounded-xl p-2 flex items-center justify-center">
-                <AmirkabirLogo />
+              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
+                <img 
+                  src="/amirkabir.png" 
+                  alt="دانشگاه صنعتی امیرکبیر" 
+                  className="w-full h-full object-contain"
+                  onError={(e) => { e.currentTarget.src = '/amirkabir.svg'; }}
+                />
               </div>
               <div>
                 <div className="font-bold text-gray-900 text-sm md:text-base">
@@ -326,8 +307,13 @@ export default function Home() {
 
             {/* ارشد - امیرکبیر */}
             <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
-              <div className="w-12 h-12 shrink-0 bg-blue-50/80 border border-blue-200/80 rounded-xl p-2 flex items-center justify-center">
-                <AmirkabirLogo />
+              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
+                <img 
+                  src="/amirkabir.png" 
+                  alt="دانشگاه صنعتی امیرکبیر" 
+                  className="w-full h-full object-contain"
+                  onError={(e) => { e.currentTarget.src = '/amirkabir.svg'; }}
+                />
               </div>
               <div>
                 <div className="font-bold text-gray-900 text-sm md:text-base">
@@ -341,8 +327,13 @@ export default function Home() {
 
             {/* کارشناسی - خوارزمی */}
             <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
-              <div className="w-12 h-12 shrink-0 bg-blue-50/80 border border-blue-200/80 rounded-xl p-2 flex items-center justify-center">
-                <KharazmiLogo />
+              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
+                <img 
+                  src="/kharazmi.png" 
+                  alt="دانشگاه خوارزمی" 
+                  className="w-full h-full object-contain"
+                  onError={(e) => { e.currentTarget.src = '/kharazmi.svg'; }}
+                />
               </div>
               <div>
                 <div className="font-bold text-gray-900 text-sm md:text-base">
