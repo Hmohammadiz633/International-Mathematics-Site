@@ -46,7 +46,7 @@ export default function Home() {
   const schemaData = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'دکتر هادی محمدی',
+    name: 'هادی محمدی زرندینی',
     jobTitle: 'عضو هیات علمی دانشگاه و مدرس ریاضیات بین‌الملل',
     worksFor: {
       '@type': 'EducationalOrganization',
@@ -220,14 +220,14 @@ export default function Home() {
         </p>
       </section>
 
-      {/* معرفی دکتر هادی محمدی */}
+      {/* معرفی هادی محمدی زرندینی */}
       <section id="about" className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-slate-900 text-white rounded-3xl p-6 md:p-10 border border-slate-800 shadow-2xl">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
             <div className="shrink-0 flex flex-col items-center">
               <img 
                 src="/profile.jpg" 
-                alt="دکتر هادی محمدی مدرس ریاضی بین الملل" 
+                alt="هادی محمدی زرندینی مدرس ریاضی بین الملل" 
                 className="w-48 h-60 object-cover rounded-2xl border-2 border-slate-700 shadow-lg mb-3" 
               />
               <span className="text-xs font-bold text-slate-200 bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-700 text-center">
@@ -238,7 +238,7 @@ export default function Home() {
               <div className="flex items-center gap-3 mb-6 border-b border-slate-800 pb-4 mt-2 md:mt-0">
                 <span className="text-3xl">👨‍🏫</span>
                 <h3 className="text-2xl md:text-3xl font-black text-white leading-snug tracking-tight">
-                  {isFa ? 'دکتر هادی محمدی' : 'Dr. Hadi Mohammadi'}
+                  {isFa ? 'هادی محمدی زرندینی' : 'Hadi Mohammadi Zarandini'}
                 </h3>
               </div>
               <div className="text-slate-200 leading-loose text-sm md:text-base space-y-4 text-justify font-normal">
@@ -290,7 +290,7 @@ export default function Home() {
             <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
                 src="/teaching1.JPG" 
-                alt="تدریس دکتر هادی محمدی در دانشگاه" 
+                alt="تدریس هادی محمدی زرندینی در دانشگاه" 
                 className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
             </div>
@@ -298,7 +298,7 @@ export default function Home() {
             <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
                 src="/teaching2.PNG" 
-                alt="تدریس ریاضیات دکتر هادی محمدی" 
+                alt="تدریس ریاضیات هادی محمدی زرندینی" 
                 className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
             </div>
