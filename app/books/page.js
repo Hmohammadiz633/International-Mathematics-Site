@@ -96,12 +96,12 @@ export default function BooksPage() {
 
       {/* محتوای تب فعال */}
       <div className="max-w-6xl mx-auto px-4 mt-6">
-        {/* ۱. بخش کتاب‌های تدریس شده (کامپوننت قبلی) */}
+        {/* ۱. کتاب‌های تدریس شده (شامل کامپوننت BooksSection همراه تمام لینک‌های گذشته) */}
         {activeTab === 'taught' && (
           <BooksSection lang={lang} />
         )}
 
-        {/* ۲. بخش خلاصه فصل‌های کتب تفکیک شده با پایه‌های تحصیلی ۷ تا ۱۲ */}
+        {/* ۲. خلاصه فصل‌های کتب شامل زیربخش‌های پایه هفتم تا دوازدهم */}
         {activeTab === 'summaries' && (
           <div className="space-y-6">
             {/* زیربخش انتخاب پایه تحصیلی */}
