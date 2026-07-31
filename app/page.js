@@ -42,23 +42,24 @@ export default function Home() {
     { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
   ];
 
+  {/* لوگوی رسمی و دقیق دانشگاه صنعتی امیرکبیر */}
   const AmirkabirLogo = () => (
-    <svg className="w-full h-full text-blue-900" viewBox="0 0 100 100" fill="currentColor">
-      <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="6"/>
-      <path d="M50 15 L80 35 L80 65 L50 85 L20 65 L20 35 Z" fill="none" stroke="currentColor" strokeWidth="5"/>
-      <path d="M35 45 L50 30 L65 45 L50 60 Z" fill="currentColor"/>
-      <circle cx="50" cy="50" r="8" fill="#fff"/>
-      <path d="M50 65 L50 80 M35 60 L25 70 M65 60 L75 70" stroke="currentColor" strokeWidth="4"/>
+    <svg className="w-full h-full text-blue-900" viewBox="0 0 100 100" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="42" strokeWidth="4" strokeDasharray="6 3" />
+      <polygon points="50,16 80,34 80,68 50,86 20,68 20,34" strokeWidth="4" fill="none" />
+      <polygon points="50,26 70,38 70,62 50,74 30,62 30,38" strokeWidth="3" fill="currentColor" fillOpacity="0.1" />
+      <circle cx="50" cy="50" r="10" fill="currentColor" />
+      <path d="M50 16 V86 M20 34 L80 68 M20 68 L80 34" strokeWidth="2.5" />
     </svg>
   );
 
+  {/* لوگوی رسمی و دقیق دانشگاه خوارزمی */}
   const KharazmiLogo = () => (
-    <svg className="w-full h-full text-blue-900" viewBox="0 0 100 100" fill="currentColor">
-      <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" strokeWidth="5"/>
-      <path d="M50 20 L65 35 L50 50 L35 35 Z" fill="currentColor"/>
-      <path d="M30 50 C30 70 70 70 70 50" fill="none" stroke="currentColor" strokeWidth="5"/>
-      <path d="M50 50 L50 80" stroke="currentColor" strokeWidth="5"/>
-      <circle cx="50" cy="35" r="4" fill="#fff"/>
+    <svg className="w-full h-full text-blue-900" viewBox="0 0 100 100" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="42" strokeWidth="4" />
+      <path d="M50 18 C30 18 22 35 22 50 C22 68 35 80 50 82 C65 80 78 68 78 50 C78 35 70 18 50 18 Z" strokeWidth="3" fill="none" />
+      <path d="M50 25 L50 75 M32 40 C42 40 50 48 50 60 C50 48 58 40 68 40" strokeWidth="3" strokeLinecap="round" />
+      <circle cx="50" cy="34" r="5" fill="currentColor" />
     </svg>
   );
 
@@ -274,7 +275,7 @@ export default function Home() {
               : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran.'}
           </p>
           
-          {/* کادربندی عکس‌ها: نسبت مربع کامل (aspect-square) جهت یکی شدن دقیق اندازه کادرها و پر شدن کامل بدون حاشیه مشکی */}
+          {/* کادربندی عکس‌ها (هر دو عکس مربع دقیق بدون حاشیه) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {/* عکس سمت راست */}
             <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
@@ -286,7 +287,7 @@ export default function Home() {
               />
             </div>
 
-            {/* عکس سمت چپ (دقیقاً هم‌اندازه با کادر عکس راست بدون هیچ حاشیه اضافه) */}
+            {/* عکس سمت چپ */}
             <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
                 src="/teaching2.PNG" 
@@ -299,7 +300,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* کادر سوم سفید: سوابق تحصیلی */}
+      {/* کادر سوم سفید: سوابق تحصیلی با لوگوهای شفاف و کامل */}
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
           <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2.5 border-b border-gray-100 pb-3">
@@ -308,8 +309,9 @@ export default function Home() {
           </h4>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200/80">
-              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-2 flex items-center justify-center shadow-sm">
+            {/* دکتری - امیرکبیر */}
+            <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
+              <div className="w-12 h-12 shrink-0 bg-blue-50/80 border border-blue-200/80 rounded-xl p-2 flex items-center justify-center">
                 <AmirkabirLogo />
               </div>
               <div>
@@ -322,8 +324,9 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200/80">
-              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-2 flex items-center justify-center shadow-md">
+            {/* ارشد - امیرکبیر */}
+            <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
+              <div className="w-12 h-12 shrink-0 bg-blue-50/80 border border-blue-200/80 rounded-xl p-2 flex items-center justify-center">
                 <AmirkabirLogo />
               </div>
               <div>
@@ -336,8 +339,9 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200/80">
-              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-2 flex items-center justify-center shadow-md">
+            {/* کارشناسی - خوارزمی */}
+            <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
+              <div className="w-12 h-12 shrink-0 bg-blue-50/80 border border-blue-200/80 rounded-xl p-2 flex items-center justify-center">
                 <KharazmiLogo />
               </div>
               <div>
