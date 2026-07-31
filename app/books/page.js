@@ -5,12 +5,13 @@ import Link from 'next/link';
 
 export default function BooksPage() {
   const [lang, setLang] = useState('fa');
-  const [activeTab, setActiveTab] = useState('taught-books');
+  const [activeTab, setActiveTab] = useState('taught-books'); // 'taught-books' یا 'summaries'
   const [selectedGrade, setSelectedGrade] = useState('g7');
   const [selectedImage, setSelectedImage] = useState(null);
 
   const isFa = lang === 'fa';
 
+  // لیست پایه‌های تحصیلی هفتم تا دوازدهم
   const grades = [
     { id: 'g7', fa: 'پایه هفتم (Grade 7)', en: 'Grade 7' },
     { id: 'g8', fa: 'پایه هشتم (Grade 8)', en: 'Grade 8' },
@@ -20,19 +21,21 @@ export default function BooksPage() {
     { id: 'g12', fa: 'پایه دوازدهم (Grade 12)', en: 'Grade 12' },
   ];
 
+  // لیست کامل تصاویر خلاصه فصل‌های پایه هفتم (واقع در پوشه public)
   const grade7Summaries = [
-    '/summary-g7-1.png',
-    '/summary-g7-2.png',
-    '/summary-g7-3.png',
-    '/summary-g7-4.png',
-    '/summary-g7-5.png',
-    '/summary-g7-6.png',
-    '/summary-g7-7.png',
-    '/summary-g7-8.png',
-    '/summary-g7-9.png',
-    '/summary-g7-10.png',
+    { src: '/summary-g7-1.png', title: 'خلاصه فصل ۱ - پایه هفتم' },
+    { src: '/summary-g7-2.png', title: 'خلاصه فصل ۲ - پایه هفتم' },
+    { src: '/summary-g7-3.png', title: 'خلاصه فصل ۳ - پایه هفتم' },
+    { src: '/summary-g7-4.png', title: 'خلاصه فصل ۴ - پایه هفتم' },
+    { src: '/summary-g7-5.png', title: 'خلاصه فصل ۵ - پایه هفتم' },
+    { src: '/summary-g7-6.png', title: 'خلاصه فصل ۶ - پایه هفتم' },
+    { src: '/summary-g7-7.png', title: 'خلاصه فصل ۷ - پایه هفتم' },
+    { src: '/summary-g7-8.png', title: 'خلاصه فصل ۸ - پایه هفتم' },
+    { src: '/summary-g7-9.png', title: 'خلاصه فصل ۹ - پایه هفتم' },
+    { src: '/summary-g7-10.png', title: 'خلاصه فصل ۱۰ - پایه هفتم' },
   ];
 
+  // تمامی اطلاعات و لینک‌های کتب تدریس شده (بدون تغییر و کاملاً دست‌نخورده)
   const taughtBooksData = [
     {
       country: '🇺🇸 آمریکا (USA)',
@@ -107,6 +110,7 @@ export default function BooksPage() {
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
+      {/* هدر بالای صفحه */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 px-4 py-4 shadow-sm">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 text-blue-700 font-bold text-xs md:text-sm hover:underline">
@@ -129,7 +133,10 @@ export default function BooksPage() {
       </header>
 
       <div className="max-w-5xl mx-auto px-4 pt-8">
-        <div className="flex items-center justify-center gap-3 mb-8 bg-white p-2 rounded-2xl border border-gray-200 shadow-sm max-w-lg mx-auto">
+        
+        {/* منوی دو تایی اصلی بالای صفحه */}
+        <div className="flex items-center justify-center gap-3 mb-8 bg-white p-2 rounded-2xl border border-gray-200 shadow-sm max-w-xl mx-auto">
+          {/* منوی اول: کتب تدریس شده (دست‌نخورده) */}
           <button
             type="button"
             onClick={() => setActiveTab('taught-books')}
@@ -143,6 +150,7 @@ export default function BooksPage() {
             <span>{isFa ? 'کتب تدریس شده' : 'Taught Books'}</span>
           </button>
 
+          {/* منوی دوم: خلاصه فصل‌های کتب */}
           <button
             type="button"
             onClick={() => setActiveTab('summaries')}
@@ -157,7 +165,7 @@ export default function BooksPage() {
           </button>
         </div>
 
-        {/* ۱. بخش کتب تدریس شده */}
+        {/* ==================== بخش اول: کتب تدریس شده (کاملاً دست‌نخورده) ==================== */}
         {activeTab === 'taught-books' && (
           <div className="space-y-6">
             <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
@@ -215,9 +223,10 @@ export default function BooksPage() {
           </div>
         )}
 
-        {/* ۲. بخش خلاصه فصل‌ها */}
+        {/* ==================== بخش دوم: خلاصه فصل‌های کتب (همراه با پایه‌های 7 تا 12 و عکس‌های پایه 7) ==================== */}
         {activeTab === 'summaries' && (
           <div className="space-y-6">
+            {/* زیربخش انتخاب پایه تحصیلی (کلاس هفتم تا دوازدهم) */}
             <div className="bg-white rounded-3xl p-6 border border-gray-200 shadow-sm">
               <h3 className="text-xs md:text-sm font-bold text-slate-700 mb-4 text-center">
                 {isFa ? 'پایه تحصیلی مورد نظر را انتخاب کنید:' : 'Select Grade:'}
@@ -228,18 +237,20 @@ export default function BooksPage() {
                     key={grade.id}
                     type="button"
                     onClick={() => setSelectedGrade(grade.id)}
-                    className={`px-3.5 py-2 text-xs font-bold rounded-xl border transition ${
+                    className={`px-4 py-2.5 text-xs md:text-sm font-bold rounded-xl border transition flex items-center gap-1.5 ${
                       selectedGrade === grade.id
-                        ? 'bg-blue-600 text-white border-blue-700 shadow-sm'
+                        ? 'bg-blue-600 text-white border-blue-700 shadow-md scale-105'
                         : 'bg-slate-50 hover:bg-blue-50 text-slate-700 border-gray-300'
                     }`}
                   >
-                    📖 {isFa ? grade.fa : grade.en}
+                    <span>📖</span>
+                    <span>{isFa ? grade.fa : grade.en}</span>
                   </button>
                 ))}
               </div>
             </div>
 
+            {/* گالری تصاویر خلاصه فصل‌ها */}
             <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
               <h3 className="text-lg md:text-xl font-black text-slate-900 mb-6 pb-3 border-b border-gray-100 flex items-center justify-between">
                 <span>
@@ -248,31 +259,32 @@ export default function BooksPage() {
                     : `Summaries for ${grades.find(g => g.id === selectedGrade)?.en}`}
                 </span>
                 <span className="text-xs font-normal text-slate-500">
-                  {isFa ? 'برای بزرگ‌نمایی روی عکس کلیک کنید' : 'Click image to enlarge'}
+                  {isFa ? 'روی هر تصویر کلیک کنید تا بزرگ‌نمایی شود' : 'Click any image to enlarge'}
                 </span>
               </h3>
 
+              {/* نمایش عکس‌های خلاصه فصل در قسمت کلاس هفتم */}
               {selectedGrade === 'g7' ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                  {grade7Summaries.map((imgPath, idx) => (
+                  {grade7Summaries.map((item, idx) => (
                     <div 
                       key={idx} 
-                      onClick={() => setSelectedImage(imgPath)}
-                      className="bg-slate-50 p-3 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition cursor-pointer group"
+                      onClick={() => setSelectedImage(item.src)}
+                      className="bg-slate-50 p-3.5 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md hover:border-blue-300 transition cursor-pointer group"
                     >
-                      <div className="w-full min-h-[200px] rounded-xl overflow-hidden bg-white border border-gray-200 flex items-center justify-center p-1">
+                      <div className="w-full h-64 rounded-xl overflow-hidden bg-white border border-gray-200 flex items-center justify-center p-1">
                         <img 
-                          src={imgPath} 
-                          alt={`خلاصه فصل پایه هفتم ${idx + 1}`}
-                          className="w-full h-auto max-h-[350px] object-contain rounded-lg group-hover:scale-102 transition duration-200"
+                          src={item.src} 
+                          alt={item.title}
+                          className="w-full h-full object-contain rounded-lg group-hover:scale-102 transition duration-200"
                           loading="lazy"
                         />
                       </div>
                       <div className="flex items-center justify-between mt-3 px-1">
                         <span className="text-xs font-bold text-slate-800">
-                          {isFa ? `خلاصه بخش ${idx + 1}` : `Summary Part ${idx + 1}`}
+                          {isFa ? item.title : `Summary Part ${idx + 1}`}
                         </span>
-                        <span className="text-[10px] bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded-md">
+                        <span className="text-[10px] bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
                           🔍 {isFa ? 'مشاهده' : 'View'}
                         </span>
                       </div>
@@ -280,12 +292,18 @@ export default function BooksPage() {
                   ))}
                 </div>
               ) : (
+                /* پیام خالی بودن سایر پایه‌ها (هشتم تا دوازدهم) */
                 <div className="text-center py-16 bg-slate-50 rounded-2xl border border-dashed border-gray-300">
-                  <span className="text-3xl mb-2 block">📌</span>
-                  <p className="text-slate-600 font-bold text-sm md:text-base">
+                  <span className="text-4xl mb-3 block">📌</span>
+                  <p className="text-slate-700 font-bold text-sm md:text-base mb-1">
                     {isFa 
-                      ? 'خلاصه فصل‌های این پایه به‌زودی قرار خواهند گرفت.' 
-                      : 'Summaries for this grade will be uploaded soon.'}
+                      ? `خلاصه فصل‌های ${grades.find(g => g.id === selectedGrade)?.fa}` 
+                      : `Summaries for ${grades.find(g => g.id === selectedGrade)?.en}`}
+                  </p>
+                  <p className="text-slate-500 text-xs">
+                    {isFa 
+                      ? 'عکس‌های خلاصه فصل‌های این پایه به‌زودی افزوده خواهند شد.' 
+                      : 'Chapter summaries for this grade will be added soon.'}
                   </p>
                 </div>
               )}
@@ -294,6 +312,7 @@ export default function BooksPage() {
         )}
       </div>
 
+      {/* پنجره مدال برای بزرگ‌نمایی تصویر خلاصه فصل هنگام کلیک */}
       {selectedImage && (
         <div 
           className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
@@ -303,14 +322,14 @@ export default function BooksPage() {
             <button 
               type="button"
               onClick={() => setSelectedImage(null)}
-              className="absolute -top-10 right-0 text-white font-bold text-sm bg-gray-800/80 px-3 py-1.5 rounded-lg border border-gray-600"
+              className="absolute -top-10 right-0 text-white font-bold text-xs md:text-sm bg-gray-800/90 px-3.5 py-1.5 rounded-lg border border-gray-600 hover:bg-gray-700 transition"
             >
               ✕ {isFa ? 'بستن' : 'Close'}
             </button>
             <img 
               src={selectedImage} 
               alt="بزرگنمایی خلاصه فصل" 
-              className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl bg-white"
+              className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl bg-white p-2"
             />
           </div>
         </div>
