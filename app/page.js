@@ -270,24 +270,24 @@ export default function Home() {
           </h4>
           <p className="text-gray-700 leading-relaxed text-sm md:text-base font-normal mb-6">
             {isFa 
-              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲- معادلات دیفرانسیل- محاسبات عددی و آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت  و دانشگاه الزهرا و علوم تحقیقات تهران'
+              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲- معادلات دیفرانسیل- محاسبات عددی و آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران'
               : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran.'}
           </p>
           
-          {/* تصاویر کنار هم با پشتیبانی کامل از پسوندهای مختلف */}
+          {/* مسیر دقیق فایل‌های GitHub */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 shadow-sm">
               <img 
-                src="/teaching1.jpg" 
-                onError={(e) => { e.currentTarget.src = '/teaching1.jpeg'; }} 
+                src="/teaching1.JPG" 
+                onError={(e) => { e.currentTarget.src = '/teaching1.jpg'; }} 
                 alt="تدریس دکتر هادی محمدی در دانشگاه" 
                 className="w-full h-56 object-cover hover:scale-105 transition duration-300"
               />
             </div>
             <div className="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 shadow-sm">
               <img 
-                src="/teaching2.png" 
-                onError={(e) => { e.currentTarget.src = '/teaching2.jpeg'; }} 
+                src="/teaching2.PNG" 
+                onError={(e) => { e.currentTarget.src = '/teaching2.png'; }} 
                 alt="تدریس ریاضیات دکتر هادی محمدی" 
                 className="w-full h-56 object-cover hover:scale-105 transition duration-300"
               />
