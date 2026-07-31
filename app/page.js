@@ -282,8 +282,8 @@ export default function Home() {
           </h4>
           <p className="text-slate-700 leading-relaxed text-sm md:text-base font-normal mb-6">
             {isFa 
-              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲، معادلات دیفرانسیل، محاسبات عددی، آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران'
-              : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran.'}
+              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲، معادلات دیفرانسیل، محاسبات عددی، آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران و همچنین تدریس کتب ریاضی دبیرستان‌های برتر تهران'
+              : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran, as well as teaching mathematics curricula of top high schools in Tehran.'}
           </p>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
