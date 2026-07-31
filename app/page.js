@@ -9,6 +9,8 @@ export default function Home() {
   const [isEducationOpen, setIsEducationOpen] = useState(false);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const [isMathSitesOpen, setIsMathSitesOpen] = useState(false);
+  const [isSummariesOpen, setIsSummariesOpen] = useState(false);
+  const [selectedGrade, setSelectedGrade] = useState(null);
 
   const isFa = lang === 'fa';
 
@@ -42,58 +44,46 @@ export default function Home() {
     { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
   ];
 
-  const authoredBooks = [
-    {
-      title: 'ریاضیات پایه و مقدماتی',
-      titleEn: 'Basic & Elementary Mathematics',
-      img: '/book1.JPG',
-    },
-    {
-      title: 'ریاضیات کاربردی (ریاضی عمومی ۲)',
-      titleEn: 'Applied Mathematics (Calculus II)',
-      img: '/book2.JPG',
-    },
-    {
-      title: 'ریاضی عمومی ۲ (کاربردی +۷)',
-      titleEn: 'Calculus II (Applied +7)',
-      img: '/book3.JPG',
-    },
-    {
-      title: 'ریاضی عمومی',
-      titleEn: 'General Mathematics',
-      img: '/book4.JPG',
-    },
-    {
-      title: 'ریاضی عمومی ۲ (آموزش نرم‌افزارها)',
-      titleEn: 'Calculus II & Software',
-      img: '/book5.JPG',
-    },
-    {
-      title: 'ریاضیات مهندسی',
-      titleEn: 'Engineering Mathematics',
-      img: '/book6.JPG',
-    },
+  const grades = [
+    { id: 'g7', fa: 'پایه هفتم (Grade 7)', en: 'Grade 7' },
+    { id: 'g8', fa: 'پایه هشتم (Grade 8)', en: 'Grade 8' },
+    { id: 'g9', fa: 'پایه نهم (Grade 9)', en: 'Grade 9' },
+    { id: 'g10', fa: 'پایه دهم (Grade 10)', en: 'Grade 10' },
+    { id: 'g11', fa: 'پایه یازدهم (Grade 11)', en: 'Grade 11' },
+    { id: 'g12', fa: 'پایه دوازدهم (Grade 12)', en: 'Grade 12' },
   ];
 
-  // ساختار داده برای گوگل (Schema Markup / JSON-LD)
+  const grade7Summaries = [
+    '/summary-g7-1.jpeg',
+    '/summary-g7-2.jpeg',
+    '/summary-g7-3.jpeg',
+    '/summary-g7-4.jpeg',
+    '/summary-g7-5.jpeg',
+    '/summary-g7-6.jpeg',
+    '/summary-g7-7.jpeg',
+    '/summary-g7-8.jpeg',
+    '/summary-g7-9.jpeg',
+    '/summary-g7-10.jpeg',
+  ];
+
+  const authoredBooks = [
+    { title: 'ریاضیات پایه و مقدماتی', titleEn: 'Basic & Elementary Mathematics', img: '/book1.JPG' },
+    { title: 'ریاضیات کاربردی (ریاضی عمومی ۲)', titleEn: 'Applied Mathematics (Calculus II)', img: '/book2.JPG' },
+    { title: 'ریاضی عمومی ۲ (کاربردی +۷)', titleEn: 'Calculus II (Applied +7)', img: '/book3.JPG' },
+    { title: 'ریاضی عمومی', titleEn: 'General Mathematics', img: '/book4.JPG' },
+    { title: 'ریاضی عمومی ۲ (آموزش نرم‌افزارها)', titleEn: 'Calculus II & Software', img: '/book5.JPG' },
+    { title: 'ریاضیات مهندسی', titleEn: 'Engineering Mathematics', img: '/book6.JPG' },
+  ];
+
   const schemaData = {
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: 'هادی محمدی زرندینی',
     jobTitle: 'عضو هیات علمی دانشگاه و مدرس ریاضیات بین‌الملل',
-    worksFor: {
-      '@type': 'EducationalOrganization',
-      name: 'دانشگاه ملی مهارت تهران',
-    },
+    worksFor: { '@type': 'EducationalOrganization', name: 'دانشگاه ملی مهارت تهران' },
     alumniOf: [
-      {
-        '@type': 'EducationalOrganization',
-        name: 'دانشگاه صنعتی امیرکبیر',
-      },
-      {
-        '@type': 'EducationalOrganization',
-        name: 'دانشگاه خوارزمی',
-      },
+      { '@type': 'EducationalOrganization', name: 'دانشگاه صنعتی امیرکبیر' },
+      { '@type': 'EducationalOrganization', name: 'دانشگاه خوارزمی' },
     ],
     sameAs: [
       'https://t.me/International_Maths',
@@ -103,7 +93,6 @@ export default function Home() {
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
-      {/* اسکیما کد اختصاصی سئو برای گوگل */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
@@ -155,6 +144,7 @@ export default function Home() {
                   setIsEducationOpen(!isEducationOpen); 
                   setIsFeedbackOpen(false); 
                   setIsMathSitesOpen(false); 
+                  setIsSummariesOpen(false);
                 }} 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
@@ -166,8 +156,22 @@ export default function Home() {
                 href="/books" 
                 className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-900 rounded-lg border border-blue-200 whitespace-nowrap transition flex items-center gap-1"
               >
-                📚 {isFa ? 'کتب آموزشی' : 'Books'}
+                📚 {isFa ? 'کتب تدریس شده' : 'Taught Books'}
               </Link>
+
+              <button 
+                type="button"
+                onClick={() => { 
+                  setIsSummariesOpen(!isSummariesOpen);
+                  setIsEducationOpen(false); 
+                  setIsFeedbackOpen(false); 
+                  setIsMathSitesOpen(false); 
+                }} 
+                className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-900 rounded-lg border border-blue-200 whitespace-nowrap transition flex items-center gap-1"
+              >
+                <span>📝 {isFa ? 'خلاصه فصل‌های کتب' : 'Chapter Summaries'}</span>
+                <span className="text-[10px]">{isSummariesOpen ? '▲' : '▼'}</span>
+              </button>
 
               <button 
                 type="button"
@@ -175,6 +179,7 @@ export default function Home() {
                   setIsMathSitesOpen(!isMathSitesOpen); 
                   setIsEducationOpen(false); 
                   setIsFeedbackOpen(false); 
+                  setIsSummariesOpen(false);
                 }} 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
@@ -188,6 +193,7 @@ export default function Home() {
                   setIsFeedbackOpen(!isFeedbackOpen); 
                   setIsEducationOpen(false); 
                   setIsMathSitesOpen(false); 
+                  setIsSummariesOpen(false);
                 }} 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
@@ -204,6 +210,7 @@ export default function Home() {
               </button>
             </div>
 
+            {/* زیرمنوی نظام آموزشی کشورها */}
             {isEducationOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
                 {countries.map((item, idx) => (
@@ -215,6 +222,32 @@ export default function Home() {
               </div>
             )}
 
+            {/* زیرمنوی کشویی خلاصه فصل‌های کتب (هفتم تا دوازدهم) */}
+            {isSummariesOpen && (
+              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-blue-50/80 p-2.5 rounded-xl border border-blue-200 my-1 shadow-inner">
+                {grades.map((grade) => (
+                  <button
+                    key={grade.id}
+                    type="button"
+                    onClick={() => {
+                      setSelectedGrade(grade.id);
+                      setIsSummariesOpen(false);
+                      setTimeout(() => scrollToSection('summaries-section'), 100);
+                    }}
+                    className={`px-3 py-1.5 text-xs font-bold rounded-lg border shadow-sm transition flex items-center gap-1 ${
+                      selectedGrade === grade.id 
+                        ? 'bg-blue-600 text-white border-blue-700' 
+                        : 'bg-white hover:bg-blue-100 text-slate-800 border-gray-300'
+                    }`}
+                  >
+                    <span>📖</span>
+                    <span>{isFa ? grade.fa : grade.en}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* زیرمنوی سایت‌های ریاضی */}
             {isMathSitesOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
                 {mathSites.map((item, idx) => (
@@ -227,6 +260,7 @@ export default function Home() {
               </div>
             )}
 
+            {/* زیرمنوی بازخورد کلاس‌ها */}
             {isFeedbackOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
                 {feedbacks.map((item, idx) => (
@@ -240,6 +274,56 @@ export default function Home() {
           </div>
         </div>
       </header>
+
+      {/* بخش نمایش خلاصه فصل‌ها با کلیک روی پایه */}
+      {selectedGrade && (
+        <section id="summaries-section" className="max-w-5xl mx-auto px-4 pt-6">
+          <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-blue-200 shadow-lg">
+            <div className="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
+              <h4 className="text-xl md:text-2xl font-black text-slate-900 flex items-center gap-2">
+                <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">📝</span>
+                <span>
+                  {isFa 
+                    ? `خلاصه فصل‌های ${grades.find(g => g.id === selectedGrade)?.fa}`
+                    : `Summaries for ${grades.find(g => g.id === selectedGrade)?.en}`}
+                </span>
+              </h4>
+              <button 
+                type="button"
+                onClick={() => setSelectedGrade(null)} 
+                className="text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg border border-red-200 transition"
+              >
+                ✕ {isFa ? 'بستن' : 'Close'}
+              </button>
+            </div>
+
+            {selectedGrade === 'g7' ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {grade7Summaries.map((imgPath, idx) => (
+                  <div key={idx} className="bg-slate-50 p-2.5 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
+                    <img 
+                      src={imgPath} 
+                      alt={`خلاصه فصل پایه هفتم ${idx + 1}`} 
+                      className="w-full h-auto object-cover rounded-xl border border-gray-200"
+                    />
+                    <p className="text-xs text-center font-bold text-slate-700 mt-2">
+                      {isFa ? `خلاصه بخش ${idx + 1}` : `Summary Part ${idx + 1}`}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-10 bg-slate-50 rounded-2xl border border-dashed border-gray-300">
+                <p className="text-slate-600 font-semibold text-sm md:text-base">
+                  {isFa 
+                    ? 'خلاصه فصل‌های این پایه به‌زودی آپلود خواهند شد.' 
+                    : 'Summaries for this grade will be uploaded soon.'}
+                </p>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* بنر اصلی و عنوان سئومحور */}
       <section className="max-w-4xl mx-auto text-center px-4 pt-12 pb-6">
