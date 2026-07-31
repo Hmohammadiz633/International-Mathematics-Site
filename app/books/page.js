@@ -5,9 +5,9 @@ import Link from 'next/link';
 
 export default function BooksPage() {
   const [lang, setLang] = useState('fa');
-  const [activeTab, setActiveTab] = useState('taught-books'); // 'taught-books' یا 'summaries'
+  const [activeTab, setActiveTab] = useState('taught-books');
   const [selectedGrade, setSelectedGrade] = useState('g7');
-  const [selectedImage, setSelectedImage] = useState(null); // برای مدال بزرگ‌نمایی عکس
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const isFa = lang === 'fa';
 
@@ -20,7 +20,6 @@ export default function BooksPage() {
     { id: 'g12', fa: 'پایه دوازدهم (Grade 12)', en: 'Grade 12' },
   ];
 
-  // لیست تصاویر خلاصه فصل پایه هفتم (موجود در پوشه public)
   const grade7Summaries = [
     '/summary-g7-1.png',
     '/summary-g7-2.png',
@@ -34,7 +33,6 @@ export default function BooksPage() {
     '/summary-g7-10.png',
   ];
 
-  // لیست کامل کتب تدریس شده تفکیک‌شده بر اساس کشور، مقطع و همراه با لینک تلگرام
   const taughtBooksData = [
     {
       country: '🇺🇸 آمریکا (USA)',
@@ -109,7 +107,6 @@ export default function BooksPage() {
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
-      {/* هدر بالای صفحه */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 px-4 py-4 shadow-sm">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 text-blue-700 font-bold text-xs md:text-sm hover:underline">
@@ -132,7 +129,6 @@ export default function BooksPage() {
       </header>
 
       <div className="max-w-5xl mx-auto px-4 pt-8">
-        {/* سرتیتر و دکمه‌های انتخاب بخش */}
         <div className="flex items-center justify-center gap-3 mb-8 bg-white p-2 rounded-2xl border border-gray-200 shadow-sm max-w-lg mx-auto">
           <button
             type="button"
@@ -161,7 +157,7 @@ export default function BooksPage() {
           </button>
         </div>
 
-        {/* ==================== ۱. بخش کتب تدریس شده (کامل همراه با لینک تلگرام و تمام مقاطع) ==================== */}
+        {/* ۱. بخش کتب تدریس شده */}
         {activeTab === 'taught-books' && (
           <div className="space-y-6">
             <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
@@ -219,10 +215,9 @@ export default function BooksPage() {
           </div>
         )}
 
-        {/* ==================== ۲. بخش خلاصه فصل‌ها (همراه با نمایش کامل تصاویر) ==================== */}
+        {/* ۲. بخش خلاصه فصل‌ها */}
         {activeTab === 'summaries' && (
           <div className="space-y-6">
-            {/* انتخاب پایه تحصیلی */}
             <div className="bg-white rounded-3xl p-6 border border-gray-200 shadow-sm">
               <h3 className="text-xs md:text-sm font-bold text-slate-700 mb-4 text-center">
                 {isFa ? 'پایه تحصیلی مورد نظر را انتخاب کنید:' : 'Select Grade:'}
@@ -245,7 +240,6 @@ export default function BooksPage() {
               </div>
             </div>
 
-            {/* لیست تصاویر خلاصه فصل‌ها */}
             <div className="bg-white rounded-3xl p-6 md:p-8 border border-gray-200 shadow-md">
               <h3 className="text-lg md:text-xl font-black text-slate-900 mb-6 pb-3 border-b border-gray-100 flex items-center justify-between">
                 <span>
@@ -266,17 +260,12 @@ export default function BooksPage() {
                       onClick={() => setSelectedImage(imgPath)}
                       className="bg-slate-50 p-3 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition cursor-pointer group"
                     >
-                      <div className="w-full min-h-[220px] rounded-xl overflow-hidden bg-white border border-gray-200 flex items-center justify-center p-1">
+                      <div className="w-full min-h-[200px] rounded-xl overflow-hidden bg-white border border-gray-200 flex items-center justify-center p-1">
                         <img 
                           src={imgPath} 
                           alt={`خلاصه فصل پایه هفتم ${idx + 1}`}
                           className="w-full h-auto max-h-[350px] object-contain rounded-lg group-hover:scale-102 transition duration-200"
                           loading="lazy"
-                          onError={(e) => {
-                            // جایگزین زاپاس در صورت نیافتن فایل
-                            e.currentTarget.onerror = null;
-                            e.currentTarget.src = 'https://via.placeholder.com/400x550?text=Summary+Page+' + (idx + 1);
-                          }}
                         />
                       </div>
                       <div className="flex items-center justify-between mt-3 px-1">
@@ -305,7 +294,6 @@ export default function BooksPage() {
         )}
       </div>
 
-      {/* مدال برای بزرگ‌نمایی عکس با کلیک */}
       {selectedImage && (
         <div 
           className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
