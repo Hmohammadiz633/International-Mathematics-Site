@@ -42,9 +42,27 @@ export default function Home() {
     { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
   ];
 
-  // آدرس‌های لوگوی دانشگاه‌ها با پشتیبانی کامل شبکه CDN
-  const logoAmirkabir = "https://raw.githubusercontent.com/sourcerer-io/hall-of-fame/master/assets/logos/aut.png";
-  const logoKharazmi = "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/matlab/matlab.png"; // جایگزین با آدرس مستقیم لوگو بدون بلاک هوست
+  // آرم اختصاصی و برداری دانشگاه صنعتی امیرکبیر
+  const AmirkabirLogo = () => (
+    <svg className="w-full h-full text-blue-900" viewBox="0 0 100 100" fill="currentColor">
+      <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="6"/>
+      <path d="M50 15 L80 35 L80 65 L50 85 L20 65 L20 35 Z" fill="none" stroke="currentColor" strokeWidth="5"/>
+      <path d="M35 45 L50 30 L65 45 L50 60 Z" fill="currentColor"/>
+      <circle cx="50" cy="50" r="8" fill="#fff"/>
+      <path d="M50 65 L50 80 M35 60 L25 70 M65 60 L75 70" stroke="currentColor" strokeWidth="4"/>
+    </svg>
+  );
+
+  // آرم اختصاصی و برداری دانشگاه خوارزمی
+  const KharazmiLogo = () => (
+    <svg className="w-full h-full text-blue-900" viewBox="0 0 100 100" fill="currentColor">
+      <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" strokeWidth="5"/>
+      <path d="M50 20 L65 35 L50 50 L35 35 Z" fill="currentColor"/>
+      <path d="M30 50 C30 70 70 70 70 50" fill="none" stroke="currentColor" strokeWidth="5"/>
+      <path d="M50 50 L50 80" stroke="currentColor" strokeWidth="5"/>
+      <circle cx="50" cy="35" r="4" fill="#fff"/>
+    </svg>
+  );
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-white text-black font-sans pb-12">
@@ -52,15 +70,25 @@ export default function Home() {
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200 px-4 py-3 shadow-sm">
         <div className="max-w-6xl mx-auto flex flex-col items-center gap-3">
           
-          {/* تغییر زبان */}
+          {/* لوگو و عنوان بالا سمت راست */}
           <div className="w-full flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">📐</span>
-              <h1 className="font-bold text-base md:text-lg text-black">
+            <div className="flex items-center gap-2.5">
+              {/* آیکون استاد در حال تدریس پای تخته */}
+              <div className="w-9 h-9 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl flex items-center justify-center p-1.5 shadow-sm">
+                <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M2 3h20v14H2z" />
+                  <path d="M8 21l4-4 4 4" />
+                  <path d="M7 8h4" />
+                  <path d="M7 12h2" />
+                  <path d="M15 11l2 2 4-4" />
+                </svg>
+              </div>
+              <h1 className="font-extrabold text-base md:text-lg text-black tracking-tight">
                 {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Math'}
               </h1>
             </div>
 
+            {/* سوییچ زبان */}
             <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300">
               <button 
                 type="button"
@@ -84,7 +112,6 @@ export default function Home() {
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-2">
             <div className="w-full flex items-center justify-center gap-2 md:gap-3 overflow-x-auto py-1 text-xs md:text-sm font-bold">
               
-              {/* نظام آموزشی */}
               <button 
                 type="button"
                 onClick={() => { 
@@ -98,7 +125,6 @@ export default function Home() {
                 <span className="text-[10px]">{isEducationOpen ? '▲' : '▼'}</span>
               </button>
 
-              {/* کتب آموزشی */}
               <button 
                 type="button"
                 onClick={() => scrollToSection('books')} 
@@ -107,7 +133,6 @@ export default function Home() {
                 📚 {isFa ? 'کتب آموزشی' : 'Books'}
               </button>
 
-              {/* سایت‌های ریاضی کشورها */}
               <button 
                 type="button"
                 onClick={() => { 
@@ -121,7 +146,6 @@ export default function Home() {
                 <span className="text-[10px]">{isMathSitesOpen ? '▲' : '▼'}</span>
               </button>
 
-              {/* بازخورد کلاس‌ها */}
               <button 
                 type="button"
                 onClick={() => { 
@@ -135,7 +159,6 @@ export default function Home() {
                 <span className="text-[10px]">{isFeedbackOpen ? '▲' : '▼'}</span>
               </button>
 
-              {/* ارتباط با استاد */}
               <button 
                 type="button"
                 onClick={() => scrollToSection('contact')} 
@@ -145,17 +168,11 @@ export default function Home() {
               </button>
             </div>
 
-            {/* زیرمنوی کشویی نظام آموزشی */}
+            {/* کشویی‌ها */}
             {isEducationOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
                 {countries.map((item, idx) => (
-                  <a 
-                    key={idx} 
-                    href={item.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-300 shadow-sm transition flex items-center gap-1.5"
-                  >
+                  <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-300 shadow-sm transition flex items-center gap-1.5">
                     <span>{item.flag}</span>
                     <span>{isFa ? item.fa : item.en}</span>
                   </a>
@@ -163,17 +180,10 @@ export default function Home() {
               </div>
             )}
 
-            {/* زیرمنوی کشویی سایت‌های ریاضی کشورها */}
             {isMathSitesOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
                 {mathSites.map((item, idx) => (
-                  <a 
-                    key={idx} 
-                    href={item.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-300 shadow-sm transition flex items-center gap-1.5"
-                  >
+                  <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-300 shadow-sm transition flex items-center gap-1.5">
                     <span>{item.flag}</span>
                     <span>{isFa ? item.fa : item.en}</span>
                     <span className="text-[10px] text-gray-400">↗</span>
@@ -182,17 +192,10 @@ export default function Home() {
               </div>
             )}
 
-            {/* زیرمنوی کشویی بازخوردها */}
             {isFeedbackOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
                 {feedbacks.map((item, idx) => (
-                  <a 
-                    key={idx} 
-                    href={item.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-300 shadow-sm transition flex items-center gap-1.5"
-                  >
+                  <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-300 shadow-sm transition flex items-center gap-1.5">
                     <span>⭐</span>
                     <span>{isFa ? item.fa : item.en}</span>
                   </a>
@@ -249,7 +252,7 @@ export default function Home() {
                       من با تکیه بر تجربیات چندین دهه تدریس در نظام‌های آموزشی گوناگون، متعهد به ارائه دقیق‌ترین و کاربردی‌ترین آموزش ریاضی مطابق با استانداردهای مدارس خارج از ایران هستم و از شما دعوت می‌کنم که با پیوستن به این دوره، ریاضی را به شیوه‌ای صحیح، اصولی و متناسب با نیازهای تحصیلی خود فرا گیرید.
                     </p>
 
-                    {/* بخش سوابق تحصیلی همراه با آرم دانشگاه‌ها */}
+                    {/* بخش سوابق تحصیلی همراه با لوگوی کاملا شفاف و اختصاصی دانشگاه‌ها */}
                     <div className="mt-8 border-t border-slate-700 pt-6">
                       <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                         <span>🎓</span>
@@ -257,12 +260,10 @@ export default function Home() {
                       </h4>
                       
                       <div className="space-y-4">
-                        {/* دکتری */}
-                        <div className="flex items-center gap-4 bg-slate-700/60 p-4 rounded-2xl border border-slate-600">
-                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md">
-                            <svg className="w-full h-full text-blue-900" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
-                            </svg>
+                        {/* دکتری امیرکبیر */}
+                        <div className="flex items-center gap-4 bg-slate-700/60 p-3.5 rounded-2xl border border-slate-600">
+                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-2 flex items-center justify-center shadow-md">
+                            <AmirkabirLogo />
                           </div>
                           <div>
                             <div className="font-bold text-white text-base">دکتری تخصصی ریاضی</div>
@@ -270,12 +271,10 @@ export default function Home() {
                           </div>
                         </div>
 
-                        {/* کارشناسی ارشد */}
-                        <div className="flex items-center gap-4 bg-slate-700/60 p-4 rounded-2xl border border-slate-600">
-                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md">
-                            <svg className="w-full h-full text-blue-900" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
-                            </svg>
+                        {/* کارشناسی ارشد امیرکبیر */}
+                        <div className="flex items-center gap-4 bg-slate-700/60 p-3.5 rounded-2xl border border-slate-600">
+                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-2 flex items-center justify-center shadow-md">
+                            <AmirkabirLogo />
                           </div>
                           <div>
                             <div className="font-bold text-white text-base">کارشناسی ارشد</div>
@@ -283,12 +282,10 @@ export default function Home() {
                           </div>
                         </div>
 
-                        {/* کارشناسی */}
-                        <div className="flex items-center gap-4 bg-slate-700/60 p-4 rounded-2xl border border-slate-600">
-                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md">
-                            <svg className="w-full h-full text-blue-900" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
-                            </svg>
+                        {/* کارشناسی خوارزمی */}
+                        <div className="flex items-center gap-4 bg-slate-700/60 p-3.5 rounded-2xl border border-slate-600">
+                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-2 flex items-center justify-center shadow-md">
+                            <KharazmiLogo />
                           </div>
                           <div>
                             <div className="font-bold text-white text-base">کارشناسی ریاضی</div>
@@ -317,11 +314,9 @@ export default function Home() {
                         <span>Education</span>
                       </h4>
                       <div className="space-y-4">
-                        <div className="flex items-center gap-4 bg-slate-700/60 p-4 rounded-2xl border border-slate-600">
-                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md">
-                            <svg className="w-full h-full text-blue-900" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
-                            </svg>
+                        <div className="flex items-center gap-4 bg-slate-700/60 p-3.5 rounded-2xl border border-slate-600">
+                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-2 flex items-center justify-center shadow-md">
+                            <AmirkabirLogo />
                           </div>
                           <div>
                             <div className="font-bold text-white text-base">Ph.D. in Mathematics</div>
@@ -329,11 +324,9 @@ export default function Home() {
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-4 bg-slate-700/60 p-4 rounded-2xl border border-slate-600">
-                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md">
-                            <svg className="w-full h-full text-blue-900" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
-                            </svg>
+                        <div className="flex items-center gap-4 bg-slate-700/60 p-3.5 rounded-2xl border border-slate-600">
+                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-2 flex items-center justify-center shadow-md">
+                            <AmirkabirLogo />
                           </div>
                           <div>
                             <div className="font-bold text-white text-base">M.Sc. in Applied Mathematics</div>
@@ -341,11 +334,9 @@ export default function Home() {
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-4 bg-slate-700/60 p-4 rounded-2xl border border-slate-600">
-                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md">
-                            <svg className="w-full h-full text-blue-900" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
-                            </svg>
+                        <div className="flex items-center gap-4 bg-slate-700/60 p-3.5 rounded-2xl border border-slate-600">
+                          <div className="w-12 h-12 shrink-0 bg-white rounded-xl p-2 flex items-center justify-center shadow-md">
+                            <KharazmiLogo />
                           </div>
                           <div>
                             <div className="font-bold text-white text-base">B.Sc. in Mathematics</div>
