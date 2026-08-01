@@ -65,6 +65,20 @@ export default function BooksPage() {
     { id: 10, src: '/IMG_0917.JPG', title: 'خلاصه فصل ۱۰' },
   ];
 
+  // تمامی ۱۰ تصویر پایه دهم
+  const grade10Images = [
+    { id: 1, src: '/IMG_0919.JPG', title: 'خلاصه فصل ۱' },
+    { id: 2, src: '/IMG_0920.JPG', title: 'خلاصه فصل ۲' },
+    { id: 3, src: '/IMG_0921.JPG', title: 'خلاصه فصل ۳' },
+    { id: 4, src: '/IMG_0922.JPG', title: 'خلاصه فصل ۴' },
+    { id: 5, src: '/IMG_0923.JPG', title: 'خلاصه فصل ۵' },
+    { id: 6, src: '/IMG_0924.JPG', title: 'خلاصه فصل ۶' },
+    { id: 7, src: '/IMG_0925.JPG', title: 'خلاصه فصل ۷' },
+    { id: 8, src: '/IMG_0926.JPG', title: 'خلاصه فصل ۸' },
+    { id: 9, src: '/IMG_0927.JPG', title: 'خلاصه فصل ۹' },
+    { id: 10, src: '/IMG_0928.JPG', title: 'خلاصه فصل ۱۰' },
+  ];
+
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-white text-black font-sans pb-12">
       {/* هدر صفحه */}
@@ -239,8 +253,33 @@ export default function BooksPage() {
               </div>
             )}
 
+            {/* پایه دهم */}
+            {selectedGrade === 10 && (
+              <div className="bg-slate-50 border border-gray-300 rounded-3xl p-4 md:p-8 shadow-sm">
+                <h3 className="text-xl font-black text-slate-800 mb-6 text-center border-b border-gray-200 pb-3">
+                  {isFa ? '📌 خلاصه فصل‌های ریاضی پایه دهم' : '📌 Grade 10 Chapter Summaries'}
+                </h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                  {grade10Images.map((img) => (
+                    <div 
+                      key={img.id} 
+                      className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition"
+                    >
+                      <img 
+                        src={img.src} 
+                        alt={img.title} 
+                        className="w-full h-auto object-contain block hover:scale-[1.01] transition duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* سایر پایه‌ها */}
-            {selectedGrade !== 7 && selectedGrade !== 8 && selectedGrade !== 9 && (
+            {selectedGrade !== 7 && selectedGrade !== 8 && selectedGrade !== 9 && selectedGrade !== 10 && (
               <div className="text-center py-12 bg-gray-50 rounded-2xl border border-dashed border-gray-300">
                 <p className="text-gray-600 text-sm md:text-base font-medium">
                   {isFa 
