@@ -112,22 +112,41 @@ export default function MathSitesPage() {
       ],
     },
     {
-      flag: '🇮🇷',
-      countryFa: 'ایران (Iran)',
-      countryEn: 'Iran',
-      preUniversity: [],
-      university: [
-        { name: 'آموزشکده ریاضی (دانشگاه شریف)', link: 'https://math.sharif.ir/educational-resources', descFa: 'منبع فارسی دانشگاهی دانشکده ریاضی شریف', descEn: 'Sharif University math educational resources' },
-      ],
-    },
-    {
       flag: '🇹🇷',
       countryFa: 'ترکیه (Turkey)',
       countryEn: 'Turkey',
       preUniversity: [
-        { name: 'Matematik Vakti', link: 'https://www.matematikvakti.com', descFa: 'تمرین و آزمون به ترکی', descEn: 'Math practice and tests in Turkish' },
+        { name: 'Matematik Vakti', link: 'https://www.matematikvakti.com', descFa: 'تمرین و آزمون پایه تا دبیرستان (رایگان)', descEn: 'Math practice and tests for K-12 (free)' },
+        { name: 'Matematik Kolay', link: 'https://www.matematikkolay.net', descFa: 'حل تمرین تعاملی و ویدئو برای دبیرستان', descEn: 'Interactive practice & videos for high school' },
+        { name: 'ÜniversiteGO (بخش ریاضی)', link: 'https://universitego.com/matematik', descFa: 'درسنامه و تست کنکور ترکی (YKS)', descEn: 'Turkish YKS exam math study guides & tests' },
+        { name: 'Khan Academy Türkçe', link: 'https://tr.khanacademy.org', descFa: 'نسخه ترکی خان آکادمی (رایگان)', descEn: 'Turkish version of Khan Academy (free)' },
       ],
-      university: [],
+      university: [
+        { name: 'Boğaziçi Üniversitesi Math', link: 'https://math.bogazici.edu.tr/undergraduate-courses', descFa: 'اسلاید و جزوه به انگلیسی/ترکی', descEn: 'Boğaziçi University slides & course notes' },
+        { name: 'ODTÜ (METU) Math', link: 'https://math.metu.edu.tr/undergraduate-programs', descFa: 'برنامه درسی و منابع پیشنهادی', descEn: 'METU undergraduate math curriculum & resources' },
+        { name: 'İTÜ Math (دانشگاه فنی استانبول)', link: 'https://www.itu.edu.tr/en/academic/mathematics', descFa: 'جزوات درسی ریاضی دانشگاه فنی استانبول', descEn: 'Istanbul Technical University math course booklets' },
+        { name: 'Sabancı Üniversitesi', link: 'https://www.sabanciuniv.edu/en/academic/mathematics', descFa: 'دوره‌های آنلاین آزاد و برنامه‌های آکادمیک', descEn: 'Sabancı University open online math courses' },
+      ],
+    },
+    {
+      flag: '🇮🇷',
+      countryFa: 'ایران (Iran)',
+      countryEn: 'Iran',
+      preUniversity: [
+        { name: 'گاما (شبکه آموزشی رشد)', link: 'https://gama.ir', descFa: 'نمونه سوال و درسنامه پایه تا دوازدهم (رایگان)', descEn: 'Gama K-12 study guides & exam samples' },
+        { name: 'مدرسه مجازی ایران', link: 'https://iranedu.ir', descFa: 'ویدیوهای آموزشی وزارت آموزش و پرورش', descEn: 'Ministry of Education educational videos' },
+        { name: 'آلاء', link: 'https://alaatv.com', descFa: 'درسنامه و کلاس‌های آنلاین ریاضی همه مقاطع', descEn: 'Alaa online math classes & video courses' },
+        { name: 'خان آکادمی فارسی', link: 'https://fa.khanacademy.org', descFa: 'ترجمه رسمی خان آکادمی برای پایه', descEn: 'Official Persian translation of Khan Academy' },
+        { name: 'ریاضیات ایران', link: 'https://riaziyat.ir', descFa: 'جزوه و تمرین دبیرستان به تفکیک پایه', descEn: 'High school math practice & booklets by grade' },
+      ],
+      university: [
+        { name: 'دانشگاه صنعتی شریف (آموزشکده ریاضی)', link: 'https://math.sharif.ir/educational-resources', descFa: 'جزوات و اسلاید دروس اصلی', descEn: 'Sharif University math course materials & slides' },
+        { name: 'دانشگاه تهران (دانشکده ریاضی)', link: 'https://math.ut.ac.ir/education/courses', descFa: 'سرفصل‌ها و منابع معرفی‌شده', descEn: 'University of Tehran math course syllabi' },
+        { name: 'دانشگاه صنعتی امیرکبیر', link: 'https://math.aut.ac.ir/teaching', descFa: 'جزوات درسی اساتید', descEn: 'Amirkabir University faculty course notes' },
+        { name: 'دانشگاه فردوسی مشهد', link: 'https://math.um.ac.ir/educational-resources', descFa: 'منابع ریاضی محض و کاربردی', descEn: 'Ferdowsi University pure & applied math resources' },
+        { name: 'انجمن ریاضی ایران', link: 'https://ims.ir', descFa: 'مقالات آموزشی و منابع تکمیلی', descEn: 'Iranian Mathematical Society articles & resources' },
+        { name: 'پرتال جامع ریاضیات (مگ‌ایران)', link: 'https://magiran.com', descFa: 'جستجوی مقالات ریاضی به فارسی', descEn: 'Search database for Persian math research papers' },
+      ],
     },
   ];
 
