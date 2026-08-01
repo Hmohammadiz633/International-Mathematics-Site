@@ -29,11 +29,93 @@ export default function Home() {
     { flag: '🇨🇦', fa: 'نظام آموزشی کانادا', en: 'Canada Educational System', link: 'https://t.me/International_Maths/302' },
   ];
 
-  const mathSites = [
-    { flag: '🇺🇸', fa: 'آمریکا (Khan Academy)', en: 'USA (Khan Academy)', link: 'https://www.khanacademy.org/_render' },
-    { flag: '🇨🇦', fa: 'کانادا (IXL Math)', en: 'Canada (IXL Math)', link: 'https://ca.ixl.com/math' },
-    { flag: '🇬🇧', fa: 'انگلستان (Maths Genie)', en: 'UK (Maths Genie)', link: 'https://mathsgenie.co.uk/' },
-    { flag: '🇦🇺', fa: 'استرالیا (Art of Smart)', en: 'Australia (Art of Smart)', link: 'https://artofsmart.com.au/maths/hsc-maths-past-papers/' },
+  // لیست جامع شامل هم سایت‌های قبلی و هم سایت‌های جدید کشورهای مختلف
+  const mathSitesByCountry = [
+    {
+      countryFa: 'ایالات متحده (USA)',
+      countryEn: 'United States (USA)',
+      flag: '🇺🇸',
+      sites: [
+        { titleFa: 'Khan Academy (ریاضی از پایه تا پیشرفته)', titleEn: 'Khan Academy', link: 'https://www.khanacademy.org' },
+        { titleFa: 'IXL (تمرین پایه به پایه)', titleEn: 'IXL', link: 'https://www.ixl.com' },
+        { titleFa: 'Brilliant (آموزش مفهومی و تعاملی)', titleEn: 'Brilliant', link: 'https://brilliant.org' },
+        { titleFa: 'Mathway (حل مسائل ریاضی)', titleEn: 'Mathway', link: 'https://www.mathway.com' },
+        { titleFa: 'WolframAlpha (موتور محاسباتی ریاضی)', titleEn: 'WolframAlpha', link: 'https://www.wolframalpha.com' },
+      ],
+    },
+    {
+      countryFa: 'بریتانیا (UK)',
+      countryEn: 'United Kingdom (UK)',
+      flag: '🇬🇧',
+      sites: [
+        { titleFa: 'Maths with Mum (مناسب دبستان)', titleEn: 'Maths with Mum', link: 'https://www.mathswithmum.com' },
+        { titleFa: 'NRICH (پازل و بازی از دانشگاه کمبریج)', titleEn: 'NRICH - Cambridge', link: 'https://nrich.maths.org' },
+        { titleFa: 'BBC Bitesize Maths (آموزش طبق استاندارد بریتانیا)', titleEn: 'BBC Bitesize Maths', link: 'https://www.bbc.co.uk/bitesize/subjects/zjk2xnb' },
+        { titleFa: 'Corbettmaths (ویدئو و برگه تمرین)', titleEn: 'Corbettmaths', link: 'https://corbettmaths.com' },
+      ],
+    },
+    {
+      countryFa: 'آلمان (Germany)',
+      countryEn: 'Germany',
+      flag: '🇩🇪',
+      sites: [
+        { titleFa: 'Mathefritz (به آلمانی، پایه دبستان)', titleEn: 'Mathefritz', link: 'https://mathefritz.de' },
+        { titleFa: 'Serlo (رایگان با توضیح گام‌به‌گام - آلمانی/انگلیسی)', titleEn: 'Serlo', link: 'https://serlo.org' },
+        { titleFa: 'Mathebibel (آموزش مفاهیم ریاضی آلمان)', titleEn: 'Mathebibel', link: 'https://www.mathebibel.de' },
+      ],
+    },
+    {
+      countryFa: 'فرانسه (France)',
+      countryEn: 'France',
+      flag: '🇫🇷',
+      sites: [
+        { titleFa: 'Maths et Tiques (ویدئو و تمرین به فرانسوی)', titleEn: 'Maths et Tiques', link: 'https://www.maths-et-tiques.fr' },
+        { titleFa: 'Sésamath (منابع آزاد آموزش ریاضی فرانسه)', titleEn: 'Sésamath', link: 'https://www.sesamath.net' },
+      ],
+    },
+    {
+      countryFa: 'کانادا (Canada)',
+      countryEn: 'Canada',
+      flag: '🇨🇦',
+      sites: [
+        { titleFa: 'Math Central (منبع رایگان برای معلمان و دانش‌آموزان)', titleEn: 'Math Central', link: 'https://mathcentral.uregina.ca' },
+        { titleFa: 'TVO Learn Mathematics (استاندارد انناریو کانادا)', titleEn: 'TVO Learn Mathematics', link: 'https://tvolearn.com' },
+      ],
+    },
+    {
+      countryFa: 'استرالیا (Australia)',
+      countryEn: 'Australia',
+      flag: '🇦🇺',
+      sites: [
+        { titleFa: 'MathsOnline (درسنامه و تمرین - بخشی رایگان)', titleEn: 'MathsOnline', link: 'https://www.mathsonline.com.au' },
+        { titleFa: 'AMSITE Mathematics (جامعه ریاضی استرالیا)', titleEn: 'AMSITE Mathematics', link: 'https://amsi.org.au' },
+      ],
+    },
+    {
+      countryFa: 'هند (India)',
+      countryEn: 'India',
+      flag: '🇮🇳',
+      sites: [
+        { titleFa: 'BYJU\'S (ویدئوهای مفهومی پایه تا دوازدهم)', titleEn: 'BYJU\'S', link: 'https://byjus.com' },
+        { titleFa: 'Cuemath (تمرین تعاملی ریاضی پایه)', titleEn: 'Cuemath', link: 'https://www.cuemath.com' },
+      ],
+    },
+    {
+      countryFa: 'ژاپن (Japan)',
+      countryEn: 'Japan',
+      flag: '🇯🇵',
+      sites: [
+        { titleFa: 'Sugaku (به ژاپنی، مناسب دبستان و راهنمایی)', titleEn: 'Sugaku', link: 'https://sugaku.net' },
+      ],
+    },
+    {
+      countryFa: 'ترکیه (Turkey)',
+      countryEn: 'Turkey',
+      flag: '🇹🇷',
+      sites: [
+        { titleFa: 'Matematik Vakti (تمرین و آزمون به ترکی)', titleEn: 'Matematik Vakti', link: 'https://www.matematikvakti.com' },
+      ],
+    },
   ];
 
   const feedbacks = [
@@ -169,6 +251,7 @@ export default function Home() {
               </button>
             </div>
 
+            {/* منوی کشویی نظام آموزشی کشورها */}
             {isEducationOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
                 {countries.map((item, idx) => (
@@ -180,18 +263,37 @@ export default function Home() {
               </div>
             )}
 
+            {/* منوی کشویی ترکیبی شامل تمام سایت‌های قبلی و جدید */}
             {isMathSitesOpen && (
-              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
-                {mathSites.map((item, idx) => (
-                  <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-300 shadow-sm transition flex items-center gap-1.5">
-                    <span>{item.flag}</span>
-                    <span>{isFa ? item.fa : item.en}</span>
-                    <span className="text-[10px] text-gray-400">↗</span>
-                  </a>
+              <div className="w-full bg-slate-50 p-3 md:p-4 rounded-xl border border-gray-200 my-2 shadow-inner max-h-96 overflow-y-auto space-y-4">
+                {mathSitesByCountry.map((group, gIdx) => (
+                  <div key={gIdx} className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+                    <div className="flex items-center gap-2 border-b border-gray-100 pb-2 mb-2">
+                      <span className="text-base">{group.flag}</span>
+                      <h4 className="font-bold text-xs md:text-sm text-slate-800">
+                        {isFa ? group.countryFa : group.countryEn}
+                      </h4>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {group.sites.map((site, sIdx) => (
+                        <a 
+                          key={sIdx} 
+                          href={site.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="px-3 py-1.5 bg-blue-50/80 hover:bg-blue-100/80 text-blue-900 text-xs font-semibold rounded-lg border border-blue-200 transition flex items-center gap-1.5 shadow-sm hover:shadow"
+                        >
+                          <span>{isFa ? site.titleFa : site.titleEn}</span>
+                          <span className="text-[10px] text-blue-600 font-bold">↗</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             )}
 
+            {/* منوی کشویی بازخورد کلاس‌ها */}
             {isFeedbackOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
                 {feedbacks.map((item, idx) => (
@@ -218,7 +320,7 @@ export default function Home() {
         </p>
       </section>
 
-      {/* معرفی هادی محمدی زرندینی - کادر کمی روشن‌تر شد */}
+      {/* معرفی هادی محمدی زرندینی */}
       <section id="about" className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-slate-800/90 text-white rounded-3xl p-6 md:p-10 border border-slate-700/60 shadow-xl">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
