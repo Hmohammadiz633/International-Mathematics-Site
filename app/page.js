@@ -50,11 +50,6 @@ export default function Home() {
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
-
       {/* هدر */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 py-3 shadow-sm">
         <div className="max-w-6xl mx-auto flex flex-col items-center gap-3">
@@ -215,7 +210,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* سوابق تدریس - تصویر با سایز استاندارد و مناسب کنترل شد */}
+      {/* سوابق تدریس */}
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
           <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-4 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
@@ -310,6 +305,11 @@ export default function Home() {
       <div id="contact" className="mt-8">
         <ContactButtons lang={lang} />
       </div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
     </main>
   );
 }
