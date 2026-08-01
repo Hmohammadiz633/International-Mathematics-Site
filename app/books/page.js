@@ -36,7 +36,7 @@ export default function BooksPage() {
     { id: 12, src: '/summary-g7-12.JPG', title: 'خلاصه فصل ۱۲' },
   ];
 
-  // تمامی ۱۱ تصویر پایه هشتم (با پسوند صحیح .JPG مطابق مخزن گیت‌هاب)
+  // تمامی ۱۱ تصویر پایه هشتم
   const grade8Images = [
     { id: 1, src: '/IMG_0891.JPG', title: 'خلاصه فصل ۱' },
     { id: 2, src: '/IMG_0892.JPG', title: 'خلاصه فصل ۲' },
@@ -49,6 +49,20 @@ export default function BooksPage() {
     { id: 9, src: '/IMG_0899.JPG', title: 'خلاصه فصل ۹' },
     { id: 10, src: '/IMG_0900.JPG', title: 'خلاصه فصل ۱۰' },
     { id: 11, src: '/IMG_0901.JPG', title: 'خلاصه فصل ۱۱' },
+  ];
+
+  // تمامی ۱۰ تصویر پایه نهم
+  const grade9Images = [
+    { id: 1, src: '/IMG_0908.JPG', title: 'خلاصه فصل ۱' },
+    { id: 2, src: '/IMG_0909.JPG', title: 'خلاصه فصل ۲' },
+    { id: 3, src: '/IMG_0910.JPG', title: 'خلاصه فصل ۳' },
+    { id: 4, src: '/IMG_0911.JPG', title: 'خلاصه فصل ۴' },
+    { id: 5, src: '/IMG_0912.JPG', title: 'خلاصه فصل ۵' },
+    { id: 6, src: '/IMG_0913.JPG', title: 'خلاصه فصل ۶' },
+    { id: 7, src: '/IMG_0914.JPG', title: 'خلاصه فصل ۷' },
+    { id: 8, src: '/IMG_0915.JPG', title: 'خلاصه فصل ۸' },
+    { id: 9, src: '/IMG_0916.JPG', title: 'خلاصه فصل ۹' },
+    { id: 10, src: '/IMG_0917.JPG', title: 'خلاصه فصل ۱۰' },
   ];
 
   return (
@@ -200,8 +214,33 @@ export default function BooksPage() {
               </div>
             )}
 
+            {/* پایه نهم */}
+            {selectedGrade === 9 && (
+              <div className="bg-slate-50 border border-gray-300 rounded-3xl p-4 md:p-8 shadow-sm">
+                <h3 className="text-xl font-black text-slate-800 mb-6 text-center border-b border-gray-200 pb-3">
+                  {isFa ? '📌 خلاصه فصل‌های ریاضی پایه نهم' : '📌 Grade 9 Chapter Summaries'}
+                </h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                  {grade9Images.map((img) => (
+                    <div 
+                      key={img.id} 
+                      className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition"
+                    >
+                      <img 
+                        src={img.src} 
+                        alt={img.title} 
+                        className="w-full h-auto object-contain block hover:scale-[1.01] transition duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* سایر پایه‌ها */}
-            {selectedGrade !== 7 && selectedGrade !== 8 && (
+            {selectedGrade !== 7 && selectedGrade !== 8 && selectedGrade !== 9 && (
               <div className="text-center py-12 bg-gray-50 rounded-2xl border border-dashed border-gray-300">
                 <p className="text-gray-600 text-sm md:text-base font-medium">
                   {isFa 
