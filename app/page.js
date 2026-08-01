@@ -215,7 +215,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* سوابق تدریس */}
+      {/* سوابق تدریس - عکس تکی سمت چپ حذف گردید */}
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
           <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-4 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
@@ -228,20 +228,12 @@ export default function Home() {
               : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran, as well as teaching in top high schools in Tehran.'}
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
+          <div className="flex justify-center">
+            <div className="w-full max-w-2xl rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
                 src="/teaching1.JPG" 
                 alt="تدریس هادی محمدی زرندینی در دانشگاه" 
-                className="w-full h-full object-cover hover:scale-105 transition duration-300"
-              />
-            </div>
-
-            <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
-              <img 
-                src="/teaching2.PNG" 
-                alt="تدریس ریاضیات هادی محمدی زرندینی" 
-                className="w-full h-full object-cover hover:scale-105 transition duration-300"
+                className="w-full h-auto object-cover hover:scale-105 transition duration-300 block"
               />
             </div>
           </div>
