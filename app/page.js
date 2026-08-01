@@ -2,7 +2,44 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import ContactButtons from '@/components/ContactButtons';
+import dynamic from 'next/dynamic';
+
+// لود بهینه‌تر کامپوننت دکمه‌های ارتباطی
+const ContactButtons = dynamic(() => import('@/components/ContactButtons'), {
+  ssr: true,
+});
+
+// انتقال متغیرهای ثابت به بیرون از کامپوننت جهت جلوگیری از رندر مجدد
+const FEEDBACKS = [
+  { fa: 'بازخورد ۱', en: 'Feedback 1', link: 'https://t.me/International_Maths/110' },
+  { fa: 'بازخورد ۲', en: 'Feedback 2', link: 'https://t.me/International_Maths/111' },
+  { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
+];
+
+const SCHEMA_DATA = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'هادی محمدی زرندینی',
+  jobTitle: 'عضو هیات علمی دانشگاه و مدرس ریاضیات بین‌الملل',
+  worksFor: {
+    '@type': 'EducationalOrganization',
+    name: 'دانشگاه ملی مهارت تهران',
+  },
+  alumniOf: [
+    {
+      '@type': 'EducationalOrganization',
+      name: 'دانشگاه صنعتی امیرکبیر',
+    },
+    {
+      '@type': 'EducationalOrganization',
+      name: 'دانشگاه خوارزمی',
+    },
+  ],
+  sameAs: [
+    'https://t.me/International_Maths',
+    'https://instagram.com/Hadi_mohammadi_zarandini',
+  ],
+};
 
 export default function Home() {
   const [lang, setLang] = useState('fa');
@@ -17,39 +54,13 @@ export default function Home() {
     }
   };
 
-  const feedbacks = [
-    { fa: 'بازخورد ۱', en: 'Feedback 1', link: 'https://t.me/International_Maths/110' },
-    { fa: 'بازخورد ۲', en: 'Feedback 2', link: 'https://t.me/International_Maths/111' },
-    { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
-  ];
-
-  const schemaData = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'هادی محمدی زرندینی',
-    jobTitle: 'عضو هیات علمی دانشگاه و مدرس ریاضیات بین‌الملل',
-    worksFor: {
-      '@type': 'EducationalOrganization',
-      name: 'دانشگاه ملی مهارت تهران',
-    },
-    alumniOf: [
-      {
-        '@type': 'EducationalOrganization',
-        name: 'دانشگاه صنعتی امیرکبیر',
-      },
-      {
-        '@type': 'EducationalOrganization',
-        name: 'دانشگاه خوارزمی',
-      },
-    ],
-    sameAs: [
-      'https://t.me/International_Maths',
-      'https://instagram.com/Hadi_mohammadi_zarandini',
-    ],
-  };
-
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA_DATA) }}
+      />
+
       {/* هدر */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 py-3 shadow-sm">
         <div className="max-w-6xl mx-auto flex flex-col items-center gap-3">
@@ -90,7 +101,6 @@ export default function Home() {
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-2">
             <div className="w-full flex items-center justify-center gap-2 md:gap-3 overflow-x-auto py-1 text-xs md:text-sm font-bold">
-              {/* لینک مستقیم به صفحه جدید نظام آموزشی کشورها */}
               <Link 
                 href="/educational-systems" 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
@@ -114,6 +124,7 @@ export default function Home() {
 
               <button 
                 type="button"
+                aria-expanded={isFeedbackOpen}
                 onClick={() => setIsFeedbackOpen(!isFeedbackOpen)} 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
@@ -133,8 +144,14 @@ export default function Home() {
             {/* منوی کشویی بازخورد کلاس‌ها */}
             {isFeedbackOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
-                {feedbacks.map((item, idx) => (
-                  <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-300 shadow-sm transition flex items-center gap-1.5">
+                {FEEDBACKS.map((item, idx) => (
+                  <a 
+                    key={idx} 
+                    href={item.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-300 shadow-sm transition flex items-center gap-1.5"
+                  >
                     <span>⭐</span>
                     <span>{isFa ? item.fa : item.en}</span>
                   </a>
@@ -152,7 +169,7 @@ export default function Home() {
         </h2>
         <p className="text-slate-700 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-medium">
           {isFa 
-            ? 'تدریس تخصصی و مفهومی ریاضیات نظام‌های آموزشی بین‌المللی (امریكا، كانادا، انگلیس، استرالیا، آلمان و اروپا)' 
+            ? 'تدریس تخصصی و مفهومی ریاضیات نظام‌های آموزشی بین‌المللی (امریكا، كانادا، انگلیس، استرالیا، آلمان و Европа)' 
             : 'Specialized math education for international curricula (USA, Canada, UK, Australia, Germany, Europe).'}
         </p>
       </section>
@@ -166,6 +183,7 @@ export default function Home() {
                 src="/profile.jpg" 
                 alt="هادی محمدی زرندینی مدرس ریاضی بین الملل" 
                 className="w-48 h-60 object-cover rounded-2xl border-2 border-slate-600 shadow-lg mb-3" 
+                loading="eager"
               />
               <span className="text-xs font-bold text-slate-200 bg-slate-700/80 px-3 py-1.5 rounded-xl border border-slate-600 text-center">
                 {isFa ? 'هیات علمی دانشگاه ملی مهارت تهران' : 'Faculty Member at National Skills University of Tehran'}
@@ -210,7 +228,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* سوابق تدریس - اندازه عکس بسیار جمع‌وجورتر شد */}
+      {/* سوابق تدریس - کوچک‌سازی ابعاد تصویر */}
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
           <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-4 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
@@ -224,11 +242,13 @@ export default function Home() {
           </p>
 
           <div className="flex justify-center">
-            <div className="w-full max-w-xs rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
+            {/* عرض قاب روی max-w-md و ارتفاع روی h-48 / h-64 تنظیم گردید */}
+            <div className="w-full max-w-md rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
                 src="/teaching1.JPG" 
                 alt="تدریس هادی محمدی زرندینی در دانشگاه" 
-                className="w-full h-auto object-cover hover:scale-105 transition duration-300 block"
+                className="w-full h-48 md:h-64 object-cover hover:scale-105 transition duration-300 block"
+                loading="lazy"
               />
             </div>
           </div>
@@ -250,6 +270,7 @@ export default function Home() {
                   src="/amirkabir.jpg" 
                   alt="دانشگاه صنعتی امیرکبیر" 
                   className="w-full h-full object-contain"
+                  loading="lazy"
                 />
               </div>
               <div>
@@ -268,6 +289,7 @@ export default function Home() {
                   src="/amirkabir.jpg" 
                   alt="دانشگاه صنعتی امیرکبیر" 
                   className="w-full h-full object-contain"
+                  loading="lazy"
                 />
               </div>
               <div>
@@ -286,6 +308,7 @@ export default function Home() {
                   src="/kharazmi.jpg" 
                   alt="دانشگاه خوارزمی" 
                   className="w-full h-full object-contain"
+                  loading="lazy"
                 />
               </div>
               <div>
@@ -305,11 +328,6 @@ export default function Home() {
       <div id="contact" className="mt-8">
         <ContactButtons lang={lang} />
       </div>
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
     </main>
   );
 }
