@@ -8,7 +8,6 @@ export default function Home() {
   const [lang, setLang] = useState('fa');
   const [isEducationOpen, setIsEducationOpen] = useState(false);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
-  const [isMathSitesOpen, setIsMathSitesOpen] = useState(false);
 
   const isFa = lang === 'fa';
 
@@ -27,95 +26,6 @@ export default function Home() {
     { flag: '🇹🇷', fa: 'نظام آموزشی ترکیه', en: 'Turkey Educational System', link: 'https://t.me/International_Maths/395' },
     { flag: '🇮🇹', fa: 'نظام آموزشی ایتالیا', en: 'Italy Educational System', link: 'https://t.me/International_Maths/389' },
     { flag: '🇨🇦', fa: 'نظام آموزشی کانادا', en: 'Canada Educational System', link: 'https://t.me/International_Maths/302' },
-  ];
-
-  // لیست جامع شامل هم سایت‌های قبلی و هم سایت‌های جدید کشورهای مختلف
-  const mathSitesByCountry = [
-    {
-      countryFa: 'ایالات متحده (USA)',
-      countryEn: 'United States (USA)',
-      flag: '🇺🇸',
-      sites: [
-        { titleFa: 'Khan Academy (ریاضی از پایه تا پیشرفته)', titleEn: 'Khan Academy', link: 'https://www.khanacademy.org' },
-        { titleFa: 'IXL (تمرین پایه به پایه)', titleEn: 'IXL', link: 'https://www.ixl.com' },
-        { titleFa: 'Brilliant (آموزش مفهومی و تعاملی)', titleEn: 'Brilliant', link: 'https://brilliant.org' },
-        { titleFa: 'Mathway (حل مسائل ریاضی)', titleEn: 'Mathway', link: 'https://www.mathway.com' },
-        { titleFa: 'WolframAlpha (موتور محاسباتی ریاضی)', titleEn: 'WolframAlpha', link: 'https://www.wolframalpha.com' },
-      ],
-    },
-    {
-      countryFa: 'بریتانیا (UK)',
-      countryEn: 'United Kingdom (UK)',
-      flag: '🇬🇧',
-      sites: [
-        { titleFa: 'Maths with Mum (مناسب دبستان)', titleEn: 'Maths with Mum', link: 'https://www.mathswithmum.com' },
-        { titleFa: 'NRICH (پازل و بازی از دانشگاه کمبریج)', titleEn: 'NRICH - Cambridge', link: 'https://nrich.maths.org' },
-        { titleFa: 'BBC Bitesize Maths (آموزش طبق استاندارد بریتانیا)', titleEn: 'BBC Bitesize Maths', link: 'https://www.bbc.co.uk/bitesize/subjects/zjk2xnb' },
-        { titleFa: 'Corbettmaths (ویدئو و برگه تمرین)', titleEn: 'Corbettmaths', link: 'https://corbettmaths.com' },
-      ],
-    },
-    {
-      countryFa: 'آلمان (Germany)',
-      countryEn: 'Germany',
-      flag: '🇩🇪',
-      sites: [
-        { titleFa: 'Mathefritz (به آلمانی، پایه دبستان)', titleEn: 'Mathefritz', link: 'https://mathefritz.de' },
-        { titleFa: 'Serlo (رایگان با توضیح گام‌به‌گام - آلمانی/انگلیسی)', titleEn: 'Serlo', link: 'https://serlo.org' },
-        { titleFa: 'Mathebibel (آموزش مفاهیم ریاضی آلمان)', titleEn: 'Mathebibel', link: 'https://www.mathebibel.de' },
-      ],
-    },
-    {
-      countryFa: 'فرانسه (France)',
-      countryEn: 'France',
-      flag: '🇫🇷',
-      sites: [
-        { titleFa: 'Maths et Tiques (ویدئو و تمرین به فرانسوی)', titleEn: 'Maths et Tiques', link: 'https://www.maths-et-tiques.fr' },
-        { titleFa: 'Sésamath (منابع آزاد آموزش ریاضی فرانسه)', titleEn: 'Sésamath', link: 'https://www.sesamath.net' },
-      ],
-    },
-    {
-      countryFa: 'کانادا (Canada)',
-      countryEn: 'Canada',
-      flag: '🇨🇦',
-      sites: [
-        { titleFa: 'Math Central (منبع رایگان برای معلمان و دانش‌آموزان)', titleEn: 'Math Central', link: 'https://mathcentral.uregina.ca' },
-        { titleFa: 'TVO Learn Mathematics (استاندارد انناریو کانادا)', titleEn: 'TVO Learn Mathematics', link: 'https://tvolearn.com' },
-      ],
-    },
-    {
-      countryFa: 'استرالیا (Australia)',
-      countryEn: 'Australia',
-      flag: '🇦🇺',
-      sites: [
-        { titleFa: 'MathsOnline (درسنامه و تمرین - بخشی رایگان)', titleEn: 'MathsOnline', link: 'https://www.mathsonline.com.au' },
-        { titleFa: 'AMSITE Mathematics (جامعه ریاضی استرالیا)', titleEn: 'AMSITE Mathematics', link: 'https://amsi.org.au' },
-      ],
-    },
-    {
-      countryFa: 'هند (India)',
-      countryEn: 'India',
-      flag: '🇮🇳',
-      sites: [
-        { titleFa: 'BYJU\'S (ویدئوهای مفهومی پایه تا دوازدهم)', titleEn: 'BYJU\'S', link: 'https://byjus.com' },
-        { titleFa: 'Cuemath (تمرین تعاملی ریاضی پایه)', titleEn: 'Cuemath', link: 'https://www.cuemath.com' },
-      ],
-    },
-    {
-      countryFa: 'ژاپن (Japan)',
-      countryEn: 'Japan',
-      flag: '🇯🇵',
-      sites: [
-        { titleFa: 'Sugaku (به ژاپنی، مناسب دبستان و راهنمایی)', titleEn: 'Sugaku', link: 'https://sugaku.net' },
-      ],
-    },
-    {
-      countryFa: 'ترکیه (Turkey)',
-      countryEn: 'Turkey',
-      flag: '🇹🇷',
-      sites: [
-        { titleFa: 'Matematik Vakti (تمرین و آزمون به ترکی)', titleEn: 'Matematik Vakti', link: 'https://www.matematikvakti.com' },
-      ],
-    },
   ];
 
   const feedbacks = [
@@ -201,7 +111,6 @@ export default function Home() {
                 onClick={() => { 
                   setIsEducationOpen(!isEducationOpen); 
                   setIsFeedbackOpen(false); 
-                  setIsMathSitesOpen(false); 
                 }} 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
@@ -216,25 +125,19 @@ export default function Home() {
                 📚 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
               </Link>
 
-              <button 
-                type="button"
-                onClick={() => { 
-                  setIsMathSitesOpen(!isMathSitesOpen); 
-                  setIsEducationOpen(false); 
-                  setIsFeedbackOpen(false); 
-                }} 
+              {/* لینک مستقیم به صفحه جدید سایت‌های ریاضی */}
+              <Link 
+                href="/math-sites" 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
-                <span>💻 {isFa ? 'سایت‌های ریاضی کشورها' : 'Math Websites'}</span>
-                <span className="text-[10px]">{isMathSitesOpen ? '▲' : '▼'}</span>
-              </button>
+                💻 {isFa ? 'سایت‌های ریاضی کشورها' : 'Math Websites'}
+              </Link>
 
               <button 
                 type="button"
                 onClick={() => { 
                   setIsFeedbackOpen(!isFeedbackOpen); 
                   setIsEducationOpen(false); 
-                  setIsMathSitesOpen(false); 
                 }} 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
@@ -259,36 +162,6 @@ export default function Home() {
                     <span>{item.flag}</span>
                     <span>{isFa ? item.fa : item.en}</span>
                   </a>
-                ))}
-              </div>
-            )}
-
-            {/* منوی کشویی ترکیبی شامل تمام سایت‌های قبلی و جدید */}
-            {isMathSitesOpen && (
-              <div className="w-full bg-slate-50 p-3 md:p-4 rounded-xl border border-gray-200 my-2 shadow-inner max-h-96 overflow-y-auto space-y-4">
-                {mathSitesByCountry.map((group, gIdx) => (
-                  <div key={gIdx} className="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
-                    <div className="flex items-center gap-2 border-b border-gray-100 pb-2 mb-2">
-                      <span className="text-base">{group.flag}</span>
-                      <h4 className="font-bold text-xs md:text-sm text-slate-800">
-                        {isFa ? group.countryFa : group.countryEn}
-                      </h4>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {group.sites.map((site, sIdx) => (
-                        <a 
-                          key={sIdx} 
-                          href={site.link} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="px-3 py-1.5 bg-blue-50/80 hover:bg-blue-100/80 text-blue-900 text-xs font-semibold rounded-lg border border-blue-200 transition flex items-center gap-1.5 shadow-sm hover:shadow"
-                        >
-                          <span>{isFa ? site.titleFa : site.titleEn}</span>
-                          <span className="text-[10px] text-blue-600 font-bold">↗</span>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
                 ))}
               </div>
             )}
