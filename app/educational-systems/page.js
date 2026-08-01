@@ -13,56 +13,56 @@ export default function EducationalSystemsPage() {
       countryFa: 'نظام آموزشی آمریکا (USA)',
       countryEn: 'US Educational System',
       link: 'https://t.me/International_Maths/379',
-      descriptionFa: 'نظام آموزشی آمریکا مبتنی بر سیستم K-12 است. در دبیرستان دروس در سطوح مختلف (Standard, Honors, AP) ارائه می‌شوند. آزمون‌های استاندارد مانند SAT و ACT و گذراندن دروس پیشرفته AP نقش کلیدی در پذیرش دانشگاهی ایفا می‌کنند.',
-      descriptionEn: 'The US system follows the K-12 structure. High schools offer courses at various levels (Standard, Honors, AP). Tests like SAT/ACT and AP courses play a vital role in university admissions.',
+      descriptionFa: 'نظام آموزشی آمریکا مبتنی بر سیستم ۱۲ ساله (K-12) است. در مقطع دبیرستان، دروس در سطوح مختلف (Standard, Honors, AP) ارائه می‌شوند. آزمون‌های بین‌المللی مانند SAT و ACT و همچنین گذراندن دوره‌های پیشرفته AP نقش بسیار مهمی در پذیرش دانشگاه‌های ممتاز ایفا می‌کنند.',
+      descriptionEn: 'The US education system is based on the K-12 framework. High school students choose courses at various levels (Standard, Honors, AP). Standardized tests like SAT/ACT and AP courses are crucial for top university admissions.',
     },
     {
       flag: '🇬🇧',
       countryFa: 'نظام آموزشی انگلستان (UK)',
       countryEn: 'UK Educational System',
       link: 'https://t.me/International_Maths/297',
-      descriptionFa: 'نظام آموزشی بریتانیا شامل مراحل کلیدی (Key Stages) است. دانش‌آموزان در سن ۱۶ سالگی در آزمون‌های GCSE شرکت کرده و سپس دوره تخصصی دو ساله A-Levels یا IB را برای ورود به دانشگاه‌های ممتاز می‌گذرانند.',
-      descriptionEn: 'The UK system is structured into Key Stages. At age 16, students take GCSE exams, followed by two specialized years of A-Levels or IB preparing them for top universities.',
+      descriptionFa: 'نظام آموزشی بریتانیا شامل مراحل کلیدی (Key Stages) است. دانش‌آموزان در سن ۱۶ سالگی در آزمون‌های سراسری GCSE شرکت کرده و سپس برای ورود به دانشگاه‌ها، دوره دو ساله تخصصی A-Levels یا دیپلم بین‌المللی IB را می‌گذرانند که تمرکز بالایی بر عمیق‌سازی مفاهیم دارد.',
+      descriptionEn: 'The UK system is structured into Key Stages. At age 16, students take GCSE exams, followed by two years of A-Levels or IB diploma preparing them for top-tier universities with deep subject specialization.',
     },
     {
       flag: '🇩🇪',
       countryFa: 'نظام آموزشی آلمان (Germany)',
       countryEn: 'Germany Educational System',
       link: 'https://t.me/International_Maths/375',
-      descriptionFa: 'پس از دبستان، دانش‌آموزان بر اساس استعداد به شاخه‌های مختلف هدایت می‌شوند. شاخه اصلی آکادمیک برای ورود به دانشگاه، دبیرستان‌های Gymnasium است که با امتحانات نهایی Abitur به پایان می‌رسد.',
-      descriptionEn: 'After primary school, students enter tracked secondary schools. The academic track (Gymnasium) leads to the Abitur diploma required for university entrance.',
+      descriptionFa: 'سیستم آموزشی آلمان پس از دوره ابتدایی دانش‌آموزان را بر اساس استعداد هدایت می‌کند. شاخه اصلی آکادمیک برای ورود به دانشگاه، دبیرستان‌های Gymnasium است که با امتحانات نهایی Abitur به پایان می‌رسد. آموزش ریاضیات در این نظام بسیار دقیق و منطقی است.',
+      descriptionEn: 'Germany tracks students after primary school. The academic track (Gymnasium) leads to the Abitur diploma required for university admission, focusing heavily on analytical and structured learning.',
     },
     {
       flag: '🇦🇺',
       countryFa: 'نظام آموزشی استرالیا (Australia)',
       countryEn: 'Australia Educational System',
       link: 'https://t.me/International_Maths/299',
-      descriptionFa: 'آموزش در استرالیا بر اساس چارچوب ملی (Australian Curriculum) اجرا می‌شود. ارزشیابی سال‌های پایانی بر اساس دیپلم ایالتی (مانند HSC یا VCE) و نمره رتبه‌بندی کشوری ATAR صورت می‌گیرد.',
-      descriptionEn: 'Australia follows a national curriculum. Senior high school leads to state certificates (e.g., HSC, VCE) and the ATAR score for university entry.',
+      descriptionFa: 'نظام آموزشی استرالیا بر اساس چارچوب ملی (Australian Curriculum) اجرا می‌شود. سال‌های پایانی دبیرستان منجر به اخذ دیپلم ایالتی (مانند HSC یا VCE) شده و نمره کل کشوری ATAR مبنای اصلی ورود به دانشگاه‌های برجسته است.',
+      descriptionEn: 'Australia follows a national curriculum. Senior secondary years lead to state-specific certificates (such as HSC or VCE) and an ATAR score used for university entrance.',
     },
     {
       flag: '🇨🇦',
       countryFa: 'نظام آموزشی کانادا (Canada)',
       countryEn: 'Canada Educational System',
       link: 'https://t.me/International_Maths/302',
-      descriptionFa: 'نظام آموزشی کانادا به‌صورت استانی (مانند سیستم اناریو یا بریتیش کلمبیا) اداره می‌شود. ارزیابی مستمر، پروژه‌های عملی و دیپلم دبیرستان (مانند OSSD) مبنای پذیرش دانشگاهی است.',
-      descriptionEn: 'Education in Canada is provincially managed (e.g., Ontario Curriculum). Continuous assessment and high school diplomas (e.g., OSSD) form the foundation for university entry.',
+      descriptionFa: 'آموزش در کانادا به‌صورت استانی (مانند سیستم اناریو یا بریتیش کلمبیا) مدیریت می‌شود. ارزیابی مستمر، پروژه‌محوری و کسب مدرک دیپلم دبیرستان (مانند OSSD) پایه و اساس پذیرش در دانشگاه‌های ممتاز کانادایی و بین‌المللی است.',
+      descriptionEn: 'Education in Canada is managed by provinces (e.g., Ontario Curriculum). Continuous assessment and high school diplomas (like OSSD) are key to entering top universities.',
     },
     {
       flag: '🇮🇹',
       countryFa: 'نظام آموزشی ایتالیا (Italy)',
       countryEn: 'Italy Educational System',
       link: 'https://t.me/International_Maths/389',
-      descriptionFa: 'دانش‌آموزان وارد دبیرستان‌های تخصصی ۵ ساله مانند Liceo Scientifico (علوم پایه و ریاضی) می‌شوند. پایان دوره دبیرستان همراه با آزمون جامع کشوری Maturità است.',
-      descriptionEn: 'Secondary education includes specialized 5-year schools such as Liceo Scientifico. High school ends with the national Maturità exam.',
+      descriptionFa: 'در ایتالیا پس از دوره راهنمایی، دانش‌آموزان وارد دبیرستان‌های تخصصی ۵ ساله می‌شوند. دبیرستان‌های Liceo Scientifico تمرکز ویژه‌ای بر علوم پایه و ریاضیات دارند و دوره دبیرستان با آزمون سراسری جامع Maturità ختم می‌شود.',
+      descriptionEn: 'Italian secondary education includes 5-year specialized high schools like Liceo Scientifico, focusing on mathematics and sciences, concluding with the national Maturità exam.',
     },
     {
       flag: '🇹🇷',
       countryFa: 'نظام آموزشی ترکیه (Turkey)',
       countryEn: 'Turkey Educational System',
       link: 'https://t.me/International_Maths/395',
-      descriptionFa: 'نظام آموزشی ترکیه به‌صورت ۱۲ ساله (۴+۴+۴) است. مقطع دبیرستان شامل مدارس Fen و Anadolu بوده و ورود به دانشگاه از طریق آزمون سراسری YKS انجام می‌پذیرد.',
-      descriptionEn: 'Turkey follows a 4+4+4 structure. High schools include Science and Anatolian High Schools, with university admission based on the YKS exam.',
+      descriptionFa: 'نظام آموزشی ترکیه به‌صورت ۱۲ ساله (۴+۴+۴) است. مقطع دبیرستان شامل دبیرستان‌های عمومی، فن (علوم) و آناتولی است. ورود به دانشگاه‌های برتر ترکیه مستلزم موفقیت در آزمون سراسری و رقابتی YKS می‌باشد.',
+      descriptionEn: 'Turkey uses a 12-year (4+4+4) education model. High schools include Science and Anatolian schools, with university placement dependent on the competitive national YKS exam.',
     },
   ];
 
@@ -103,14 +103,14 @@ export default function EducationalSystemsPage() {
         </div>
       </header>
 
-      {/* بخش توضیحات و کارت‌های کشورها */}
+      {/* بخش کارت‌های توضیحات کشورها */}
       <section className="max-w-5xl mx-auto px-4 pt-8">
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
-            {isFa ? 'شناخت نظام‌های آموزشی بین‌المللی' : 'International Educational Systems'}
+            {isFa ? 'شناخت نظام‌های آموزشی بین‌المللی' : 'Overview of Educational Systems'}
           </h2>
           <p className="text-slate-600 text-sm md:text-base">
-            {isFa ? 'خلاصه‌ای از ساختار آموزشی کشورها به همراه لینک کانال تلگرام برای توضیحات تکمیلی' : 'Summaries of educational systems with dedicated Telegram links'}
+            {isFa ? 'خلاصه‌ای از ساختار آموزشی کشورها به همراه لینک کامل کانال تلگرام برای توضیحات تکمیلی' : 'Brief summaries with links to full posts on Telegram'}
           </p>
         </div>
 
@@ -129,6 +129,7 @@ export default function EducationalSystemsPage() {
                 </p>
               </div>
 
+              {/* لینک اتصال به تلگرام */}
               <a 
                 href={item.link} 
                 target="_blank" 
