@@ -24,7 +24,7 @@ export default function Home() {
     { flag: '🇬🇧', fa: 'نظام آموزشی انگلستان', en: 'UK Educational System', link: 'https://t.me/International_Maths/297' },
     { flag: '🇩🇪', fa: 'نظام آموزشی آلمان', en: 'Germany Educational System', link: 'https://t.me/International_Maths/375' },
     { flag: '🇦🇺', fa: 'نظام آموزشی استرالیا', en: 'Australia Educational System', link: 'https://t.me/International_Maths/299' },
-    { flag: '🇹🇷', fa: 'نظام آموزشی ترکیه', en: 'Turkey Educational System', link: 'https://t.me/International_Maths/395' },
+    { flag: '🇪🇺', fa: 'نظام آموزشی اروپا', en: 'Europe Educational System', link: 'https://t.me/International_Maths/395' },
     { flag: '🇮🇹', fa: 'نظام آموزشی ایتالیا', en: 'Italy Educational System', link: 'https://t.me/International_Maths/389' },
     { flag: '🇨🇦', fa: 'نظام آموزشی کانادا', en: 'Canada Educational System', link: 'https://t.me/International_Maths/302' },
   ];
@@ -127,7 +127,6 @@ export default function Home() {
                 <span className="text-[10px]">{isEducationOpen ? '▲' : '▼'}</span>
               </button>
 
-              {/* تغییر عنوان دکمه اصلی به کتب و منابع آموزشی */}
               <Link 
                 href="/books" 
                 className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-900 rounded-lg border border-blue-200 whitespace-nowrap transition flex items-center gap-1"
@@ -214,19 +213,19 @@ export default function Home() {
         </h2>
         <p className="text-slate-700 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-medium">
           {isFa 
-            ? 'تدریس تخصصی و مفهومی ریاضیات نظام‌های آموزشی بین‌المللی (امریكا، كانادا، انگلیس، استرالیا، آلمان و تركیه)' 
-            : 'Specialized math education for international curricula (USA, Canada, UK, Australia, Germany, Turkey).'}
+            ? 'تدریس تخصصی و مفهومی ریاضیات نظام‌های آموزشی بین‌المللی (امریكا، كانادا، انگلیس، استرالیا، آلمان و اروپا)' 
+            : 'Specialized math education for international curricula (USA, Canada, UK, Australia, Germany, Europe).'}
         </p>
       </section>
 
-      {/* معرفی دکتر هادی محمدی */}
+      {/* معرفی هادی محمدی زرندینی */}
       <section id="about" className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-slate-900 text-white rounded-3xl p-6 md:p-10 border border-slate-800 shadow-2xl">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
             <div className="shrink-0 flex flex-col items-center">
               <img 
                 src="/profile.jpg" 
-                alt="دکتر هادی محمدی مدرس ریاضی بین الملل" 
+                alt="هادی محمدی زرندینی مدرس ریاضی بین الملل" 
                 className="w-48 h-60 object-cover rounded-2xl border-2 border-slate-700 shadow-lg mb-3" 
               />
               <span className="text-xs font-bold text-slate-200 bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-700 text-center">
@@ -237,7 +236,7 @@ export default function Home() {
               <div className="flex items-center gap-3 mb-6 border-b border-slate-800 pb-4 mt-2 md:mt-0">
                 <span className="text-3xl">👨‍🏫</span>
                 <h3 className="text-2xl md:text-3xl font-black text-white leading-snug tracking-tight">
-                  {isFa ? 'دکتر هادی محمدی' : 'Dr. Hadi Mohammadi'}
+                  {isFa ? 'هادی محمدی زرندینی' : 'Hadi Mohammadi Zarandini'}
                 </h3>
               </div>
               <div className="text-slate-200 leading-loose text-sm md:text-base space-y-4 text-justify font-normal">
@@ -281,15 +280,15 @@ export default function Home() {
           </h4>
           <p className="text-slate-700 leading-relaxed text-sm md:text-base font-normal mb-6">
             {isFa 
-              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲، معادلات دیفرانسیل، محاسبات عددی، آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران'
-              : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran.'}
+              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲، معادلات دیفرانسیل، محاسبات عددی، آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران و همچنین تدریس در دبیرستان‌های برتر تهران'
+              : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran, as well as teaching in top high schools in Tehran.'}
           </p>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
                 src="/teaching1.JPG" 
-                alt="تدریس دکتر هادی محمدی در دانشگاه" 
+                alt="تدریس هادی محمدی زرندینی در دانشگاه" 
                 className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
             </div>
@@ -297,7 +296,7 @@ export default function Home() {
             <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
                 src="/teaching2.PNG" 
-                alt="تدریس ریاضیات دکتر هادی محمدی" 
+                alt="تدریس ریاضیات هادی محمدی زرندینی" 
                 className="w-full h-full object-cover hover:scale-105 transition duration-300"
               />
             </div>
