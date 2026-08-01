@@ -6,7 +6,7 @@ import BooksSection from '@/components/BooksSection';
 
 export default function BooksPage() {
   const [lang, setLang] = useState('fa');
-  // فقط این خط تغییر کرده است تا تب "کتاب‌های تدریس شده کشورها" به صورت پیش‌فرض باز شود
+  // پیش‌فرض روی کتاب‌های کشورها تنظیم شد
   const [activeTab, setActiveTab] = useState('taught');
   const [selectedGrade, setSelectedGrade] = useState(7);
 
@@ -163,6 +163,7 @@ export default function BooksPage() {
         </p>
       </section>
 
+      {/* تب‌ها با جابه‌جایی ترتیب و پیش‌فرض جدید */}
       <div className="max-w-4xl mx-auto px-4 mt-4">
         <div className="flex justify-center gap-2 border-b border-gray-200 pb-2">
           <button
@@ -176,7 +177,7 @@ export default function BooksPage() {
           >
             📖 {isFa ? 'کتاب‌های تدریس شده کشورها' : 'Books Taught in Countries'}
           </button>
-          
+
           <button
             type="button"
             onClick={() => setActiveTab('summaries')}
