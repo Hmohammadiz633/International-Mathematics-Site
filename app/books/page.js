@@ -98,6 +98,31 @@ export default function BooksPage() {
     { id: 20, src: '/IMG_0949.PNG' },
   ];
 
+  // تمامی ۲۱ تصویر پایه دوازدهم با حفظ دقیق حروف کوچک/بزرگ و پسوندها
+  const grade12Images = [
+    { id: 1, src: '/IMG_0956.PNG' },
+    { id: 2, src: '/IMG_0957.PNG' },
+    { id: 3, src: '/IMG_0958.jpg' },
+    { id: 4, src: '/IMG_0959.jpg' },
+    { id: 5, src: '/IMG_0960.PNG' },
+    { id: 6, src: '/IMG_0961.PNG' },
+    { id: 7, src: '/IMG_0962.PNG' },
+    { id: 8, src: '/IMG_0963.jpg' },
+    { id: 9, src: '/IMG_0964.PNG' },
+    { id: 10, src: '/IMG_0965.PNG' },
+    { id: 11, src: '/IMG_0966.PNG' },
+    { id: 12, src: '/IMG_0967.jpg' },
+    { id: 13, src: '/IMG_0968.PNG' },
+    { id: 14, src: '/IMG_0969.jpg' },
+    { id: 15, src: '/IMG_0970.PNG' },
+    { id: 16, src: '/IMG_0971.jpg' },
+    { id: 17, src: '/IMG_0972.PNG' },
+    { id: 18, src: '/IMG_0973.jpg' },
+    { id: 19, src: '/IMG_0974.jpg' },
+    { id: 20, src: '/IMG_0975.PNG' },
+    { id: 21, src: '/IMG_0976.PNG' },
+  ];
+
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-white text-black pb-12">
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200 px-4 py-3 shadow-sm">
@@ -232,7 +257,27 @@ export default function BooksPage() {
               </div>
             )}
 
-            {![7, 8, 9, 10, 11].includes(selectedGrade) && (
+            {selectedGrade === 12 && (
+              <div className="bg-slate-50 border border-gray-300 rounded-3xl p-4 md:p-8 shadow-sm">
+                <h3 className="text-xl font-black text-slate-800 mb-6 text-center border-b border-gray-200 pb-3">
+                  {isFa ? '📌 خلاصه فصل‌های ریاضی پایه دوازدهم' : '📌 Grade 12 Chapter Summaries'}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 items-start">
+                  {grade12Images.map((img) => (
+                    <div key={img.id} className="w-full bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                      <img 
+                        src={img.src} 
+                        alt="Summary" 
+                        className="w-full h-auto object-contain block"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {![7, 8, 9, 10, 11, 12].includes(selectedGrade) && (
               <div className="text-center py-12 bg-gray-50 rounded-2xl border border-dashed border-gray-300">
                 <p className="text-gray-600 text-sm md:text-base font-medium">
                   {isFa 
