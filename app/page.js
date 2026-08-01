@@ -6,7 +6,6 @@ import ContactButtons from '@/components/ContactButtons';
 
 export default function Home() {
   const [lang, setLang] = useState('fa');
-  const [isEducationOpen, setIsEducationOpen] = useState(false);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
 
   const isFa = lang === 'fa';
@@ -17,16 +16,6 @@ export default function Home() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  const countries = [
-    { flag: '🇺🇸', fa: 'نظام آموزشی آمریکا', en: 'US Educational System', link: 'https://t.me/International_Maths/379' },
-    { flag: '🇬🇧', fa: 'نظام آموزشی انگلستان', en: 'UK Educational System', link: 'https://t.me/International_Maths/297' },
-    { flag: '🇩🇪', fa: 'نظام آموزشی آلمان', en: 'Germany Educational System', link: 'https://t.me/International_Maths/375' },
-    { flag: '🇦🇺', fa: 'نظام آموزشی استرالیا', en: 'Australia Educational System', link: 'https://t.me/International_Maths/299' },
-    { flag: '🇹🇷', fa: 'نظام آموزشی ترکیه', en: 'Turkey Educational System', link: 'https://t.me/International_Maths/395' },
-    { flag: '🇮🇹', fa: 'نظام آموزشی ایتالیا', en: 'Italy Educational System', link: 'https://t.me/International_Maths/389' },
-    { flag: '🇨🇦', fa: 'نظام آموزشی کانادا', en: 'Canada Educational System', link: 'https://t.me/International_Maths/302' },
-  ];
 
   const feedbacks = [
     { fa: 'بازخورد ۱', en: 'Feedback 1', link: 'https://t.me/International_Maths/110' },
@@ -106,17 +95,13 @@ export default function Home() {
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-2">
             <div className="w-full flex items-center justify-center gap-2 md:gap-3 overflow-x-auto py-1 text-xs md:text-sm font-bold">
-              <button 
-                type="button"
-                onClick={() => { 
-                  setIsEducationOpen(!isEducationOpen); 
-                  setIsFeedbackOpen(false); 
-                }} 
+              {/* لینک مستقیم به صفحه جدید نظام آموزشی کشورها */}
+              <Link 
+                href="/educational-systems" 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
-                <span>🌐 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}</span>
-                <span className="text-[10px]">{isEducationOpen ? '▲' : '▼'}</span>
-              </button>
+                🌐 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
+              </Link>
 
               <Link 
                 href="/books" 
@@ -125,7 +110,6 @@ export default function Home() {
                 📚 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
               </Link>
 
-              {/* لینک مستقیم به صفحه جدید سایت‌های ریاضی */}
               <Link 
                 href="/math-sites" 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
@@ -137,7 +121,6 @@ export default function Home() {
                 type="button"
                 onClick={() => { 
                   setIsFeedbackOpen(!isFeedbackOpen); 
-                  setIsEducationOpen(false); 
                 }} 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
@@ -153,18 +136,6 @@ export default function Home() {
                 📞 {isFa ? 'ارتباط با استاد' : 'Contact'}
               </button>
             </div>
-
-            {/* منوی کشویی نظام آموزشی کشورها */}
-            {isEducationOpen && (
-              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
-                {countries.map((item, idx) => (
-                  <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-300 shadow-sm transition flex items-center gap-1.5">
-                    <span>{item.flag}</span>
-                    <span>{isFa ? item.fa : item.en}</span>
-                  </a>
-                ))}
-              </div>
-            )}
 
             {/* منوی کشویی بازخورد کلاس‌ها */}
             {isFeedbackOpen && (
