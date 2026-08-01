@@ -9,6 +9,8 @@ export default function Home() {
   const [isEducationOpen, setIsEducationOpen] = useState(false);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const [isMathSitesOpen, setIsMathSitesOpen] = useState(false);
+  const [isYear8Open, setIsYear8Open] = useState(false);
+  const [selectedImg, setSelectedImg] = useState(null);
 
   const isFa = lang === 'fa';
 
@@ -40,6 +42,21 @@ export default function Home() {
     { fa: 'بازخورد ۱', en: 'Feedback 1', link: 'https://t.me/International_Maths/110' },
     { fa: 'بازخورد ۲', en: 'Feedback 2', link: 'https://t.me/International_Maths/111' },
     { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
+  ];
+
+  // لیست عکس‌ها و فصول خلاصه ریاضی سال هشتم
+  const year8Summaries = [
+    { fa: 'فصل ۱: اعداد و محاسبات', en: 'Ch 1: Numbers & Calculation', src: '/IMG_0891.JPG' },
+    { fa: 'فصل ۲: خطوط، اشکال و اجسام', en: 'Ch 2: Lines, Shapes & Solids', src: '/IMG_0892.JPG' },
+    { fa: 'فصل ۳: کسرها', en: 'Ch 3: Fractions', src: '/IMG_0893.JPG' },
+    { fa: 'فصل ۴: اعشار و درصد', en: 'Ch 4: Decimals & Percentages', src: '/IMG_0894.JPG' },
+    { fa: 'فصل ۵: اندازه‌گیری و فیثاغورس', en: 'Ch 5: Measurement & Pythagoras', src: '/IMG_0895.JPG' },
+    { fa: 'فصل ۶: عبارت‌های جبری', en: 'Ch 6: Algebra', src: '/IMG_0896.JPG' },
+    { fa: 'فصل ۷: نسبت، تناسب و نرخ', en: 'Ch 7: Ratios & Rates', src: '/IMG_0897.JPG' },
+    { fa: 'فصل ۸: معادلات و نامعادلات', en: 'Ch 8: Equations & Inequalities', src: '/IMG_0898.JPG' },
+    { fa: 'فصل ۹: احتمال و آمار', en: 'Ch 9: Probability & Statistics', src: '/IMG_0899.JPG' },
+    { fa: 'فصل ۱۰: نمودارهای خط مستقیم', en: 'Ch 10: Straight Line Graphs', src: '/IMG_0900.JPG' },
+    { fa: 'فصل ۱۱: تبدیل‌ها و هم‌نهشتی', en: 'Ch 11: Transformations & Congruence', src: '/IMG_0901.JPG' },
   ];
 
   const schemaData = {
@@ -120,6 +137,7 @@ export default function Home() {
                   setIsEducationOpen(!isEducationOpen); 
                   setIsFeedbackOpen(false); 
                   setIsMathSitesOpen(false); 
+                  setIsYear8Open(false);
                 }} 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
@@ -134,12 +152,28 @@ export default function Home() {
                 📚 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
               </Link>
 
+              {/* منوی جدید خلاصه دروس پایه هشتم */}
+              <button 
+                type="button"
+                onClick={() => { 
+                  setIsYear8Open(!isYear8Open); 
+                  setIsEducationOpen(false); 
+                  setIsFeedbackOpen(false); 
+                  setIsMathSitesOpen(false); 
+                }} 
+                className="px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-900 rounded-lg border border-amber-200 whitespace-nowrap transition flex items-center gap-1"
+              >
+                <span>📐 {isFa ? 'خلاصه ریاضی پایه هشتم' : 'Year 8 Math Summary'}</span>
+                <span className="text-[10px]">{isYear8Open ? '▲' : '▼'}</span>
+              </button>
+
               <button 
                 type="button"
                 onClick={() => { 
                   setIsMathSitesOpen(!isMathSitesOpen); 
                   setIsEducationOpen(false); 
                   setIsFeedbackOpen(false); 
+                  setIsYear8Open(false);
                 }} 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
@@ -153,6 +187,7 @@ export default function Home() {
                   setIsFeedbackOpen(!isFeedbackOpen); 
                   setIsEducationOpen(false); 
                   setIsMathSitesOpen(false); 
+                  setIsYear8Open(false);
                 }} 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
               >
@@ -176,6 +211,22 @@ export default function Home() {
                     <span>{item.flag}</span>
                     <span>{isFa ? item.fa : item.en}</span>
                   </a>
+                ))}
+              </div>
+            )}
+
+            {/* بخش کشویی خلاصه‌های پایه هشتم */}
+            {isYear8Open && (
+              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-amber-50/50 p-2.5 rounded-xl border border-amber-200 my-1 shadow-inner max-h-60 overflow-y-auto">
+                {year8Summaries.map((item, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setSelectedImg(item)}
+                    className="px-3 py-1.5 bg-white hover:bg-amber-100/60 text-xs font-semibold text-slate-800 rounded-lg border border-amber-200 shadow-sm transition flex items-center gap-1.5"
+                  >
+                    <span>🖼️</span>
+                    <span>{isFa ? item.fa : item.en}</span>
+                  </button>
                 ))}
               </div>
             )}
@@ -283,7 +334,7 @@ export default function Home() {
               ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲، معادلات دیفرانسیل، محاسبات عددی، آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران و همچنین تدریس در دبیرستان‌های برتر تهران'
               : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran, as well as teaching in top high schools in Tehran.'}
           </p>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
@@ -311,7 +362,7 @@ export default function Home() {
             <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">🎓</span>
             <span>{isFa ? 'سوابق تحصیلی' : 'Education'}</span>
           </h4>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
               <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
@@ -369,6 +420,38 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* مدال بزرگ‌نمایی تصویر (برای خلاصه‌های سال هشتم) */}
+      {selectedImg && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
+          onClick={() => setSelectedImg(null)}
+        >
+          <div 
+            className="relative max-w-4xl w-full max-h-[90vh] bg-white rounded-2xl p-4 overflow-hidden flex flex-col shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-center pb-3 mb-2 border-b border-gray-200">
+              <h3 className="text-base font-bold text-slate-900">
+                {isFa ? selectedImg.fa : selectedImg.en}
+              </h3>
+              <button 
+                onClick={() => setSelectedImg(null)}
+                className="text-slate-500 hover:text-black p-1 px-3 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-sm font-bold"
+              >
+                ✕ {isFa ? 'بستن' : 'Close'}
+              </button>
+            </div>
+            <div className="relative flex-1 w-full min-h-[60vh] bg-slate-100 rounded-xl overflow-hidden flex items-center justify-center">
+              <img 
+                src={selectedImg.src} 
+                alt={isFa ? selectedImg.fa : selectedImg.en} 
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ارتباط با استاد */}
       <div id="contact" className="mt-8">
