@@ -210,7 +210,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* سوابق تدریس */}
+      {/* سوابق تدریس - اندازه عکس بسیار جمع‌وجورتر شد */}
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
           <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-4 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
@@ -224,7 +224,7 @@ export default function Home() {
           </p>
 
           <div className="flex justify-center">
-            <div className="w-full max-w-md rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
+            <div className="w-full max-w-xs rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
                 src="/teaching1.JPG" 
                 alt="تدریس هادی محمدی زرندینی در دانشگاه" 
