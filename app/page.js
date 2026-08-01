@@ -45,7 +45,7 @@ export default function Home() {
   const schemaData = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'دکتر هادی محمدی',
+    name: ' هادی محمدی زرندینی',
     jobTitle: 'عضو هیات علمی دانشگاه و مدرس ریاضیات بین‌الملل',
     worksFor: {
       '@type': 'EducationalOrganization',
