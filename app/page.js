@@ -218,22 +218,22 @@ export default function Home() {
         </p>
       </section>
 
-      {/* معرفی هادی محمدی زرندینی */}
+      {/* معرفی هادی محمدی زرندینی - کادر کمی روشن‌تر شد */}
       <section id="about" className="max-w-5xl mx-auto px-4 pt-6">
-        <div className="bg-slate-900 text-white rounded-3xl p-6 md:p-10 border border-slate-800 shadow-2xl">
+        <div className="bg-slate-800/90 text-white rounded-3xl p-6 md:p-10 border border-slate-700/60 shadow-xl">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
             <div className="shrink-0 flex flex-col items-center">
               <img 
                 src="/profile.jpg" 
                 alt="هادی محمدی زرندینی مدرس ریاضی بین الملل" 
-                className="w-48 h-60 object-cover rounded-2xl border-2 border-slate-700 shadow-lg mb-3" 
+                className="w-48 h-60 object-cover rounded-2xl border-2 border-slate-600 shadow-lg mb-3" 
               />
-              <span className="text-xs font-bold text-slate-200 bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-700 text-center">
+              <span className="text-xs font-bold text-slate-200 bg-slate-700/80 px-3 py-1.5 rounded-xl border border-slate-600 text-center">
                 {isFa ? 'هیات علمی دانشگاه ملی مهارت تهران' : 'Faculty Member at National Skills University of Tehran'}
               </span>
             </div>
             <div className="flex-1">
-              <div className="flex items-center gap-3 mb-6 border-b border-slate-800 pb-4 mt-2 md:mt-0">
+              <div className="flex items-center gap-3 mb-6 border-b border-slate-700/60 pb-4 mt-2 md:mt-0">
                 <span className="text-3xl">👨‍🏫</span>
                 <h3 className="text-2xl md:text-3xl font-black text-white leading-snug tracking-tight">
                   {isFa ? 'هادی محمدی زرندینی' : 'Hadi Mohammadi Zarandini'}
@@ -243,19 +243,19 @@ export default function Home() {
                 {isFa ? (
                   <>
                     <p>
-                      دارای مدرک دکترای تخصصی ریاضی از دانشگاه صنعتی امیرکبیر هستم و به مدت <strong className="text-white font-black underline decoration-blue-500 underline-offset-4">۲۹ سال</strong> به طور مستمر در عرصه آموزش ریاضی در داخل و خارج از کشور فعالیت داشته‌ام.
+                      دارای مدرک دکترای تخصصی ریاضی از دانشگاه صنعتی امیرکبیر هستم و به مدت <strong className="text-white font-black underline decoration-blue-400 underline-offset-4">۲۹ سال</strong> به طور مستمر در عرصه آموزش ریاضی در داخل و خارج از کشور فعالیت داشته‌ام.
                     </p>
                     <p>
                       هدف این مجموعه، ارائه خدمات تدریس تخصصی و هدفمند به ایرانیان عزیز مقیم خارج از کشور است تا بتوانند ریاضی را دقیقاً مطابق با کتاب‌های درسی و نظام آموزشی کشور محل سکونت خود بیاموزند و همچنین رفع اشکال روزانه به صورت کاملاً رایگان در پلتفرم‌های فضای مجازی انجام می‌شود.
                     </p>
                     <p>
-                      من با تکیه بر تجربیات چندین دهه تدریس در نظام‌های آموزشی گوناگون، متعهد به ارائه دقیق‌ترین و کاربردی‌ترین آموزش ریاضی مطابق با استانداردهای مدارس خارج از ایران هستم و از شما دعوت می‌کنم که با پیوستن به این دوره، ریاضی را به شیوه‌ای صحیح، اصولی و متناسب با نیازهای تحصیلی خود فرا گیرید.
+                      من با تکیه بر تجربیات چندین دهه تدریس در نظام‌های آموزشی گوناگون، متعهد به ارائه دقیق‌ترین و کاربردی‌ترین آموزش ریاضی مطابق با استانداردهای مدارس خارج از ایران هستم و از شما دعوت می‌کنم که با پیوستن به این دوره، ریاضی را به شیوه‌ای صحیح، اصولی و متناسب با نیازهای تحصیلی خود فرا بگیرید.
                     </p>
                   </>
                 ) : (
                   <>
                     <p>
-                      Holder of a Ph.D. in Mathematics from Amirkabir University of Technology, with over <strong className="text-white font-black underline decoration-blue-500 underline-offset-4">29 years</strong> of continuous experience in teaching mathematics both nationally and internationally.
+                      Holder of a Ph.D. in Mathematics from Amirkabir University of Technology, with over <strong className="text-white font-black underline decoration-blue-400 underline-offset-4">29 years</strong> of continuous experience in teaching mathematics both nationally and internationally.
                     </p>
                     <p>
                       The goal of this program is to provide targeted, specialized math tutoring for students living abroad, aligning perfectly with their local school standard curricula, alongside free daily Q&A sessions on social media platforms.
