@@ -68,6 +68,7 @@ export default function EducationalSystemsPage() {
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
+      {/* هدر بالای صفحه */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 py-3 shadow-sm">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -102,6 +103,7 @@ export default function EducationalSystemsPage() {
         </div>
       </header>
 
+      {/* کارت‌های توضیحات کشورها */}
       <section className="max-w-5xl mx-auto px-4 pt-8">
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
@@ -127,6 +129,7 @@ export default function EducationalSystemsPage() {
                 </p>
               </div>
 
+              {/* لینک تلگرام */}
               <a 
                 href={item.link} 
                 target="_blank" 
