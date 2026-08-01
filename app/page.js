@@ -44,19 +44,18 @@ export default function Home() {
     { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
   ];
 
-  // لیست عکس‌ها و فصول خلاصه ریاضی سال هشتم
+  // لیست کامل خلاصه‌های ریاضی سال هشتم با مسیرهای اصلاح‌شده
   const year8Summaries = [
-    { fa: 'فصل ۱: اعداد و محاسبات', en: 'Ch 1: Numbers & Calculation', src: '/IMG_0891.JPG' },
-    { fa: 'فصل ۲: خطوط، اشکال و اجسام', en: 'Ch 2: Lines, Shapes & Solids', src: '/IMG_0892.JPG' },
-    { fa: 'فصل ۳: کسرها', en: 'Ch 3: Fractions', src: '/IMG_0893.JPG' },
-    { fa: 'فصل ۴: اعشار و درصد', en: 'Ch 4: Decimals & Percentages', src: '/IMG_0894.JPG' },
-    { fa: 'فصل ۵: اندازه‌گیری و فیثاغورس', en: 'Ch 5: Measurement & Pythagoras', src: '/IMG_0895.JPG' },
-    { fa: 'فصل ۶: عبارت‌های جبری', en: 'Ch 6: Algebra', src: '/IMG_0896.JPG' },
-    { fa: 'فصل ۷: نسبت، تناسب و نرخ', en: 'Ch 7: Ratios & Rates', src: '/IMG_0897.JPG' },
-    { fa: 'فصل ۸: معادلات و نامعادلات', en: 'Ch 8: Equations & Inequalities', src: '/IMG_0898.JPG' },
-    { fa: 'فصل ۹: احتمال و آمار', en: 'Ch 9: Probability & Statistics', src: '/IMG_0899.JPG' },
-    { fa: 'فصل ۱۰: نمودارهای خط مستقیم', en: 'Ch 10: Straight Line Graphs', src: '/IMG_0900.JPG' },
-    { fa: 'فصل ۱۱: تبدیل‌ها و هم‌نهشتی', en: 'Ch 11: Transformations & Congruence', src: '/IMG_0901.JPG' },
+    { fa: 'فصل ۱: کسرها و اعداد گویا', en: 'Ch 1: Fractions & Rational Numbers', src: '/IMG_0892.jpeg' },
+    { fa: 'فصل ۲: اعشار و درصدها', en: 'Ch 2: Decimals & Percentages', src: '/IMG_0893.jpeg' },
+    { fa: 'فصل ۳: اندازه‌گیری و قضیه فیثاغورس', en: 'Ch 3: Measurement & Pythagoras', src: '/IMG_0894.jpeg' },
+    { fa: 'فصل ۴: عبارت‌های جبری', en: 'Ch 4: Algebra & Algebraic Expressions', src: '/IMG_0895.jpeg' },
+    { fa: 'فصل ۵: نسبت‌ها و نرخ‌ها', en: 'Ch 5: Ratios & Rates', src: '/IMG_0896.jpeg' },
+    { fa: 'فصل ۶: معادلات و نامعادلات', en: 'Ch 6: Equations & Inequalities', src: '/IMG_0897.jpeg' },
+    { fa: 'فصل ۷: احتمال و آمار', en: 'Ch 7: Probability & Statistics', src: '/IMG_0898.jpeg' },
+    { fa: 'فصل ۸: نمودار خط‌های مستقیم', en: 'Ch 8: Straight Line Graphs', src: '/IMG_0899.jpeg' },
+    { fa: 'فصل ۹: تبدیل‌ها و هم‌نهشتی', en: 'Ch 9: Transformations & Congruence', src: '/IMG_0900.jpeg' },
+    { fa: 'فصل ۱۰: مرور و جمع‌بندی کلی', en: 'Ch 10: General Review', src: '/IMG_0901.jpeg' },
   ];
 
   const schemaData = {
@@ -152,7 +151,7 @@ export default function Home() {
                 📚 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
               </Link>
 
-              {/* منوی جدید خلاصه دروس پایه هشتم */}
+              {/* منوی خلاصه دروس پایه هشتم */}
               <button 
                 type="button"
                 onClick={() => { 
