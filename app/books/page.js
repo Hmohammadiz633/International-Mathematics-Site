@@ -6,7 +6,8 @@ import BooksSection from '@/components/BooksSection';
 
 export default function BooksPage() {
   const [lang, setLang] = useState('fa');
-  const [activeTab, setActiveTab] = useState('summaries');
+  // فقط این خط تغییر کرده است تا تب "کتاب‌های تدریس شده کشورها" به صورت پیش‌فرض باز شود
+  const [activeTab, setActiveTab] = useState('taught');
   const [selectedGrade, setSelectedGrade] = useState(7);
 
   const isFa = lang === 'fa';
