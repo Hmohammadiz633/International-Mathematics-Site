@@ -45,7 +45,7 @@ export default function Home() {
   const schemaData = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: ' هادی محمدی زرندینی',
+    name: 'هادی محمدی زرندینی',
     jobTitle: 'عضو هیات علمی دانشگاه و مدرس ریاضیات بین‌الملل',
     worksFor: {
       '@type': 'EducationalOrganization',
@@ -275,4 +275,105 @@ export default function Home() {
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
           <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-4 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
-            <span className
+            <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">📖</span>
+            <span>{isFa ? 'سوابق تدریس' : 'Teaching Experience'}</span>
+          </h4>
+          <p className="text-slate-700 leading-relaxed text-sm md:text-base font-normal mb-6">
+            {isFa 
+              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲، معادلات دیفرانسیل، محاسبات عددی، آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران و همچنین تدریس در دبیرستان‌های برتر تهران'
+              : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran, as well as teaching in top high schools in Tehran.'}
+          </p>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
+              <img 
+                src="/teaching1.JPG" 
+                alt="تدریس هادی محمدی زرندینی در دانشگاه" 
+                className="w-full h-full object-cover hover:scale-105 transition duration-300"
+              />
+            </div>
+
+            <div className="w-full aspect-square rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
+              <img 
+                src="/teaching2.PNG" 
+                alt="تدریس ریاضیات هادی محمدی زرندینی" 
+                className="w-full h-full object-cover hover:scale-105 transition duration-300"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* سوابق تحصیلی */}
+      <section className="max-w-5xl mx-auto px-4 pt-6">
+        <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
+          <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-6 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
+            <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">🎓</span>
+            <span>{isFa ? 'سوابق تحصیلی' : 'Education'}</span>
+          </h4>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
+              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
+                <img 
+                  src="/amirkabir.jpg" 
+                  alt="دانشگاه صنعتی امیرکبیر" 
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div>
+                <h5 className="font-bold text-slate-900 text-sm md:text-base leading-snug">
+                  {isFa ? 'دکتری تخصصی ریاضی' : 'Ph.D. in Mathematics'}
+                </h5>
+                <p className="text-xs text-slate-500 font-normal mt-0.5">
+                  {isFa ? 'گرایش بهینه سازی - دانشگاه صنعتی امیرکبیر' : 'Optimization - Amirkabir University'}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
+              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
+                <img 
+                  src="/amirkabir.jpg" 
+                  alt="دانشگاه صنعتی امیرکبیر" 
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div>
+                <h5 className="font-bold text-slate-900 text-sm md:text-base leading-snug">
+                  {isFa ? 'کارشناسی ارشد' : 'M.Sc. in Applied Mathematics'}
+                </h5>
+                <p className="text-xs text-slate-500 font-normal mt-0.5">
+                  {isFa ? 'گرایش ریاضی کاربردی - دانشگاه صنعتی امیرکبیر' : 'Amirkabir University of Technology'}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
+              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
+                <img 
+                  src="/kharazmi.jpg" 
+                  alt="دانشگاه خوارزمی" 
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div>
+                <h5 className="font-bold text-slate-900 text-sm md:text-base leading-snug">
+                  {isFa ? 'کارشناسی ریاضی' : 'B.Sc. in Mathematics'}
+                </h5>
+                <p className="text-xs text-slate-500 font-normal mt-0.5">
+                  {isFa ? 'دانشگاه خوارزمی' : 'Kharazmi University'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ارتباط با استاد */}
+      <div id="contact" className="mt-8">
+        <ContactButtons lang={lang} />
+      </div>
+    </main>
+  );
+}
