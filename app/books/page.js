@@ -79,6 +79,30 @@ export default function BooksPage() {
     { id: 10, src: '/IMG_0928.JPG', title: 'خلاصه فصل ۱۰' },
   ];
 
+  // تمامی ۲۰ تصویر پایه یازدهم با رعایت دقیق حروف کوچک و بزرگ پسوندها
+  const grade11Images = [
+    { id: 1, src: '/IMG_0930.jpg' },
+    { id: 2, src: '/IMG_0931.PNG' },
+    { id: 3, src: '/IMG_0932.PNG' },
+    { id: 4, src: '/IMG_0933.PNG' },
+    { id: 5, src: '/IMG_0934.PNG' },
+    { id: 6, src: '/IMG_0935.PNG' },
+    { id: 7, src: '/IMG_0936.PNG' },
+    { id: 8, src: '/IMG_0937.jpg' },
+    { id: 9, src: '/IMG_0938.jpg' },
+    { id: 10, src: '/IMG_0939.jpg' },
+    { id: 11, src: '/IMG_0940.jpg' },
+    { id: 12, src: '/IMG_0941.jpg' },
+    { id: 13, src: '/IMG_0942.PNG' },
+    { id: 14, src: '/IMG_0943.PNG' },
+    { id: 15, src: '/IMG_0944.jpg' },
+    { id: 16, src: '/IMG_0945.PNG' },
+    { id: 17, src: '/IMG_0946.jpg' },
+    { id: 18, src: '/IMG_0947.jpg' },
+    { id: 19, src: '/IMG_0948.jpg' },
+    { id: 20, src: '/IMG_0949.PNG' },
+  ];
+
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-white text-black font-sans pb-12">
       {/* هدر صفحه */}
@@ -152,12 +176,10 @@ export default function BooksPage() {
 
       {/* محتوا */}
       <div className="max-w-6xl mx-auto px-4 mt-6">
-        {/* ۱. کتاب‌های تدریس شده */}
         {activeTab === 'taught' && (
           <BooksSection lang={lang} />
         )}
 
-        {/* ۲. خلاصه فصل‌های کتاب */}
         {activeTab === 'summaries' && (
           <div className="space-y-6">
             {/* انتخاب پایه */}
@@ -178,19 +200,17 @@ export default function BooksPage() {
               ))}
             </div>
 
-            {/* پایه هفتم */}
-            {selectedGrade === 7 && (
+            {/* پایه‌های ۷ تا ۱۰ */}
+            {[7, 8, 9, 10].includes(selectedGrade) && (
               <div className="bg-slate-50 border border-gray-300 rounded-3xl p-4 md:p-8 shadow-sm">
                 <h3 className="text-xl font-black text-slate-800 mb-6 text-center border-b border-gray-200 pb-3">
-                  {isFa ? '📌 خلاصه فصل‌های ریاضی پایه هفتم' : '📌 Grade 7 Chapter Summaries'}
+                  {isFa ? `📌 خلاصه فصل‌های ریاضی ${grades.find(g => g.id === selectedGrade)?.fa}` : `📌 ${grades.find(g => g.id === selectedGrade)?.en} Chapter Summaries`}
                 </h3>
-                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                  {grade7Images.map((img) => (
-                    <div 
-                      key={img.id} 
-                      className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition"
-                    >
+                  {(selectedGrade === 7 ? grade7Images : 
+                    selectedGrade === 8 ? grade8Images : 
+                    selectedGrade === 9 ? grade9Images : grade10Images).map((img) => (
+                    <div key={img.id} className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
                       <img 
                         src={img.src} 
                         alt={img.title} 
@@ -203,73 +223,19 @@ export default function BooksPage() {
               </div>
             )}
 
-            {/* پایه هشتم */}
-            {selectedGrade === 8 && (
+            {/* پایه یازدهم - چیدمان بهینه بدون نام فصل */}
+            {selectedGrade === 11 && (
               <div className="bg-slate-50 border border-gray-300 rounded-3xl p-4 md:p-8 shadow-sm">
                 <h3 className="text-xl font-black text-slate-800 mb-6 text-center border-b border-gray-200 pb-3">
-                  {isFa ? '📌 خلاصه فصل‌های ریاضی پایه هشتم' : '📌 Grade 8 Chapter Summaries'}
+                  {isFa ? '📌 خلاصه فصل‌های ریاضی پایه یازدهم' : '📌 Grade 11 Chapter Summaries'}
                 </h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                  {grade8Images.map((img) => (
-                    <div 
-                      key={img.id} 
-                      className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition"
-                    >
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 items-start">
+                  {grade11Images.map((img) => (
+                    <div key={img.id} className="w-full bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
                       <img 
                         src={img.src} 
-                        alt={img.title} 
-                        className="w-full h-auto object-contain block hover:scale-[1.01] transition duration-300"
-                        loading="lazy"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* پایه نهم */}
-            {selectedGrade === 9 && (
-              <div className="bg-slate-50 border border-gray-300 rounded-3xl p-4 md:p-8 shadow-sm">
-                <h3 className="text-xl font-black text-slate-800 mb-6 text-center border-b border-gray-200 pb-3">
-                  {isFa ? '📌 خلاصه فصل‌های ریاضی پایه نهم' : '📌 Grade 9 Chapter Summaries'}
-                </h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                  {grade9Images.map((img) => (
-                    <div 
-                      key={img.id} 
-                      className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition"
-                    >
-                      <img 
-                        src={img.src} 
-                        alt={img.title} 
-                        className="w-full h-auto object-contain block hover:scale-[1.01] transition duration-300"
-                        loading="lazy"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* پایه دهم */}
-            {selectedGrade === 10 && (
-              <div className="bg-slate-50 border border-gray-300 rounded-3xl p-4 md:p-8 shadow-sm">
-                <h3 className="text-xl font-black text-slate-800 mb-6 text-center border-b border-gray-200 pb-3">
-                  {isFa ? '📌 خلاصه فصل‌های ریاضی پایه دهم' : '📌 Grade 10 Chapter Summaries'}
-                </h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                  {grade10Images.map((img) => (
-                    <div 
-                      key={img.id} 
-                      className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition"
-                    >
-                      <img 
-                        src={img.src} 
-                        alt={img.title} 
-                        className="w-full h-auto object-contain block hover:scale-[1.01] transition duration-300"
+                        alt="Summary" 
+                        className="w-full h-auto object-contain block"
                         loading="lazy"
                       />
                     </div>
@@ -279,7 +245,7 @@ export default function BooksPage() {
             )}
 
             {/* سایر پایه‌ها */}
-            {selectedGrade !== 7 && selectedGrade !== 8 && selectedGrade !== 9 && selectedGrade !== 10 && (
+            {![7, 8, 9, 10, 11].includes(selectedGrade) && (
               <div className="text-center py-12 bg-gray-50 rounded-2xl border border-dashed border-gray-300">
                 <p className="text-gray-600 text-sm md:text-base font-medium">
                   {isFa 
