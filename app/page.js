@@ -95,7 +95,7 @@ export default function Home() {
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-2">
             <div className="w-full flex items-center justify-center gap-2 md:gap-3 overflow-x-auto py-1 text-xs md:text-sm font-bold">
-              {/* دکمه لینک مستقیم به صفحه مجزا */}
+              {/* لینک مستقیم به صفحه جدید نظام آموزشی کشورها */}
               <Link 
                 href="/educational-systems" 
                 className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
@@ -314,7 +314,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* بخش ارتباط با استاد */}
+      {/* ارتباط با استاد */}
       <div id="contact" className="mt-8">
         <ContactButtons lang={lang} />
       </div>
