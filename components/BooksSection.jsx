@@ -63,32 +63,19 @@ export default function BooksSection({ lang = 'fa' }) {
   const activeCategory = categories.find((c) => c.id === selectedCategory);
 
   return (
-    <section className="py-8 bg-slate-50 rounded-2xl p-4 md:p-6 space-y-8">
-      {/* تیتر اصلی بالای صفحه */}
-      <div className="text-center max-w-3xl mx-auto space-y-3">
-        <h1 className="text-3xl md:text-4xl font-black text-slate-900 flex items-center justify-center gap-2">
-          <span>📚</span>
-          <span>{isFa ? 'کتب و منابع آموزشی' : 'Educational Resources'}</span>
-        </h1>
-        <p className="text-slate-600 text-sm md:text-base font-medium">
-          {isFa
-            ? 'مجموعه کامل کتاب‌های آموزشی و خلاصه فصل‌های ریاضیات'
-            : 'Complete collection of textbooks and chapter summaries'}
-        </p>
-      </div>
-
-      {/* دو دکمه اصلی (تنها دکمه‌های ناوبری بالای صفحه) - حالت فعال: خاکستری کم‌رنگ */}
+    <section className="py-8 bg-slate-50 rounded-2xl p-4 md:p-6 space-y-10">
+      {/* دکمه‌های بالای صفحه - دکمه فعال رنگ آبی آن به خاکستری کم‌رنگ تغییر کرد */}
       <div className="flex justify-center items-center gap-3 max-w-xl mx-auto">
         <button
           type="button"
           onClick={() => setActiveTab('books')}
           className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm border transition-all duration-200 cursor-pointer flex items-center gap-2 shadow-sm ${
             activeTab === 'books'
-              ? 'bg-slate-200 text-slate-900 border-slate-300 shadow-md scale-105'
-              : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-100'
+              ? 'bg-slate-200 text-slate-900 border-slate-300 shadow-md'
+              : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
           }`}
         >
-          <span>📘</span>
+          <span>📖</span>
           <span>{isFa ? 'کتاب‌های تدریس شده کشورها' : 'Taught Textbooks'}</span>
         </button>
 
@@ -97,8 +84,8 @@ export default function BooksSection({ lang = 'fa' }) {
           onClick={() => setActiveTab('summaries')}
           className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm border transition-all duration-200 cursor-pointer flex items-center gap-2 shadow-sm ${
             activeTab === 'summaries'
-              ? 'bg-slate-200 text-slate-900 border-slate-300 shadow-md scale-105'
-              : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-100'
+              ? 'bg-slate-200 text-slate-900 border-slate-300 shadow-md'
+              : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
           }`}
         >
           <span>📝</span>
@@ -106,7 +93,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </button>
       </div>
 
-      {/* کارت عنوان بخش اصلی */}
+      {/* عنوان اصلی */}
       <div className="text-center max-w-3xl mx-auto p-6 bg-white rounded-2xl border-b-4 border-slate-300 shadow-xl">
         <h2 className="text-2xl md:text-3xl font-black mb-2 text-slate-900">
           {activeTab === 'books'
@@ -138,7 +125,7 @@ export default function BooksSection({ lang = 'fa' }) {
 
       <hr className="border-slate-300 max-w-4xl mx-auto my-6" />
 
-      {/* راهنمای دانلود */}
+      {/* راهنمای دانلود کتاب‌ها */}
       <div className="text-center max-w-2xl mx-auto">
         <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-1">
           📥 {isFa ? 'دانلود مستقیم کتب از تلگرام' : 'Download Textbooks'}
