@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 // لینک‌های تلگرام برای مقاطع تحصیلی
 const COUNTRY_GRADE_LINKS = {
@@ -56,88 +56,69 @@ const schoolGrades = [
 ];
 
 export default function BooksSection({ lang = 'fa' }) {
+  // حالت فعال برای دو دکمه اصلی بالای صفحه ('books' یا 'summaries')
+  const [activeTab, setActiveTab] = useState('books');
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [isDragging, setIsDragging] = useState(false);
+
   const isFa = lang === 'fa';
   const activeCategory = categories.find((c) => c.id === selectedCategory);
 
-  // مرجع کنترل اسکرول تصویر
-  const scrollContainerRef = useRef(null);
-  const isMouseDown = useRef(false);
-  const startY = useRef(0);
-  const scrollTop = useRef(0);
-
-  // شروع کشیدن تصویر (موس)
-  const handleMouseDown = (e) => {
-    isMouseDown.current = true;
-    setIsDragging(true);
-    startY.current = e.pageY - scrollContainerRef.current.offsetTop;
-    scrollTop.current = scrollContainerRef.current.scrollTop;
-  };
-
-  // رها کردن دست یا موس
-  const handleMouseLeaveOrUp = () => {
-    isMouseDown.current = false;
-    setIsDragging(false);
-  };
-
-  // حرکت دادن تصویر (موس)
-  const handleMouseMove = (e) => {
-    if (!isMouseDown.current) return;
-    e.preventDefault();
-    const y = e.pageY - scrollContainerRef.current.offsetTop;
-    const walk = (y - startY.current) * 1.5;
-    scrollContainerRef.current.scrollTop = scrollTop.current - walk;
-  };
-
-  // پشتیبانی از لمس در گوشی (Touch Events)
-  const handleTouchStart = (e) => {
-    isMouseDown.current = true;
-    setIsDragging(true);
-    startY.current = e.touches[0].pageY - scrollContainerRef.current.offsetTop;
-    scrollTop.current = scrollContainerRef.current.scrollTop;
-  };
-
-  const handleTouchMove = (e) => {
-    if (!isMouseDown.current) return;
-    const y = e.touches[0].pageY - scrollContainerRef.current.offsetTop;
-    const walk = (y - startY.current) * 1.5;
-    scrollContainerRef.current.scrollTop = scrollTop.current - walk;
-  };
-
   return (
     <section className="py-8 bg-slate-50 rounded-2xl p-4 md:p-6 space-y-10">
+      {/* دو دکمه اصلی بالای صفحه - تغییر رنگ از آبی به خاکستری کم‌رنگ */}
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-3xl mx-auto">
+        <button
+          type="button"
+          onClick={() => setActiveTab('books')}
+          className={`w-full sm:w-auto px-6 py-3.5 rounded-2xl font-black text-sm md:text-base border-b-4 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-lg ${
+            activeTab === 'books'
+              ? 'bg-slate-500 text-white border-slate-700 scale-105 shadow-xl'
+              : 'bg-white text-slate-800 border-slate-300 hover:bg-slate-100'
+          }`}
+        >
+          <span>📚</span>
+          <span>{isFa ? 'کتاب‌های تدریس‌شده کشورها' : 'Taught Textbooks'}</span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab('summaries')}
+          className={`w-full sm:w-auto px-6 py-3.5 rounded-2xl font-black text-sm md:text-base border-b-4 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-lg ${
+            activeTab === 'summaries'
+              ? 'bg-slate-500 text-white border-slate-700 scale-105 shadow-xl'
+              : 'bg-white text-slate-800 border-slate-300 hover:bg-slate-100'
+          }`}
+        >
+          <span>📝</span>
+          <span>{isFa ? 'خلاصه فصل‌های کتاب' : 'Chapter Summaries'}</span>
+        </button>
+      </div>
+
       {/* عنوان بخش اصلی */}
       <div className="text-center max-w-3xl mx-auto p-6 bg-white rounded-2xl border-b-4 border-slate-300 shadow-xl">
         <h2 className="text-2xl md:text-3xl font-black mb-2 text-slate-900">
-          📚 {isFa ? 'کتاب‌های تدریس‌شده بین‌المللی' : 'Taught Textbooks'}
+          {activeTab === 'books'
+            ? isFa ? '📚 کتاب‌های تدریس‌شده بین‌المللی' : '📚 Taught Textbooks'
+            : isFa ? '📝 خلاصه فصل‌های کتاب‌ها' : '📝 Chapter Summaries'}
         </h2>
         <p className="text-slate-600 text-sm md:text-base leading-relaxed font-medium">
-          {isFa
-            ? 'تدریس بر اساس آخرین ویرایش کتاب‌های رسمی نظام‌های آموزشی بین‌المللی'
-            : 'Teaching based on official international curricula standard textbooks.'}
+          {activeTab === 'books'
+            ? isFa
+              ? 'تدریس بر اساس آخرین ویرایش کتاب‌های رسمی نظام‌های آموزشی بین‌المللی'
+              : 'Teaching based on official international curricula standard textbooks.'
+            : isFa
+              ? 'دسترس به خلاصه‌ها، نکات کلیدی و فرمول‌نامه‌های هر فصل'
+              : 'Access key notes, chapter summaries, and formula sheets.'}
         </p>
       </div>
 
-      {/* بنر تصویر عمودی گالری کتاب‌ها */}
+      {/* بنر تصویر عمودی با اسکرول کامل و روان در موبایل */}
       <div className="max-w-4xl mx-auto bg-white rounded-3xl border-2 border-slate-200 shadow-2xl overflow-hidden">
-        <div 
-          ref={scrollContainerRef}
-          onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseLeaveOrUp}
-          onMouseUp={handleMouseLeaveOrUp}
-          onMouseMove={handleMouseMove}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleMouseLeaveOrUp}
-          onTouchMove={handleTouchMove}
-          className={`relative w-full h-[450px] md:h-[600px] bg-slate-900 overflow-y-auto overflow-x-hidden select-none touch-pan-y scrollbar-hide ${
-            isDragging ? 'cursor-grabbing' : 'cursor-grab'
-          }`}
-        >
+        <div className="relative w-full h-[320px] md:h-[420px] bg-slate-900 overflow-y-auto overflow-x-hidden touch-auto scrollbar-hide">
           <img
             src="/IMG_1849.jpg"
             alt={isFa ? 'کتب و منابع تدریس‌شده' : 'Taught Textbooks'}
-            className="w-full h-auto min-h-full object-cover pointer-events-none"
+            className="w-full h-auto min-h-full object-cover block"
             loading="eager"
           />
         </div>
@@ -157,7 +138,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* دکمه‌های دسته‌بندی */}
+      {/* دکمه‌های دسته‌بندی با تم خاکستری کم‌رنگ در حالت انتخاب */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
         {categories.map((cat) => (
           <button
@@ -166,14 +147,18 @@ export default function BooksSection({ lang = 'fa' }) {
             onClick={() => setSelectedCategory(cat.id)}
             className={`p-5 rounded-2xl text-right transition-all duration-200 cursor-pointer transform ${
               selectedCategory === cat.id
-                ? 'bg-blue-600 text-white border-b-8 border-blue-900 shadow-2xl scale-105 -translate-y-1'
-                : 'bg-white text-slate-900 border-2 border-slate-200 border-b-8 border-b-slate-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:border-b-blue-500'
+                ? 'bg-slate-500 text-white border-b-8 border-slate-700 shadow-2xl scale-105 -translate-y-1'
+                : 'bg-white text-slate-900 border-2 border-slate-200 border-b-8 border-b-slate-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:border-b-slate-400'
             }`}
           >
             <div className="flex items-center justify-between mb-3">
-              <span className={`w-10 h-10 flex items-center justify-center text-lg rounded-xl shadow-md ${
-                selectedCategory === cat.id ? 'bg-blue-700 text-white' : 'bg-slate-100 border border-slate-200 text-slate-900'
-              }`}>
+              <span
+                className={`w-10 h-10 flex items-center justify-center text-lg rounded-xl shadow-md ${
+                  selectedCategory === cat.id
+                    ? 'bg-slate-600 text-white'
+                    : 'bg-slate-100 border border-slate-200 text-slate-900'
+                }`}
+              >
                 {cat.icon}
               </span>
               <span className="text-2xl drop-shadow-sm">{cat.flag}</span>
@@ -181,7 +166,11 @@ export default function BooksSection({ lang = 'fa' }) {
             <h3 className="font-extrabold text-base mb-1">
               {isFa ? cat.titleFa : cat.titleEn}
             </h3>
-            <p className={`text-xs font-medium ${selectedCategory === cat.id ? 'text-blue-100' : 'text-slate-500'}`}>
+            <p
+              className={`text-xs font-medium ${
+                selectedCategory === cat.id ? 'text-slate-200' : 'text-slate-500'
+              }`}
+            >
               {isFa ? cat.subtitleFa : cat.subtitleEn}
             </p>
           </button>
@@ -193,7 +182,7 @@ export default function BooksSection({ lang = 'fa' }) {
         <div className="p-6 bg-white rounded-3xl border-2 border-slate-200 border-b-8 border-b-slate-300 shadow-2xl max-w-6xl mx-auto">
           <div className="flex items-center justify-between border-b-2 border-slate-100 pb-4 mb-6">
             <div className="flex items-center gap-3">
-              <span className="w-12 h-12 flex items-center justify-center text-2xl rounded-2xl bg-blue-50 border border-blue-200 shadow-inner text-blue-600">
+              <span className="w-12 h-12 flex items-center justify-center text-2xl rounded-2xl bg-slate-100 border border-slate-300 shadow-inner text-slate-800">
                 {activeCategory?.icon}
               </span>
               <div>
@@ -231,7 +220,7 @@ export default function BooksSection({ lang = 'fa' }) {
                       </div>
                     </div>
                   </div>
-                  <span className="w-full text-center py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl border-b-4 border-blue-800 shadow-md transition active:translate-y-0.5">
+                  <span className="w-full text-center py-2.5 bg-slate-500 hover:bg-slate-600 text-white font-bold text-xs rounded-xl border-b-4 border-slate-700 shadow-md transition active:translate-y-0.5">
                     {isFa ? 'دانلود PDF از تلگرام' : 'Download PDF'}
                   </span>
                 </a>
@@ -263,7 +252,7 @@ export default function BooksSection({ lang = 'fa' }) {
                         {grade.subFa}
                       </div>
                     </div>
-                    <span className="w-full py-1.5 bg-blue-600 hover:bg-blue-700 text-white border-b-4 border-blue-800 text-[10px] font-bold rounded-lg shadow-md transition active:translate-y-0.5">
+                    <span className="w-full py-1.5 bg-slate-500 hover:bg-slate-600 text-white border-b-4 border-slate-700 text-[10px] font-bold rounded-lg shadow-md transition active:translate-y-0.5">
                       {isFa ? 'دانلود PDF' : 'Download'}
                     </span>
                   </a>
