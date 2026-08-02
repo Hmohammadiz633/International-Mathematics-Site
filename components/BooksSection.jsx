@@ -75,8 +75,8 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* بنر تصویر گالری کتاب‌ها (IMG_1849.jpg) */}
-      <div className="max-w-5xl mx-auto bg-white rounded-3xl border border-gray-200 shadow-md overflow-hidden">
+      {/* بنر تصویر گالری کتاب‌ها - سایز فشرده و نصف شده (max-w-md) */}
+      <div className="max-w-md mx-auto bg-white rounded-2xl border border-gray-200 shadow-md overflow-hidden">
         <div 
           className="relative w-full bg-slate-900 group cursor-pointer overflow-hidden"
           onClick={() => setIsZoomed(!isZoomed)}
@@ -85,26 +85,26 @@ export default function BooksSection({ lang = 'fa' }) {
             src="/IMG_1849.jpg"
             alt={isFa ? 'کتب و منابع تدریس‌شده' : 'Taught Textbooks'}
             className={`w-full h-auto object-contain transition-transform duration-500 ease-out ${
-              isZoomed ? 'scale-125' : 'group-hover:scale-[1.02]'
+              isZoomed ? 'scale-150' : 'group-hover:scale-[1.02]'
             }`}
             loading="eager"
           />
-          <div className="absolute bottom-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-slate-700 flex items-center gap-1.5 pointer-events-none">
+          <div className="absolute bottom-2 left-2 bg-slate-900/80 backdrop-blur-md text-white text-[10px] px-2.5 py-1 rounded-md border border-slate-700 flex items-center gap-1 pointer-events-none">
             <span>🔍</span>
             <span>
               {isFa
                 ? isZoomed
-                  ? 'برای کوچک‌سازی کلیک کنید'
-                  : 'برای بزرگ‌نمایی کلیک کنید'
+                  ? 'کوچک‌سازی'
+                  : 'بزرگ‌نمایی'
                 : isZoomed
-                ? 'Click to minimize'
-                : 'Click to zoom'}
+                ? 'Minimize'
+                : 'Zoom'}
             </span>
           </div>
         </div>
       </div>
 
-      <hr className="border-gray-200 max-w-5xl mx-auto my-6" />
+      <hr className="border-gray-200 max-w-4xl mx-auto my-6" />
 
       {/* راهنمای دانلود کتاب‌ها */}
       <div className="text-center max-w-2xl mx-auto">
