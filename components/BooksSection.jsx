@@ -61,13 +61,13 @@ export default function BooksSection({ lang = 'fa' }) {
   const isFa = lang === 'fa';
   const activeCategory = categories.find((c) => c.id === selectedCategory);
 
-  // مرجع کنترل اسکرول تصویر با دست
+  // مرجع کنترل اسکرول تصویر
   const scrollContainerRef = useRef(null);
   const isMouseDown = useRef(false);
   const startY = useRef(0);
   const scrollTop = useRef(0);
 
-  // شروع کشیدن تصویر
+  // شروع کشیدن تصویر (موس)
   const handleMouseDown = (e) => {
     isMouseDown.current = true;
     setIsDragging(true);
@@ -81,12 +81,27 @@ export default function BooksSection({ lang = 'fa' }) {
     setIsDragging(false);
   };
 
-  // حرکت دادن تصویر همراه کشیدن موس
+  // حرکت دادن تصویر (موس)
   const handleMouseMove = (e) => {
     if (!isMouseDown.current) return;
     e.preventDefault();
     const y = e.pageY - scrollContainerRef.current.offsetTop;
-    const walk = (y - startY.current) * 1.5; // ضریب سرعت جابه‌جایی
+    const walk = (y - startY.current) * 1.5;
+    scrollContainerRef.current.scrollTop = scrollTop.current - walk;
+  };
+
+  // پشتیبانی از لمس در گوشی (Touch Events)
+  const handleTouchStart = (e) => {
+    isMouseDown.current = true;
+    setIsDragging(true);
+    startY.current = e.touches[0].pageY - scrollContainerRef.current.offsetTop;
+    scrollTop.current = scrollContainerRef.current.scrollTop;
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isMouseDown.current) return;
+    const y = e.touches[0].pageY - scrollContainerRef.current.offsetTop;
+    const walk = (y - startY.current) * 1.5;
     scrollContainerRef.current.scrollTop = scrollTop.current - walk;
   };
 
@@ -104,7 +119,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* بنر تصویر عمودی گالری کتاب‌ها (با ارتفاع بیشتر و قابلیت کشیدن با دست) */}
+      {/* بنر تصویر عمودی گالری کتاب‌ها */}
       <div className="max-w-4xl mx-auto bg-white rounded-3xl border-2 border-slate-200 shadow-2xl overflow-hidden">
         <div 
           ref={scrollContainerRef}
@@ -112,7 +127,10 @@ export default function BooksSection({ lang = 'fa' }) {
           onMouseLeave={handleMouseLeaveOrUp}
           onMouseUp={handleMouseLeaveOrUp}
           onMouseMove={handleMouseMove}
-          className={`relative w-full h-[450px] md:h-[600px] bg-slate-900 overflow-y-auto overflow-x-hidden select-none scrollbar-hide ${
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleMouseLeaveOrUp}
+          onTouchMove={handleTouchMove}
+          className={`relative w-full h-[450px] md:h-[600px] bg-slate-900 overflow-y-auto overflow-x-hidden select-none touch-pan-y scrollbar-hide ${
             isDragging ? 'cursor-grabbing' : 'cursor-grab'
           }`}
         >
@@ -122,12 +140,6 @@ export default function BooksSection({ lang = 'fa' }) {
             className="w-full h-auto min-h-full object-cover pointer-events-none"
             loading="eager"
           />
-          <div className="absolute bottom-4 left-4 bg-slate-900/90 backdrop-blur-md text-white text-xs px-3.5 py-2 rounded-xl border border-slate-700 shadow-lg flex items-center gap-2 pointer-events-none z-10">
-            <span className="text-base">🖐️</span>
-            <span>
-              {isFa ? 'با لمس یا کشیدن موس، عکس را بالا و پایین کنید' : 'Drag up & down to scroll'}
-            </span>
-          </div>
         </div>
       </div>
 
@@ -145,7 +157,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* دکمه‌های دسته بندی */}
+      {/* دکمه‌های دسته‌بندی */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
         {categories.map((cat) => (
           <button
