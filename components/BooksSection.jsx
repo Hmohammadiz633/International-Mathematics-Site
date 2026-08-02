@@ -56,177 +56,148 @@ const schoolGrades = [
 ];
 
 export default function BooksSection({ lang = 'fa' }) {
-  const [activeTab, setActiveTab] = useState('books');
   const [selectedCategory, setSelectedCategory] = useState(null);
-
+  const [isZoomed, setIsZoomed] = useState(false);
   const isFa = lang === 'fa';
   const activeCategory = categories.find((c) => c.id === selectedCategory);
 
   return (
-    <section className="py-8 bg-slate-50 rounded-2xl p-4 md:p-6 space-y-10">
-      {/* دکمه‌های بالای صفحه - دکمه فعال رنگ آبی آن به خاکستری کم‌رنگ تغییر کرد */}
-      <div className="flex justify-center items-center gap-3 max-w-xl mx-auto">
-        <button
-          type="button"
-          onClick={() => setActiveTab('books')}
-          className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm border transition-all duration-200 cursor-pointer flex items-center gap-2 shadow-sm ${
-            activeTab === 'books'
-              ? 'bg-slate-200 text-slate-900 border-slate-300 shadow-md'
-              : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
-          }`}
-        >
-          <span>📖</span>
-          <span>{isFa ? 'کتاب‌های تدریس شده کشورها' : 'Taught Textbooks'}</span>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setActiveTab('summaries')}
-          className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm border transition-all duration-200 cursor-pointer flex items-center gap-2 shadow-sm ${
-            activeTab === 'summaries'
-              ? 'bg-slate-200 text-slate-900 border-slate-300 shadow-md'
-              : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
-          }`}
-        >
-          <span>📝</span>
-          <span>{isFa ? 'خلاصه فصل‌های کتاب' : 'Chapter Summaries'}</span>
-        </button>
-      </div>
-
-      {/* عنوان اصلی */}
-      <div className="text-center max-w-3xl mx-auto p-6 bg-white rounded-2xl border-b-4 border-slate-300 shadow-xl">
-        <h2 className="text-2xl md:text-3xl font-black mb-2 text-slate-900">
-          {activeTab === 'books'
-            ? isFa ? '📚 کتاب‌های تدریس‌شده بین‌المللی' : '📚 Taught Textbooks'
-            : isFa ? '📝 خلاصه فصل‌های کتاب‌ها' : '📝 Chapter Summaries'}
+    <section className="py-8 bg-white rounded-2xl p-4 space-y-10">
+      {/* عنوان بخش اصلی */}
+      <div className="text-center max-w-3xl mx-auto p-6 bg-gray-100 rounded-2xl border border-gray-300">
+        <h2 className="text-2xl md:text-3xl font-bold mb-2 text-black">
+          📚 {isFa ? 'کتاب‌های تدریس‌شده بین‌المللی' : 'Taught Textbooks'}
         </h2>
-        <p className="text-slate-600 text-sm md:text-base leading-relaxed font-medium">
-          {activeTab === 'books'
-            ? isFa
-              ? 'تدریس بر اساس آخرین ویرایش کتاب‌های رسمی نظام‌های آموزشی بین‌المللی'
-              : 'Teaching based on official international curricula standard textbooks.'
-            : isFa
-              ? 'دسترسی به خلاصه‌ها، نکات کلیدی و فرمول‌نامه‌های هر فصل'
-              : 'Access key notes, chapter summaries, and formula sheets.'}
+        <p className="text-black text-sm md:text-base leading-relaxed">
+          {isFa
+            ? 'تدریس بر اساس آخرین ویرایش کتاب‌های رسمی نظام‌های آموزشی بین‌المللی'
+            : 'Teaching based on official international curricula standard textbooks.'}
         </p>
       </div>
 
-      {/* بنر تصویر */}
-      <div className="max-w-4xl mx-auto bg-white rounded-3xl border-2 border-slate-200 shadow-2xl overflow-hidden">
-        <div className="relative w-full h-[320px] md:h-[420px] bg-slate-900 overflow-y-auto overflow-x-hidden touch-auto scrollbar-hide">
+      {/* بنر تصویر گالری کتاب‌ها (IMG_1849.jpg) */}
+      <div className="max-w-5xl mx-auto bg-white rounded-3xl border border-gray-200 shadow-md overflow-hidden">
+        <div 
+          className="relative w-full bg-slate-900 group cursor-pointer overflow-hidden"
+          onClick={() => setIsZoomed(!isZoomed)}
+        >
           <img
             src="/IMG_1849.jpg"
             alt={isFa ? 'کتب و منابع تدریس‌شده' : 'Taught Textbooks'}
-            className="w-full h-auto min-h-full object-cover block"
+            className={`w-full h-auto object-contain transition-transform duration-500 ease-out ${
+              isZoomed ? 'scale-125' : 'group-hover:scale-[1.02]'
+            }`}
             loading="eager"
           />
+          <div className="absolute bottom-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-slate-700 flex items-center gap-1.5 pointer-events-none">
+            <span>🔍</span>
+            <span>
+              {isFa
+                ? isZoomed
+                  ? 'برای کوچک‌سازی کلیک کنید'
+                  : 'برای بزرگ‌نمایی کلیک کنید'
+                : isZoomed
+                ? 'Click to minimize'
+                : 'Click to zoom'}
+            </span>
+          </div>
         </div>
       </div>
 
-      <hr className="border-slate-300 max-w-4xl mx-auto my-6" />
+      <hr className="border-gray-200 max-w-5xl mx-auto my-6" />
 
       {/* راهنمای دانلود کتاب‌ها */}
       <div className="text-center max-w-2xl mx-auto">
         <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-1">
           📥 {isFa ? 'دانلود مستقیم کتب از تلگرام' : 'Download Textbooks'}
         </h3>
-        <p className="text-xs md:text-sm text-slate-600 font-medium">
+        <p className="text-xs md:text-sm text-slate-600">
           {isFa
             ? 'جهت مشاهده و دانلود کتاب‌ها، کشور یا مقطع مورد نظر را انتخاب کنید:'
             : 'Select an educational system or section below:'}
         </p>
       </div>
 
-      {/* دکمه‌های دسته‌بندی کشورها */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
+      {/* شبکه دکمه‌های دسته‌بندی */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
         {categories.map((cat) => (
           <button
             key={cat.id}
             type="button"
             onClick={() => setSelectedCategory(cat.id)}
-            className={`p-5 rounded-2xl text-right transition-all duration-200 cursor-pointer transform ${
+            className={`p-4 rounded-xl border text-right transition duration-200 ${
               selectedCategory === cat.id
-                ? 'bg-slate-200 text-slate-900 border-2 border-slate-400 border-b-8 shadow-xl translate-y-0.5'
-                : 'bg-white text-slate-900 border-2 border-slate-200 border-b-8 border-b-slate-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:border-b-slate-400'
+                ? 'bg-gray-300 text-black border-black font-bold shadow-sm'
+                : 'bg-gray-100 text-black border-gray-300 hover:bg-gray-200'
             }`}
           >
-            <div className="flex items-center justify-between mb-3">
-              <span
-                className={`w-10 h-10 flex items-center justify-center text-lg rounded-xl shadow-md ${
-                  selectedCategory === cat.id
-                    ? 'bg-white text-slate-900 border border-slate-300'
-                    : 'bg-slate-100 border border-slate-200 text-slate-900'
-                }`}
-              >
+            <div className="flex items-center justify-between mb-2">
+              <span className="w-8 h-8 flex items-center justify-center text-sm rounded-lg bg-white border border-gray-300 text-black">
                 {cat.icon}
               </span>
-              <span className="text-2xl drop-shadow-sm">{cat.flag}</span>
+              <span className="text-lg">{cat.flag}</span>
             </div>
-            <h3 className="font-extrabold text-base mb-1">
+            <h3 className="font-bold text-sm text-black">
               {isFa ? cat.titleFa : cat.titleEn}
             </h3>
-            <p
-              className={`text-xs font-medium ${
-                selectedCategory === cat.id ? 'text-slate-600' : 'text-slate-500'
-              }`}
-            >
+            <p className="text-[11px] mt-1 text-black opacity-80">
               {isFa ? cat.subtitleFa : cat.subtitleEn}
             </p>
           </button>
         ))}
       </div>
 
-      {/* نمایش زیرمجموعه‌ها پس از انتخاب */}
+      {/* نمایش لیست زیرمجموعه‌ها پس از انتخاب */}
       {selectedCategory && (
-        <div className="p-6 bg-white rounded-3xl border-2 border-slate-200 border-b-8 border-b-slate-300 shadow-2xl max-w-6xl mx-auto">
-          <div className="flex items-center justify-between border-b-2 border-slate-100 pb-4 mb-6">
+        <div className="p-6 bg-gray-50 rounded-2xl border border-gray-300 max-w-6xl mx-auto">
+          <div className="flex items-center justify-between border-b border-gray-300 pb-4 mb-6">
             <div className="flex items-center gap-3">
-              <span className="w-12 h-12 flex items-center justify-center text-2xl rounded-2xl bg-slate-100 border border-slate-300 shadow-inner text-slate-800">
+              <span className="w-10 h-10 flex items-center justify-center text-xl rounded-xl bg-white border border-gray-300 text-black">
                 {activeCategory?.icon}
               </span>
               <div>
-                <h3 className="text-xl font-black text-slate-900">
+                <h3 className="text-lg font-bold text-black">
                   {isFa ? activeCategory?.titleFa : activeCategory?.titleEn}
                 </h3>
-                <p className="text-xs text-slate-500 font-medium mt-0.5">
+                <p className="text-xs text-black opacity-80 mt-0.5">
                   {isFa ? activeCategory?.subtitleFa : activeCategory?.subtitleEn}
                 </p>
               </div>
             </div>
-            <span className="text-3xl drop-shadow-md">{activeCategory?.flag}</span>
+            <span className="text-2xl">{activeCategory?.flag}</span>
           </div>
 
           {selectedCategory === 'university' ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {UNIVERSITY_BOOKS.map((book) => (
                 <a
                   key={book.id}
                   href={book.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 bg-slate-50 hover:bg-white border-2 border-slate-200 border-b-4 border-b-slate-300 rounded-2xl transition-all duration-200 flex flex-col justify-between shadow-lg hover:shadow-xl hover:-translate-y-1"
+                  className="p-4 bg-white hover:bg-gray-100 border border-gray-300 rounded-xl transition flex flex-col justify-between shadow-sm"
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-11 h-11 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-2xl text-slate-800 shrink-0 shadow-md">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-gray-100 border border-gray-300 flex items-center justify-center text-xl text-black shrink-0">
                       {book.icon}
                     </div>
                     <div>
-                      <div className="font-bold text-slate-900 text-sm">
+                      <div className="font-bold text-black text-sm">
                         {isFa ? book.titleFa : book.titleEn}
                       </div>
-                      <div className="text-[11px] text-slate-500 font-medium mt-0.5">
+                      <div className="text-[11px] text-black opacity-70 mt-0.5">
                         {book.subFa}
                       </div>
                     </div>
                   </div>
-                  <span className="w-full text-center py-2.5 bg-slate-500 hover:bg-slate-600 text-white font-bold text-xs rounded-xl border-b-4 border-slate-700 shadow-md transition active:translate-y-0.5">
+                  <span className="w-full text-center py-2 bg-gray-200 hover:bg-gray-300 text-black font-bold text-xs rounded-lg border border-gray-300 transition">
                     {isFa ? 'دانلود PDF از تلگرام' : 'Download PDF'}
                   </span>
                 </a>
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
               {schoolGrades.map((grade) => {
                 const targetLink =
                   COUNTRY_GRADE_LINKS[selectedCategory]?.[grade.id] ||
@@ -238,20 +209,20 @@ export default function BooksSection({ lang = 'fa' }) {
                     href={targetLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-4 bg-slate-50 hover:bg-white border-2 border-slate-200 border-b-4 border-b-slate-300 rounded-2xl transition-all duration-200 flex flex-col items-center justify-between text-center shadow-md hover:shadow-xl hover:-translate-y-1"
+                    className="p-3 bg-white hover:bg-gray-100 border border-gray-300 rounded-xl transition flex flex-col items-center justify-between text-center shadow-sm"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-xl text-slate-800 mb-2 shadow-sm">
+                    <div className="w-9 h-9 rounded-lg bg-gray-100 border border-gray-300 flex items-center justify-center text-lg text-black mb-2">
                       {grade.icon}
                     </div>
-                    <div className="mb-3">
-                      <div className="font-bold text-slate-900 text-xs">
+                    <div>
+                      <div className="font-bold text-black text-xs">
                         {isFa ? grade.titleFa : grade.titleEn}
                       </div>
-                      <div className="text-[10px] text-slate-500 font-medium mt-0.5">
+                      <div className="text-[10px] text-black opacity-70 mt-0.5">
                         {grade.subFa}
                       </div>
                     </div>
-                    <span className="w-full py-1.5 bg-slate-500 hover:bg-slate-600 text-white border-b-4 border-slate-700 text-[10px] font-bold rounded-lg shadow-md transition active:translate-y-0.5">
+                    <span className="mt-3 px-3 py-1.5 bg-gray-200 hover:bg-gray-300 text-black border border-gray-300 text-[10px] font-bold rounded-lg transition">
                       {isFa ? 'دانلود PDF' : 'Download'}
                     </span>
                   </a>
