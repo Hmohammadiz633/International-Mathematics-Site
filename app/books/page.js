@@ -162,30 +162,35 @@ export default function BooksPage() {
         </p>
       </section>
 
+      {/* بخش دو منوی اصلی به‌صورت سه‌بعدی */}
       <div className="max-w-4xl mx-auto px-4 mt-4">
-        <div className="flex justify-center gap-2 border-b border-gray-200 pb-2">
+        <div className="flex justify-center gap-3 md:gap-4 max-w-xl mx-auto">
+          {/* دکمه کتاب‌های تدریس شده */}
           <button
             type="button"
             onClick={() => setActiveTab('taught')}
-            className={`px-4 py-2 text-xs md:text-sm font-bold rounded-lg transition ${
+            className={`px-5 py-3 rounded-2xl text-xs md:text-sm font-extrabold transition-all duration-200 cursor-pointer transform flex items-center justify-center gap-2 flex-1 text-center ${
               activeTab === 'taught'
-                ? 'bg-blue-600 text-white shadow-md'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-slate-200 text-slate-900 border-2 border-slate-400 border-b-4 shadow-md translate-y-0.5'
+                : 'bg-white text-slate-800 border-2 border-slate-200 border-b-4 border-b-slate-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 hover:border-b-slate-400'
             }`}
           >
-            📖 {isFa ? 'کتاب‌های تدریس شده کشورها' : 'Books Taught in Countries'}
+            <span>📖</span>
+            <span>{isFa ? 'کتاب‌های تدریس شده کشورها' : 'Books Taught in Countries'}</span>
           </button>
 
+          {/* دکمه خلاصه فصل‌های کتاب */}
           <button
             type="button"
             onClick={() => setActiveTab('summaries')}
-            className={`px-4 py-2 text-xs md:text-sm font-bold rounded-lg transition ${
+            className={`px-5 py-3 rounded-2xl text-xs md:text-sm font-extrabold transition-all duration-200 cursor-pointer transform flex items-center justify-center gap-2 flex-1 text-center ${
               activeTab === 'summaries'
-                ? 'bg-blue-600 text-white shadow-md'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-slate-200 text-slate-900 border-2 border-slate-400 border-b-4 shadow-md translate-y-0.5'
+                : 'bg-white text-slate-800 border-2 border-slate-200 border-b-4 border-b-slate-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 hover:border-b-slate-400'
             }`}
           >
-            📝 {isFa ? 'خلاصه فصل‌های کتاب' : 'Book Chapter Summaries'}
+            <span>📝</span>
+            <span>{isFa ? 'خلاصه فصل‌های کتاب' : 'Book Chapter Summaries'}</span>
           </button>
         </div>
       </div>
