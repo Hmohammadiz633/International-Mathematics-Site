@@ -56,8 +56,8 @@ const schoolGrades = [
 ];
 
 export default function BooksSection({ lang = 'fa' }) {
-  // حالت فعال برای دو دکمه اصلی بالای صفحه ('books' یا 'summaries')
-  const [activeTab, setActiveTab] = useState('books');
+  // حالت تب‌های بالا: 'books' یا 'summaries'
+  const [topTab, setTopTab] = useState('books');
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const isFa = lang === 'fa';
@@ -65,13 +65,13 @@ export default function BooksSection({ lang = 'fa' }) {
 
   return (
     <section className="py-8 bg-slate-50 rounded-2xl p-4 md:p-6 space-y-10">
-      {/* دو دکمه اصلی بالای صفحه - تغییر رنگ از آبی به خاکستری کم‌رنگ */}
-      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-3xl mx-auto">
+      {/* دو دکمه بالای صفحه با رنگ خاکستری کم‌رنگ و ملایم هنگام کلیک */}
+      <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
         <button
           type="button"
-          onClick={() => setActiveTab('books')}
-          className={`w-full sm:w-auto px-6 py-3.5 rounded-2xl font-black text-sm md:text-base border-b-4 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-lg ${
-            activeTab === 'books'
+          onClick={() => setTopTab('books')}
+          className={`px-5 py-3 rounded-2xl font-black text-sm md:text-base border-b-4 transition-all duration-200 cursor-pointer flex items-center gap-2 shadow-md ${
+            topTab === 'books'
               ? 'bg-slate-500 text-white border-slate-700 scale-105 shadow-xl'
               : 'bg-white text-slate-800 border-slate-300 hover:bg-slate-100'
           }`}
@@ -82,9 +82,9 @@ export default function BooksSection({ lang = 'fa' }) {
 
         <button
           type="button"
-          onClick={() => setActiveTab('summaries')}
-          className={`w-full sm:w-auto px-6 py-3.5 rounded-2xl font-black text-sm md:text-base border-b-4 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-lg ${
-            activeTab === 'summaries'
+          onClick={() => setTopTab('summaries')}
+          className={`px-5 py-3 rounded-2xl font-black text-sm md:text-base border-b-4 transition-all duration-200 cursor-pointer flex items-center gap-2 shadow-md ${
+            topTab === 'summaries'
               ? 'bg-slate-500 text-white border-slate-700 scale-105 shadow-xl'
               : 'bg-white text-slate-800 border-slate-300 hover:bg-slate-100'
           }`}
@@ -97,17 +97,17 @@ export default function BooksSection({ lang = 'fa' }) {
       {/* عنوان بخش اصلی */}
       <div className="text-center max-w-3xl mx-auto p-6 bg-white rounded-2xl border-b-4 border-slate-300 shadow-xl">
         <h2 className="text-2xl md:text-3xl font-black mb-2 text-slate-900">
-          {activeTab === 'books'
+          {topTab === 'books'
             ? isFa ? '📚 کتاب‌های تدریس‌شده بین‌المللی' : '📚 Taught Textbooks'
             : isFa ? '📝 خلاصه فصل‌های کتاب‌ها' : '📝 Chapter Summaries'}
         </h2>
         <p className="text-slate-600 text-sm md:text-base leading-relaxed font-medium">
-          {activeTab === 'books'
+          {topTab === 'books'
             ? isFa
               ? 'تدریس بر اساس آخرین ویرایش کتاب‌های رسمی نظام‌های آموزشی بین‌المللی'
               : 'Teaching based on official international curricula standard textbooks.'
             : isFa
-              ? 'دسترس به خلاصه‌ها، نکات کلیدی و فرمول‌نامه‌های هر فصل'
+              ? 'دسترسی به خلاصه‌ها، نکات کلیدی و فرمول‌نامه‌های هر فصل'
               : 'Access key notes, chapter summaries, and formula sheets.'}
         </p>
       </div>
