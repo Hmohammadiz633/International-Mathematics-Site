@@ -75,7 +75,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* بنر تصویر عمودی با اسکرول کامل و روان در موبایل */}
+      {/* بنر تصویر عمودی */}
       <div className="max-w-4xl mx-auto bg-white rounded-3xl border-2 border-slate-200 shadow-2xl overflow-hidden">
         <div className="relative w-full h-[320px] md:h-[420px] bg-slate-900 overflow-y-auto overflow-x-hidden touch-auto scrollbar-hide">
           <img
