@@ -56,7 +56,6 @@ const schoolGrades = [
 ];
 
 export default function BooksSection({ lang = 'fa' }) {
-  // حالت فعال برای دو دکمه اصلی بالای صفحه ('books' یا 'summaries')
   const [activeTab, setActiveTab] = useState('books');
   const [selectedCategory, setSelectedCategory] = useState(null);
 
@@ -65,7 +64,7 @@ export default function BooksSection({ lang = 'fa' }) {
 
   return (
     <section className="py-8 bg-slate-50 rounded-2xl p-4 md:p-6 space-y-10">
-      {/* دو دکمه اصلی بالای صفحه - تغییر رنگ دکمه کلیک‌شده به خاکستری کم‌رنگ */}
+      {/* دکمه‌های اصلی بالای صفحه - در حالت کلیک‌شده خاکستری کم‌رنگ می‌شن */}
       <div className="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-3xl mx-auto">
         <button
           type="button"
@@ -112,7 +111,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* بنر تصویر عمودی با اسکرول کامل و روان در موبایل */}
+      {/* بنر تصویر عمودی */}
       <div className="max-w-4xl mx-auto bg-white rounded-3xl border-2 border-slate-200 shadow-2xl overflow-hidden">
         <div className="relative w-full h-[320px] md:h-[420px] bg-slate-900 overflow-y-auto overflow-x-hidden touch-auto scrollbar-hide">
           <img
@@ -138,7 +137,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* دکمه‌های دسته‌بندی با تم خاکستری کم‌رنگ در حالت انتخاب */}
+      {/* دکمه‌های دسته‌بندی کشورها */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
         {categories.map((cat) => (
           <button
