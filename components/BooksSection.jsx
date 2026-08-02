@@ -56,62 +56,25 @@ const schoolGrades = [
 ];
 
 export default function BooksSection({ lang = 'fa' }) {
-  const [activeTab, setActiveTab] = useState('books');
   const [selectedCategory, setSelectedCategory] = useState(null);
-
   const isFa = lang === 'fa';
   const activeCategory = categories.find((c) => c.id === selectedCategory);
 
   return (
     <section className="py-8 bg-slate-50 rounded-2xl p-4 md:p-6 space-y-10">
-      {/* دکمه‌های بالای صفحه - کاملاً سه‌بعدی مانند دکمه‌های پایین */}
-      <div className="flex justify-center items-center gap-4 max-w-2xl mx-auto">
-        <button
-          type="button"
-          onClick={() => setActiveTab('books')}
-          className={`px-6 py-4 rounded-2xl font-extrabold text-xs md:text-sm transition-all duration-200 cursor-pointer transform flex items-center justify-center gap-2 flex-1 text-center ${
-            activeTab === 'books'
-              ? 'bg-slate-200 text-slate-900 border-2 border-slate-400 border-b-8 shadow-xl translate-y-0.5'
-              : 'bg-white text-slate-900 border-2 border-slate-200 border-b-8 border-b-slate-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:border-b-slate-400'
-          }`}
-        >
-          <span className="text-lg">📚</span>
-          <span>{isFa ? 'کتاب‌های تدریس شده کشورها' : 'Taught Textbooks'}</span>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setActiveTab('summaries')}
-          className={`px-6 py-4 rounded-2xl font-extrabold text-xs md:text-sm transition-all duration-200 cursor-pointer transform flex items-center justify-center gap-2 flex-1 text-center ${
-            activeTab === 'summaries'
-              ? 'bg-slate-200 text-slate-900 border-2 border-slate-400 border-b-8 shadow-xl translate-y-0.5'
-              : 'bg-white text-slate-900 border-2 border-slate-200 border-b-8 border-b-slate-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:border-b-slate-400'
-          }`}
-        >
-          <span className="text-lg">📝</span>
-          <span>{isFa ? 'خلاصه فصل‌های کتاب' : 'Chapter Summaries'}</span>
-        </button>
-      </div>
-
       {/* عنوان بخش اصلی */}
       <div className="text-center max-w-3xl mx-auto p-6 bg-white rounded-2xl border-b-4 border-slate-300 shadow-xl">
         <h2 className="text-2xl md:text-3xl font-black mb-2 text-slate-900">
-          {activeTab === 'books'
-            ? isFa ? '📚 کتاب‌های تدریس‌شده بین‌المللی' : '📚 Taught Textbooks'
-            : isFa ? '📝 خلاصه فصل‌های کتاب‌ها' : '📝 Chapter Summaries'}
+          📚 {isFa ? 'کتاب‌های تدریس‌شده بین‌المللی' : 'Taught Textbooks'}
         </h2>
         <p className="text-slate-600 text-sm md:text-base leading-relaxed font-medium">
-          {activeTab === 'books'
-            ? isFa
-              ? 'تدریس بر اساس آخرین ویرایش کتاب‌های رسمی نظام‌های آموزشی بین‌المللی'
-              : 'Teaching based on official international curricula standard textbooks.'
-            : isFa
-              ? 'دسترسی به خلاصه‌ها، نکات کلیدی و فرمول‌نامه‌های هر فصل'
-              : 'Access key notes, chapter summaries, and formula sheets.'}
+          {isFa
+            ? 'تدریس بر اساس آخرین ویرایش کتاب‌های رسمی نظام‌های آموزشی بین‌المللی'
+            : 'Teaching based on official international curricula standard textbooks.'}
         </p>
       </div>
 
-      {/* بنر تصویر */}
+      {/* بنر تصویر عمودی با اسکرول کامل و روان در موبایل */}
       <div className="max-w-4xl mx-auto bg-white rounded-3xl border-2 border-slate-200 shadow-2xl overflow-hidden">
         <div className="relative w-full h-[320px] md:h-[420px] bg-slate-900 overflow-y-auto overflow-x-hidden touch-auto scrollbar-hide">
           <img
@@ -137,7 +100,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* دکمه‌های دسته‌بندی با تم سه‌بعدی */}
+      {/* دکمه‌های دسته‌بندی با تم سه‌بعدی و رنگ خاکستری کم‌رنگ در حالت انتخاب */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
         {categories.map((cat) => (
           <button
