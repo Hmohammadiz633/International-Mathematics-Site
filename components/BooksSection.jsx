@@ -63,29 +63,42 @@ export default function BooksSection({ lang = 'fa' }) {
   const activeCategory = categories.find((c) => c.id === selectedCategory);
 
   return (
-    <section className="py-8 bg-slate-50 rounded-2xl p-4 md:p-6 space-y-10">
-      {/* دکمه‌های اصلی بالای صفحه - در حالت کلیک‌شده خاکستری کم‌رنگ می‌شن */}
-      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-3xl mx-auto">
+    <section className="py-8 bg-slate-50 rounded-2xl p-4 md:p-6 space-y-8">
+      {/* تیتر اصلی بالای صفحه */}
+      <div className="text-center max-w-3xl mx-auto space-y-3">
+        <h1 className="text-3xl md:text-4xl font-black text-slate-900 flex items-center justify-center gap-2">
+          <span>📚</span>
+          <span>{isFa ? 'کتب و منابع آموزشی' : 'Educational Resources'}</span>
+        </h1>
+        <p className="text-slate-600 text-sm md:text-base font-medium">
+          {isFa
+            ? 'مجموعه کامل کتاب‌های آموزشی و خلاصه فصل‌های ریاضیات'
+            : 'Complete collection of textbooks and chapter summaries'}
+        </p>
+      </div>
+
+      {/* دو دکمه اصلی (تنها دکمه‌های ناوبری بالای صفحه) - حالت فعال: خاکستری کم‌رنگ */}
+      <div className="flex justify-center items-center gap-3 max-w-xl mx-auto">
         <button
           type="button"
           onClick={() => setActiveTab('books')}
-          className={`w-full sm:w-auto px-6 py-3.5 rounded-2xl font-black text-sm md:text-base border-b-4 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-md ${
+          className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm border transition-all duration-200 cursor-pointer flex items-center gap-2 shadow-sm ${
             activeTab === 'books'
-              ? 'bg-slate-200 text-slate-900 border-slate-400 scale-105 shadow-lg'
-              : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
+              ? 'bg-slate-200 text-slate-900 border-slate-300 shadow-md scale-105'
+              : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-100'
           }`}
         >
-          <span>📚</span>
-          <span>{isFa ? 'کتاب‌های تدریس‌شده کشورها' : 'Taught Textbooks'}</span>
+          <span>📘</span>
+          <span>{isFa ? 'کتاب‌های تدریس شده کشورها' : 'Taught Textbooks'}</span>
         </button>
 
         <button
           type="button"
           onClick={() => setActiveTab('summaries')}
-          className={`w-full sm:w-auto px-6 py-3.5 rounded-2xl font-black text-sm md:text-base border-b-4 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-md ${
+          className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm border transition-all duration-200 cursor-pointer flex items-center gap-2 shadow-sm ${
             activeTab === 'summaries'
-              ? 'bg-slate-200 text-slate-900 border-slate-400 scale-105 shadow-lg'
-              : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
+              ? 'bg-slate-200 text-slate-900 border-slate-300 shadow-md scale-105'
+              : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-100'
           }`}
         >
           <span>📝</span>
@@ -93,7 +106,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </button>
       </div>
 
-      {/* عنوان بخش اصلی */}
+      {/* کارت عنوان بخش اصلی */}
       <div className="text-center max-w-3xl mx-auto p-6 bg-white rounded-2xl border-b-4 border-slate-300 shadow-xl">
         <h2 className="text-2xl md:text-3xl font-black mb-2 text-slate-900">
           {activeTab === 'books'
@@ -111,7 +124,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* بنر تصویر عمودی */}
+      {/* بنر تصویر */}
       <div className="max-w-4xl mx-auto bg-white rounded-3xl border-2 border-slate-200 shadow-2xl overflow-hidden">
         <div className="relative w-full h-[320px] md:h-[420px] bg-slate-900 overflow-y-auto overflow-x-hidden touch-auto scrollbar-hide">
           <img
@@ -125,7 +138,7 @@ export default function BooksSection({ lang = 'fa' }) {
 
       <hr className="border-slate-300 max-w-4xl mx-auto my-6" />
 
-      {/* راهنمای دانلود کتاب‌ها */}
+      {/* راهنمای دانلود */}
       <div className="text-center max-w-2xl mx-auto">
         <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-1">
           📥 {isFa ? 'دانلود مستقیم کتب از تلگرام' : 'Download Textbooks'}
