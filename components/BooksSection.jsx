@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+// لینک‌های تلگرام برای مقاطع تحصیلی
 const COUNTRY_GRADE_LINKS = {
   cambridge: {
     g7: 'https://t.me/International_Maths/1400',
@@ -19,6 +20,7 @@ const COUNTRY_GRADE_LINKS = {
   turkey: { g7: 'https://t.me/International_Maths/1454', g8: 'https://t.me/International_Maths/1455', g9: 'https://t.me/International_Maths/1456', g10: 'https://t.me/International_Maths/1457', g11: 'https://t.me/International_Maths/1458', g12: 'https://t.me/International_Maths/1459' },
 };
 
+// کتاب‌های دانشگاهی
 const UNIVERSITY_BOOKS = [
   { id: 'thomas', titleFa: 'ریاضی عمومی توماس', titleEn: 'Thomas Calculus', subFa: 'جلد ۱ و ۲', icon: '📘', link: 'https://t.me/International_Maths/88' },
   { id: 'stewart', titleFa: 'ریاضی عمومی استوارت', titleEn: 'Stewart Calculus', subFa: 'مرجع کامل', icon: '📙', link: 'https://t.me/International_Maths/33' },
@@ -55,25 +57,69 @@ const schoolGrades = [
 
 export default function BooksSection({ lang = 'fa' }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [isZoomed, setIsZoomed] = useState(false);
   const isFa = lang === 'fa';
   const activeCategory = categories.find((c) => c.id === selectedCategory);
 
   return (
-    <section className="py-8 bg-white rounded-2xl p-4">
-      {/* عنوان بخش */}
-      <div className="text-center max-w-3xl mx-auto mb-8 p-6 bg-gray-100 rounded-2xl border border-gray-300">
+    <section className="py-8 bg-white rounded-2xl p-4 space-y-10">
+      {/* عنوان بخش اصلی */}
+      <div className="text-center max-w-3xl mx-auto p-6 bg-gray-100 rounded-2xl border border-gray-300">
         <h2 className="text-2xl md:text-3xl font-bold mb-2 text-black">
-          📚 {isFa ? 'کتاب‌های تدریس‌شده' : 'Taught Textbooks'}
+          📚 {isFa ? 'کتاب‌های تدریس‌شده بین‌المللی' : 'Taught Textbooks'}
         </h2>
         <p className="text-black text-sm md:text-base leading-relaxed">
           {isFa
-            ? 'جهت مشاهده و دانلود کتاب‌ها، سیستم آموزشی/کشور یا بخش دانشگاهی را انتخاب کنید:'
-            : 'Select an educational system, country, or university section to download books:'}
+            ? 'تدریس بر اساس آخرین ویرایش کتاب‌های رسمی نظام‌های آموزشی بین‌المللی'
+            : 'Teaching based on official international curricula standard textbooks.'}
         </p>
       </div>
 
-      {/* شبکه دکمه‌های دسته‌بندی با استایل خاکستری روشن */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mb-8">
+      {/* بنر تصویر گالری کتاب‌ها (IMG_1849.jpg) */}
+      <div className="max-w-5xl mx-auto bg-white rounded-3xl border border-gray-200 shadow-md overflow-hidden">
+        <div 
+          className="relative w-full bg-slate-900 group cursor-pointer overflow-hidden"
+          onClick={() => setIsZoomed(!isZoomed)}
+        >
+          <img
+            src="/IMG_1849.jpg"
+            alt={isFa ? 'کتب و منابع تدریس‌شده' : 'Taught Textbooks'}
+            className={`w-full h-auto object-contain transition-transform duration-500 ease-out ${
+              isZoomed ? 'scale-125' : 'group-hover:scale-[1.02]'
+            }`}
+            loading="eager"
+          />
+          <div className="absolute bottom-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-slate-700 flex items-center gap-1.5 pointer-events-none">
+            <span>🔍</span>
+            <span>
+              {isFa
+                ? isZoomed
+                  ? 'برای کوچک‌سازی کلیک کنید'
+                  : 'برای بزرگ‌نمایی کلیک کنید'
+                : isZoomed
+                ? 'Click to minimize'
+                : 'Click to zoom'}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <hr className="border-gray-200 max-w-5xl mx-auto my-6" />
+
+      {/* راهنمای دانلود کتاب‌ها */}
+      <div className="text-center max-w-2xl mx-auto">
+        <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-1">
+          📥 {isFa ? 'دانلود مستقیم کتب از تلگرام' : 'Download Textbooks'}
+        </h3>
+        <p className="text-xs md:text-sm text-slate-600">
+          {isFa
+            ? 'جهت مشاهده و دانلود کتاب‌ها، کشور یا مقطع مورد نظر را انتخاب کنید:'
+            : 'Select an educational system or section below:'}
+        </p>
+      </div>
+
+      {/* شبکه دکمه‌های دسته‌بندی */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
         {categories.map((cat) => (
           <button
             key={cat.id}
@@ -101,7 +147,7 @@ export default function BooksSection({ lang = 'fa' }) {
         ))}
       </div>
 
-      {/* نمایش لیست زیرمجموعه‌ها */}
+      {/* نمایش لیست زیرمجموعه‌ها پس از انتخاب */}
       {selectedCategory && (
         <div className="p-6 bg-gray-50 rounded-2xl border border-gray-300 max-w-6xl mx-auto">
           <div className="flex items-center justify-between border-b border-gray-300 pb-4 mb-6">
