@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 // لینک‌های تلگرام برای مقاطع تحصیلی
 const COUNTRY_GRADE_LINKS = {
@@ -57,9 +57,38 @@ const schoolGrades = [
 
 export default function BooksSection({ lang = 'fa' }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [isZoomed, setIsZoomed] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const isFa = lang === 'fa';
   const activeCategory = categories.find((c) => c.id === selectedCategory);
+
+  // مرجع کنترل اسکرول تصویر با دست
+  const scrollContainerRef = useRef(null);
+  const isMouseDown = useRef(false);
+  const startY = useRef(0);
+  const scrollTop = useRef(0);
+
+  // شروع کشیدن تصویر
+  const handleMouseDown = (e) => {
+    isMouseDown.current = true;
+    setIsDragging(true);
+    startY.current = e.pageY - scrollContainerRef.current.offsetTop;
+    scrollTop.current = scrollContainerRef.current.scrollTop;
+  };
+
+  // رها کردن دست یا موس
+  const handleMouseLeaveOrUp = () => {
+    isMouseDown.current = false;
+    setIsDragging(false);
+  };
+
+  // حرکت دادن تصویر همراه کشیدن موس
+  const handleMouseMove = (e) => {
+    if (!isMouseDown.current) return;
+    e.preventDefault();
+    const y = e.pageY - scrollContainerRef.current.offsetTop;
+    const walk = (y - startY.current) * 1.5; // ضریب سرعت جابه‌جایی
+    scrollContainerRef.current.scrollTop = scrollTop.current - walk;
+  };
 
   return (
     <section className="py-8 bg-slate-50 rounded-2xl p-4 md:p-6 space-y-10">
@@ -75,30 +104,28 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* بنر افقی تصویر گالری کتاب‌ها */}
+      {/* بنر تصویر عمودی گالری کتاب‌ها (با ارتفاع بیشتر و قابلیت کشیدن با دست) */}
       <div className="max-w-4xl mx-auto bg-white rounded-3xl border-2 border-slate-200 shadow-2xl overflow-hidden">
         <div 
-          className="relative w-full h-48 md:h-64 bg-slate-900 group cursor-pointer overflow-hidden flex items-center justify-center"
-          onClick={() => setIsZoomed(!isZoomed)}
+          ref={scrollContainerRef}
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeaveOrUp}
+          onMouseUp={handleMouseLeaveOrUp}
+          onMouseMove={handleMouseMove}
+          className={`relative w-full h-[450px] md:h-[600px] bg-slate-900 overflow-y-auto overflow-x-hidden select-none scrollbar-hide ${
+            isDragging ? 'cursor-grabbing' : 'cursor-grab'
+          }`}
         >
           <img
             src="/IMG_1849.jpg"
             alt={isFa ? 'کتب و منابع تدریس‌شده' : 'Taught Textbooks'}
-            className={`w-full h-full object-cover transition-transform duration-500 ease-out ${
-              isZoomed ? 'scale-150' : 'group-hover:scale-105'
-            }`}
+            className="w-full h-auto min-h-full object-cover pointer-events-none"
             loading="eager"
           />
-          <div className="absolute bottom-3 left-3 bg-slate-900/90 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-xl border border-slate-700 shadow-lg flex items-center gap-1.5 pointer-events-none">
-            <span>🔍</span>
+          <div className="absolute bottom-4 left-4 bg-slate-900/90 backdrop-blur-md text-white text-xs px-3.5 py-2 rounded-xl border border-slate-700 shadow-lg flex items-center gap-2 pointer-events-none z-10">
+            <span className="text-base">🖐️</span>
             <span>
-              {isFa
-                ? isZoomed
-                  ? 'کوچک‌سازی'
-                  : 'بزرگ‌نمایی'
-                : isZoomed
-                ? 'Minimize'
-                : 'Zoom'}
+              {isFa ? 'با لمس یا کشیدن موس، عکس را بالا و پایین کنید' : 'Drag up & down to scroll'}
             </span>
           </div>
         </div>
@@ -118,7 +145,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* دکمه‌های ۳ بعدی و برجسته با سایه زیاد */}
+      {/* دکمه‌های دسته بندی */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
         {categories.map((cat) => (
           <button
