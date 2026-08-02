@@ -55,15 +55,43 @@ const schoolGrades = [
   { id: 'g12', titleFa: 'سال دوازدهم', titleEn: 'Grade 12', subFa: 'Year 12 / A Level', icon: '📗' },
 ];
 
-export default function BooksSection({ lang = 'fa' }) {
+export default function BooksSection({ lang: initialLang = 'fa' }) {
+  const [currentLang, setCurrentLang] = useState(initialLang);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const isFa = lang === 'fa';
+  
+  const isFa = currentLang === 'fa';
   const activeCategory = categories.find((c) => c.id === selectedCategory);
 
   return (
     <section className="py-8 bg-slate-50 rounded-2xl p-4 md:p-6 space-y-10">
-      {/* عنوان بخش اصلی */}
-      <div className="text-center max-w-3xl mx-auto p-6 bg-white rounded-2xl border-b-4 border-slate-300 shadow-xl">
+      {/* عنوان بخش اصلی و دو دکمه بالای صفحه */}
+      <div className="text-center max-w-3xl mx-auto p-6 bg-white rounded-2xl border-b-4 border-slate-300 shadow-xl relative">
+        {/* دو دکمه بالای صفحه (تغییر زبان) با تم خاکستری ملایم */}
+        <div className="flex justify-center gap-3 mb-4">
+          <button
+            type="button"
+            onClick={() => setCurrentLang('fa')}
+            className={`px-4 py-1.5 rounded-xl font-bold text-xs border-b-4 transition-all duration-200 cursor-pointer ${
+              isFa
+                ? 'bg-slate-600 text-white border-slate-800 shadow-md scale-105'
+                : 'bg-slate-100 text-slate-700 border-slate-300 hover:bg-slate-200'
+            }`}
+          >
+            فارسی 🇮🇷
+          </button>
+          <button
+            type="button"
+            onClick={() => setCurrentLang('en')}
+            className={`px-4 py-1.5 rounded-xl font-bold text-xs border-b-4 transition-all duration-200 cursor-pointer ${
+              !isFa
+                ? 'bg-slate-600 text-white border-slate-800 shadow-md scale-105'
+                : 'bg-slate-100 text-slate-700 border-slate-300 hover:bg-slate-200'
+            }`}
+          >
+            English 🇬🇧
+          </button>
+        </div>
+
         <h2 className="text-2xl md:text-3xl font-black mb-2 text-slate-900">
           📚 {isFa ? 'کتاب‌های تدریس‌شده بین‌المللی' : 'Taught Textbooks'}
         </h2>
@@ -100,7 +128,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* دکمه‌های دسته‌بندی با تم خاکستری در حالت انتخاب */}
+      {/* دکمه‌های دسته‌بندی با تم خاکستری ملایم در حالت انتخاب */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
         {categories.map((cat) => (
           <button
@@ -109,8 +137,8 @@ export default function BooksSection({ lang = 'fa' }) {
             onClick={() => setSelectedCategory(cat.id)}
             className={`p-5 rounded-2xl text-right transition-all duration-200 cursor-pointer transform ${
               selectedCategory === cat.id
-                ? 'bg-slate-800 text-white border-b-8 border-slate-950 shadow-2xl scale-105 -translate-y-1'
-                : 'bg-white text-slate-900 border-2 border-slate-200 border-b-8 border-b-slate-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:border-b-slate-600'
+                ? 'bg-slate-600 text-white border-b-8 border-slate-800 shadow-2xl scale-105 -translate-y-1'
+                : 'bg-white text-slate-900 border-2 border-slate-200 border-b-8 border-b-slate-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:border-b-slate-500'
             }`}
           >
             <div className="flex items-center justify-between mb-3">
@@ -130,7 +158,7 @@ export default function BooksSection({ lang = 'fa' }) {
             </h3>
             <p
               className={`text-xs font-medium ${
-                selectedCategory === cat.id ? 'text-slate-300' : 'text-slate-500'
+                selectedCategory === cat.id ? 'text-slate-200' : 'text-slate-500'
               }`}
             >
               {isFa ? cat.subtitleFa : cat.subtitleEn}
@@ -182,7 +210,7 @@ export default function BooksSection({ lang = 'fa' }) {
                       </div>
                     </div>
                   </div>
-                  <span className="w-full text-center py-2.5 bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs rounded-xl border-b-4 border-slate-950 shadow-md transition active:translate-y-0.5">
+                  <span className="w-full text-center py-2.5 bg-slate-600 hover:bg-slate-700 text-white font-bold text-xs rounded-xl border-b-4 border-slate-800 shadow-md transition active:translate-y-0.5">
                     {isFa ? 'دانلود PDF از تلگرام' : 'Download PDF'}
                   </span>
                 </a>
@@ -214,7 +242,7 @@ export default function BooksSection({ lang = 'fa' }) {
                         {grade.subFa}
                       </div>
                     </div>
-                    <span className="w-full py-1.5 bg-slate-800 hover:bg-slate-900 text-white border-b-4 border-slate-950 text-[10px] font-bold rounded-lg shadow-md transition active:translate-y-0.5">
+                    <span className="w-full py-1.5 bg-slate-600 hover:bg-slate-700 text-white border-b-4 border-slate-800 text-[10px] font-bold rounded-lg shadow-md transition active:translate-y-0.5">
                       {isFa ? 'دانلود PDF' : 'Download'}
                     </span>
                   </a>
