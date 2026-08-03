@@ -151,7 +151,7 @@ export default function MathSitesPage() {
           </p>
         </div>
 
-        {/* دکمه‌های سه‌بعدی کشورها (ایران اول) */}
+        {/* دکمه‌های سه‌بعدی کشورها (رنگ دکمه انتخابی: خاکستری کم‌رنگ) */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
           {MATH_SITES_DATA.map((item) => {
             const isSelected = selectedCountry.id === item.id;
@@ -163,8 +163,8 @@ export default function MathSitesPage() {
                 className={`
                   px-5 py-3 rounded-2xl font-black text-sm md:text-base flex items-center gap-2.5 transition-all duration-150 cursor-pointer select-none
                   ${isSelected 
-                    ? 'bg-blue-600 text-white border-b-4 border-blue-900 shadow-[0_6px_0_#1e3a8a] translate-y-[-2px]' 
-                    : 'bg-white hover:bg-slate-100 text-slate-800 border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_5px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8]'
+                    ? 'bg-slate-200 text-slate-900 border-b-4 border-slate-400 shadow-[0_4px_0_#94a3b8] translate-y-[-2px]' 
+                    : 'bg-white hover:bg-slate-100 text-slate-700 border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_5px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8]'
                   }
                 `}
               >
@@ -201,17 +201,17 @@ export default function MathSitesPage() {
                         href={site.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-4 bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-400 rounded-2xl transition group flex items-start justify-between"
+                        className="p-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 hover:border-slate-300 rounded-2xl transition group flex items-start justify-between"
                       >
                         <div>
-                          <div className="font-bold text-blue-600 group-hover:underline text-sm md:text-base">
+                          <div className="font-bold text-slate-800 group-hover:underline text-sm md:text-base">
                             {site.name}
                           </div>
                           <div className="text-xs text-slate-500 mt-1">
                             {site.desc}
                           </div>
                         </div>
-                        <span className="text-blue-500 font-bold group-hover:translate-x-1 transition-transform text-xs">↗</span>
+                        <span className="text-slate-600 font-bold group-hover:translate-x-1 transition-transform text-xs">↗</span>
                       </a>
                     ))}
                   </div>
@@ -231,17 +231,17 @@ export default function MathSitesPage() {
                         href={site.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-4 bg-emerald-50/50 hover:bg-emerald-50 border border-emerald-100 hover:border-emerald-300 rounded-2xl transition group flex items-start justify-between"
+                        className="p-4 bg-slate-50/80 hover:bg-slate-100 border border-slate-200 hover:border-slate-300 rounded-2xl transition group flex items-start justify-between"
                       >
                         <div>
-                          <div className="font-bold text-emerald-700 group-hover:underline text-sm md:text-base">
+                          <div className="font-bold text-slate-800 group-hover:underline text-sm md:text-base">
                             {site.name}
                           </div>
                           <div className="text-xs text-slate-500 mt-1">
                             {site.desc}
                           </div>
                         </div>
-                        <span className="text-emerald-600 font-bold group-hover:translate-x-1 transition-transform text-xs">↗</span>
+                        <span className="text-slate-600 font-bold group-hover:translate-x-1 transition-transform text-xs">↗</span>
                       </a>
                     ))}
                   </div>
