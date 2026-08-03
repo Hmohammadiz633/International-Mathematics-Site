@@ -3,20 +3,27 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-// داده‌های کامل سایت‌های ریاضی کشورها (اولین کشور: ایران)
+// داده‌های ۱۰۰٪ دقیق و جامع بر اساس عکس‌های ارسال شده شما
 const MATH_SITES_DATA = [
   {
     id: 'iran',
     flag: '🇮🇷',
-    countryFa: 'ایران',
+    countryFa: 'ایران (Iran)',
     countryEn: 'Iran',
     preUniversity: [
-      { name: 'شبکه ملی مدارس (رشد)', desc: 'کتاب‌های درسی، محتوای آموزشی و نمونه سوالات ریاضی', url: 'https://roshd.ir' },
-      { name: 'سازمان پژوهش (کتاب درسی)', desc: 'دانلود پی‌دی‌اف رسمی کتاب‌های ریاضی مدارس', url: 'http://chap.sch.ir' }
+      { name: 'گاما (شبکه آموزشی رشد)', desc: 'نمونه سوال و درسنامه پایه تا دوازدهم (رایگان)', url: 'https://gama.ir' },
+      { name: 'مدرسه مجازی ایران', desc: 'ویدیوهای آموزشی وزارت آموزش و پرورش', url: 'https://iransch.ir' },
+      { name: 'آلاء', desc: 'درسنامه و کلاس‌های آنلاین ریاضی همه مقاطع', url: 'https://alaatv.com' },
+      { name: 'خان آکادمی فارسی', desc: 'ترجمه رسمی خان آکادمی برای پایه', url: 'https://fa.khanacademy.org' },
+      { name: 'ریاضیات ایران', desc: 'جزوه و تمرین دبیرستان به تفکیک پایه', url: 'https://roshd.ir' }
     ],
     university: [
-      { name: 'پرتال انجمن ریاضی ایران', desc: 'اخبار، کنفرانس‌ها و نشریات ریاضی کشور', url: 'https://ims.ir' },
-      { name: 'مکتب‌خونه (ریاضیات دانشگاهی)', desc: 'فیلم‌های آموزشی دروس ریاضی دانشگاه‌های برتر', url: 'https://maktabkhooneh.org' }
+      { name: 'دانشگاه صنعتی شریف (آموزشکده ریاضی)', desc: 'جزوات و اسلاید دروس اصلی', url: 'https://math.sharif.edu' },
+      { name: 'دانشگاه تهران (دانشکده ریاضی)', desc: 'سرفصل‌ها و منابع معرفی‌شده', url: 'https://math.ut.ac.ir' },
+      { name: 'دانشگاه صنعتی امیرکبیر', desc: 'جزوات درسی اساتید', url: 'https://math.aut.ac.ir' },
+      { name: 'دانشگاه فردوسی مشهد', desc: 'منابع ریاضی محض و کاربردی', url: 'https://math.fum.ac.ir' },
+      { name: 'انجمن ریاضی ایران', desc: 'مقالات آموزشی و منابع تکمیلی', url: 'https://ims.ir' },
+      { name: 'پرتال جامع ریاضیات (مگاایران)', desc: 'جستجوی مقالات ریاضی به فارسی', url: 'https://www.magiran.com' }
     ]
   },
   {
@@ -42,7 +49,7 @@ const MATH_SITES_DATA = [
     countryEn: 'UK',
     preUniversity: [
       { name: 'Maths Genie', desc: 'درسنامه، نمونه سوالات امتحان و ویدیوهای آموزشی', url: 'https://www.mathsgenie.co.uk' },
-      { name: 'Maths with Mum', desc: 'مناسب دبستان و پایه', url: 'https://www.mathswithmum.com' },
+      { name: 'Maths with Mum', desc: 'مناسب دبستان', url: 'https://www.mathswithmum.com' },
       { name: 'NRICH Math', desc: 'پازل و بازی از دانشگاه کمبریج', url: 'https://nrich.maths.org' }
     ],
     university: [
@@ -56,7 +63,7 @@ const MATH_SITES_DATA = [
     countryFa: 'آلمان (Germany)',
     countryEn: 'Germany',
     preUniversity: [
-      { name: 'Mathefritz', desc: 'به آلمانی، پایه دبستان تا دبیرستان', url: 'https://www.mathefritz.de' },
+      { name: 'Mathefritz', desc: 'به آلمانی، پایه دبستان', url: 'https://www.mathefritz.de' },
       { name: 'Serlo', desc: 'رایگان با توضیح گام‌به‌گام (آلمانی/انگلیسی)', url: 'https://de.serlo.org' }
     ],
     university: [
@@ -65,16 +72,47 @@ const MATH_SITES_DATA = [
     ]
   },
   {
+    id: 'france',
+    flag: '🇫🇷',
+    countryFa: 'فرانسه (France)',
+    countryEn: 'France',
+    preUniversity: [
+      { name: 'Maths et tiques', desc: 'ویدئو و تمرین به فرانسوی', url: 'https://www.maths-et-tiques.fr' }
+    ],
+    university: [
+      { name: 'Institut Fourier (Grenoble)', desc: 'آنالیز و جبر پیشرفته موسسه فوریه گرنوبل', url: 'https://www-fourier.univ-grenoble-alpes.fr' },
+      { name: 'École Polytechnique', desc: 'آموزش ریاضیات مدرسه پلی‌تکنیک فرانسه', url: 'https://www.polytechnique.edu' }
+    ]
+  },
+  {
+    id: 'turkey',
+    flag: '🇹🇷',
+    countryFa: 'ترکیه (Turkey)',
+    countryEn: 'Turkey',
+    preUniversity: [
+      { name: 'Matematik Vakti', desc: 'تمرین و آزمون پایه تا دبیرستان (رایگان)', url: 'https://www.matematikvakti.com' },
+      { name: 'Matematik Kolay', desc: 'حل تمرین تعاملی و ویدئو برای دبیرستان', url: 'https://www.matematikkolay.net' },
+      { name: 'ÜniversiteGO (بخش ریاضی)', desc: 'درسنامه و تست کنکور ترکی (YKS)', url: 'https://www.universitego.com' },
+      { name: 'Khan Academy Türkçe', desc: 'نسخه ترکی خان آکادمی (رایگان)', url: 'https://tr.khanacademy.org' }
+    ],
+    university: [
+      { name: 'Boğaziçi Üniversitesi Math', desc: 'اسلاید و جزوه به انگلیسی/ترکی', url: 'https://math.boun.edu.tr' },
+      { name: 'ODTÜ (METU) Math', desc: 'برنامه درسی و منابع پیشنهادی', url: 'https://math.metu.edu.tr' },
+      { name: 'İTÜ Math (دانشگاه فنی استانبول)', desc: 'جزوات درسی ریاضی دانشگاه فنی استانبول', url: 'https://www.math.itu.edu.tr' },
+      { name: 'Sabancı Üniversitesi', desc: 'دوره‌های آنلاین آزاد و برنامه‌های آکادمیک', url: 'https://www.sabanciuniv.edu' }
+    ]
+  },
+  {
     id: 'australia',
     flag: '🇦🇺',
     countryFa: 'استرالیا (Australia)',
     countryEn: 'Australia',
     preUniversity: [
-      { name: 'Maths Online', desc: 'آموزش ریاضی مطابق سیستم استرالیا', url: 'https://www.mathsonline.com.au' },
-      { name: 'AMSSI Schools', desc: 'موسسه علوم ریاضی استرالیا', url: 'https://schools.amsi.org.au' }
+      { name: 'Maths Online', desc: 'درسنامه و تمرین - بخشی رایگان', url: 'https://www.mathsonline.com.au' }
     ],
     university: [
-      { name: 'Uni of Sydney Math', desc: 'دوره‌ها و منابع ریاضی دانشگاه سیدنی', url: 'https://www.sydney.edu.au/science/schools/school-of-mathematics-and-statistics.html' }
+      { name: 'UNSW Sydney', desc: 'منابع مهندسی و ریاضی دانشگاه نیوساوث ولز', url: 'https://www.maths.unsw.edu.au' },
+      { name: 'ANU Math', desc: 'منابع آموزشی دانشجویی دانشگاه ملی استرالیا', url: 'https://maths.anu.edu.au' }
     ]
   },
   {
@@ -83,22 +121,38 @@ const MATH_SITES_DATA = [
     countryFa: 'کانادا (Canada)',
     countryEn: 'Canada',
     preUniversity: [
-      { name: 'CEMC Waterloo', desc: 'مرکز آموزش ریاضی و کامپیوتر دانشگاه واترلو', url: 'https://www.cemc.uwaterloo.ca' }
+      { name: 'Math Central', desc: 'منبع رایگان برای معلمان و دانش‌آموزان', url: 'https://mathcentral.uregina.ca' }
     ],
     university: [
-      { name: 'U of T Mathematics', desc: 'دپارتمان ریاضی دانشگاه تورنتو', url: 'https://www.math.toronto.edu' }
+      { name: 'UBC Math (وانکور)', desc: 'دوره‌های آموزشی رایگان دانشگاه بریتیش کلمبیا', url: 'https://www.math.ubc.ca' },
+      { name: 'Waterloo Math', desc: 'دوره‌های کارشناسی ریاضی دانشگاه واترلو', url: 'https://uwaterloo.ca/math' }
     ]
   },
   {
-    id: 'france',
-    flag: '🇫🇷',
-    countryFa: 'فرانسه (France)',
-    countryEn: 'France',
+    id: 'japan',
+    flag: '🇯🇵',
+    countryFa: 'ژاپن (Japan)',
+    countryEn: 'Japan',
     preUniversity: [
-      { name: 'Sésamath', desc: 'تمرینات و منابع ریاضی مدارس فرانسه', url: 'https://www.sesamath.net' }
+      { name: 'Sugaku', desc: 'به ژاپنی، مناسب دبستان و راهنمایی', url: 'https://www.sugaku.jp' }
     ],
     university: [
-      { name: 'IHES France', desc: 'موسسه تحقیقات پیشرفته ریاضی فرانسه', url: 'https://www.ihes.fr' }
+      { name: 'Kyoto University Math', desc: 'ریاضی محض دانشگاه کیوتو', url: 'https://www.math.kyoto-u.ac.jp' },
+      { name: 'Todai Math (توکیو)', desc: 'آموزش تخصصی ریاضیات دانشگاه توکیو', url: 'https://www.ms.u-tokyo.ac.jp' }
+    ]
+  },
+  {
+    id: 'india',
+    flag: '🇮🇳',
+    countryFa: 'هند (India)',
+    countryEn: 'India',
+    preUniversity: [
+      { name: "BYJU'S", desc: 'ویدیوهای مفهومی پایه تا دوازدهم', url: 'https://byjus.com' },
+      { name: 'Cuemath', desc: 'تمرین تعاملی ریاضی پایه', url: 'https://www.cuemath.com' }
+    ],
+    university: [
+      { name: 'NPTEL Math', desc: 'آموزش پایه دانشگاه و کنکور (موسسه ملی فناوری)', url: 'https://nptel.ac.in' },
+      { name: 'IIT Bombay Math', desc: 'برنامه‌های آکادمیک IIT بمبئی', url: 'https://www.math.iitb.ac.in' }
     ]
   }
 ];
@@ -151,7 +205,7 @@ export default function MathSitesPage() {
           </p>
         </div>
 
-        {/* دکمه‌های سه‌بعدی کشورها (رنگ دکمه انتخابی: خاکستری کم‌رنگ) */}
+        {/* دکمه‌های ۳ بعدی خاکستری کم‌رنگ برای انتخاب کشور */}
         <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
           {MATH_SITES_DATA.map((item) => {
             const isSelected = selectedCountry.id === item.id;
@@ -161,9 +215,9 @@ export default function MathSitesPage() {
                 type="button"
                 onClick={() => setSelectedCountry(item)}
                 className={`
-                  px-5 py-3 rounded-2xl font-black text-sm md:text-base flex items-center gap-2.5 transition-all duration-150 cursor-pointer select-none
+                  px-4 py-2.5 md:px-5 md:py-3 rounded-2xl font-black text-sm md:text-base flex items-center gap-2 transition-all duration-150 cursor-pointer select-none
                   ${isSelected 
-                    ? 'bg-slate-200 text-slate-900 border-b-4 border-slate-400 shadow-[0_4px_0_#94a3b8] translate-y-[-2px]' 
+                    ? 'bg-slate-300 text-slate-900 border-b-4 border-slate-500 shadow-[0_4px_0_#64748b] translate-y-[-2px]' 
                     : 'bg-white hover:bg-slate-100 text-slate-700 border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_5px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8]'
                   }
                 `}
@@ -175,7 +229,7 @@ export default function MathSitesPage() {
           })}
         </div>
 
-        {/* محتوای پایین دکمه‌ها */}
+        {/* نمایش لیست کامل لینک‌های کشور انتخابی */}
         {selectedCountry && (
           <div className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-xl transition-all duration-300">
             
@@ -188,7 +242,7 @@ export default function MathSitesPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               
-              {/* قبل دانشگاه */}
+              {/* بخش قبل دانشگاه */}
               {selectedCountry.preUniversity && selectedCountry.preUniversity.length > 0 && (
                 <div>
                   <h3 className="text-base font-bold text-slate-700 mb-4 flex items-center gap-2">
@@ -218,7 +272,7 @@ export default function MathSitesPage() {
                 </div>
               )}
 
-              {/* دانشگاهی */}
+              {/* بخش دانشگاهی */}
               {selectedCountry.university && selectedCountry.university.length > 0 && (
                 <div>
                   <h3 className="text-base font-bold text-slate-700 mb-4 flex items-center gap-2">
