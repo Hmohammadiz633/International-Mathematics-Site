@@ -32,14 +32,20 @@ const MATH_SITES_DATA = [
     countryFa: 'ایالات متحده (USA)',
     countryEn: 'USA',
     preUniversity: [
-      { name: 'Khan Academy', desc: 'ریاضی از پایه تا پیشرفته', url: 'https://www.khanacademy.org' },
-      { name: 'IXL Math', desc: 'تمرین پایه به پایه', url: 'https://www.ixl.com' },
-      { name: 'Brilliant', desc: 'آموزش مفهومی و تعاملی', url: 'https://brilliant.org' }
+      { name: 'Khan Academy', desc: 'ریاضی از پایه تا پیشرفته و آمادگی SAT/AP', url: 'https://www.khanacademy.org' },
+      { name: 'IXL Math', desc: 'تمرین پایه به پایه و استانداردهای آموزشی آمریکا', url: 'https://www.ixl.com' },
+      { name: 'Brilliant', desc: 'آموزش مفهومی و تفکر الگوریتمی و ریاضی', url: 'https://brilliant.org' },
+      { name: 'Desmos', desc: 'ماشین‌حساب پیشرفته گرافیکی و رسم نمودار آنلاین', url: 'https://www.desmos.com' },
+      { name: 'Art of Problem Solving (AoPS)', desc: 'منابع و انجمن برای المپیاد و مسائل پیشرفته', url: 'https://artofproblemsolving.com' },
+      { name: 'Purplemath', desc: 'درسنامه‌های ساده جبر و هندسه برای دبیرستان', url: 'https://www.purplemath.com' },
+      { name: 'Kuta Software', desc: 'برگه‌های تمرین (Worksheet) رایگان جبر و حسابان', url: 'https://www.kutasoftware.com' }
     ],
     university: [
       { name: 'MIT OpenCourseWare', desc: 'منبع کلاسیک و جامع دوره‌های ریاضی MIT', url: 'https://ocw.mit.edu' },
       { name: "Paul's Online Math Notes", desc: 'جزوات ریاضی عمومی و دیفرانسیل دانشگاه Lamar', url: 'https://tutorial.math.lamar.edu' },
-      { name: 'Wolfram MathWorld', desc: 'دانشنامه تخصصی و جامع ریاضیات', url: 'https://mathworld.wolfram.com' }
+      { name: 'Wolfram MathWorld', desc: 'دانشنامه تخصصی و جامع ریاضیات جهان', url: 'https://mathworld.wolfram.com' },
+      { name: 'Symbolab', desc: 'حل گام به گام مسائل انتگرال، مشتق و جبر دانشگاهی', url: 'https://www.symbolab.com' },
+      { name: 'S.O.S. Mathematics', desc: 'مرور سریع و تمرینات ریاضیات عمومی دانشگاهی', url: 'https://www.sosmath.com' }
     ]
   },
   {
@@ -48,12 +54,15 @@ const MATH_SITES_DATA = [
     countryFa: 'بریتانیا (UK)',
     countryEn: 'UK',
     preUniversity: [
-      { name: 'Maths Genie', desc: 'درسنامه، نمونه سوالات امتحان و ویدیوهای آموزشی', url: 'https://www.mathsgenie.co.uk' },
-      { name: 'Maths with Mum', desc: 'مناسب دبستان', url: 'https://www.mathswithmum.com' },
-      { name: 'NRICH Math', desc: 'پازل و بازی از دانشگاه کمبریج', url: 'https://nrich.maths.org' }
+      { name: 'Maths Genie', desc: 'درسنامه، نمونه سوالات امتحان و ویدیوهای GCSE و A-Level', url: 'https://www.mathsgenie.co.uk' },
+      { name: 'DrFrostMaths', desc: 'پلتفرم جامع تمرین و منابع امتحان A-Level و GCSE', url: 'https://www.drfrostmaths.com' },
+      { name: 'NRICH Math', desc: 'پازل‌ها و سوالات تحلیلی دانشگاه کمبریج', url: 'https://nrich.maths.org' },
+      { name: 'Maths with Mum', desc: 'آموزش ساده مفاهیم پایه ریاضی', url: 'https://www.mathswithmum.com' },
+      { name: 'Math Is Fun', desc: 'آموزش ساده مفاهیم و فرمول‌های پایه', url: 'https://www.mathsisfun.com' }
     ],
     university: [
       { name: 'Cambridge Math Resources', desc: 'منابع نظری و کاربردی دانشگاه کمبریج', url: 'https://www.maths.cam.ac.uk' },
+      { name: 'Oxford Mathematical Institute', desc: 'منابع و دوره‌های آکادمیک دانشگاه آکسفورد', url: 'https://www.maths.ox.ac.uk' },
       { name: 'Imperial College London', desc: 'ریاضی مهندسی دانشگاه امپریال لندن', url: 'https://www.imperial.ac.uk/mathematics' }
     ]
   },
@@ -63,12 +72,15 @@ const MATH_SITES_DATA = [
     countryFa: 'آلمان (Germany)',
     countryEn: 'Germany',
     preUniversity: [
-      { name: 'Mathefritz', desc: 'به آلمانی، پایه دبستان', url: 'https://www.mathefritz.de' },
-      { name: 'Serlo', desc: 'رایگان با توضیح گام‌به‌گام (آلمانی/انگلیسی)', url: 'https://de.serlo.org' }
+      { name: 'Serlo', desc: 'رایگان با توضیح گام‌به‌گام (آلمانی/انگلیسی)', url: 'https://de.serlo.org' },
+      { name: 'GeoGebra', desc: 'نرم‌افزار پویا برای آموزش هندسه، جبر و حسابان (ساخت اروپا)', url: 'https://www.geogebra.org' },
+      { name: 'Mathefritz', desc: 'تمرینات و برگه‌های امتحانی مدارس آلمان', url: 'https://www.mathefritz.de' },
+      { name: 'Realmath', desc: 'تمرینات تعاملی برای مقاطع Gymnasium آلمان', url: 'https://realmath.de' }
     ],
     university: [
       { name: 'MPI Leipzig (مکس پلانک)', desc: 'ریاضی محض و پیشرفته موسسه مکس پلانک', url: 'https://www.mis.mpg.de' },
-      { name: 'TU Munich Math', desc: 'منابع آموزشی دانشگاه صنعتی مونیخ', url: 'https://www.ma.tum.de' }
+      { name: 'TU Munich Math', desc: 'منابع آموزشی دانشگاه صنعتی مونیخ', url: 'https://www.ma.tum.de' },
+      { name: 'Heidelberg University Math', desc: 'دانشکده ریاضی و علوم کامپیوتر هایدلبرگ', url: 'https://www.mathi.uni-heidelberg.de' }
     ]
   },
   {
@@ -77,11 +89,14 @@ const MATH_SITES_DATA = [
     countryFa: 'فرانسه (France)',
     countryEn: 'France',
     preUniversity: [
-      { name: 'Maths et tiques', desc: 'ویدئو و تمرین به فرانسوی', url: 'https://www.maths-et-tiques.fr' }
+      { name: 'Maths et tiques', desc: 'ویدئو، درسنامه و تمرین کامل به زبان فرانسوی', url: 'https://www.maths-et-tiques.fr' },
+      { name: 'Xmaths', desc: 'منابع ریاضی دبیرستان و پیش‌دانشگاهی فرانسه (Lycée)', url: 'http://xmaths.free.fr' },
+      { name: 'Session Math', desc: 'تمرینات و امتحانات نهایی سیستم آموزشی فرانسه (Baccalauréat)', url: 'https://www.apmep.fr' }
     ],
     university: [
       { name: 'Institut Fourier (Grenoble)', desc: 'آنالیز و جبر پیشرفته موسسه فوریه گرنوبل', url: 'https://www-fourier.univ-grenoble-alpes.fr' },
-      { name: 'École Polytechnique', desc: 'آموزش ریاضیات مدرسه پلی‌تکنیک فرانسه', url: 'https://www.polytechnique.edu' }
+      { name: 'École Polytechnique', desc: 'آموزش ریاضیات مدرسه پلی‌تکنیک فرانسه', url: 'https://www.polytechnique.edu' },
+      { name: 'Sorbonne University Math', desc: 'دپارتمان ریاضیات دانشگاه سوربن', url: 'https://www.math.sorbonne-universite.fr' }
     ]
   },
   {
@@ -97,7 +112,7 @@ const MATH_SITES_DATA = [
     ],
     university: [
       { name: 'Boğaziçi Üniversitesi Math', desc: 'اسلاید و جزوه به انگلیسی/ترکی', url: 'https://math.boun.edu.tr' },
-      { name: 'ODTÜ (METU) Math', desc: 'برنامه درسی و منابع پیشنهادی', url: 'https://math.metu.edu.tr' },
+      { name: 'ODTÜ (METU) Math', desc: 'برنامه درسی و منابع پیشنهادی دانشگاه خاورمیانه', url: 'https://math.metu.edu.tr' },
       { name: 'İTÜ Math (دانشگاه فنی استانبول)', desc: 'جزوات درسی ریاضی دانشگاه فنی استانبول', url: 'https://www.math.itu.edu.tr' },
       { name: 'Sabancı Üniversitesi', desc: 'دوره‌های آنلاین آزاد و برنامه‌های آکادمیک', url: 'https://www.sabanciuniv.edu' }
     ]
@@ -108,12 +123,15 @@ const MATH_SITES_DATA = [
     countryFa: 'استرالیا (Australia)',
     countryEn: 'Australia',
     preUniversity: [
-      { name: 'Maths Online', desc: 'درسنامه و تمرین - بخشی رایگان', url: 'https://www.mathsonline.com.au' },
-      { name: 'HSC Maths by Topic', desc: 'آموزش و نمونه سوالات طبقه بندی شده ریاضی HSC', url: 'https://hscmathsbytopic.firsteducation.com.au/' }
+      { name: 'Maths Online', desc: 'درسنامه و تمرین کامل سیستم آموزشی استرالیا', url: 'https://www.mathsonline.com.au' },
+      { name: 'HSC Maths by Topic', desc: 'آموزش و نمونه سوالات طبقه بندی شده ریاضی HSC', url: 'https://hscmathsbytopic.firsteducation.com.au/' },
+      { name: 'AMSIMath', desc: 'موسسه علوم ریاضی استرالیا برای مدارس', url: 'https://calculate.amsi.org.au' },
+      { name: 'Eddie Woo Math (Wootube)', desc: 'ویدیوهای آموزشی استاد مشهور ریاضی استرالیا', url: 'https://mreduardowoo.com' }
     ],
     university: [
       { name: 'UNSW Sydney', desc: 'منابع مهندسی و ریاضی دانشگاه نیوساوث ولز', url: 'https://www.maths.unsw.edu.au' },
-      { name: 'ANU Math', desc: 'منابع آموزشی دانشجویی دانشگاه ملی استرالیا', url: 'https://maths.anu.edu.au' }
+      { name: 'ANU Math', desc: 'منابع آموزشی دانشجویی دانشگاه ملی استرالیا', url: 'https://maths.anu.edu.au' },
+      { name: 'University of Melbourne Math', desc: 'منابع دانشکده ریاضیات ملبورن', url: 'https://ms.unimelb.edu.au' }
     ]
   },
   {
@@ -122,11 +140,14 @@ const MATH_SITES_DATA = [
     countryFa: 'کانادا (Canada)',
     countryEn: 'Canada',
     preUniversity: [
-      { name: 'Math Central', desc: 'منبع رایگان برای معلمان و دانش‌آموزان', url: 'https://mathcentral.uregina.ca' }
+      { name: 'Math Central', desc: 'منبع رایگان دانشگاه Regina برای معلمان و دانش‌آموزان', url: 'https://mathcentral.uregina.ca' },
+      { name: 'CEMC (University of Waterloo)', desc: 'مسابقات و منابع ریاضی مدارس از دانشگاه واترلو', url: 'https://www.cemc.uwaterloo.ca' },
+      { name: 'TVO Learn Math', desc: 'برنامه درسی رسمی استان اونتاریو برای مقاطع مختلف', url: 'https://tvolearn.com' }
     ],
     university: [
       { name: 'UBC Math (وانکور)', desc: 'دوره‌های آموزشی رایگان دانشگاه بریتیش کلمبیا', url: 'https://www.math.ubc.ca' },
-      { name: 'Waterloo Math', desc: 'دوره‌های کارشناسی ریاضی دانشگاه واترلو', url: 'https://uwaterloo.ca/math' }
+      { name: 'Waterloo Math', desc: 'دوره‌های کارشناسی ریاضی دانشگاه واترلو', url: 'https://uwaterloo.ca/math' },
+      { name: 'University of Toronto Math', desc: 'منابع آکادمیک دپارتمان ریاضی تورنتو', url: 'https://www.math.toronto.edu' }
     ]
   },
   {
@@ -135,11 +156,14 @@ const MATH_SITES_DATA = [
     countryFa: 'ژاپن (Japan)',
     countryEn: 'Japan',
     preUniversity: [
-      { name: 'Sugaku', desc: 'به ژاپنی، مناسب دبستان و راهنمایی', url: 'https://www.sugaku.jp' }
+      { name: 'Sugaku', desc: 'به ژاپنی، مناسب دبستان و راهنمایی', url: 'https://www.sugaku.jp' },
+      { name: 'StudySapuri Math', desc: 'پلتفرم جامع ویدیوهای امتحانی و ریاضی مدارس ژاپن', url: 'https://studysapuri.jp' },
+      { name: 'Manabitimes', desc: 'توضیحات فرمول‌ها و حل مسائل ریاضی دبیرستان ژاپن', url: 'https://manabitimes.jp/math' }
     ],
     university: [
       { name: 'Kyoto University Math', desc: 'ریاضی محض دانشگاه کیوتو', url: 'https://www.math.kyoto-u.ac.jp' },
-      { name: 'Todai Math (توکیو)', desc: 'آموزش تخصصی ریاضیات دانشگاه توکیو', url: 'https://www.ms.u-tokyo.ac.jp' }
+      { name: 'Todai Math (توکیو)', desc: 'آموزش تخصصی ریاضیات دانشگاه توکیو', url: 'https://www.ms.u-tokyo.ac.jp' },
+      { name: 'Tokyo Tech Math', desc: 'دانشکده ریاضیات دانشگاه صنعتی توکیو', url: 'https://www.math.titech.ac.jp' }
     ]
   },
   {
@@ -149,11 +173,14 @@ const MATH_SITES_DATA = [
     countryEn: 'India',
     preUniversity: [
       { name: "BYJU'S", desc: 'ویدیوهای مفهومی پایه تا دوازدهم', url: 'https://byjus.com' },
-      { name: 'Cuemath', desc: 'تمرین تعاملی ریاضی پایه', url: 'https://www.cuemath.com' }
+      { name: 'Cuemath', desc: 'تمرین تعاملی ریاضی پایه', url: 'https://www.cuemath.com' },
+      { name: 'Vedantu Math', desc: 'کلاس‌های آنلاین و تست‌های آمادگی JEE', url: 'https://www.vedantu.com' },
+      { name: 'Tiwari Academy', desc: 'راهنما و حل تمرینات کتب NCERT هند', url: 'https://www.tiwariacademy.com' }
     ],
     university: [
       { name: 'NPTEL Math', desc: 'آموزش پایه دانشگاه و کنکور (موسسه ملی فناوری)', url: 'https://nptel.ac.in' },
-      { name: 'IIT Bombay Math', desc: 'برنامه‌های آکادمیک IIT بمبئی', url: 'https://www.math.iitb.ac.in' }
+      { name: 'IIT Bombay Math', desc: 'برنامه‌های آکادمیک IIT بمبئی', url: 'https://www.math.iitb.ac.in' },
+      { name: 'ISI Kolkata', desc: 'موسسه آمار و ریاضیات پیشرفته هند', url: 'https://www.isical.ac.in' }
     ]
   }
 ];
