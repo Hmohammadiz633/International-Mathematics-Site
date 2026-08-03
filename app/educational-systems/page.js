@@ -167,24 +167,24 @@ export default function EducationalSystemsPage() {
         <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
           <Link 
             href="/" 
-            className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs md:text-sm font-bold rounded-xl border-b-2 border-slate-400 active:translate-y-0.5 transition"
+            className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs md:text-sm font-bold rounded-xl transition"
           >
             {isFa ? '🏠 بازگشت به صفحه اصلی' : '🏠 Back to Home'}
           </Link>
 
-          <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300 shadow-inner">
+          <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-gray-200 shadow-sm">
             <button 
               type="button"
               onClick={() => setLang('fa')} 
-              className={`text-xs font-bold transition ${isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}
+              className={`text-xs font-bold transition ${isFa ? 'text-slate-900 underline font-black' : 'text-gray-400 hover:text-black'}`}
             >
               فارسی
             </button>
-            <span className="text-gray-400 font-light">|</span>
+            <span className="text-gray-300 font-light">|</span>
             <button 
               type="button"
               onClick={() => setLang('en')} 
-              className={`text-xs font-bold transition ${!isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}
+              className={`text-xs font-bold transition ${!isFa ? 'text-slate-900 underline font-black' : 'text-gray-400 hover:text-black'}`}
             >
               English
             </button>
@@ -201,8 +201,8 @@ export default function EducationalSystemsPage() {
           </p>
         </div>
 
-        {/* چیدمان دکمه‌های سه‌بعدی همه کشورها کنار هم (ایران اول قرار دارد) */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 md:gap-3.5 mb-8">
+        {/* چیدمان دکمه‌های تخت (Flat) کشورها */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 md:gap-3 mb-8">
           {EDUCATIONAL_DATA.map((item) => {
             const isSelected = selectedCountry.id === item.id;
             return (
@@ -211,10 +211,10 @@ export default function EducationalSystemsPage() {
                 type="button"
                 onClick={() => setSelectedCountry(item)}
                 className={`
-                  px-4 py-2.5 rounded-2xl font-black text-xs md:text-sm flex items-center gap-2 transition-all duration-150 cursor-pointer select-none
+                  px-4 py-2.5 rounded-xl font-bold text-xs md:text-sm flex items-center gap-2 transition cursor-pointer border
                   ${isSelected 
-                    ? 'bg-blue-600 text-white border-b-4 border-blue-900 shadow-[0_5px_0_#1e3a8a] translate-y-[-2px]' 
-                    : 'bg-white hover:bg-slate-100 text-slate-800 border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8]'
+                    ? 'bg-slate-700 text-white border-slate-700 shadow-sm' 
+                    : 'bg-white hover:bg-slate-100 text-slate-700 border-slate-200'
                   }
                 `}
               >
@@ -225,19 +225,19 @@ export default function EducationalSystemsPage() {
           })}
         </div>
 
-        {/* کارت نمایش اطلاعات کشور انتخاب‌شده */}
+        {/* کارت خاکستری رنگ نمایش اطلاعات کشور انتخاب‌شده */}
         {selectedCountry && (
-          <div className="bg-slate-900 text-white rounded-3xl p-6 md:p-8 border border-slate-700 shadow-2xl transition-all duration-300">
+          <div className="bg-slate-100 text-slate-800 rounded-3xl p-6 md:p-8 border border-slate-300 shadow-sm transition-all duration-300">
             
             {/* سربرگ کشور */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4 mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-300 pb-4 mb-6">
               <div className="flex items-center gap-3">
                 <span className="text-4xl md:text-5xl">{selectedCountry.flag}</span>
                 <div>
-                  <h2 className="text-xl md:text-2xl font-black text-white">
+                  <h2 className="text-xl md:text-2xl font-black text-slate-900">
                     {isFa ? selectedCountry.titleFa : selectedCountry.titleEn}
                   </h2>
-                  <span className="text-xs text-blue-400 font-bold">
+                  <span className="text-xs text-slate-500 font-bold">
                     {isFa ? selectedCountry.countryFa : selectedCountry.countryEn}
                   </span>
                 </div>
@@ -248,21 +248,21 @@ export default function EducationalSystemsPage() {
                 href={selectedCountry.link} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="self-start sm:self-auto px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl border-b-2 border-blue-800 active:translate-y-0.5 shadow-md transition whitespace-nowrap"
+                className="self-start sm:self-auto px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl transition whitespace-nowrap shadow-sm"
               >
                 🔗 {isFa ? 'مشاهده در تلگرام' : 'View on Telegram'}
               </a>
             </div>
 
             {/* توضیحات کامل */}
-            <p className="text-slate-300 text-sm md:text-base leading-relaxed mb-6 font-normal text-justify">
+            <p className="text-slate-700 text-sm md:text-base leading-relaxed mb-6 font-normal text-justify">
               {isFa ? selectedCountry.descriptionFa : selectedCountry.descriptionEn}
             </p>
 
             {/* بخش لینک‌های مفید و منابع رسمی */}
             {selectedCountry.resources && selectedCountry.resources.length > 0 && (
-              <div className="bg-slate-800/80 p-4 rounded-2xl border border-slate-700">
-                <h3 className="font-bold text-sm text-blue-300 mb-3 flex items-center gap-2">
+              <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 className="font-bold text-sm text-slate-900 mb-3 flex items-center gap-2">
                   💻 {isFa ? 'سایت‌ها و منابع رسمی این کشور:' : 'Official Resources & Websites:'}
                 </h3>
                 <div className="flex flex-wrap gap-2">
@@ -272,7 +272,7 @@ export default function EducationalSystemsPage() {
                       href={res.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-xs font-medium text-slate-100 rounded-lg border border-slate-600 hover:border-blue-400 transition flex items-center gap-1.5"
+                      className="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-xs font-medium text-slate-800 rounded-xl border border-slate-200 transition flex items-center gap-1.5"
                     >
                       <span>🌐</span>
                       <span>{res.title}</span>
