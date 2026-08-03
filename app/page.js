@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import { useLanguage } from '@/context/LanguageContext';
 
 // لود بهینه‌تر کامپوننت دکمه‌های ارتباطی
 const ContactButtons = dynamic(() => import('@/components/ContactButtons'), {
@@ -42,10 +43,8 @@ const SCHEMA_DATA = {
 };
 
 export default function Home() {
-  const [lang, setLang] = useState('fa');
+  const { lang, changeLanguage, isFa } = useLanguage();
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
-
-  const isFa = lang === 'fa';
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -80,10 +79,11 @@ export default function Home() {
               </h1>
             </div>
 
+            {/* دکمه‌های سویچ زبان (متصل به سیستم سراسری) */}
             <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300 shadow-inner">
               <button 
                 type="button"
-                onClick={() => setLang('fa')} 
+                onClick={() => changeLanguage('fa')} 
                 className={`text-xs font-bold transition ${isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}
               >
                 فارسی
@@ -91,7 +91,7 @@ export default function Home() {
               <span className="text-gray-400 font-light">|</span>
               <button 
                 type="button"
-                onClick={() => setLang('en')} 
+                onClick={() => changeLanguage('en')} 
                 className={`text-xs font-bold transition ${!isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}
               >
                 English
