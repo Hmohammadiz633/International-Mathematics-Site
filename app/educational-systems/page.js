@@ -1,9 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
+import React, { useState } from 'react';
 
-// داده‌های جامع: تمام ۱۰ کشور دارای حداقل ۳ سایت پیش‌دانشگاهی و ۳ سایت دانشگاهی بر اساس تصاویر ارسالی
+// آرایه کامل داده‌ها برای ۱۰ کشور (دقیقاً ۳ یا بیشتر سایت پیش‌دانشگاهی و ۳ یا بیشتر سایت دانشگاهی برای هر کشور)
 const MATH_SITES_DATA = [
   {
     id: 'iran',
@@ -185,18 +184,18 @@ export default function MathSitesPage() {
         
         {/* هدر صفحه */}
         <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
-          <Link 
+          <a 
             href="/" 
-            className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs md:text-sm font-semibold rounded-xl transition"
+            className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs md:text-sm font-semibold rounded-xl transition inline-block"
           >
             {isFa ? '🏠 بازگشت به صفحه اصلی' : '🏠 Back to Home'}
-          </Link>
+          </a>
 
           <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-gray-200 shadow-sm">
             <button 
               type="button"
               onClick={() => setLang('fa')} 
-              className={`text-xs font-bold transition ${isFa ? 'text-slate-900 underline font-black' : 'text-gray-400 hover:text-black'}`}
+              className={`text-xs font-bold transition cursor-pointer ${isFa ? 'text-slate-900 underline font-black' : 'text-gray-400 hover:text-black'}`}
             >
               فارسی
             </button>
@@ -204,7 +203,7 @@ export default function MathSitesPage() {
             <button 
               type="button"
               onClick={() => setLang('en')} 
-              className={`text-xs font-bold transition ${!isFa ? 'text-slate-900 underline font-black' : 'text-gray-400 hover:text-black'}`}
+              className={`text-xs font-bold transition cursor-pointer ${!isFa ? 'text-slate-900 underline font-black' : 'text-gray-400 hover:text-black'}`}
             >
               English
             </button>
@@ -221,10 +220,10 @@ export default function MathSitesPage() {
           </p>
         </div>
 
-        {/* لیست دکمه‌های کشورها (تخت و بدون افکت برجستگی) */}
+        {/* لیست دکمه‌های کشورها */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 mb-8">
           {MATH_SITES_DATA.map((item) => {
-            const isSelected = selectedCountry.id === item.id;
+            const isSelected = selectedCountry?.id === item.id;
             return (
               <button
                 key={item.id}
@@ -245,7 +244,7 @@ export default function MathSitesPage() {
           })}
         </div>
 
-        {/* کادر خاکستری‌رنگ نمایش اطلاعات کشور انتخاب شده */}
+        {/* کادر نمایش اطلاعات کشور انتخاب شده */}
         {selectedCountry && (
           <div className="bg-slate-100 rounded-3xl p-6 md:p-8 border border-slate-300 shadow-sm transition-all duration-300">
             
@@ -259,7 +258,7 @@ export default function MathSitesPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               
               {/* بخش پیش‌دانشگاهی */}
-              {selectedCountry.preUniversity && selectedCountry.preUniversity.length > 0 && (
+              {selectedCountry.preUniversity && (
                 <div>
                   <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
                     🏫 {isFa ? 'پیش‌دانشگاهی' : 'Pre-University'}
@@ -289,7 +288,7 @@ export default function MathSitesPage() {
               )}
 
               {/* بخش دانشگاهی */}
-              {selectedCountry.university && selectedCountry.university.length > 0 && (
+              {selectedCountry.university && (
                 <div>
                   <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
                     🎓 {isFa ? 'دانشگاهی' : 'University'}
