@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 
-// آرایه کامل داده‌ها برای ۱۰ کشور (دقیقاً ۳ یا بیشتر سایت پیش‌دانشگاهی و ۳ یا بیشتر سایت دانشگاهی برای هر کشور)
 const MATH_SITES_DATA = [
   {
     id: 'iran',
@@ -28,7 +27,7 @@ const MATH_SITES_DATA = [
   {
     id: 'usa',
     flag: '🇺🇸',
-    countryFa: 'آمریکا',
+    countryFa: 'ایالات متحده',
     countryEn: 'USA',
     preUniversity: [
       { name: 'Khan Academy', desc: 'khanacademy.org', url: 'https://khanacademy.org' },
@@ -42,35 +41,20 @@ const MATH_SITES_DATA = [
     ]
   },
   {
-    id: 'canada',
-    flag: '🇨🇦',
-    countryFa: 'کانادا',
-    countryEn: 'Canada',
-    preUniversity: [
-      { name: 'TVO Mathify (انتاریو)', desc: 'tvomathify.com', url: 'https://tvomathify.com' },
-      { name: 'IXL Math (کانادا)', desc: 'ca.ixl.com', url: 'https://ca.ixl.com' },
-      { name: 'CK-12 Foundation', desc: 'ck12.org', url: 'https://ck12.org' }
-    ],
-    university: [
-      { name: 'CEMC (Waterloo)', desc: 'cemc.uwaterloo.ca', url: 'https://cemc.uwaterloo.ca' },
-      { name: 'UBC Math Resources', desc: 'math.ubc.ca', url: 'https://math.ubc.ca' },
-      { name: 'Perimeter Institute (منابع نظری)', desc: 'perimeterinstitute.ca', url: 'https://perimeterinstitute.ca' }
-    ]
-  },
-  {
     id: 'uk',
     flag: '🇬🇧',
     countryFa: 'بریتانیا',
     countryEn: 'UK',
     preUniversity: [
-      { name: 'AMSP', desc: 'amsp.org.uk', url: 'https://amsp.org.uk' },
-      { name: 'Maths Genie', desc: 'mathsgenie.co.uk', url: 'https://mathsgenie.co.uk' },
-      { name: 'Corbettmaths', desc: 'corbettmaths.com', url: 'https://corbettmaths.com' }
+      { name: 'Maths Genie', desc: 'درسنامه، نمونه سوالات امتحان و ویدیوها', url: 'https://mathsgenie.co.uk' },
+      { name: 'Maths with Mum', desc: 'مناسب دبستان و دبیرستان', url: 'https://mathswithmum.com' },
+      { name: 'NRICH Math', desc: 'پازل و بازی از دانشگاه کمبریج', url: 'https://nrich.maths.org' },
+      { name: 'AMSP', desc: 'amsp.org.uk', url: 'https://amsp.org.uk' }
     ],
     university: [
-      { name: 'NRICH (کمبریج)', desc: 'nrich.maths.org', url: 'https://nrich.maths.org' },
-      { name: 'Gresham College (سخنرانی‌ها)', desc: 'gresham.ac.uk', url: 'https://gresham.ac.uk' },
-      { name: 'Oxford Mathematics (سری ویدیو)', desc: 'maths.ox.ac.uk', url: 'https://maths.ox.ac.uk' }
+      { name: 'Cambridge Math Resources', desc: 'منابع نظری و کاربردی دانشگاه کمبریج', url: 'https://maths.cam.ac.uk' },
+      { name: 'Imperial College London', desc: 'ریاضی مهندسی دانشگاه امپریال لندن', url: 'https://imperial.ac.uk' },
+      { name: 'Gresham College', desc: 'سخنرانی‌ها و منابع آزاد ریاضی', url: 'https://gresham.ac.uk' }
     ]
   },
   {
@@ -81,12 +65,12 @@ const MATH_SITES_DATA = [
     preUniversity: [
       { name: 'Mathegym', desc: 'mathegym.de', url: 'https://mathegym.de' },
       { name: 'Bettermarks', desc: 'bettermarks.com', url: 'https://bettermarks.com' },
-      { name: 'Serlo (آلمانی)', desc: 'serlo.org', url: 'https://serlo.org' }
+      { name: 'Serlo', desc: 'serlo.org', url: 'https://serlo.org' }
     ],
     university: [
       { name: 'OMB+', desc: 'ombplus.de', url: 'https://ombplus.de' },
-      { name: 'TU Berlin (Skripte)', desc: 'math.tu-berlin.de', url: 'https://math.tu-berlin.de' },
-      { name: 'LMU Munich (منابع آنلاین)', desc: 'math.lmu.de', url: 'https://math.lmu.de' }
+      { name: 'TU Berlin Math', desc: 'math.tu-berlin.de', url: 'https://math.tu-berlin.de' },
+      { name: 'LMU Munich Math', desc: 'math.lmu.de', url: 'https://math.lmu.de' }
     ]
   },
   {
@@ -102,24 +86,7 @@ const MATH_SITES_DATA = [
     university: [
       { name: 'Exo7', desc: 'exo7.emath.fr', url: 'https://exo7.emath.fr' },
       { name: 'BibMath', desc: 'bibmath.net', url: 'https://bibmath.net' },
-      { name: 'Université Paris-Saclay (MOOC)', desc: 'universite-paris-saclay.fr', url: 'https://universite-paris-saclay.fr' }
-    ]
-  },
-  {
-    id: 'australia',
-    flag: '🇦🇺',
-    countryFa: 'استرالیا',
-    countryEn: 'Australia',
-    preUniversity: [
-      { name: 'Maths Online (UNSW)', desc: 'mathsonline.com.au', url: 'https://mathsonline.com.au' },
-      { name: 'Australian Curriculum (Scootle)', desc: 'scootle.edu.au', url: 'https://scootle.edu.au' },
-      { name: 'Cluey Learning', desc: 'clueylearning.com.au', url: 'https://clueylearning.com.au' },
-      { name: 'HSC Maths by Topic', desc: 'hscmathsbytopic.firsteducation.com.au', url: 'https://hscmathsbytopic.firsteducation.com.au/' }
-    ],
-    university: [
-      { name: 'AMSI', desc: 'amsi.org.au', url: 'https://amsi.org.au' },
-      { name: 'UNSW Maths Resources', desc: 'unsw.edu.au', url: 'https://unsw.edu.au' },
-      { name: 'ANU (سخنرانی‌ها)', desc: 'anu.edu.au', url: 'https://anu.edu.au' }
+      { name: 'Université Paris-Saclay', desc: 'universite-paris-saclay.fr', url: 'https://universite-paris-saclay.fr' }
     ]
   },
   {
@@ -130,12 +97,44 @@ const MATH_SITES_DATA = [
     preUniversity: [
       { name: 'EBA', desc: 'eba.gov.tr', url: 'https://eba.gov.tr' },
       { name: 'Doping Hafıza', desc: 'dopinghafiza.com', url: 'https://dopinghafiza.com' },
-      { name: 'Kunduz (ترکی)', desc: 'kunduz.com/tr', url: 'https://kunduz.com/tr' }
+      { name: 'Kunduz', desc: 'kunduz.com/tr', url: 'https://kunduz.com/tr' }
     ],
     university: [
       { name: 'Akademik Matematik', desc: 'akademikmatematik.com', url: 'https://akademikmatematik.com' },
-      { name: 'ODTÜ (METU) OpenCourseWare', desc: 'ocw.metu.edu.tr', url: 'https://ocw.metu.edu.tr' },
-      { name: 'Matematik Dünyası (dergi)', desc: 'matematikdunyasi.org', url: 'https://matematikdunyasi.org' }
+      { name: 'ODTÜ (METU) OCW', desc: 'ocw.metu.edu.tr', url: 'https://ocw.metu.edu.tr' },
+      { name: 'Matematik Dünyası', desc: 'matematikdunyasi.org', url: 'https://matematikdunyasi.org' }
+    ]
+  },
+  {
+    id: 'australia',
+    flag: '🇦🇺',
+    countryFa: 'استرالیا',
+    countryEn: 'Australia',
+    preUniversity: [
+      { name: 'Maths Online', desc: 'درسنامه و تمرین - بخشی رایگان', url: 'https://mathsonline.com.au' },
+      { name: 'HSC Maths by Topic', desc: 'آموزش و نمونه سوالات طبقه‌بندی شده ریاضی HSC', url: 'https://hscmathsbytopic.firsteducation.com.au/' },
+      { name: 'Scootle', desc: 'scootle.edu.au', url: 'https://scootle.edu.au' }
+    ],
+    university: [
+      { name: 'UNSW Sydney', desc: 'منابع مهندسی و ریاضی دانشگاه نیوساوث ولز', url: 'https://unsw.edu.au' },
+      { name: 'ANU Math', desc: 'منابع آموزشی دانشجویی دانشگاه ملی استرالیا', url: 'https://anu.edu.au' },
+      { name: 'AMSI Resources', desc: 'amsi.org.au', url: 'https://amsi.org.au' }
+    ]
+  },
+  {
+    id: 'canada',
+    flag: '🇨🇦',
+    countryFa: 'کانادا',
+    countryEn: 'Canada',
+    preUniversity: [
+      { name: 'TVO Mathify', desc: 'tvomathify.com', url: 'https://tvomathify.com' },
+      { name: 'IXL Math Canada', desc: 'ca.ixl.com', url: 'https://ca.ixl.com' },
+      { name: 'CK-12 Foundation', desc: 'ck12.org', url: 'https://ck12.org' }
+    ],
+    university: [
+      { name: 'CEMC Waterloo', desc: 'cemc.uwaterloo.ca', url: 'https://cemc.uwaterloo.ca' },
+      { name: 'UBC Math', desc: 'math.ubc.ca', url: 'https://math.ubc.ca' },
+      { name: 'Perimeter Institute', desc: 'perimeterinstitute.ca', url: 'https://perimeterinstitute.ca' }
     ]
   },
   {
@@ -144,14 +143,14 @@ const MATH_SITES_DATA = [
     countryFa: 'ژاپن',
     countryEn: 'Japan',
     preUniversity: [
-      { name: 'MEXT (منابع رسمی)', desc: 'mext.go.jp', url: 'https://mext.go.jp' },
-      { name: 'NHK for School (ریاضی)', desc: 'nhk.or.jp/school', url: 'https://nhk.or.jp/school' },
-      { name: 'Suugaku.jp', desc: 'suugaku.jp', url: 'https://suugaku.jp' }
+      { name: 'Sugaku', desc: 'به ژاپنی، مناسب دبستان و راهنمایی', url: 'https://suugaku.jp' },
+      { name: 'NHK for School', desc: 'nhk.or.jp/school', url: 'https://nhk.or.jp/school' },
+      { name: 'MEXT Math', desc: 'mext.go.jp', url: 'https://mext.go.jp' }
     ],
     university: [
-      { name: 'OCW - دانشگاه توکیو', desc: 'ocw.u-tokyo.ac.jp', url: 'https://ocw.u-tokyo.ac.jp' },
-      { name: 'Kyoto University OCW', desc: 'ocw.kyoto-u.ac.jp', url: 'https://ocw.kyoto-u.ac.jp' },
-      { name: 'J-STAGE (مقالات ریاضی)', desc: 'jstage.jst.go.jp', url: 'https://jstage.jst.go.jp' }
+      { name: 'Kyoto University Math', desc: 'ریاضی محض دانشگاه کیوتو', url: 'https://ocw.kyoto-u.ac.jp' },
+      { name: 'Todai Math (توکیو)', desc: 'آموزش تخصصی ریاضیات دانشگاه توکیو', url: 'https://ocw.u-tokyo.ac.jp' },
+      { name: 'J-STAGE Math', desc: 'jstage.jst.go.jp', url: 'https://jstage.jst.go.jp' }
     ]
   },
   {
@@ -160,19 +159,19 @@ const MATH_SITES_DATA = [
     countryFa: 'هند',
     countryEn: 'India',
     preUniversity: [
-      { name: "Byju's", desc: 'byjus.com/maths', url: 'https://byjus.com/maths' },
+      { name: "Byju's Math", desc: 'byjus.com/maths', url: 'https://byjus.com/maths' },
       { name: 'Vedantu', desc: 'vedantu.com', url: 'https://vedantu.com' },
       { name: 'Toppr', desc: 'toppr.com', url: 'https://toppr.com' }
     ],
     university: [
-      { name: 'NPTEL', desc: 'nptel.ac.in', url: 'https://nptel.ac.in' },
-      { name: 'ISI Kolkata (منابع)', desc: 'isical.ac.in', url: 'https://isical.ac.in' },
-      { name: 'IIT Bombay (سخنرانی‌ها)', desc: 'iitb.ac.in', url: 'https://iitb.ac.in' }
+      { name: 'NPTEL Math', desc: 'nptel.ac.in', url: 'https://nptel.ac.in' },
+      { name: 'ISI Kolkata', desc: 'isical.ac.in', url: 'https://isical.ac.in' },
+      { name: 'IIT Bombay', desc: 'iitb.ac.in', url: 'https://iitb.ac.in' }
     ]
   }
 ];
 
-export default function MathSitesPage() {
+export default function HomePage() {
   const [lang, setLang] = useState('fa');
   const [selectedCountry, setSelectedCountry] = useState(MATH_SITES_DATA[0]);
 
@@ -182,15 +181,8 @@ export default function MathSitesPage() {
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans p-4 md:p-8 antialiased">
       <div className="max-w-5xl mx-auto">
         
-        {/* هدر صفحه */}
-        <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
-          <a 
-            href="/" 
-            className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs md:text-sm font-semibold rounded-xl transition inline-block"
-          >
-            {isFa ? '🏠 بازگشت به صفحه اصلی' : '🏠 Back to Home'}
-          </a>
-
+        {/* هدر */}
+        <div className="flex items-center justify-between mb-8 pb-4">
           <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-gray-200 shadow-sm">
             <button 
               type="button"
@@ -208,9 +200,16 @@ export default function MathSitesPage() {
               English
             </button>
           </div>
+
+          <a 
+            href="/" 
+            className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs md:text-sm font-semibold rounded-xl transition inline-block"
+          >
+            {isFa ? '🏠 بازگشت به صفحه اصلی' : '🏠 Home'}
+          </a>
         </div>
 
-        {/* عنوان اصلی */}
+        {/* عنوان */}
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
             💻 {isFa ? 'سایت‌های آموزشی ریاضی کشورها' : 'Math Educational Websites'}
@@ -232,13 +231,13 @@ export default function MathSitesPage() {
                 className={`
                   px-4 py-2.5 rounded-xl font-bold text-xs md:text-sm flex items-center gap-2 transition cursor-pointer border
                   ${isSelected 
-                    ? 'bg-slate-700 text-white border-slate-700 shadow-sm' 
+                    ? 'bg-slate-800 text-white border-slate-800 shadow-md scale-105' 
                     : 'bg-white hover:bg-slate-100 text-slate-700 border-slate-200'
                   }
                 `}
               >
-                <span className="text-lg md:text-xl leading-none">{item.flag}</span>
-                <span>{isFa ? item.countryFa : item.countryEn}</span>
+                <span className="text-base md:text-lg leading-none">{item.flag}</span>
+                <span>{isFa ? `${item.countryFa} (${item.countryEn})` : item.countryEn}</span>
               </button>
             );
           })}
@@ -246,76 +245,77 @@ export default function MathSitesPage() {
 
         {/* کادر نمایش اطلاعات کشور انتخاب شده */}
         {selectedCountry && (
-          <div className="bg-slate-100 rounded-3xl p-6 md:p-8 border border-slate-300 shadow-sm transition-all duration-300">
+          <div className="bg-slate-100/70 rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm transition-all duration-300">
             
-            <div className="flex items-center gap-3 border-b border-slate-300 pb-4 mb-6">
-              <span className="text-4xl">{selectedCountry.flag}</span>
+            <div className="flex items-center justify-center gap-3 border-b border-slate-200 pb-5 mb-8">
               <h2 className="text-xl md:text-2xl font-black text-slate-900">
-                {isFa ? `منابع و سایت‌های ریاضی ${selectedCountry.countryFa}` : `${selectedCountry.countryEn} Math Websites`}
+                {isFa ? `منابع و سایت‌های ریاضی ${selectedCountry.countryFa} (${selectedCountry.countryEn})` : `${selectedCountry.countryEn} Math Websites`}
               </h2>
+              <span className="text-3xl">{selectedCountry.flag}</span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* چیدمان ستونی دو قسمتی: قبل دانشگاه / دانشگاهی */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
-              {/* بخش پیش‌دانشگاهی */}
-              {selectedCountry.preUniversity && (
-                <div>
-                  <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
-                    🏫 {isFa ? 'پیش‌دانشگاهی' : 'Pre-University'}
-                  </h3>
-                  <div className="flex flex-col gap-3">
-                    {selectedCountry.preUniversity.map((site, idx) => (
-                      <a
-                        key={idx}
-                        href={site.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm"
-                      >
-                        <div>
-                          <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base">
-                            {site.name}
-                          </div>
-                          <div className="text-xs text-slate-500 dir-ltr text-right mt-1">
-                            {site.desc}
-                          </div>
+              {/* بخش قبل دانشگاه */}
+              <div>
+                <h3 className="text-base font-extrabold text-slate-800 mb-4 flex items-center justify-end gap-2">
+                  <span>{isFa ? 'قبل دانشگاه' : 'Pre-University'}</span>
+                  <span>🏫</span>
+                </h3>
+
+                <div className="flex flex-col gap-3">
+                  {selectedCountry.preUniversity?.map((site, idx) => (
+                    <a
+                      key={idx}
+                      href={site.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-4 bg-white hover:bg-slate-50 border border-slate-200 rounded-2xl transition group flex items-start justify-between shadow-sm"
+                    >
+                      <span className="text-slate-400 group-hover:text-slate-700 font-bold transition text-xs">↗</span>
+                      <div className="text-right">
+                        <div className="font-bold text-slate-900 group-hover:underline text-sm mb-1">
+                          {site.name}
                         </div>
-                        <span className="text-slate-500 font-bold group-hover:translate-x-1 transition-transform text-xs">↗</span>
-                      </a>
-                    ))}
-                  </div>
+                        <div className="text-xs text-slate-500">
+                          {site.desc}
+                        </div>
+                      </div>
+                    </a>
+                  ))}
                 </div>
-              )}
+              </div>
 
               {/* بخش دانشگاهی */}
-              {selectedCountry.university && (
-                <div>
-                  <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
-                    🎓 {isFa ? 'دانشگاهی' : 'University'}
-                  </h3>
-                  <div className="flex flex-col gap-3">
-                    {selectedCountry.university.map((site, idx) => (
-                      <a
-                        key={idx}
-                        href={site.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm"
-                      >
-                        <div>
-                          <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base">
-                            {site.name}
-                          </div>
-                          <div className="text-xs text-slate-500 dir-ltr text-right mt-1">
-                            {site.desc}
-                          </div>
+              <div>
+                <h3 className="text-base font-extrabold text-slate-800 mb-4 flex items-center justify-end gap-2">
+                  <span>{isFa ? 'دانشگاهی' : 'University'}</span>
+                  <span>🎓</span>
+                </h3>
+
+                <div className="flex flex-col gap-3">
+                  {selectedCountry.university?.map((site, idx) => (
+                    <a
+                      key={idx}
+                      href={site.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-4 bg-white hover:bg-slate-50 border border-slate-200 rounded-2xl transition group flex items-start justify-between shadow-sm"
+                    >
+                      <span className="text-slate-400 group-hover:text-slate-700 font-bold transition text-xs">↗</span>
+                      <div className="text-right">
+                        <div className="font-bold text-slate-900 group-hover:underline text-sm mb-1">
+                          {site.name}
                         </div>
-                        <span className="text-slate-500 font-bold group-hover:translate-x-1 transition-transform text-xs">↗</span>
-                      </a>
-                    ))}
-                  </div>
+                        <div className="text-xs text-slate-500">
+                          {site.desc}
+                        </div>
+                      </div>
+                    </a>
+                  ))}
                 </div>
-              )}
+              </div>
 
             </div>
 
