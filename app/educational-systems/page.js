@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-// آرایه جامع تمام کشورها دقیقاً مطابق با عکس‌های ارسالی (حداقل ۳ سایت پیش‌دانشگاهی و ۳ سایت دانشگاهی برای هر کشور)
+// داده‌های جامع: تمام ۱۰ کشور دارای حداقل ۳ سایت پیش‌دانشگاهی و ۳ سایت دانشگاهی بر اساس تصاویر ارسالی
 const MATH_SITES_DATA = [
   {
     id: 'iran',
@@ -211,7 +211,7 @@ export default function MathSitesPage() {
           </div>
         </div>
 
-        {/* عنوان */}
+        {/* عنوان اصلی */}
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
             💻 {isFa ? 'سایت‌های آموزشی ریاضی کشورها' : 'Math Educational Websites'}
@@ -221,7 +221,7 @@ export default function MathSitesPage() {
           </p>
         </div>
 
-        {/* لیست دکمه‌های کشورها */}
+        {/* لیست دکمه‌های کشورها (تخت و بدون افکت برجستگی) */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 mb-8">
           {MATH_SITES_DATA.map((item) => {
             const isSelected = selectedCountry.id === item.id;
@@ -245,7 +245,7 @@ export default function MathSitesPage() {
           })}
         </div>
 
-        {/* کادر نشان‌دهنده اطلاعات کشور انتخاب شده */}
+        {/* کادر خاکستری‌رنگ نمایش اطلاعات کشور انتخاب شده */}
         {selectedCountry && (
           <div className="bg-slate-100 rounded-3xl p-6 md:p-8 border border-slate-300 shadow-sm transition-all duration-300">
             
