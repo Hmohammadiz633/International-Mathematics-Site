@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-// داده‌های ۱۰۰٪ دقیق و جامع بر اساس عکس‌های ارسال شده شما
+// داده‌های جامع سایت‌های ریاضی کشورها
 const MATH_SITES_DATA = [
   {
     id: 'iran',
@@ -108,7 +108,8 @@ const MATH_SITES_DATA = [
     countryFa: 'استرالیا (Australia)',
     countryEn: 'Australia',
     preUniversity: [
-      { name: 'Maths Online', desc: 'درسنامه و تمرین - بخشی رایگان', url: 'https://www.mathsonline.com.au' }
+      { name: 'Maths Online', desc: 'درسنامه و تمرین - بخشی رایگان', url: 'https://www.mathsonline.com.au' },
+      { name: 'HSC Maths by Topic', desc: 'آموزش و نمونه سوالات طبقه بندی شده ریاضی HSC', url: 'https://hscmathsbytopic.firsteducation.com.au/' }
     ],
     university: [
       { name: 'UNSW Sydney', desc: 'منابع مهندسی و ریاضی دانشگاه نیوساوث ولز', url: 'https://www.maths.unsw.edu.au' },
@@ -171,24 +172,24 @@ export default function MathSitesPage() {
         <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
           <Link 
             href="/" 
-            className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs md:text-sm font-bold rounded-xl border-b-2 border-slate-400 active:translate-y-0.5 transition"
+            className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs md:text-sm font-semibold rounded-xl transition"
           >
             {isFa ? '🏠 بازگشت به صفحه اصلی' : '🏠 Back to Home'}
           </Link>
 
-          <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300 shadow-inner">
+          <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-gray-200 shadow-sm">
             <button 
               type="button"
               onClick={() => setLang('fa')} 
-              className={`text-xs font-bold transition ${isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}
+              className={`text-xs font-bold transition ${isFa ? 'text-slate-900 underline font-black' : 'text-gray-400 hover:text-black'}`}
             >
               فارسی
             </button>
-            <span className="text-gray-400 font-light">|</span>
+            <span className="text-gray-300 font-light">|</span>
             <button 
               type="button"
               onClick={() => setLang('en')} 
-              className={`text-xs font-bold transition ${!isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}
+              className={`text-xs font-bold transition ${!isFa ? 'text-slate-900 underline font-black' : 'text-gray-400 hover:text-black'}`}
             >
               English
             </button>
@@ -205,8 +206,8 @@ export default function MathSitesPage() {
           </p>
         </div>
 
-        {/* دکمه‌های ۳ بعدی خاکستری کم‌رنگ برای انتخاب کشور */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
+        {/* دکمه‌های ساده و تخت (Flat) کشورها */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-8">
           {MATH_SITES_DATA.map((item) => {
             const isSelected = selectedCountry.id === item.id;
             return (
@@ -215,25 +216,25 @@ export default function MathSitesPage() {
                 type="button"
                 onClick={() => setSelectedCountry(item)}
                 className={`
-                  px-4 py-2.5 md:px-5 md:py-3 rounded-2xl font-black text-sm md:text-base flex items-center gap-2 transition-all duration-150 cursor-pointer select-none
+                  px-4 py-2.5 rounded-xl font-bold text-xs md:text-sm flex items-center gap-2 transition cursor-pointer border
                   ${isSelected 
-                    ? 'bg-slate-300 text-slate-900 border-b-4 border-slate-500 shadow-[0_4px_0_#64748b] translate-y-[-2px]' 
-                    : 'bg-white hover:bg-slate-100 text-slate-700 border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_5px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8]'
+                    ? 'bg-slate-700 text-white border-slate-700 shadow-sm' 
+                    : 'bg-white hover:bg-slate-100 text-slate-700 border-slate-200'
                   }
                 `}
               >
-                <span className="text-xl md:text-2xl leading-none">{item.flag}</span>
+                <span className="text-lg md:text-xl leading-none">{item.flag}</span>
                 <span>{isFa ? item.countryFa : item.countryEn}</span>
               </button>
             );
           })}
         </div>
 
-        {/* نمایش لیست کامل لینک‌های کشور انتخابی */}
+        {/* کادر خاکستری رنگ اطلاعات کشور انتخاب شده */}
         {selectedCountry && (
-          <div className="bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-xl transition-all duration-300">
+          <div className="bg-slate-100 rounded-3xl p-6 md:p-8 border border-slate-300 shadow-sm transition-all duration-300">
             
-            <div className="flex items-center gap-3 border-b border-slate-100 pb-4 mb-6">
+            <div className="flex items-center gap-3 border-b border-slate-300 pb-4 mb-6">
               <span className="text-4xl">{selectedCountry.flag}</span>
               <h2 className="text-xl md:text-2xl font-black text-slate-900">
                 {isFa ? `منابع و سایت‌های ریاضی ${selectedCountry.countryFa}` : `${selectedCountry.countryEn} Math Websites`}
@@ -245,7 +246,7 @@ export default function MathSitesPage() {
               {/* بخش قبل دانشگاه */}
               {selectedCountry.preUniversity && selectedCountry.preUniversity.length > 0 && (
                 <div>
-                  <h3 className="text-base font-bold text-slate-700 mb-4 flex items-center gap-2">
+                  <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
                     🏫 {isFa ? 'قبل دانشگاه' : 'Pre-University'}
                   </h3>
                   <div className="flex flex-col gap-3">
@@ -255,17 +256,17 @@ export default function MathSitesPage() {
                         href={site.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 hover:border-slate-300 rounded-2xl transition group flex items-start justify-between"
+                        className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm"
                       >
                         <div>
-                          <div className="font-bold text-slate-800 group-hover:underline text-sm md:text-base">
+                          <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base">
                             {site.name}
                           </div>
-                          <div className="text-xs text-slate-500 mt-1">
+                          <div className="text-xs text-slate-600 mt-1">
                             {site.desc}
                           </div>
                         </div>
-                        <span className="text-slate-600 font-bold group-hover:translate-x-1 transition-transform text-xs">↗</span>
+                        <span className="text-slate-500 font-bold group-hover:translate-x-1 transition-transform text-xs">↗</span>
                       </a>
                     ))}
                   </div>
@@ -275,7 +276,7 @@ export default function MathSitesPage() {
               {/* بخش دانشگاهی */}
               {selectedCountry.university && selectedCountry.university.length > 0 && (
                 <div>
-                  <h3 className="text-base font-bold text-slate-700 mb-4 flex items-center gap-2">
+                  <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
                     🎓 {isFa ? 'دانشگاهی' : 'University'}
                   </h3>
                   <div className="flex flex-col gap-3">
@@ -285,17 +286,17 @@ export default function MathSitesPage() {
                         href={site.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-4 bg-slate-50/80 hover:bg-slate-100 border border-slate-200 hover:border-slate-300 rounded-2xl transition group flex items-start justify-between"
+                        className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm"
                       >
                         <div>
-                          <div className="font-bold text-slate-800 group-hover:underline text-sm md:text-base">
+                          <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base">
                             {site.name}
                           </div>
-                          <div className="text-xs text-slate-500 mt-1">
+                          <div className="text-xs text-slate-600 mt-1">
                             {site.desc}
                           </div>
                         </div>
-                        <span className="text-slate-600 font-bold group-hover:translate-x-1 transition-transform text-xs">↗</span>
+                        <span className="text-slate-500 font-bold group-hover:translate-x-1 transition-transform text-xs">↗</span>
                       </a>
                     ))}
                   </div>
