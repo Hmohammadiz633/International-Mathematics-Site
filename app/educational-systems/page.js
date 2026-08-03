@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-// داده‌های جامع همه کشورها (شامل تمام موارد جدید بدون حذف قبلی‌ها)
+// آرایه جامع تمام کشورها دقیقاً مطابق با عکس‌های ارسالی (حداقل ۳ سایت پیش‌دانشگاهی و ۳ سایت دانشگاهی برای هر کشور)
 const MATH_SITES_DATA = [
   {
     id: 'iran',
@@ -11,19 +11,19 @@ const MATH_SITES_DATA = [
     countryFa: 'ایران',
     countryEn: 'Iran',
     preUniversity: [
-      { name: 'گاما (شبکه آموزشی رشد)', desc: 'نمونه سوال و درسنامه پایه تا دوازدهم', url: 'https://gama.ir' },
-      { name: 'مدرسه مجازی ایران', desc: 'ویدیوهای آموزشی وزارت آموزش و پرورش', url: 'https://iransch.ir' },
-      { name: 'آلاء', desc: 'درسنامه و کلاس‌های آنلاین ریاضی همه مقاطع', url: 'https://alaatv.com' },
-      { name: 'خان آکادمی فارسی', desc: 'ترجمه رسمی خان آکادمی برای پایه', url: 'https://fa.khanacademy.org' },
-      { name: 'ریاضیات ایران', desc: 'جزوه و تمرین دبیرستان به تفکیک پایه', url: 'https://roshd.ir' }
+      { name: 'گاما (شبکه آموزشی رشد)', desc: 'gama.ir', url: 'https://gama.ir' },
+      { name: 'مدرسه مجازی ایران', desc: 'iransch.ir', url: 'https://iransch.ir' },
+      { name: 'آلاء', desc: 'alaatv.com', url: 'https://alaatv.com' },
+      { name: 'خان آکادمی فارسی', desc: 'fa.khanacademy.org', url: 'https://fa.khanacademy.org' },
+      { name: 'ریاضیات ایران (رشد)', desc: 'roshd.ir', url: 'https://roshd.ir' }
     ],
     university: [
-      { name: 'دانشگاه صنعتی شریف (آموزشکده ریاضی)', desc: 'جزوات و اسلاید دروس اصلی', url: 'https://math.sharif.edu' },
-      { name: 'دانشگاه تهران (دانشکده ریاضی)', desc: 'سرفصل‌ها و منابع معرفی‌شده', url: 'https://math.ut.ac.ir' },
-      { name: 'دانشگاه صنعتی امیرکبیر', desc: 'جزوات درسی اساتید', url: 'https://math.aut.ac.ir' },
-      { name: 'دانشگاه فردوسی مشهد', desc: 'منابع ریاضی محض و کاربردی', url: 'https://math.fum.ac.ir' },
-      { name: 'انجمن ریاضی ایران', desc: 'مقالات آموزشی و منابع تکمیلی', url: 'https://ims.ir' },
-      { name: 'پرتال جامع ریاضیات (مگاایران)', desc: 'جستجوی مقالات ریاضی به فارسی', url: 'https://www.magiran.com' }
+      { name: 'دانشگاه صنعتی شریف (دانشکده ریاضی)', desc: 'math.sharif.edu', url: 'https://math.sharif.edu' },
+      { name: 'دانشگاه تهران (دانشکده ریاضی)', desc: 'math.ut.ac.ir', url: 'https://math.ut.ac.ir' },
+      { name: 'دانشگاه صنعتی امیرکبیر', desc: 'math.aut.ac.ir', url: 'https://math.aut.ac.ir' },
+      { name: 'دانشگاه فردوسی مشهد', desc: 'math.fum.ac.ir', url: 'https://math.fum.ac.ir' },
+      { name: 'انجمن ریاضی ایران', desc: 'ims.ir', url: 'https://ims.ir' },
+      { name: 'پرتال جامع ریاضیات (مگاایران)', desc: 'magiran.com', url: 'https://www.magiran.com' }
     ]
   },
   {
@@ -32,8 +32,8 @@ const MATH_SITES_DATA = [
     countryFa: 'آمریکا',
     countryEn: 'USA',
     preUniversity: [
-      { name: 'Khan Academy', desc: 'khanacademy.org', url: 'https://www.khanacademy.org' },
-      { name: 'Desmos (یادگیری تعاملی)', desc: 'desmos.com', url: 'https://www.desmos.com' },
+      { name: 'Khan Academy', desc: 'khanacademy.org', url: 'https://khanacademy.org' },
+      { name: 'Desmos (یادگیری تعاملی)', desc: 'desmos.com', url: 'https://desmos.com' },
       { name: 'Brilliant', desc: 'brilliant.org', url: 'https://brilliant.org' }
     ],
     university: [
@@ -50,11 +50,11 @@ const MATH_SITES_DATA = [
     preUniversity: [
       { name: 'TVO Mathify (انتاریو)', desc: 'tvomathify.com', url: 'https://tvomathify.com' },
       { name: 'IXL Math (کانادا)', desc: 'ca.ixl.com', url: 'https://ca.ixl.com' },
-      { name: 'CK-12 Foundation', desc: 'ck12.org', url: 'https://www.ck12.org' }
+      { name: 'CK-12 Foundation', desc: 'ck12.org', url: 'https://ck12.org' }
     ],
     university: [
-      { name: 'CEMC (Waterloo)', desc: 'cemc.uwaterloo.ca', url: 'https://www.cemc.uwaterloo.ca' },
-      { name: 'UBC Math Resources', desc: 'math.ubc.ca', url: 'https://www.math.ubc.ca' },
+      { name: 'CEMC (Waterloo)', desc: 'cemc.uwaterloo.ca', url: 'https://cemc.uwaterloo.ca' },
+      { name: 'UBC Math Resources', desc: 'math.ubc.ca', url: 'https://math.ubc.ca' },
       { name: 'Perimeter Institute (منابع نظری)', desc: 'perimeterinstitute.ca', url: 'https://perimeterinstitute.ca' }
     ]
   },
@@ -65,13 +65,13 @@ const MATH_SITES_DATA = [
     countryEn: 'UK',
     preUniversity: [
       { name: 'AMSP', desc: 'amsp.org.uk', url: 'https://amsp.org.uk' },
-      { name: 'Maths Genie', desc: 'mathsgenie.co.uk', url: 'https://www.mathsgenie.co.uk' },
+      { name: 'Maths Genie', desc: 'mathsgenie.co.uk', url: 'https://mathsgenie.co.uk' },
       { name: 'Corbettmaths', desc: 'corbettmaths.com', url: 'https://corbettmaths.com' }
     ],
     university: [
       { name: 'NRICH (کمبریج)', desc: 'nrich.maths.org', url: 'https://nrich.maths.org' },
-      { name: 'Gresham College (سخنرانی‌ها)', desc: 'gresham.ac.uk', url: 'https://www.gresham.ac.uk' },
-      { name: 'Oxford Mathematics (سری ویدیو)', desc: 'maths.ox.ac.uk', url: 'https://www.maths.ox.ac.uk' }
+      { name: 'Gresham College (سخنرانی‌ها)', desc: 'gresham.ac.uk', url: 'https://gresham.ac.uk' },
+      { name: 'Oxford Mathematics (سری ویدیو)', desc: 'maths.ox.ac.uk', url: 'https://maths.ox.ac.uk' }
     ]
   },
   {
@@ -82,12 +82,12 @@ const MATH_SITES_DATA = [
     preUniversity: [
       { name: 'Mathegym', desc: 'mathegym.de', url: 'https://mathegym.de' },
       { name: 'Bettermarks', desc: 'bettermarks.com', url: 'https://bettermarks.com' },
-      { name: 'Serlo (آلمانی)', desc: 'serlo.org', url: 'https://de.serlo.org' }
+      { name: 'Serlo (آلمانی)', desc: 'serlo.org', url: 'https://serlo.org' }
     ],
     university: [
-      { name: 'OMB+', desc: 'ombplus.de', url: 'https://www.ombplus.de' },
-      { name: 'TU Berlin (Skripte)', desc: 'math.tu-berlin.de', url: 'https://www.math.tu-berlin.de' },
-      { name: 'LMU Munich (منابع آنلاین)', desc: 'math.lmu.de', url: 'https://www.math.lmu.de' }
+      { name: 'OMB+', desc: 'ombplus.de', url: 'https://ombplus.de' },
+      { name: 'TU Berlin (Skripte)', desc: 'math.tu-berlin.de', url: 'https://math.tu-berlin.de' },
+      { name: 'LMU Munich (منابع آنلاین)', desc: 'math.lmu.de', url: 'https://math.lmu.de' }
     ]
   },
   {
@@ -96,14 +96,14 @@ const MATH_SITES_DATA = [
     countryFa: 'فرانسه',
     countryEn: 'France',
     preUniversity: [
-      { name: 'CNED', desc: 'cned.fr', url: 'https://www.cned.fr' },
-      { name: 'Maths-et-tiques', desc: 'maths-et-tiques.fr', url: 'https://www.maths-et-tiques.fr' },
-      { name: 'Les Bons Profs', desc: 'lesbonsprofs.com', url: 'https://www.lesbonsprofs.com' }
+      { name: 'CNED', desc: 'cned.fr', url: 'https://cned.fr' },
+      { name: 'Maths-et-tiques', desc: 'maths-et-tiques.fr', url: 'https://maths-et-tiques.fr' },
+      { name: 'Les Bons Profs', desc: 'lesbonsprofs.com', url: 'https://lesbonsprofs.com' }
     ],
     university: [
-      { name: 'Exo7', desc: 'exo7.emath.fr', url: 'http://exo7.emath.fr' },
-      { name: 'BibMath', desc: 'bibmath.net', url: 'https://www.bibmath.net' },
-      { name: 'Université Paris-Saclay (MOOC)', desc: 'universite-paris-saclay.fr', url: 'https://www.universite-paris-saclay.fr' }
+      { name: 'Exo7', desc: 'exo7.emath.fr', url: 'https://exo7.emath.fr' },
+      { name: 'BibMath', desc: 'bibmath.net', url: 'https://bibmath.net' },
+      { name: 'Université Paris-Saclay (MOOC)', desc: 'universite-paris-saclay.fr', url: 'https://universite-paris-saclay.fr' }
     ]
   },
   {
@@ -112,15 +112,15 @@ const MATH_SITES_DATA = [
     countryFa: 'استرالیا',
     countryEn: 'Australia',
     preUniversity: [
-      { name: 'Maths Online (UNSW)', desc: 'mathsonline.com.au', url: 'https://www.mathsonline.com.au' },
-      { name: 'Australian Curriculum (Scootle)', desc: 'scootle.edu.au', url: 'https://www.scootle.edu.au' },
+      { name: 'Maths Online (UNSW)', desc: 'mathsonline.com.au', url: 'https://mathsonline.com.au' },
+      { name: 'Australian Curriculum (Scootle)', desc: 'scootle.edu.au', url: 'https://scootle.edu.au' },
       { name: 'Cluey Learning', desc: 'clueylearning.com.au', url: 'https://clueylearning.com.au' },
       { name: 'HSC Maths by Topic', desc: 'hscmathsbytopic.firsteducation.com.au', url: 'https://hscmathsbytopic.firsteducation.com.au/' }
     ],
     university: [
       { name: 'AMSI', desc: 'amsi.org.au', url: 'https://amsi.org.au' },
-      { name: 'UNSW Maths Resources', desc: 'unsw.edu.au', url: 'https://www.unsw.edu.au' },
-      { name: 'ANU (سخنرانی‌ها)', desc: 'anu.edu.au', url: 'https://www.anu.edu.au' }
+      { name: 'UNSW Maths Resources', desc: 'unsw.edu.au', url: 'https://unsw.edu.au' },
+      { name: 'ANU (سخنرانی‌ها)', desc: 'anu.edu.au', url: 'https://anu.edu.au' }
     ]
   },
   {
@@ -129,14 +129,14 @@ const MATH_SITES_DATA = [
     countryFa: 'ترکیه',
     countryEn: 'Turkey',
     preUniversity: [
-      { name: 'EBA', desc: 'eba.gov.tr', url: 'https://www.eba.gov.tr' },
-      { name: 'Doping Hafıza', desc: 'dopinghafiza.com', url: 'https://www.dopinghafiza.com' },
+      { name: 'EBA', desc: 'eba.gov.tr', url: 'https://eba.gov.tr' },
+      { name: 'Doping Hafıza', desc: 'dopinghafiza.com', url: 'https://dopinghafiza.com' },
       { name: 'Kunduz (ترکی)', desc: 'kunduz.com/tr', url: 'https://kunduz.com/tr' }
     ],
     university: [
       { name: 'Akademik Matematik', desc: 'akademikmatematik.com', url: 'https://akademikmatematik.com' },
       { name: 'ODTÜ (METU) OpenCourseWare', desc: 'ocw.metu.edu.tr', url: 'https://ocw.metu.edu.tr' },
-      { name: 'Matematik Dünyası (dergi)', desc: 'matematikdunyasi.org', url: 'https://www.matematikdunyasi.org' }
+      { name: 'Matematik Dünyası (dergi)', desc: 'matematikdunyasi.org', url: 'https://matematikdunyasi.org' }
     ]
   },
   {
@@ -145,14 +145,14 @@ const MATH_SITES_DATA = [
     countryFa: 'ژاپن',
     countryEn: 'Japan',
     preUniversity: [
-      { name: 'MEXT (منابع رسمی)', desc: 'mext.go.jp', url: 'https://www.mext.go.jp' },
-      { name: 'NHK for School (ریاضی)', desc: 'nhk.or.jp/school', url: 'https://www.nhk.or.jp/school' },
-      { name: 'Suugaku.jp', desc: 'suugaku.jp', url: 'https://www.suugaku.jp' }
+      { name: 'MEXT (منابع رسمی)', desc: 'mext.go.jp', url: 'https://mext.go.jp' },
+      { name: 'NHK for School (ریاضی)', desc: 'nhk.or.jp/school', url: 'https://nhk.or.jp/school' },
+      { name: 'Suugaku.jp', desc: 'suugaku.jp', url: 'https://suugaku.jp' }
     ],
     university: [
       { name: 'OCW - دانشگاه توکیو', desc: 'ocw.u-tokyo.ac.jp', url: 'https://ocw.u-tokyo.ac.jp' },
       { name: 'Kyoto University OCW', desc: 'ocw.kyoto-u.ac.jp', url: 'https://ocw.kyoto-u.ac.jp' },
-      { name: 'J-STAGE (مقالات ریاضی)', desc: 'jstage.jst.go.jp', url: 'https://www.jstage.jst.go.jp' }
+      { name: 'J-STAGE (مقالات ریاضی)', desc: 'jstage.jst.go.jp', url: 'https://jstage.jst.go.jp' }
     ]
   },
   {
@@ -162,13 +162,13 @@ const MATH_SITES_DATA = [
     countryEn: 'India',
     preUniversity: [
       { name: "Byju's", desc: 'byjus.com/maths', url: 'https://byjus.com/maths' },
-      { name: 'Vedantu', desc: 'vedantu.com', url: 'https://www.vedantu.com' },
-      { name: 'Toppr', desc: 'toppr.com', url: 'https://www.toppr.com' }
+      { name: 'Vedantu', desc: 'vedantu.com', url: 'https://vedantu.com' },
+      { name: 'Toppr', desc: 'toppr.com', url: 'https://toppr.com' }
     ],
     university: [
       { name: 'NPTEL', desc: 'nptel.ac.in', url: 'https://nptel.ac.in' },
-      { name: 'ISI Kolkata (منابع)', desc: 'isical.ac.in', url: 'https://www.isical.ac.in' },
-      { name: 'IIT Bombay (سخنرانی‌ها)', desc: 'iitb.ac.in', url: 'https://www.iitb.ac.in' }
+      { name: 'ISI Kolkata (منابع)', desc: 'isical.ac.in', url: 'https://isical.ac.in' },
+      { name: 'IIT Bombay (سخنرانی‌ها)', desc: 'iitb.ac.in', url: 'https://iitb.ac.in' }
     ]
   }
 ];
@@ -183,7 +183,7 @@ export default function MathSitesPage() {
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans p-4 md:p-8 antialiased">
       <div className="max-w-5xl mx-auto">
         
-        {/* هدر */}
+        {/* هدر صفحه */}
         <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
           <Link 
             href="/" 
@@ -221,7 +221,7 @@ export default function MathSitesPage() {
           </p>
         </div>
 
-        {/* دکمه‌های ساده و تخت (Flat) کشورها */}
+        {/* لیست دکمه‌های کشورها */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 mb-8">
           {MATH_SITES_DATA.map((item) => {
             const isSelected = selectedCountry.id === item.id;
@@ -245,7 +245,7 @@ export default function MathSitesPage() {
           })}
         </div>
 
-        {/* کادر خاکستری رنگ اطلاعات کشور انتخاب شده */}
+        {/* کادر نشان‌دهنده اطلاعات کشور انتخاب شده */}
         {selectedCountry && (
           <div className="bg-slate-100 rounded-3xl p-6 md:p-8 border border-slate-300 shadow-sm transition-all duration-300">
             
