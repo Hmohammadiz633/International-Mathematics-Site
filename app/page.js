@@ -1,332 +1,336 @@
 'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
+import React, { useState } from 'react';
 
-// لود بهینه‌تر کامپوننت دکمه‌های ارتباطی
-const ContactButtons = dynamic(() => import('@/components/ContactButtons'), {
-  ssr: true,
-});
-
-// انتقال متغیرهای ثابت به بیرون از کامپوننت جهت جلوگیری از رندر مجدد
-const FEEDBACKS = [
-  { fa: 'بازخورد ۱', en: 'Feedback 1', link: 'https://t.me/International_Maths/110' },
-  { fa: 'بازخورد ۲', en: 'Feedback 2', link: 'https://t.me/International_Maths/111' },
-  { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
+const MATH_SITES_DATA = [
+  {
+    id: 'iran',
+    flag: '🇮🇷',
+    countryFa: 'ایران',
+    countryEn: 'Iran',
+    preUniversity: [
+      { name: 'گاما (شبکه آموزشی رشد)', desc: 'gama.ir', url: 'https://gama.ir' },
+      { name: 'مدرسه مجازی ایران', desc: 'iransch.ir', url: 'https://iransch.ir' },
+      { name: 'آلاء', desc: 'alaatv.com', url: 'https://alaatv.com' },
+      { name: 'خان آکادمی فارسی', desc: 'fa.khanacademy.org', url: 'https://fa.khanacademy.org' },
+      { name: 'ریاضیات ایران (رشد)', desc: 'roshd.ir', url: 'https://roshd.ir' }
+    ],
+    university: [
+      { name: 'دانشگاه صنعتی شریف (دانشکده ریاضی)', desc: 'math.sharif.edu', url: 'https://math.sharif.edu' },
+      { name: 'دانشگاه تهران (دانشکده ریاضی)', desc: 'math.ut.ac.ir', url: 'https://math.ut.ac.ir' },
+      { name: 'دانشگاه صنعتی امیرکبیر', desc: 'math.aut.ac.ir', url: 'https://math.aut.ac.ir' },
+      { name: 'دانشگاه فردوسی مشهد', desc: 'math.fum.ac.ir', url: 'https://math.fum.ac.ir' },
+      { name: 'انجمن ریاضی ایران', desc: 'ims.ir', url: 'https://ims.ir' },
+      { name: 'پرتال جامع ریاضیات (مگاایران)', desc: 'magiran.com', url: 'https://www.magiran.com' }
+    ]
+  },
+  {
+    id: 'usa',
+    flag: '🇺🇸',
+    countryFa: 'آمریکا',
+    countryEn: 'USA',
+    preUniversity: [
+      { name: 'Khan Academy', desc: 'khanacademy.org', url: 'https://khanacademy.org' },
+      { name: 'Desmos (یادگیری تعاملی)', desc: 'desmos.com', url: 'https://desmos.com' },
+      { name: 'Brilliant', desc: 'brilliant.org', url: 'https://brilliant.org' }
+    ],
+    university: [
+      { name: 'MIT OpenCourseWare', desc: 'ocw.mit.edu', url: 'https://ocw.mit.edu' },
+      { name: "Paul's Online Notes", desc: 'tutorial.math.lamar.edu', url: 'https://tutorial.math.lamar.edu' },
+      { name: 'Wolfram MathWorld', desc: 'mathworld.wolfram.com', url: 'https://mathworld.wolfram.com' }
+    ]
+  },
+  {
+    id: 'canada',
+    flag: '🇨🇦',
+    countryFa: 'کانادا',
+    countryEn: 'Canada',
+    preUniversity: [
+      { name: 'TVO Mathify (انتاریو)', desc: 'tvomathify.com', url: 'https://tvomathify.com' },
+      { name: 'IXL Math (کانادا)', desc: 'ca.ixl.com', url: 'https://ca.ixl.com' },
+      { name: 'CK-12 Foundation', desc: 'ck12.org', url: 'https://ck12.org' }
+    ],
+    university: [
+      { name: 'CEMC (Waterloo)', desc: 'cemc.uwaterloo.ca', url: 'https://cemc.uwaterloo.ca' },
+      { name: 'UBC Math Resources', desc: 'math.ubc.ca', url: 'https://math.ubc.ca' },
+      { name: 'Perimeter Institute (منابع نظری)', desc: 'perimeterinstitute.ca', url: 'https://perimeterinstitute.ca' }
+    ]
+  },
+  {
+    id: 'uk',
+    flag: '🇬🇧',
+    countryFa: 'بریتانیا',
+    countryEn: 'UK',
+    preUniversity: [
+      { name: 'AMSP', desc: 'amsp.org.uk', url: 'https://amsp.org.uk' },
+      { name: 'Maths Genie', desc: 'mathsgenie.co.uk', url: 'https://mathsgenie.co.uk' },
+      { name: 'Corbettmaths', desc: 'corbettmaths.com', url: 'https://corbettmaths.com' }
+    ],
+    university: [
+      { name: 'NRICH (کمبریج)', desc: 'nrich.maths.org', url: 'https://nrich.maths.org' },
+      { name: 'Gresham College (سخنرانی‌ها)', desc: 'gresham.ac.uk', url: 'https://gresham.ac.uk' },
+      { name: 'Oxford Mathematics (سری ویدیو)', desc: 'maths.ox.ac.uk', url: 'https://maths.ox.ac.uk' }
+    ]
+  },
+  {
+    id: 'germany',
+    flag: '🇩🇪',
+    countryFa: 'آلمان',
+    countryEn: 'Germany',
+    preUniversity: [
+      { name: 'Mathegym', desc: 'mathegym.de', url: 'https://mathegym.de' },
+      { name: 'Bettermarks', desc: 'bettermarks.com', url: 'https://bettermarks.com' },
+      { name: 'Serlo (آلمانی)', desc: 'serlo.org', url: 'https://serlo.org' }
+    ],
+    university: [
+      { name: 'OMB+', desc: 'ombplus.de', url: 'https://ombplus.de' },
+      { name: 'TU Berlin (Skripte)', desc: 'math.tu-berlin.de', url: 'https://math.tu-berlin.de' },
+      { name: 'LMU Munich (منابع آنلاین)', desc: 'math.lmu.de', url: 'https://math.lmu.de' }
+    ]
+  },
+  {
+    id: 'france',
+    flag: '🇫🇷',
+    countryFa: 'فرانسه',
+    countryEn: 'France',
+    preUniversity: [
+      { name: 'CNED', desc: 'cned.fr', url: 'https://cned.fr' },
+      { name: 'Maths-et-tiques', desc: 'maths-et-tiques.fr', url: 'https://maths-et-tiques.fr' },
+      { name: 'Les Bons Profs', desc: 'lesbonsprofs.com', url: 'https://lesbonsprofs.com' }
+    ],
+    university: [
+      { name: 'Exo7', desc: 'exo7.emath.fr', url: 'https://exo7.emath.fr' },
+      { name: 'BibMath', desc: 'bibmath.net', url: 'https://bibmath.net' },
+      { name: 'Université Paris-Saclay (MOOC)', desc: 'universite-paris-saclay.fr', url: 'https://universite-paris-saclay.fr' }
+    ]
+  },
+  {
+    id: 'australia',
+    flag: '🇦🇺',
+    countryFa: 'استرالیا',
+    countryEn: 'Australia',
+    preUniversity: [
+      { name: 'Maths Online (UNSW)', desc: 'mathsonline.com.au', url: 'https://mathsonline.com.au' },
+      { name: 'Australian Curriculum (Scootle)', desc: 'scootle.edu.au', url: 'https://scootle.edu.au' },
+      { name: 'Cluey Learning', desc: 'clueylearning.com.au', url: 'https://clueylearning.com.au' },
+      { name: 'HSC Maths by Topic', desc: 'hscmathsbytopic.firsteducation.com.au', url: 'https://hscmathsbytopic.firsteducation.com.au/' }
+    ],
+    university: [
+      { name: 'AMSI', desc: 'amsi.org.au', url: 'https://amsi.org.au' },
+      { name: 'UNSW Maths Resources', desc: 'unsw.edu.au', url: 'https://unsw.edu.au' },
+      { name: 'ANU (سخنرانی‌ها)', desc: 'anu.edu.au', url: 'https://anu.edu.au' }
+    ]
+  },
+  {
+    id: 'turkey',
+    flag: '🇹🇷',
+    countryFa: 'ترکیه',
+    countryEn: 'Turkey',
+    preUniversity: [
+      { name: 'EBA', desc: 'eba.gov.tr', url: 'https://eba.gov.tr' },
+      { name: 'Doping Hafıza', desc: 'dopinghafiza.com', url: 'https://dopinghafiza.com' },
+      { name: 'Kunduz (ترکی)', desc: 'kunduz.com/tr', url: 'https://kunduz.com/tr' }
+    ],
+    university: [
+      { name: 'Akademik Matematik', desc: 'akademikmatematik.com', url: 'https://akademikmatematik.com' },
+      { name: 'ODTÜ (METU) OpenCourseWare', desc: 'ocw.metu.edu.tr', url: 'https://ocw.metu.edu.tr' },
+      { name: 'Matematik Dünyası (dergi)', desc: 'matematikdunyasi.org', url: 'https://matematikdunyasi.org' }
+    ]
+  },
+  {
+    id: 'japan',
+    flag: '🇯🇵',
+    countryFa: 'ژاپن',
+    countryEn: 'Japan',
+    preUniversity: [
+      { name: 'MEXT (منابع رسمی)', desc: 'mext.go.jp', url: 'https://mext.go.jp' },
+      { name: 'NHK for School (ریاضی)', desc: 'nhk.or.jp/school', url: 'https://nhk.or.jp/school' },
+      { name: 'Suugaku.jp', desc: 'suugaku.jp', url: 'https://suugaku.jp' }
+    ],
+    university: [
+      { name: 'OCW - دانشگاه توکیو', desc: 'ocw.u-tokyo.ac.jp', url: 'https://ocw.u-tokyo.ac.jp' },
+      { name: 'Kyoto University OCW', desc: 'ocw.kyoto-u.ac.jp', url: 'https://ocw.kyoto-u.ac.jp' },
+      { name: 'J-STAGE (مقالات ریاضی)', desc: 'jstage.jst.go.jp', url: 'https://jstage.jst.go.jp' }
+    ]
+  },
+  {
+    id: 'india',
+    flag: '🇮🇳',
+    countryFa: 'هند',
+    countryEn: 'India',
+    preUniversity: [
+      { name: "Byju's", desc: 'byjus.com/maths', url: 'https://byjus.com/maths' },
+      { name: 'Vedantu', desc: 'vedantu.com', url: 'https://vedantu.com' },
+      { name: 'Toppr', desc: 'toppr.com', url: 'https://toppr.com' }
+    ],
+    university: [
+      { name: 'NPTEL', desc: 'nptel.ac.in', url: 'https://nptel.ac.in' },
+      { name: 'ISI Kolkata (منابع)', desc: 'isical.ac.in', url: 'https://isical.ac.in' },
+      { name: 'IIT Bombay (سخنرانی‌ها)', desc: 'iitb.ac.in', url: 'https://iitb.ac.in' }
+    ]
+  }
 ];
 
-const SCHEMA_DATA = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'هادی محمدی زرندینی',
-  jobTitle: 'عضو هیات علمی دانشگاه و مدرس ریاضیات بین‌الملل',
-  worksFor: {
-    '@type': 'EducationalOrganization',
-    name: 'دانشگاه ملی مهارت تهران',
-  },
-  alumniOf: [
-    {
-      '@type': 'EducationalOrganization',
-      name: 'دانشگاه صنعتی امیرکبیر',
-    },
-    {
-      '@type': 'EducationalOrganization',
-      name: 'دانشگاه خوارزمی',
-    },
-  ],
-  sameAs: [
-    'https://t.me/International_Maths',
-    'https://instagram.com/Hadi_mohammadi_zarandini',
-  ],
-};
-
-export default function Home() {
+export default function MathSitesPage() {
   const [lang, setLang] = useState('fa');
-  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState(MATH_SITES_DATA[0]);
 
   const isFa = lang === 'fa';
 
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA_DATA) }}
-      />
+    <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans p-4 md:p-8 antialiased">
+      <div className="max-w-6xl mx-auto">
+        
+        {/* هدر صفحه */}
+        <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
+          <a 
+            href="/" 
+            className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs md:text-sm font-semibold rounded-xl transition inline-block"
+          >
+            {isFa ? '🏠 بازگشت به صفحه اصلی' : '🏠 Back to Home'}
+          </a>
 
-      {/* هدر */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 py-3 shadow-sm">
-        <div className="max-w-6xl mx-auto flex flex-col items-center gap-3">
-          <div className="w-full flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl flex items-center justify-center p-1.5 shadow-sm">
-                <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M2 3h20v14H2z" />
-                  <path d="M8 21l4-4 4 4" />
-                  <path d="M7 8h4" />
-                  <path d="M7 12h2" />
-                  <path d="M15 11l2 2 4-4" />
-                </svg>
-              </div>
-              <h1 className="font-black text-base md:text-xl text-slate-800 tracking-tight leading-snug">
-                {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Math'}
-              </h1>
-            </div>
-
-            <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300 shadow-inner">
-              <button 
-                type="button"
-                onClick={() => setLang('fa')} 
-                className={`text-xs font-bold transition ${isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}
-              >
-                فارسی
-              </button>
-              <span className="text-gray-400 font-light">|</span>
-              <button 
-                type="button"
-                onClick={() => setLang('en')} 
-                className={`text-xs font-bold transition ${!isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}
-              >
-                English
-              </button>
-            </div>
-          </div>
-
-          <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
-            {/* دکمه‌های سه‌بعدی بالای صفحه */}
-            <div className="w-full flex items-center justify-center gap-2 md:gap-3 overflow-x-auto py-2 text-xs md:text-sm font-bold">
-              <Link 
-                href="/educational-systems" 
-                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
-              >
-                🌐 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
-              </Link>
-
-              <Link 
-                href="/books" 
-                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
-              >
-                📚 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
-              </Link>
-
-              <Link 
-                href="/math-sites" 
-                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
-              >
-                💻 {isFa ? 'سایت‌های ریاضی کشورها' : 'Math Websites'}
-              </Link>
-
-              <button 
-                type="button"
-                aria-expanded={isFeedbackOpen}
-                onClick={() => setIsFeedbackOpen(!isFeedbackOpen)} 
-                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
-              >
-                <span>💬 {isFa ? 'بازخورد کلاس‌ها' : 'Class Feedback'}</span>
-                <span className="text-[10px]">{isFeedbackOpen ? '▲' : '▼'}</span>
-              </button>
-
-              <button 
-                type="button"
-                onClick={() => scrollToSection('contact')} 
-                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
-              >
-                📞 {isFa ? 'ارتباط با استاد' : 'Contact'}
-              </button>
-            </div>
-
-            {/* منوی کشویی بازخورد کلاس‌ها */}
-            {isFeedbackOpen && (
-              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-3 rounded-2xl border border-gray-200 my-1 shadow-inner">
-                {FEEDBACKS.map((item, idx) => (
-                  <a 
-                    key={idx} 
-                    href={item.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border-b-2 border-gray-300 hover:border-gray-400 active:translate-y-0.5 active:border-b-0 shadow-sm transition-all flex items-center gap-1.5"
-                  >
-                    <span>⭐</span>
-                    <span>{isFa ? item.fa : item.en}</span>
-                  </a>
-                ))}
-              </div>
-            )}
+          <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-gray-200 shadow-sm">
+            <button 
+              type="button"
+              onClick={() => setLang('fa')} 
+              className={`text-xs font-bold transition cursor-pointer ${isFa ? 'text-slate-900 underline font-black' : 'text-gray-400 hover:text-black'}`}
+            >
+              فارسی
+            </button>
+            <span className="text-gray-300 font-light">|</span>
+            <button 
+              type="button"
+              onClick={() => setLang('en')} 
+              className={`text-xs font-bold transition cursor-pointer ${!isFa ? 'text-slate-900 underline font-black' : 'text-gray-400 hover:text-black'}`}
+            >
+              English
+            </button>
           </div>
         </div>
-      </header>
 
-      {/* بنر اصلی و عنوان */}
-      <section className="max-w-4xl mx-auto text-center px-4 pt-12 pb-6">
-        <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-5 leading-tight tracking-tight bg-gradient-to-r from-blue-900 via-indigo-800 to-slate-900 bg-clip-text text-transparent">
-          {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics Tutoring'}
-        </h2>
-        <p className="text-slate-700 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-medium">
-          {isFa 
-            ? 'تدریس تخصصی و مفهومی ریاضیات نظام‌های آموزشی بین‌المللی (امریكا، كانادا، انگلیس، استرالیا، آلمان و اروپا)' 
-            : 'Specialized math education for international curricula (USA, Canada, UK, Australia, Germany, Europe).'}
-        </p>
-      </section>
-
-      {/* معرفی هادی محمدی زرندینی */}
-      <section id="about" className="max-w-5xl mx-auto px-4 pt-6">
-        <div className="bg-slate-800/90 text-white rounded-3xl p-6 md:p-10 border border-slate-700/60 shadow-xl">
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-            <div className="shrink-0 flex flex-col items-center">
-              <img 
-                src="/profile.jpg" 
-                alt="هادی محمدی زرندینی مدرس ریاضی بین الملل" 
-                className="w-48 h-60 object-cover rounded-2xl border-2 border-slate-600 shadow-lg mb-3" 
-                loading="eager"
-              />
-              <span className="text-xs font-bold text-slate-200 bg-slate-700/80 px-3 py-1.5 rounded-xl border border-slate-600 text-center">
-                {isFa ? 'هیات علمی دانشگاه ملی مهارت تهران' : 'Faculty Member at National Skills University of Tehran'}
-              </span>
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-6 border-b border-slate-700/60 pb-4 mt-2 md:mt-0">
-                <span className="text-3xl">👨‍🏫</span>
-                <h3 className="text-2xl md:text-3xl font-black text-white leading-snug tracking-tight">
-                  {isFa ? 'هادی محمدی زرندینی' : 'Hadi Mohammadi Zarandini'}
-                </h3>
-              </div>
-              <div className="text-slate-200 leading-loose text-sm md:text-base space-y-4 text-justify font-normal">
-                {isFa ? (
-                  <>
-                    <p>
-                      دارای مدرک دکترای تخصصی ریاضی از دانشگاه صنعتی امیرکبیر هستم و به مدت <strong className="text-white font-black underline decoration-blue-400 underline-offset-4">۲۹ سال</strong> به طور مستمر در عرصه آموزش ریاضی در داخل و خارج از کشور فعالیت داشته‌ام.
-                    </p>
-                    <p>
-                      هدف این مجموعه، ارائه خدمات تدریس تخصصی و هدفمند به ایرانیان عزیز مقیم خارج از کشور است تا بتوانند ریاضی را دقیقاً مطابق با کتاب‌های درسی و نظام آموزشی کشور محل سکونت خود بیاموزند و همچنین رفع اشکال روزانه به صورت کاملاً رایگان در پلتفرم‌های فضای مجازی انجام می‌شود.
-                    </p>
-                    <p>
-                      من با تکیه بر تجربیات چندین دهه تدریس در نظام‌های آموزشی گوناگون، متعهد به ارائه دقیق‌ترین و کاربردی‌ترین آموزش ریاضی مطابق با استانداردهای مدارس خارج از ایران هستم و از شما دعوت می‌کنم که با پیوستن به این دوره، ریاضی را به شیوه‌ای صحیح، اصولی و متناسب با نیازهای تحصیلی خود فرا بگیرید.
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p>
-                      Holder of a Ph.D. in Mathematics from Amirkabir University of Technology, with over <strong className="text-white font-black underline decoration-blue-400 underline-offset-4">29 years</strong> of continuous experience in teaching mathematics both nationally and internationally.
-                    </p>
-                    <p>
-                      The goal of this program is to provide targeted, specialized math tutoring for students living abroad, aligning perfectly with their local school standard curricula, alongside free daily Q&A sessions on social media platforms.
-                    </p>
-                    <p>
-                      Special summer prep classes are also offered to reinforce mathematical foundations and prepare students for the upcoming academic year.
-                    </p>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* سوابق تدریس */}
-      <section className="max-w-5xl mx-auto px-4 pt-6">
-        <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
-          <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-4 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
-            <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">📖</span>
-            <span>{isFa ? 'سوابق تدریس' : 'Teaching Experience'}</span>
-          </h4>
-          <p className="text-slate-700 leading-relaxed text-sm md:text-base font-normal mb-6">
-            {isFa 
-              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲، معادلات دیفرانسیل، محاسبات عددی، آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران و همچنین تدریس در دبیرستان‌های برتر تهران'
-              : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran, as well as teaching in top high schools in Tehran.'}
+        {/* عنوان اصلی */}
+        <div className="text-center mb-8">
+          <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
+            💻 {isFa ? 'سایت‌های آموزشی ریاضی کشورها' : 'Math Educational Websites'}
+          </h1>
+          <p className="text-xs md:text-sm text-slate-600 font-medium">
+            {isFa ? 'برای مشاهده سایت‌های هر کشور، روی دکمه مربوط به آن کلیک کنید:' : 'Click on any country button to reveal its resources below:'}
           </p>
-
-          <div className="flex justify-center">
-            <div className="w-full max-w-md rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
-              <img 
-                src="/teaching1.JPG" 
-                alt="تدریس هادی محمدی زرندینی در دانشگاه" 
-                className="w-full h-48 md:h-64 object-cover hover:scale-105 transition duration-300 block"
-                loading="lazy"
-              />
-            </div>
-          </div>
         </div>
-      </section>
 
-      {/* سوابق تحصیلی */}
-      <section className="max-w-5xl mx-auto px-4 pt-6">
-        <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
-          <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-6 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
-            <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">🎓</span>
-            <span>{isFa ? 'سوابق تحصیلی' : 'Education'}</span>
-          </h4>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
-              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
-                <img 
-                  src="/amirkabir.jpg" 
-                  alt="دانشگاه صنعتی امیرکبیر" 
-                  className="w-full h-full object-contain"
-                  loading="lazy"
-                />
-              </div>
-              <div>
-                <h5 className="font-bold text-slate-900 text-sm md:text-base leading-snug">
-                  {isFa ? 'دکتری تخصصی ریاضی' : 'Ph.D. in Mathematics'}
-                </h5>
-                <p className="text-xs text-slate-500 font-normal mt-0.5">
-                  {isFa ? 'گرایش بهینه سازی - دانشگاه صنعتی امیرکبیر' : 'Optimization - Amirkabir University'}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
-              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
-                <img 
-                  src="/amirkabir.jpg" 
-                  alt="دانشگاه صنعتی امیرکبیر" 
-                  className="w-full h-full object-contain"
-                  loading="lazy"
-                />
-              </div>
-              <div>
-                <h5 className="font-bold text-slate-900 text-sm md:text-base leading-snug">
-                  {isFa ? 'کارشناسی ارشد' : 'M.Sc. in Applied Mathematics'}
-                </h5>
-                <p className="text-xs text-slate-500 font-normal mt-0.5">
-                  {isFa ? 'گرایش ریاضی کاربردی - دانشگاه صنعتی امیرکبیر' : 'Amirkabir University of Technology'}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
-              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
-                <img 
-                  src="/kharazmi.jpg" 
-                  alt="دانشگاه خوارزمی" 
-                  className="w-full h-full object-contain"
-                  loading="lazy"
-                />
-              </div>
-              <div>
-                <h5 className="font-bold text-slate-900 text-sm md:text-base leading-snug">
-                  {isFa ? 'کارشناسی ریاضی' : 'B.Sc. in Mathematics'}
-                </h5>
-                <p className="text-xs text-slate-500 font-normal mt-0.5">
-                  {isFa ? 'دانشگاه خوارزمی' : 'Kharazmi University'}
-                </p>
-              </div>
-            </div>
-          </div>
+        {/* لیست دکمه‌های کشورها */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-8">
+          {MATH_SITES_DATA.map((item) => {
+            const isSelected = selectedCountry?.id === item.id;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setSelectedCountry(item)}
+                className={`
+                  px-4 py-2.5 rounded-xl font-bold text-xs md:text-sm flex items-center gap-2 transition cursor-pointer border
+                  ${isSelected 
+                    ? 'bg-slate-800 text-white border-slate-800 shadow-md scale-105' 
+                    : 'bg-white hover:bg-slate-100 text-slate-700 border-slate-200'
+                  }
+                `}
+              >
+                <span className="text-lg md:text-xl leading-none">{item.flag}</span>
+                <span>{isFa ? item.countryFa : item.countryEn}</span>
+              </button>
+            );
+          })}
         </div>
-      </section>
 
-      {/* ارتباط با استاد */}
-      <div id="contact" className="mt-8">
-        <ContactButtons lang={lang} />
+        {/* کادر نمایش اطلاعات کشور انتخاب شده */}
+        {selectedCountry && (
+          <div className="bg-slate-100 rounded-3xl p-6 md:p-8 border border-slate-300 shadow-sm transition-all duration-300">
+            
+            <div className="flex items-center gap-3 border-b border-slate-300 pb-4 mb-8">
+              <span className="text-4xl">{selectedCountry.flag}</span>
+              <h2 className="text-xl md:text-2xl font-black text-slate-900">
+                {isFa ? `منابع و سایت‌های ریاضی ${selectedCountry.countryFa}` : `${selectedCountry.countryEn} Math Websites`}
+              </h2>
+            </div>
+
+            <div className="flex flex-col gap-10">
+              
+              {/* بخش پیش‌دانشگاهی */}
+              {selectedCountry.preUniversity && selectedCountry.preUniversity.length > 0 && (
+                <div>
+                  <h3 className="text-lg font-extrabold text-slate-800 mb-4 flex items-center gap-2">
+                    🏫 {isFa ? 'پیش‌دانشگاهی' : 'Pre-University'} 
+                    <span className="text-xs bg-slate-200 text-slate-600 px-2.5 py-0.5 rounded-full font-bold">
+                      {selectedCountry.preUniversity.length}
+                    </span>
+                  </h3>
+
+                  {/* گرید چند ستونه پویا */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {selectedCountry.preUniversity.map((site, idx) => (
+                      <a
+                        key={idx}
+                        href={site.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm h-full"
+                      >
+                        <div className="flex flex-col justify-between h-full w-full">
+                          <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base mb-1">
+                            {site.name}
+                          </div>
+                          <div className="text-xs text-slate-500 dir-ltr text-right">
+                            {site.desc}
+                          </div>
+                        </div>
+                        <span className="text-slate-400 group-hover:text-slate-700 font-bold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-xs mr-2">↗</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* بخش دانشگاهی */}
+              {selectedCountry.university && selectedCountry.university.length > 0 && (
+                <div>
+                  <h3 className="text-lg font-extrabold text-slate-800 mb-4 flex items-center gap-2">
+                    🎓 {isFa ? 'دانشگاهی' : 'University'}
+                    <span className="text-xs bg-slate-200 text-slate-600 px-2.5 py-0.5 rounded-full font-bold">
+                      {selectedCountry.university.length}
+                    </span>
+                  </h3>
+
+                  {/* گرید چند ستونه پویا */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {selectedCountry.university.map((site, idx) => (
+                      <a
+                        key={idx}
+                        href={site.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm h-full"
+                      >
+                        <div className="flex flex-col justify-between h-full w-full">
+                          <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base mb-1">
+                            {site.name}
+                          </div>
+                          <div className="text-xs text-slate-500 dir-ltr text-right">
+                            {site.desc}
+                          </div>
+                        </div>
+                        <span className="text-slate-400 group-hover:text-slate-700 font-bold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-xs mr-2">↗</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+            </div>
+
+          </div>
+        )}
+
       </div>
     </main>
   );
