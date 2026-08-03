@@ -162,7 +162,7 @@ export default function BooksPage() {
         </p>
       </section>
 
-      {/* دکمه‌های سه‌بعدی خاکستری با سایه و استایل شیک */}
+      {/* تب‌های اصلی سه‌بعدی */}
       <div className="max-w-2xl mx-auto px-4 mt-6 mb-8">
         <div className="flex justify-center items-center gap-4">
           <button
@@ -199,22 +199,26 @@ export default function BooksPage() {
         )}
 
         {activeTab === 'summaries' && (
-          <div className="space-y-6">
-            <div className="flex flex-wrap justify-center gap-2 md:gap-3 bg-gray-50 p-4 rounded-2xl border border-gray-200">
-              {grades.map((grade) => (
-                <button
-                  key={grade.id}
-                  type="button"
-                  onClick={() => setSelectedGrade(grade.id)}
-                  className={`px-4 py-2 text-xs md:text-sm font-bold rounded-xl border transition ${
-                    selectedGrade === grade.id
-                      ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
-                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'
-                  }`}
-                >
-                  {isFa ? grade.fa : grade.en}
-                </button>
-              ))}
+          <div className="space-y-8">
+            {/* دکمه‌های پایه‌ها با استایل سه‌بعدی */}
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4 bg-gray-50 p-6 rounded-3xl border border-gray-200 shadow-inner">
+              {grades.map((grade) => {
+                const isSelected = selectedGrade === grade.id;
+                return (
+                  <button
+                    key={grade.id}
+                    type="button"
+                    onClick={() => setSelectedGrade(grade.id)}
+                    className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all duration-150 cursor-pointer transform ${
+                      isSelected
+                        ? 'bg-slate-900 text-white border-2 border-black border-b-4 border-b-slate-950 shadow-md translate-y-0.5'
+                        : 'bg-white text-slate-800 border-2 border-slate-200 border-b-4 border-b-slate-300 shadow hover:shadow-md hover:-translate-y-0.5 hover:bg-slate-50 hover:border-b-slate-400'
+                    }`}
+                  >
+                    {isFa ? grade.fa : grade.en}
+                  </button>
+                );
+              })}
             </div>
 
             {[7, 8, 9, 10].includes(selectedGrade) && (
