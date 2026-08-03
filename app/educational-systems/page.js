@@ -3,22 +3,27 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-// آرایه کامل داده‌های کشورها (اولین کشور: ایران)
-const EDUCATIONAL_DATA = [
+// داده‌های جامع همه کشورها (شامل تمام موارد جدید بدون حذف قبلی‌ها)
+const MATH_SITES_DATA = [
   {
     id: 'iran',
     flag: '🇮🇷',
     countryFa: 'ایران',
     countryEn: 'Iran',
-    titleFa: 'نظام آموزشی ایران (کنکور، سمپاد و المپیاد)',
-    titleEn: 'Iranian Educational System (Konkur & Olympiads)',
-    link: 'https://t.me/International_Maths',
-    descriptionFa: 'تدریس تخصصی ریاضیات مفهومی، تیزهوشان (سمپاد)، کنکور سراسری و آماده‌سازی برای المپیادهای کشوری و بین‌المللی ریاضی.',
-    descriptionEn: 'Conceptual Math tutoring, SAMPAD (Gifted Schools), National Entrance Exam (Konkur), and Math Olympiad prep.',
-    resources: [
-      { title: 'شبکه ملی مدارس (رشد)', url: 'https://roshd.ir' },
-      { title: 'سازمان پژوهش و برنامه‌ریزی آموزشی (کتاب‌های درسی)', url: 'http://chap.sch.ir' },
-      { title: 'باشگاه دانش‌پژوهان جوان (المپیاد ریاضی)', url: 'https://ysc.medu.ir' }
+    preUniversity: [
+      { name: 'گاما (شبکه آموزشی رشد)', desc: 'نمونه سوال و درسنامه پایه تا دوازدهم', url: 'https://gama.ir' },
+      { name: 'مدرسه مجازی ایران', desc: 'ویدیوهای آموزشی وزارت آموزش و پرورش', url: 'https://iransch.ir' },
+      { name: 'آلاء', desc: 'درسنامه و کلاس‌های آنلاین ریاضی همه مقاطع', url: 'https://alaatv.com' },
+      { name: 'خان آکادمی فارسی', desc: 'ترجمه رسمی خان آکادمی برای پایه', url: 'https://fa.khanacademy.org' },
+      { name: 'ریاضیات ایران', desc: 'جزوه و تمرین دبیرستان به تفکیک پایه', url: 'https://roshd.ir' }
+    ],
+    university: [
+      { name: 'دانشگاه صنعتی شریف (آموزشکده ریاضی)', desc: 'جزوات و اسلاید دروس اصلی', url: 'https://math.sharif.edu' },
+      { name: 'دانشگاه تهران (دانشکده ریاضی)', desc: 'سرفصل‌ها و منابع معرفی‌شده', url: 'https://math.ut.ac.ir' },
+      { name: 'دانشگاه صنعتی امیرکبیر', desc: 'جزوات درسی اساتید', url: 'https://math.aut.ac.ir' },
+      { name: 'دانشگاه فردوسی مشهد', desc: 'منابع ریاضی محض و کاربردی', url: 'https://math.fum.ac.ir' },
+      { name: 'انجمن ریاضی ایران', desc: 'مقالات آموزشی و منابع تکمیلی', url: 'https://ims.ir' },
+      { name: 'پرتال جامع ریاضیات (مگاایران)', desc: 'جستجوی مقالات ریاضی به فارسی', url: 'https://www.magiran.com' }
     ]
   },
   {
@@ -26,29 +31,15 @@ const EDUCATIONAL_DATA = [
     flag: '🇺🇸',
     countryFa: 'آمریکا',
     countryEn: 'USA',
-    titleFa: 'نظام آموزشی آمریکا (USA)',
-    titleEn: 'US Educational System',
-    link: 'https://t.me/International_Maths/379',
-    descriptionFa: 'نظام آموزشی آمریکا مبتنی بر سیستم ۱۲ ساله (K-12) است. آموزش تخصصی ریاضیات از Algebra 1 & 2 تا AP Calculus AB/BC و آماده‌سازی آزمون‌های SAT/ACT.',
-    descriptionEn: 'The US education system is based on the K-12 framework. Specialized tutoring for US school math from Algebra 1 & 2 to AP Calculus AB/BC and SAT/ACT prep.',
-    resources: [
-      { title: 'سایت رسمی College Board (آزمون‌های AP و SAT)', url: 'https://www.collegeboard.org' },
-      { title: 'پلتفرم آموزش آنلاین Khan Academy', url: 'https://www.khanacademy.org' }
-    ]
-  },
-  {
-    id: 'uk',
-    flag: '🇬🇧',
-    countryFa: 'انگلستان',
-    countryEn: 'UK',
-    titleFa: 'نظام آموزشی انگلستان (UK)',
-    titleEn: 'UK Educational System',
-    link: 'https://t.me/International_Maths/297',
-    descriptionFa: 'نظام آموزشی بریتانیا شامل مراحل کلیدی (Key Stages)، مقطع GCSE و دوره A-Level (Edexcel, AQA) می‌باشد.',
-    descriptionEn: 'The UK system is structured into Key Stages, GCSEs, and A-Levels (Edexcel, AQA, OCR).',
-    resources: [
-      { title: 'پرتال Pearson Edexcel', url: 'https://qualifications.pearson.com' },
-      { title: 'سایت آموزشی Physics & Maths Tutor', url: 'https://www.physicsandmathstutor.com' }
+    preUniversity: [
+      { name: 'Khan Academy', desc: 'khanacademy.org', url: 'https://www.khanacademy.org' },
+      { name: 'Desmos (یادگیری تعاملی)', desc: 'desmos.com', url: 'https://www.desmos.com' },
+      { name: 'Brilliant', desc: 'brilliant.org', url: 'https://brilliant.org' }
+    ],
+    university: [
+      { name: 'MIT OpenCourseWare', desc: 'ocw.mit.edu', url: 'https://ocw.mit.edu' },
+      { name: "Paul's Online Notes", desc: 'tutorial.math.lamar.edu', url: 'https://tutorial.math.lamar.edu' },
+      { name: 'Wolfram MathWorld', desc: 'mathworld.wolfram.com', url: 'https://mathworld.wolfram.com' }
     ]
   },
   {
@@ -56,14 +47,31 @@ const EDUCATIONAL_DATA = [
     flag: '🇨🇦',
     countryFa: 'کانادا',
     countryEn: 'Canada',
-    titleFa: 'نظام آموزشی کانادا',
-    titleEn: 'Canadian Educational System',
-    link: 'https://t.me/International_Maths',
-    descriptionFa: 'نظام‌های استانی شامل اونتاریو (Ontario Curriculum) و بریتیش کلمبیا (BC Curriculum) از پایه ۹ تا ۱۲ و درس Calculus & Vectors.',
-    descriptionEn: 'Provincial Curricula (Ontario Grade 9-12, BC Curriculum) aligned with Canadian standards.',
-    resources: [
-      { title: 'وزارت آموزش اونتاریو', url: 'https://www.ontario.ca/page/ministry-education' },
-      { title: 'مرکز مسابقات ریاضی دانشگاه واترلو (CEMC)', url: 'https://www.cemc.uwaterloo.ca' }
+    preUniversity: [
+      { name: 'TVO Mathify (انتاریو)', desc: 'tvomathify.com', url: 'https://tvomathify.com' },
+      { name: 'IXL Math (کانادا)', desc: 'ca.ixl.com', url: 'https://ca.ixl.com' },
+      { name: 'CK-12 Foundation', desc: 'ck12.org', url: 'https://www.ck12.org' }
+    ],
+    university: [
+      { name: 'CEMC (Waterloo)', desc: 'cemc.uwaterloo.ca', url: 'https://www.cemc.uwaterloo.ca' },
+      { name: 'UBC Math Resources', desc: 'math.ubc.ca', url: 'https://www.math.ubc.ca' },
+      { name: 'Perimeter Institute (منابع نظری)', desc: 'perimeterinstitute.ca', url: 'https://perimeterinstitute.ca' }
+    ]
+  },
+  {
+    id: 'uk',
+    flag: '🇬🇧',
+    countryFa: 'بریتانیا',
+    countryEn: 'UK',
+    preUniversity: [
+      { name: 'AMSP', desc: 'amsp.org.uk', url: 'https://amsp.org.uk' },
+      { name: 'Maths Genie', desc: 'mathsgenie.co.uk', url: 'https://www.mathsgenie.co.uk' },
+      { name: 'Corbettmaths', desc: 'corbettmaths.com', url: 'https://corbettmaths.com' }
+    ],
+    university: [
+      { name: 'NRICH (کمبریج)', desc: 'nrich.maths.org', url: 'https://nrich.maths.org' },
+      { name: 'Gresham College (سخنرانی‌ها)', desc: 'gresham.ac.uk', url: 'https://www.gresham.ac.uk' },
+      { name: 'Oxford Mathematics (سری ویدیو)', desc: 'maths.ox.ac.uk', url: 'https://www.maths.ox.ac.uk' }
     ]
   },
   {
@@ -71,27 +79,15 @@ const EDUCATIONAL_DATA = [
     flag: '🇩🇪',
     countryFa: 'آلمان',
     countryEn: 'Germany',
-    titleFa: 'نظام آموزشی آلمان',
-    titleEn: 'German Educational System',
-    link: 'https://t.me/International_Maths',
-    descriptionFa: 'تدریس متناسب با امتحانات Abitur آلمان، مدارس Gymnasium و کالج‌های آماده‌سازی (Studienkolleg).',
-    descriptionEn: 'Covering Analysis, Linear Algebra, and Stochastics for the German Abitur and Studienkolleg exams.',
-    resources: [
-      { title: 'پرتال آموزشی Mathebibel', url: 'https://www.mathebibel.de' }
-    ]
-  },
-  {
-    id: 'australia',
-    flag: '🇦🇺',
-    countryFa: 'استرالیا',
-    countryEn: 'Australia',
-    titleFa: 'نظام آموزشی استرالیا',
-    titleEn: 'Australian Educational System',
-    link: 'https://t.me/International_Maths',
-    descriptionFa: 'آموزش ریاضیات مطابق با استاندارد ATAR ایالت‌های مختلف (VCE, HSC) شامل General, Methods و Specialist Math.',
-    descriptionEn: 'Aligned with Australian ATAR (VCE/HSC) courses: General, Methods, and Specialist Mathematics.',
-    resources: [
-      { title: 'برنامه درسی ملی استرالیا (ACARA)', url: 'https://www.australiancurriculum.edu.au' }
+    preUniversity: [
+      { name: 'Mathegym', desc: 'mathegym.de', url: 'https://mathegym.de' },
+      { name: 'Bettermarks', desc: 'bettermarks.com', url: 'https://bettermarks.com' },
+      { name: 'Serlo (آلمانی)', desc: 'serlo.org', url: 'https://de.serlo.org' }
+    ],
+    university: [
+      { name: 'OMB+', desc: 'ombplus.de', url: 'https://www.ombplus.de' },
+      { name: 'TU Berlin (Skripte)', desc: 'math.tu-berlin.de', url: 'https://www.math.tu-berlin.de' },
+      { name: 'LMU Munich (منابع آنلاین)', desc: 'math.lmu.de', url: 'https://www.math.lmu.de' }
     ]
   },
   {
@@ -99,75 +95,99 @@ const EDUCATIONAL_DATA = [
     flag: '🇫🇷',
     countryFa: 'فرانسه',
     countryEn: 'France',
-    titleFa: 'نظام آموزشی فرانسه (Baccalauréat)',
-    titleEn: 'French Educational System',
-    link: 'https://t.me/International_Maths',
-    descriptionFa: 'آموزش ریاضیات مقطع دبیرستان فرانسه (Lycée) و آمادگی امتحانات نهایی دیپلم فرانسه (Bac Général - Spécialité Mathématiques).',
-    descriptionEn: 'Tutoring for Lycée mathematics and French Baccalaureate preparation.',
-    resources: [
-      { title: 'وزارت آموزش ملی فرانسه', url: 'https://www.education.gouv.fr' }
+    preUniversity: [
+      { name: 'CNED', desc: 'cned.fr', url: 'https://www.cned.fr' },
+      { name: 'Maths-et-tiques', desc: 'maths-et-tiques.fr', url: 'https://www.maths-et-tiques.fr' },
+      { name: 'Les Bons Profs', desc: 'lesbonsprofs.com', url: 'https://www.lesbonsprofs.com' }
+    ],
+    university: [
+      { name: 'Exo7', desc: 'exo7.emath.fr', url: 'http://exo7.emath.fr' },
+      { name: 'BibMath', desc: 'bibmath.net', url: 'https://www.bibmath.net' },
+      { name: 'Université Paris-Saclay (MOOC)', desc: 'universite-paris-saclay.fr', url: 'https://www.universite-paris-saclay.fr' }
     ]
   },
   {
-    id: 'sweden',
-    flag: '🇸🇪',
-    countryFa: 'سوئد',
-    countryEn: 'Sweden',
-    titleFa: 'نظام آموزشی سوئد (Gymnasieskola)',
-    titleEn: 'Swedish Educational System',
-    link: 'https://t.me/International_Maths',
-    descriptionFa: 'تدریس سطوح مختلف ریاضیات مدارس سوئد (Matematik 1c تا 5) متناسب با استانداردهای آموزشی اسکاندیناوی.',
-    descriptionEn: 'Specialized math tutoring for Swedish secondary school courses (Matematik 1c to 5).',
-    resources: [
-      { title: 'اداره ملی آموزش سوئد (Skolverket)', url: 'https://www.skolverket.se' }
+    id: 'australia',
+    flag: '🇦🇺',
+    countryFa: 'استرالیا',
+    countryEn: 'Australia',
+    preUniversity: [
+      { name: 'Maths Online (UNSW)', desc: 'mathsonline.com.au', url: 'https://www.mathsonline.com.au' },
+      { name: 'Australian Curriculum (Scootle)', desc: 'scootle.edu.au', url: 'https://www.scootle.edu.au' },
+      { name: 'Cluey Learning', desc: 'clueylearning.com.au', url: 'https://clueylearning.com.au' },
+      { name: 'HSC Maths by Topic', desc: 'hscmathsbytopic.firsteducation.com.au', url: 'https://hscmathsbytopic.firsteducation.com.au/' }
+    ],
+    university: [
+      { name: 'AMSI', desc: 'amsi.org.au', url: 'https://amsi.org.au' },
+      { name: 'UNSW Maths Resources', desc: 'unsw.edu.au', url: 'https://www.unsw.edu.au' },
+      { name: 'ANU (سخنرانی‌ها)', desc: 'anu.edu.au', url: 'https://www.anu.edu.au' }
     ]
   },
   {
-    id: 'italy',
-    flag: '🇮🇹',
-    countryFa: 'ایتالیا',
-    countryEn: 'Italy',
-    titleFa: 'نظام آموزشی ایتالیا (Liceo Scientifico)',
-    titleEn: 'Italian Educational System',
-    link: 'https://t.me/International_Maths',
-    descriptionFa: 'تدریس ریاضیات دبیرستان‌های علمی ایتالیا و آمادگی آزمون‌های ورود به دانشگاه‌های ایتالیا (TOLC-I, TOLC-E).',
-    descriptionEn: 'Mathematics prep for Liceo Scientifico and university entrance exams (TOLC-I / TOLC-E).',
-    resources: [
-      { title: 'پرتال رسمی آزمون‌های TOLC (CISIA)', url: 'https://www.cisiaonline.it' }
+    id: 'turkey',
+    flag: '🇹🇷',
+    countryFa: 'ترکیه',
+    countryEn: 'Turkey',
+    preUniversity: [
+      { name: 'EBA', desc: 'eba.gov.tr', url: 'https://www.eba.gov.tr' },
+      { name: 'Doping Hafıza', desc: 'dopinghafiza.com', url: 'https://www.dopinghafiza.com' },
+      { name: 'Kunduz (ترکی)', desc: 'kunduz.com/tr', url: 'https://kunduz.com/tr' }
+    ],
+    university: [
+      { name: 'Akademik Matematik', desc: 'akademikmatematik.com', url: 'https://akademikmatematik.com' },
+      { name: 'ODTÜ (METU) OpenCourseWare', desc: 'ocw.metu.edu.tr', url: 'https://ocw.metu.edu.tr' },
+      { name: 'Matematik Dünyası (dergi)', desc: 'matematikdunyasi.org', url: 'https://www.matematikdunyasi.org' }
     ]
   },
   {
-    id: 'uae',
-    flag: '🇦🇪',
-    countryFa: 'امارات',
-    countryEn: 'UAE',
-    titleFa: 'نظام‌های بین‌المللی امارات (دبی / ابوظبی)',
-    titleEn: 'UAE International Schools',
-    link: 'https://t.me/International_Maths',
-    descriptionFa: 'تدریس ریاضیات مدارس بین‌المللی امارات تحت نظام‌های IB، آمریکایی (AP) و بریتانیایی (IGCSE/A-Level).',
-    descriptionEn: 'Math tutoring for international students in UAE enrolled in IB, British, and American curricula.',
-    resources: [
-      { title: 'سازمان دانش و توسعه انسانی دبی (KHDA)', url: 'https://www.khda.gov.ae' }
+    id: 'japan',
+    flag: '🇯🇵',
+    countryFa: 'ژاپن',
+    countryEn: 'Japan',
+    preUniversity: [
+      { name: 'MEXT (منابع رسمی)', desc: 'mext.go.jp', url: 'https://www.mext.go.jp' },
+      { name: 'NHK for School (ریاضی)', desc: 'nhk.or.jp/school', url: 'https://www.nhk.or.jp/school' },
+      { name: 'Suugaku.jp', desc: 'suugaku.jp', url: 'https://www.suugaku.jp' }
+    ],
+    university: [
+      { name: 'OCW - دانشگاه توکیو', desc: 'ocw.u-tokyo.ac.jp', url: 'https://ocw.u-tokyo.ac.jp' },
+      { name: 'Kyoto University OCW', desc: 'ocw.kyoto-u.ac.jp', url: 'https://ocw.kyoto-u.ac.jp' },
+      { name: 'J-STAGE (مقالات ریاضی)', desc: 'jstage.jst.go.jp', url: 'https://www.jstage.jst.go.jp' }
+    ]
+  },
+  {
+    id: 'india',
+    flag: '🇮🇳',
+    countryFa: 'هند',
+    countryEn: 'India',
+    preUniversity: [
+      { name: "Byju's", desc: 'byjus.com/maths', url: 'https://byjus.com/maths' },
+      { name: 'Vedantu', desc: 'vedantu.com', url: 'https://www.vedantu.com' },
+      { name: 'Toppr', desc: 'toppr.com', url: 'https://www.toppr.com' }
+    ],
+    university: [
+      { name: 'NPTEL', desc: 'nptel.ac.in', url: 'https://nptel.ac.in' },
+      { name: 'ISI Kolkata (منابع)', desc: 'isical.ac.in', url: 'https://www.isical.ac.in' },
+      { name: 'IIT Bombay (سخنرانی‌ها)', desc: 'iitb.ac.in', url: 'https://www.iitb.ac.in' }
     ]
   }
 ];
 
-export default function EducationalSystemsPage() {
+export default function MathSitesPage() {
   const [lang, setLang] = useState('fa');
-  // پیش‌فرض: انتخاب کشور اول (ایران)
-  const [selectedCountry, setSelectedCountry] = useState(EDUCATIONAL_DATA[0]);
+  const [selectedCountry, setSelectedCountry] = useState(MATH_SITES_DATA[0]);
 
   const isFa = lang === 'fa';
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans p-4 md:p-8 antialiased">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         
-        {/* هدر و کنترل زبان */}
+        {/* هدر */}
         <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
           <Link 
             href="/" 
-            className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs md:text-sm font-bold rounded-xl transition"
+            className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs md:text-sm font-semibold rounded-xl transition"
           >
             {isFa ? '🏠 بازگشت به صفحه اصلی' : '🏠 Back to Home'}
           </Link>
@@ -191,19 +211,19 @@ export default function EducationalSystemsPage() {
           </div>
         </div>
 
-        {/* عنوان بخش */}
+        {/* عنوان */}
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
-            🌐 {isFa ? 'نظام‌های آموزشی ریاضی کشورها' : 'International Educational Systems'}
+            💻 {isFa ? 'سایت‌های آموزشی ریاضی کشورها' : 'Math Educational Websites'}
           </h1>
           <p className="text-xs md:text-sm text-slate-600 font-medium">
-            {isFa ? 'روی هر کشور کلیک کنید تا اطلاعات کامل، توضیحات و لینک‌های مربوطه باز شوند:' : 'Click on any country button to reveal full information and links:'}
+            {isFa ? 'برای مشاهده سایت‌های هر کشور، روی دکمه مربوط به آن کلیک کنید:' : 'Click on any country button to reveal its resources below:'}
           </p>
         </div>
 
-        {/* چیدمان دکمه‌های تخت (Flat) کشورها */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 md:gap-3 mb-8">
-          {EDUCATIONAL_DATA.map((item) => {
+        {/* دکمه‌های ساده و تخت (Flat) کشورها */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-8">
+          {MATH_SITES_DATA.map((item) => {
             const isSelected = selectedCountry.id === item.id;
             return (
               <button
@@ -225,62 +245,80 @@ export default function EducationalSystemsPage() {
           })}
         </div>
 
-        {/* کارت خاکستری رنگ نمایش اطلاعات کشور انتخاب‌شده */}
+        {/* کادر خاکستری رنگ اطلاعات کشور انتخاب شده */}
         {selectedCountry && (
-          <div className="bg-slate-100 text-slate-800 rounded-3xl p-6 md:p-8 border border-slate-300 shadow-sm transition-all duration-300">
+          <div className="bg-slate-100 rounded-3xl p-6 md:p-8 border border-slate-300 shadow-sm transition-all duration-300">
             
-            {/* سربرگ کشور */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-300 pb-4 mb-6">
-              <div className="flex items-center gap-3">
-                <span className="text-4xl md:text-5xl">{selectedCountry.flag}</span>
-                <div>
-                  <h2 className="text-xl md:text-2xl font-black text-slate-900">
-                    {isFa ? selectedCountry.titleFa : selectedCountry.titleEn}
-                  </h2>
-                  <span className="text-xs text-slate-500 font-bold">
-                    {isFa ? selectedCountry.countryFa : selectedCountry.countryEn}
-                  </span>
-                </div>
-              </div>
-
-              {/* لینک اصلی کانال/منبع */}
-              <a 
-                href={selectedCountry.link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="self-start sm:self-auto px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl transition whitespace-nowrap shadow-sm"
-              >
-                🔗 {isFa ? 'مشاهده در تلگرام' : 'View on Telegram'}
-              </a>
+            <div className="flex items-center gap-3 border-b border-slate-300 pb-4 mb-6">
+              <span className="text-4xl">{selectedCountry.flag}</span>
+              <h2 className="text-xl md:text-2xl font-black text-slate-900">
+                {isFa ? `منابع و سایت‌های ریاضی ${selectedCountry.countryFa}` : `${selectedCountry.countryEn} Math Websites`}
+              </h2>
             </div>
 
-            {/* توضیحات کامل */}
-            <p className="text-slate-700 text-sm md:text-base leading-relaxed mb-6 font-normal text-justify">
-              {isFa ? selectedCountry.descriptionFa : selectedCountry.descriptionEn}
-            </p>
-
-            {/* بخش لینک‌های مفید و منابع رسمی */}
-            {selectedCountry.resources && selectedCountry.resources.length > 0 && (
-              <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-                <h3 className="font-bold text-sm text-slate-900 mb-3 flex items-center gap-2">
-                  💻 {isFa ? 'سایت‌ها و منابع رسمی این کشور:' : 'Official Resources & Websites:'}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {selectedCountry.resources.map((res, idx) => (
-                    <a
-                      key={idx}
-                      href={res.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-xs font-medium text-slate-800 rounded-xl border border-slate-200 transition flex items-center gap-1.5"
-                    >
-                      <span>🌐</span>
-                      <span>{res.title}</span>
-                    </a>
-                  ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              
+              {/* بخش پیش‌دانشگاهی */}
+              {selectedCountry.preUniversity && selectedCountry.preUniversity.length > 0 && (
+                <div>
+                  <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    🏫 {isFa ? 'پیش‌دانشگاهی' : 'Pre-University'}
+                  </h3>
+                  <div className="flex flex-col gap-3">
+                    {selectedCountry.preUniversity.map((site, idx) => (
+                      <a
+                        key={idx}
+                        href={site.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm"
+                      >
+                        <div>
+                          <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base">
+                            {site.name}
+                          </div>
+                          <div className="text-xs text-slate-500 dir-ltr text-right mt-1">
+                            {site.desc}
+                          </div>
+                        </div>
+                        <span className="text-slate-500 font-bold group-hover:translate-x-1 transition-transform text-xs">↗</span>
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+
+              {/* بخش دانشگاهی */}
+              {selectedCountry.university && selectedCountry.university.length > 0 && (
+                <div>
+                  <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    🎓 {isFa ? 'دانشگاهی' : 'University'}
+                  </h3>
+                  <div className="flex flex-col gap-3">
+                    {selectedCountry.university.map((site, idx) => (
+                      <a
+                        key={idx}
+                        href={site.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm"
+                      >
+                        <div>
+                          <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base">
+                            {site.name}
+                          </div>
+                          <div className="text-xs text-slate-500 dir-ltr text-right mt-1">
+                            {site.desc}
+                          </div>
+                        </div>
+                        <span className="text-slate-500 font-bold group-hover:translate-x-1 transition-transform text-xs">↗</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+            </div>
 
           </div>
         )}
