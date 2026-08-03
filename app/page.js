@@ -18,7 +18,7 @@ const FEEDBACKS = [
 const SCHEMA_DATA = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: ' دکتر هادی محمدی زرندینی',
+  name: '  هادی محمدی زرندینی',
   jobTitle: 'عضو هیات علمی دانشگاه و مدرس ریاضیات بین‌الملل',
   worksFor: {
     '@type': 'EducationalOrganization',
