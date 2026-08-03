@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useLanguage } from '@/context/LanguageContext';
 
 // داده‌های جامع سایت‌های ریاضی کشورها
 const MATH_SITES_DATA = [
@@ -186,16 +187,15 @@ const MATH_SITES_DATA = [
 ];
 
 export default function MathSitesPage() {
-  const [lang, setLang] = useState('fa');
+  // دریافت مستقیم وضعیت زبان سراسری پروژه (که در صفحه اصلی تغییر می‌کند)
+  const { isFa } = useLanguage();
   const [selectedCountry, setSelectedCountry] = useState(MATH_SITES_DATA[0]);
-
-  const isFa = lang === 'fa';
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans p-4 md:p-8 antialiased">
       <div className="max-w-5xl mx-auto">
         
-        {/* هدر */}
+        {/* هدر: دکمه سویچ زبان حذف شد تا زبان فقط از صفحه اصلی مدیریت شود */}
         <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
           <Link 
             href="/" 
@@ -203,27 +203,9 @@ export default function MathSitesPage() {
           >
             {isFa ? '🏠 بازگشت به صفحه اصلی' : '🏠 Back to Home'}
           </Link>
-
-          <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-gray-200 shadow-sm">
-            <button 
-              type="button"
-              onClick={() => setLang('fa')} 
-              className={`text-xs font-bold transition ${isFa ? 'text-slate-900 underline font-black' : 'text-gray-400 hover:text-black'}`}
-            >
-              فارسی
-            </button>
-            <span className="text-gray-300 font-light">|</span>
-            <button 
-              type="button"
-              onClick={() => setLang('en')} 
-              className={`text-xs font-bold transition ${!isFa ? 'text-slate-900 underline font-black' : 'text-gray-400 hover:text-black'}`}
-            >
-              English
-            </button>
-          </div>
         </div>
 
-        {/* عنوان */}
+        {/* عنوان صفحه (تغییر زبان خودکار) */}
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
             💻 {isFa ? 'سایت‌های آموزشی ریاضی کشورها' : 'Math Educational Websites'}
@@ -233,7 +215,7 @@ export default function MathSitesPage() {
           </p>
         </div>
 
-        {/* دکمه‌های ساده و تخت (Flat) کشورها */}
+        {/* لیست کشورها (تغییر زبان خودکار) */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 mb-8">
           {MATH_SITES_DATA.map((item) => {
             const isSelected = selectedCountry.id === item.id;
@@ -257,7 +239,7 @@ export default function MathSitesPage() {
           })}
         </div>
 
-        {/* کادر خاکستری رنگ اطلاعات کشور انتخاب شده */}
+        {/* کادر اطلاعات کشور انتخاب شده (تغییر زبان خودکار) */}
         {selectedCountry && (
           <div className="bg-slate-100 rounded-3xl p-6 md:p-8 border border-slate-300 shadow-sm transition-all duration-300">
             
@@ -270,7 +252,7 @@ export default function MathSitesPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               
-              {/* بخش قبل دانشگاه */}
+              {/* بخش قبل از دانشگاه */}
               {selectedCountry.preUniversity && selectedCountry.preUniversity.length > 0 && (
                 <div>
                   <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
