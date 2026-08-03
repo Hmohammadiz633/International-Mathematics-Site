@@ -5,12 +5,10 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useLanguage } from '@/context/LanguageContext';
 
-// لود بهینه‌تر کامپوننت دکمه‌های ارتباطی
 const ContactButtons = dynamic(() => import('@/components/ContactButtons'), {
   ssr: true,
 });
 
-// انتقال متغیرهای ثابت به بیرون از کامپوننت جهت جلوگیری از رندر مجدد
 const FEEDBACKS = [
   { fa: 'بازخورد ۱', en: 'Feedback 1', link: 'https://t.me/International_Maths/110' },
   { fa: 'بازخورد ۲', en: 'Feedback 2', link: 'https://t.me/International_Maths/111' },
@@ -79,7 +77,7 @@ export default function Home() {
               </h1>
             </div>
 
-            {/* دکمه‌های سویچ زبان (متصل به سیستم سراسری) */}
+            {/* دکمه‌های سویچ زبان */}
             <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300 shadow-inner">
               <button 
                 type="button"
