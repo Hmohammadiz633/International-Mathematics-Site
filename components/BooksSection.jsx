@@ -57,6 +57,7 @@ const schoolGrades = [
 
 export default function BooksSection({ lang = 'fa' }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
+
   const isFa = lang === 'fa';
   const activeCategory = categories.find((c) => c.id === selectedCategory);
 
@@ -65,7 +66,7 @@ export default function BooksSection({ lang = 'fa' }) {
       {/* عنوان بخش اصلی */}
       <div className="text-center max-w-3xl mx-auto p-6 bg-white rounded-2xl border-b-4 border-slate-300 shadow-xl">
         <h2 className="text-2xl md:text-3xl font-black mb-2 text-slate-900">
-          📚 {isFa ? 'کتاب‌های تدریس‌شده بین‌المللی' : 'Taught Textbooks'}
+          {isFa ? '📚 کتاب‌های تدریس‌شده بین‌المللی' : '📚 Taught Textbooks'}
         </h2>
         <p className="text-slate-600 text-sm md:text-base leading-relaxed font-medium">
           {isFa
@@ -74,7 +75,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* بنر تصویر عمودی با اسکرول کامل و روان در موبایل */}
+      {/* بنر تصویر */}
       <div className="max-w-4xl mx-auto bg-white rounded-3xl border-2 border-slate-200 shadow-2xl overflow-hidden">
         <div className="relative w-full h-[320px] md:h-[420px] bg-slate-900 overflow-y-auto overflow-x-hidden touch-auto scrollbar-hide">
           <img
@@ -100,7 +101,7 @@ export default function BooksSection({ lang = 'fa' }) {
         </p>
       </div>
 
-      {/* دکمه‌های دسته‌بندی با تم خاکستری کم‌رنگ در حالت انتخاب */}
+      {/* دکمه‌های دسته‌بندی با تم سه‌بعدی */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
         {categories.map((cat) => (
           <button
@@ -109,7 +110,7 @@ export default function BooksSection({ lang = 'fa' }) {
             onClick={() => setSelectedCategory(cat.id)}
             className={`p-5 rounded-2xl text-right transition-all duration-200 cursor-pointer transform ${
               selectedCategory === cat.id
-                ? 'bg-slate-500 text-white border-b-8 border-slate-700 shadow-2xl scale-105 -translate-y-1'
+                ? 'bg-slate-200 text-slate-900 border-2 border-slate-400 border-b-8 shadow-xl translate-y-0.5'
                 : 'bg-white text-slate-900 border-2 border-slate-200 border-b-8 border-b-slate-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:border-b-slate-400'
             }`}
           >
@@ -117,7 +118,7 @@ export default function BooksSection({ lang = 'fa' }) {
               <span
                 className={`w-10 h-10 flex items-center justify-center text-lg rounded-xl shadow-md ${
                   selectedCategory === cat.id
-                    ? 'bg-slate-600 text-white'
+                    ? 'bg-white text-slate-900 border border-slate-300'
                     : 'bg-slate-100 border border-slate-200 text-slate-900'
                 }`}
               >
@@ -130,7 +131,7 @@ export default function BooksSection({ lang = 'fa' }) {
             </h3>
             <p
               className={`text-xs font-medium ${
-                selectedCategory === cat.id ? 'text-slate-200' : 'text-slate-500'
+                selectedCategory === cat.id ? 'text-slate-600' : 'text-slate-500'
               }`}
             >
               {isFa ? cat.subtitleFa : cat.subtitleEn}
