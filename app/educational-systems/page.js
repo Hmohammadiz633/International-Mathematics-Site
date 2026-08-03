@@ -3,88 +3,116 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-// آرایه داده‌ها خارج از تابع قرار گرفت تا خطای prerender ورسل رفع شود
-const educationalData = [
+// آرایه داده‌های کشورها (ایران در ردیف اول قرار گرفته است)
+const EDUCATIONAL_DATA = [
   {
+    id: 'iran',
+    flag: '🇮🇷',
+    countryFa: 'ایران',
+    countryEn: 'Iran',
+    titleFa: 'نظام آموزشی ایران (کنکور، سمپاد و المپیاد)',
+    titleEn: 'Iranian Educational System (Konkur & Olympiads)',
+    link: 'https://t.me/International_Maths',
+    descriptionFa: 'تدریس تخصصی ریاضیات مفهومی، تیزهوشان (سمپاد)، کنکور سراسری و آماده‌سازی برای المپیادهای کشوری و بین‌المللی ریاضی.',
+    descriptionEn: 'Conceptual Math tutoring, SAMPAD (Gifted Schools), National Entrance Exam (Konkur), and Math Olympiad prep.',
+    resources: [
+      { title: 'شبکه ملی مدارس (رشد)', url: 'https://roshd.ir' },
+      { title: 'سازمان پژوهش و برنامه‌ریزی آموزشی (کتاب‌های درسی)', url: 'http://chap.sch.ir' }
+    ]
+  },
+  {
+    id: 'usa',
     flag: '🇺🇸',
-    countryFa: 'نظام آموزشی آمریکا (USA)',
-    countryEn: 'US Educational System',
+    countryFa: 'آمریکا',
+    countryEn: 'USA',
+    titleFa: 'نظام آموزشی آمریکا (USA)',
+    titleEn: 'US Educational System',
     link: 'https://t.me/International_Maths/379',
-    descriptionFa: 'نظام آموزشی آمریکا مبتنی بر سیستم ۱۲ ساله (K-12) است. در مقطع دبیرستان، دروس در سطوح مختلف (Standard, Honors, AP) ارائه می‌شوند. آزمون‌های بین‌المللی مانند SAT و ACT و همچنین گذراندن دوره‌های پیشرفته AP نقش بسیار مهمی در پذیرش دانشگاه‌های ممتاز ایفا می‌کنند.',
-    descriptionEn: 'The US education system is based on the K-12 framework. High school students choose courses at various levels (Standard, Honors, AP). Standardized tests like SAT/ACT and AP courses are crucial for top university admissions.',
+    descriptionFa: 'نظام آموزشی آمریکا مبتنی بر سیستم ۱۲ ساله (K-12) است. آموزش تخصصی ریاضیات از Algebra 1 & 2 تا AP Calculus AB/BC و آماده‌سازی آزمون‌های SAT/ACT.',
+    descriptionEn: 'The US education system is based on the K-12 framework. Specialized tutoring for US school math from Algebra 1 & 2 to AP Calculus AB/BC and SAT/ACT prep.',
+    resources: [
+      { title: 'سایت رسمی College Board (آزمون‌های AP و SAT)', url: 'https://www.collegeboard.org' }
+    ]
   },
   {
+    id: 'uk',
     flag: '🇬🇧',
-    countryFa: 'نظام آموزشی انگلستان (UK)',
-    countryEn: 'UK Educational System',
+    countryFa: 'انگلستان',
+    countryEn: 'UK',
+    titleFa: 'نظام آموزشی انگلستان (UK)',
+    titleEn: 'UK Educational System',
     link: 'https://t.me/International_Maths/297',
-    descriptionFa: 'نظام آموزشی بریتانیا شامل مراحل کلیدی (Key Stages) است. دانش‌آموزان در سن ۱۶ سالگی در آزمون‌های سراسری GCSE شرکت کرده و سپس برای ورود به دانشگاه‌ها، دوره دو ساله تخصصی A-Levels یا دیپلم بین‌المللی IB را می‌گذرانند که تمرکز بالایی بر عمیق‌سازی مفاهیم دارد.',
-    descriptionEn: 'The UK system is structured into Key Stages. At age 16, students take GCSE exams, followed by two years of A-Levels or IB diploma preparing them for top-tier universities with deep subject specialization.',
+    descriptionFa: 'نظام آموزشی بریتانیا شامل مراحل کلیدی (Key Stages)، مقطع GCSE و دوره A-Level (Edexcel, AQA) می‌باشد.',
+    descriptionEn: 'The UK system is structured into Key Stages, GCSEs, and A-Levels (Edexcel, AQA, OCR).',
+    resources: [
+      { title: 'پرتال Pearson Edexcel', url: 'https://qualifications.pearson.com' }
+    ]
   },
   {
-    flag: '🇩🇪',
-    countryFa: 'نظام آموزشی آلمان (Germany)',
-    countryEn: 'Germany Educational System',
-    link: 'https://t.me/International_Maths/375',
-    descriptionFa: 'سیستم آموزشی آلمان پس از دوره ابتدایی دانش‌آموزان را بر اساس استعداد هدایت می‌کند. شاخه اصلی آکادمیک برای ورود به دانشگاه، دبیرستان‌های Gymnasium است که با امتحانات نهایی Abitur به پایان می‌رسد. آموزش ریاضیات در این نظام بسیار دقیق و منطقی است.',
-    descriptionEn: 'Germany tracks students after primary school. The academic track (Gymnasium) leads to the Abitur diploma required for university admission, focusing heavily on analytical and structured learning.',
-  },
-  {
-    flag: '🇦🇺',
-    countryFa: 'نظام آموزشی استرالیا (Australia)',
-    countryEn: 'Australia Educational System',
-    link: 'https://t.me/International_Maths/299',
-    descriptionFa: 'نظام آموزشی استرالیا بر اساس چارچوب ملی (Australian Curriculum) اجرا می‌شود. سال‌های پایانی دبیرستان منجر به اخذ دیپلم ایالتی (مانند HSC یا VCE) شده و نمره کل کشوری ATAR مبنای اصلی ورود به دانشگاه‌های برجسته است.',
-    descriptionEn: 'Australia follows a national curriculum. Senior secondary years lead to state-specific certificates (such as HSC or VCE) and an ATAR score used for university entrance.',
-  },
-  {
+    id: 'canada',
     flag: '🇨🇦',
-    countryFa: 'نظام آموزشی کانادا (Canada)',
-    countryEn: 'Canada Educational System',
-    link: 'https://t.me/International_Maths/302',
-    descriptionFa: 'آموزش در کانادا به‌صورت استانی (مانند سیستم اناریو یا بریتیش کلمبیا) مدیریت می‌شود. ارزیابی مستمر، پروژه‌محوری و کسب مدرک دیپلم دبیرستان (مانند OSSD) پایه و اساس پذیرش در دانشگاه‌های ممتاز کانادایی و بین‌المللی است.',
-    descriptionEn: 'Education in Canada is managed by provinces (e.g., Ontario Curriculum). Continuous assessment and high school diplomas (like OSSD) are key to entering top universities.',
+    countryFa: 'کانادا',
+    countryEn: 'Canada',
+    titleFa: 'نظام آموزشی کانادا',
+    titleEn: 'Canadian Educational System',
+    link: 'https://t.me/International_Maths',
+    descriptionFa: 'نظام‌های استانی شامل اونتاریو (Ontario Curriculum) و بریتیش کلمبیا (BC Curriculum) از پایه ۹ تا ۱۲.',
+    descriptionEn: 'Provincial Curricula (Ontario Grade 9-12, BC Curriculum) aligned with Canadian standards.',
+    resources: [
+      { title: 'وزارت آموزش اونتاریو', url: 'https://www.ontario.ca/page/ministry-education' }
+    ]
   },
   {
-    flag: '🇮🇹',
-    countryFa: 'نظام آموزشی ایتالیا (Italy)',
-    countryEn: 'Italy Educational System',
-    link: 'https://t.me/International_Maths/389',
-    descriptionFa: 'در ایتالیا پس از دوره راهنمایی، دانش‌آموزان وارد دبیرستان‌های تخصصی ۵ ساله می‌شوند. دبیرستان‌های Liceo Scientifico تمرکز ویژه‌ای بر علوم پایه و ریاضیات دارند و دوره دبیرستان با آزمون سراسری جامع Maturità ختم می‌شود.',
-    descriptionEn: 'Italian secondary education includes 5-year specialized high schools like Liceo Scientifico, focusing on mathematics and sciences, concluding with the national Maturità exam.',
+    id: 'germany',
+    flag: '🇩🇪',
+    countryFa: 'آلمان',
+    countryEn: 'Germany',
+    titleFa: 'نظام آموزشی آلمان',
+    titleEn: 'German Educational System',
+    link: 'https://t.me/International_Maths',
+    descriptionFa: 'تدریس متناسب با امتحانات Abitur آلمان، مدارس Gymnasium و کالج‌های آماده‌سازی (Studienkolleg).',
+    descriptionEn: 'Covering Analysis, Linear Algebra, and Stochastics for the German Abitur and Studienkolleg exams.',
+    resources: [
+      { title: 'پرتال آموزشی Mathebibel', url: 'https://www.mathebibel.de' }
+    ]
   },
   {
-    flag: '🇹🇷',
-    countryFa: 'نظام آموزشی ترکیه (Turkey)',
-    countryEn: 'Turkey Educational System',
-    link: 'https://t.me/International_Maths/395',
-    descriptionFa: 'نظام آموزشی ترکیه به‌صورت ۱۲ ساله (۴+۴+۴) است. مقطع دبیرستان شامل دبیرستان‌های عمومی، فن (علوم) و آناتولی است. ورود به دانشگاه‌های برتر ترکیه مستلزم موفقیت در آزمون سراسری و رقابتی YKS می‌باشد.',
-    descriptionEn: 'Turkey uses a 12-year (4+4+4) education model. High schools include Science and Anatolian schools, with university placement dependent on the competitive national YKS exam.',
-  },
+    id: 'australia',
+    flag: '🇦🇺',
+    countryFa: 'استرالیا',
+    countryEn: 'Australia',
+    titleFa: 'نظام آموزشی استرالیا',
+    titleEn: 'Australian Educational System',
+    link: 'https://t.me/International_Maths',
+    descriptionFa: 'آموزش ریاضیات مطابق با استاندارد ATAR ایالت‌های مختلف (VCE, HSC) شامل General, Methods و Specialist Math.',
+    descriptionEn: 'Aligned with Australian ATAR (VCE/HSC) courses: General, Methods, and Specialist Mathematics.',
+    resources: [
+      { title: 'برنامه درسی ملی استرالیا (ACARA)', url: 'https://www.australiancurriculum.edu.au' }
+    ]
+  }
 ];
 
 export default function EducationalSystemsPage() {
   const [lang, setLang] = useState('fa');
+  // پیش‌فرض: انتخاب کشور اول (ایران)
+  const [selectedCountry, setSelectedCountry] = useState(EDUCATIONAL_DATA[0]);
+
   const isFa = lang === 'fa';
 
   return (
-    <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
-      {/* هدر بالای صفحه */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 py-3 shadow-sm">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Link 
-              href="/" 
-              className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-slate-700 rounded-xl text-xs font-bold transition flex items-center gap-1"
-            >
-              <span>{isFa ? '← بازگشت به صفحه اصلی' : '← Back to Home'}</span>
-            </Link>
-            <h1 className="font-black text-base md:text-xl text-slate-800 tracking-tight">
-              🌐 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
-            </h1>
-          </div>
+    <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans p-4 md:p-8 antialiased">
+      <div className="max-w-4xl mx-auto">
+        
+        {/* هدر و کنترل زبان */}
+        <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
+          <Link 
+            href="/" 
+            className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs md:text-sm font-bold rounded-xl border-b-2 border-slate-400 active:translate-y-0.5 transition"
+          >
+            {isFa ? '🏠 بازگشت به صفحه اصلی' : '🏠 Back to Home'}
+          </Link>
 
-          <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300">
+          <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300 shadow-inner">
             <button 
               type="button"
               onClick={() => setLang('fa')} 
@@ -102,48 +130,102 @@ export default function EducationalSystemsPage() {
             </button>
           </div>
         </div>
-      </header>
 
-      {/* کارت‌های توضیحات کشورها */}
-      <section className="max-w-5xl mx-auto px-4 pt-8">
+        {/* عنوان بخش */}
         <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
-            {isFa ? 'شناخت نظام‌های آموزشی بین‌المللی' : 'Overview of Educational Systems'}
-          </h2>
-          <p className="text-slate-600 text-sm md:text-base">
-            {isFa ? 'خلاصه‌ای از ساختار آموزشی کشورها به همراه لینک کامل کانال تلگرام برای توضیحات تکمیلی' : 'Brief summaries with links to full posts on Telegram'}
+          <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
+            🌐 {isFa ? 'نظام‌های آموزشی ریاضی کشورها' : 'International Educational Systems'}
+          </h1>
+          <p className="text-xs md:text-sm text-slate-600 font-medium">
+            {isFa ? 'روی هر کشور کلیک کنید تا اطلاعات کامل، توضیحات و لینک‌های مربوطه باز شوند:' : 'Click on any country button to reveal full information and links:'}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {educationalData.map((item, idx) => (
-            <div key={idx} className="bg-white p-6 rounded-2xl border border-gray-200/90 shadow-sm hover:shadow-md transition flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-3 border-b border-gray-100 pb-3 mb-4">
-                  <span className="text-3xl">{item.flag}</span>
-                  <h3 className="font-bold text-base md:text-lg text-slate-800">
-                    {isFa ? item.countryFa : item.countryEn}
-                  </h3>
+        {/* چیدمان دکمه‌های سه‌بعدی کشورها کنار هم (با اولویت ایران) */}
+        <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mb-8">
+          {EDUCATIONAL_DATA.map((item) => {
+            const isSelected = selectedCountry.id === item.id;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setSelectedCountry(item)}
+                className={`
+                  px-5 py-3 rounded-2xl font-black text-sm md:text-base flex items-center gap-2.5 transition-all duration-150 cursor-pointer select-none
+                  ${isSelected 
+                    ? 'bg-blue-600 text-white border-b-4 border-blue-900 shadow-[0_6px_0_#1e3a8a] translate-y-[-2px]' 
+                    : 'bg-white hover:bg-slate-100 text-slate-800 border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_5px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8]'
+                  }
+                `}
+              >
+                <span className="text-xl md:text-2xl leading-none">{item.flag}</span>
+                <span>{isFa ? item.countryFa : item.countryEn}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* کارت نمایش اطلاعات کشور انتخاب‌شده */}
+        {selectedCountry && (
+          <div className="bg-slate-900 text-white rounded-3xl p-6 md:p-8 border border-slate-700 shadow-2xl transition-all duration-300">
+            
+            {/* سربرگ کشور */}
+            <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+              <div className="flex items-center gap-3">
+                <span className="text-4xl md:text-5xl">{selectedCountry.flag}</span>
+                <div>
+                  <h2 className="text-xl md:text-2xl font-black text-white">
+                    {isFa ? selectedCountry.titleFa : selectedCountry.titleEn}
+                  </h2>
+                  <span className="text-xs text-blue-400 font-bold">
+                    {isFa ? selectedCountry.countryFa : selectedCountry.countryEn}
+                  </span>
                 </div>
-                <p className="text-slate-600 text-xs md:text-sm leading-relaxed text-justify mb-5 font-normal">
-                  {isFa ? item.descriptionFa : item.descriptionEn}
-                </p>
               </div>
 
-              {/* لینک تلگرام */}
+              {/* لینک اصلی کانال/منبع */}
               <a 
-                href={item.link} 
+                href={selectedCountry.link} 
                 target="_blank" 
-                rel="noopener noreferrer" 
-                className="w-full py-2.5 px-4 bg-blue-50 hover:bg-blue-100 text-blue-900 text-xs md:text-sm font-bold rounded-xl border border-blue-200/80 transition flex items-center justify-between group"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl border-b-2 border-blue-800 active:translate-y-0.5 shadow-md transition whitespace-nowrap"
               >
-                <span>{isFa ? 'برای اطلاعات بیشتر به اینجا مراجعه شود' : 'Click here for more details'}</span>
-                <span className="text-blue-600 font-bold group-hover:translate-x-1 transition-transform">↗</span>
+                🔗 {isFa ? 'مشاهده در تلگرام' : 'View on Telegram'}
               </a>
             </div>
-          ))}
-        </div>
-      </section>
+
+            {/* توضیحات کامل */}
+            <p className="text-slate-300 text-sm md:text-base leading-relaxed mb-6 font-normal text-justify">
+              {isFa ? selectedCountry.descriptionFa : selectedCountry.descriptionEn}
+            </p>
+
+            {/* بخش لینک‌های مفید و منابع رسمی */}
+            {selectedCountry.resources && selectedCountry.resources.length > 0 && (
+              <div className="bg-slate-800/80 p-4 rounded-2xl border border-slate-700">
+                <h3 className="font-bold text-sm text-blue-300 mb-3 flex items-center gap-2">
+                  💻 {isFa ? 'سایت‌ها و منابع رسمی این کشور:' : 'Official Resources & Websites:'}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {selectedCountry.resources.map((res, idx) => (
+                    <a
+                      key={idx}
+                      href={res.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-xs font-medium text-slate-100 rounded-lg border border-slate-600 hover:border-blue-400 transition flex items-center gap-1.5"
+                    >
+                      <span>🌐</span>
+                      <span>{res.title}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+
+          </div>
+        )}
+
+      </div>
     </main>
   );
 }
