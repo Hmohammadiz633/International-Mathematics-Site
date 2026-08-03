@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-// آرایه داده‌های کشورها (ایران در ردیف اول قرار گرفته است)
+// آرایه کامل داده‌های کشورها (اولین کشور: ایران)
 const EDUCATIONAL_DATA = [
   {
     id: 'iran',
@@ -17,7 +17,8 @@ const EDUCATIONAL_DATA = [
     descriptionEn: 'Conceptual Math tutoring, SAMPAD (Gifted Schools), National Entrance Exam (Konkur), and Math Olympiad prep.',
     resources: [
       { title: 'شبکه ملی مدارس (رشد)', url: 'https://roshd.ir' },
-      { title: 'سازمان پژوهش و برنامه‌ریزی آموزشی (کتاب‌های درسی)', url: 'http://chap.sch.ir' }
+      { title: 'سازمان پژوهش و برنامه‌ریزی آموزشی (کتاب‌های درسی)', url: 'http://chap.sch.ir' },
+      { title: 'باشگاه دانش‌پژوهان جوان (المپیاد ریاضی)', url: 'https://ysc.medu.ir' }
     ]
   },
   {
@@ -31,7 +32,8 @@ const EDUCATIONAL_DATA = [
     descriptionFa: 'نظام آموزشی آمریکا مبتنی بر سیستم ۱۲ ساله (K-12) است. آموزش تخصصی ریاضیات از Algebra 1 & 2 تا AP Calculus AB/BC و آماده‌سازی آزمون‌های SAT/ACT.',
     descriptionEn: 'The US education system is based on the K-12 framework. Specialized tutoring for US school math from Algebra 1 & 2 to AP Calculus AB/BC and SAT/ACT prep.',
     resources: [
-      { title: 'سایت رسمی College Board (آزمون‌های AP و SAT)', url: 'https://www.collegeboard.org' }
+      { title: 'سایت رسمی College Board (آزمون‌های AP و SAT)', url: 'https://www.collegeboard.org' },
+      { title: 'پلتفرم آموزش آنلاین Khan Academy', url: 'https://www.khanacademy.org' }
     ]
   },
   {
@@ -45,7 +47,8 @@ const EDUCATIONAL_DATA = [
     descriptionFa: 'نظام آموزشی بریتانیا شامل مراحل کلیدی (Key Stages)، مقطع GCSE و دوره A-Level (Edexcel, AQA) می‌باشد.',
     descriptionEn: 'The UK system is structured into Key Stages, GCSEs, and A-Levels (Edexcel, AQA, OCR).',
     resources: [
-      { title: 'پرتال Pearson Edexcel', url: 'https://qualifications.pearson.com' }
+      { title: 'پرتال Pearson Edexcel', url: 'https://qualifications.pearson.com' },
+      { title: 'سایت آموزشی Physics & Maths Tutor', url: 'https://www.physicsandmathstutor.com' }
     ]
   },
   {
@@ -56,10 +59,11 @@ const EDUCATIONAL_DATA = [
     titleFa: 'نظام آموزشی کانادا',
     titleEn: 'Canadian Educational System',
     link: 'https://t.me/International_Maths',
-    descriptionFa: 'نظام‌های استانی شامل اونتاریو (Ontario Curriculum) و بریتیش کلمبیا (BC Curriculum) از پایه ۹ تا ۱۲.',
+    descriptionFa: 'نظام‌های استانی شامل اونتاریو (Ontario Curriculum) و بریتیش کلمبیا (BC Curriculum) از پایه ۹ تا ۱۲ و درس Calculus & Vectors.',
     descriptionEn: 'Provincial Curricula (Ontario Grade 9-12, BC Curriculum) aligned with Canadian standards.',
     resources: [
-      { title: 'وزارت آموزش اونتاریو', url: 'https://www.ontario.ca/page/ministry-education' }
+      { title: 'وزارت آموزش اونتاریو', url: 'https://www.ontario.ca/page/ministry-education' },
+      { title: 'مرکز مسابقات ریاضی دانشگاه واترلو (CEMC)', url: 'https://www.cemc.uwaterloo.ca' }
     ]
   },
   {
@@ -88,6 +92,62 @@ const EDUCATIONAL_DATA = [
     descriptionEn: 'Aligned with Australian ATAR (VCE/HSC) courses: General, Methods, and Specialist Mathematics.',
     resources: [
       { title: 'برنامه درسی ملی استرالیا (ACARA)', url: 'https://www.australiancurriculum.edu.au' }
+    ]
+  },
+  {
+    id: 'france',
+    flag: '🇫🇷',
+    countryFa: 'فرانسه',
+    countryEn: 'France',
+    titleFa: 'نظام آموزشی فرانسه (Baccalauréat)',
+    titleEn: 'French Educational System',
+    link: 'https://t.me/International_Maths',
+    descriptionFa: 'آموزش ریاضیات مقطع دبیرستان فرانسه (Lycée) و آمادگی امتحانات نهایی دیپلم فرانسه (Bac Général - Spécialité Mathématiques).',
+    descriptionEn: 'Tutoring for Lycée mathematics and French Baccalaureate preparation.',
+    resources: [
+      { title: 'وزارت آموزش ملی فرانسه', url: 'https://www.education.gouv.fr' }
+    ]
+  },
+  {
+    id: 'sweden',
+    flag: '🇸🇪',
+    countryFa: 'سوئد',
+    countryEn: 'Sweden',
+    titleFa: 'نظام آموزشی سوئد (Gymnasieskola)',
+    titleEn: 'Swedish Educational System',
+    link: 'https://t.me/International_Maths',
+    descriptionFa: 'تدریس سطوح مختلف ریاضیات مدارس سوئد (Matematik 1c تا 5) متناسب با استانداردهای آموزشی اسکاندیناوی.',
+    descriptionEn: 'Specialized math tutoring for Swedish secondary school courses (Matematik 1c to 5).',
+    resources: [
+      { title: 'اداره ملی آموزش سوئد (Skolverket)', url: 'https://www.skolverket.se' }
+    ]
+  },
+  {
+    id: 'italy',
+    flag: '🇮🇹',
+    countryFa: 'ایتالیا',
+    countryEn: 'Italy',
+    titleFa: 'نظام آموزشی ایتالیا (Liceo Scientifico)',
+    titleEn: 'Italian Educational System',
+    link: 'https://t.me/International_Maths',
+    descriptionFa: 'تدریس ریاضیات دبیرستان‌های علمی ایتالیا و آمادگی آزمون‌های ورود به دانشگاه‌های ایتالیا (TOLC-I, TOLC-E).',
+    descriptionEn: 'Mathematics prep for Liceo Scientifico and university entrance exams (TOLC-I / TOLC-E).',
+    resources: [
+      { title: 'پرتال رسمی آزمون‌های TOLC (CISIA)', url: 'https://www.cisiaonline.it' }
+    ]
+  },
+  {
+    id: 'uae',
+    flag: '🇦🇪',
+    countryFa: 'امارات',
+    countryEn: 'UAE',
+    titleFa: 'نظام‌های بین‌المللی امارات (دبی / ابوظبی)',
+    titleEn: 'UAE International Schools',
+    link: 'https://t.me/International_Maths',
+    descriptionFa: 'تدریس ریاضیات مدارس بین‌المللی امارات تحت نظام‌های IB، آمریکایی (AP) و بریتانیایی (IGCSE/A-Level).',
+    descriptionEn: 'Math tutoring for international students in UAE enrolled in IB, British, and American curricula.',
+    resources: [
+      { title: 'سازمان دانش و توسعه انسانی دبی (KHDA)', url: 'https://www.khda.gov.ae' }
     ]
   }
 ];
@@ -141,8 +201,8 @@ export default function EducationalSystemsPage() {
           </p>
         </div>
 
-        {/* چیدمان دکمه‌های سه‌بعدی کشورها کنار هم (با اولویت ایران) */}
-        <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mb-8">
+        {/* چیدمان دکمه‌های سه‌بعدی همه کشورها کنار هم (ایران اول قرار دارد) */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 md:gap-3.5 mb-8">
           {EDUCATIONAL_DATA.map((item) => {
             const isSelected = selectedCountry.id === item.id;
             return (
@@ -151,14 +211,14 @@ export default function EducationalSystemsPage() {
                 type="button"
                 onClick={() => setSelectedCountry(item)}
                 className={`
-                  px-5 py-3 rounded-2xl font-black text-sm md:text-base flex items-center gap-2.5 transition-all duration-150 cursor-pointer select-none
+                  px-4 py-2.5 rounded-2xl font-black text-xs md:text-sm flex items-center gap-2 transition-all duration-150 cursor-pointer select-none
                   ${isSelected 
-                    ? 'bg-blue-600 text-white border-b-4 border-blue-900 shadow-[0_6px_0_#1e3a8a] translate-y-[-2px]' 
-                    : 'bg-white hover:bg-slate-100 text-slate-800 border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_5px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8]'
+                    ? 'bg-blue-600 text-white border-b-4 border-blue-900 shadow-[0_5px_0_#1e3a8a] translate-y-[-2px]' 
+                    : 'bg-white hover:bg-slate-100 text-slate-800 border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8]'
                   }
                 `}
               >
-                <span className="text-xl md:text-2xl leading-none">{item.flag}</span>
+                <span className="text-lg md:text-xl leading-none">{item.flag}</span>
                 <span>{isFa ? item.countryFa : item.countryEn}</span>
               </button>
             );
@@ -170,7 +230,7 @@ export default function EducationalSystemsPage() {
           <div className="bg-slate-900 text-white rounded-3xl p-6 md:p-8 border border-slate-700 shadow-2xl transition-all duration-300">
             
             {/* سربرگ کشور */}
-            <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4 mb-6">
               <div className="flex items-center gap-3">
                 <span className="text-4xl md:text-5xl">{selectedCountry.flag}</span>
                 <div>
@@ -188,7 +248,7 @@ export default function EducationalSystemsPage() {
                 href={selectedCountry.link} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl border-b-2 border-blue-800 active:translate-y-0.5 shadow-md transition whitespace-nowrap"
+                className="self-start sm:self-auto px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl border-b-2 border-blue-800 active:translate-y-0.5 shadow-md transition whitespace-nowrap"
               >
                 🔗 {isFa ? 'مشاهده در تلگرام' : 'View on Telegram'}
               </a>
