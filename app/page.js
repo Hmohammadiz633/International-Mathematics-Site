@@ -80,7 +80,7 @@ export default function Home() {
               </h1>
             </div>
 
-            <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300">
+            <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300 shadow-inner">
               <button 
                 type="button"
                 onClick={() => setLang('fa')} 
@@ -99,25 +99,26 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-2">
-            <div className="w-full flex items-center justify-center gap-2 md:gap-3 overflow-x-auto py-1 text-xs md:text-sm font-bold">
+          <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
+            {/* دکمه‌های سه‌بعدی بالای صفحه */}
+            <div className="w-full flex items-center justify-center gap-2 md:gap-3 overflow-x-auto py-2 text-xs md:text-sm font-bold">
               <Link 
                 href="/educational-systems" 
-                className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
+                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
               >
                 🌐 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
               </Link>
 
               <Link 
                 href="/books" 
-                className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-900 rounded-lg border border-blue-200 whitespace-nowrap transition flex items-center gap-1"
+                className="px-3.5 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl border-b-4 border-blue-800 hover:border-blue-700 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#1e40af] hover:shadow-[0_2px_0_#1d4ed8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
               >
                 📚 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
               </Link>
 
               <Link 
                 href="/math-sites" 
-                className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
+                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
               >
                 💻 {isFa ? 'سایت‌های ریاضی کشورها' : 'Math Websites'}
               </Link>
@@ -126,7 +127,7 @@ export default function Home() {
                 type="button"
                 aria-expanded={isFeedbackOpen}
                 onClick={() => setIsFeedbackOpen(!isFeedbackOpen)} 
-                className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition flex items-center gap-1"
+                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
               >
                 <span>💬 {isFa ? 'بازخورد کلاس‌ها' : 'Class Feedback'}</span>
                 <span className="text-[10px]">{isFeedbackOpen ? '▲' : '▼'}</span>
@@ -135,7 +136,7 @@ export default function Home() {
               <button 
                 type="button"
                 onClick={() => scrollToSection('contact')} 
-                className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black rounded-lg border border-gray-300 whitespace-nowrap transition"
+                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
               >
                 📞 {isFa ? 'ارتباط با استاد' : 'Contact'}
               </button>
@@ -143,14 +144,14 @@ export default function Home() {
 
             {/* منوی کشویی بازخورد کلاس‌ها */}
             {isFeedbackOpen && (
-              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-2.5 rounded-xl border border-gray-200 my-1 shadow-inner">
+              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-3 rounded-2xl border border-gray-200 my-1 shadow-inner">
                 {FEEDBACKS.map((item, idx) => (
                   <a 
                     key={idx} 
                     href={item.link} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-300 shadow-sm transition flex items-center gap-1.5"
+                    className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border-b-2 border-gray-300 hover:border-gray-400 active:translate-y-0.5 active:border-b-0 shadow-sm transition-all flex items-center gap-1.5"
                   >
                     <span>⭐</span>
                     <span>{isFa ? item.fa : item.en}</span>
@@ -169,7 +170,7 @@ export default function Home() {
         </h2>
         <p className="text-slate-700 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-medium">
           {isFa 
-            ? 'تدریس تخصصی و مفهومی ریاضیات نظام‌های آموزشی بین‌المللی (امریكا، كانادا، انگلیس، استرالیا، آلمان و Европа)' 
+            ? 'تدریس تخصصی و مفهومی ریاضیات نظام‌های آموزشی بین‌المللی (امریكا، كانادا، انگلیس، استرالیا، آلمان و اروپا)' 
             : 'Specialized math education for international curricula (USA, Canada, UK, Australia, Germany, Europe).'}
         </p>
       </section>
@@ -228,7 +229,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* سوابق تدریس - کوچک‌سازی ابعاد تصویر */}
+      {/* سوابق تدریس */}
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
           <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-4 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
@@ -242,7 +243,6 @@ export default function Home() {
           </p>
 
           <div className="flex justify-center">
-            {/* عرض قاب روی max-w-md و ارتفاع روی h-48 / h-64 تنظیم گردید */}
             <div className="w-full max-w-md rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
               <img 
                 src="/teaching1.JPG" 
