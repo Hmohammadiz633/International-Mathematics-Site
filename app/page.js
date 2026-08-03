@@ -111,7 +111,7 @@ export default function Home() {
 
               <Link 
                 href="/books" 
-                className="px-3.5 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl border-b-4 border-blue-800 hover:border-blue-700 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#1e40af] hover:shadow-[0_2px_0_#1d4ed8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
+                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
               >
                 📚 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
               </Link>
