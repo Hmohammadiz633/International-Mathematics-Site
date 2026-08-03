@@ -162,35 +162,38 @@ export default function BooksPage() {
         </p>
       </section>
 
-      <div className="max-w-4xl mx-auto px-4 mt-4">
-        <div className="flex justify-center gap-2 border-b border-gray-200 pb-2">
+      {/* دکمه‌های سه‌بعدی خاکستری با سایه و استایل شیک */}
+      <div className="max-w-2xl mx-auto px-4 mt-6 mb-8">
+        <div className="flex justify-center items-center gap-4">
           <button
             type="button"
             onClick={() => setActiveTab('taught')}
-            className={`px-4 py-2 text-xs md:text-sm font-bold rounded-lg transition ${
+            className={`px-6 py-3.5 rounded-2xl font-extrabold text-xs md:text-sm transition-all duration-200 cursor-pointer transform flex items-center justify-center gap-2 flex-1 text-center ${
               activeTab === 'taught'
-                ? 'bg-blue-600 text-white shadow-md'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-slate-700 text-white border-2 border-slate-800 border-b-8 border-b-slate-900 shadow-xl translate-y-1'
+                : 'bg-slate-100 text-slate-800 border-2 border-slate-300 border-b-8 border-b-slate-400 shadow-md hover:shadow-lg hover:-translate-y-0.5 hover:bg-slate-200 hover:border-b-slate-500'
             }`}
           >
-            📖 {isFa ? 'کتاب‌های تدریس شده کشورها' : 'Books Taught in Countries'}
+            <span className="text-base md:text-lg">📖</span>
+            <span>{isFa ? 'کتاب‌های تدریس شده کشورها' : 'Books Taught in Countries'}</span>
           </button>
 
           <button
             type="button"
             onClick={() => setActiveTab('summaries')}
-            className={`px-4 py-2 text-xs md:text-sm font-bold rounded-lg transition ${
+            className={`px-6 py-3.5 rounded-2xl font-extrabold text-xs md:text-sm transition-all duration-200 cursor-pointer transform flex items-center justify-center gap-2 flex-1 text-center ${
               activeTab === 'summaries'
-                ? 'bg-blue-600 text-white shadow-md'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-slate-700 text-white border-2 border-slate-800 border-b-8 border-b-slate-900 shadow-xl translate-y-1'
+                : 'bg-slate-100 text-slate-800 border-2 border-slate-300 border-b-8 border-b-slate-400 shadow-md hover:shadow-lg hover:-translate-y-0.5 hover:bg-slate-200 hover:border-b-slate-500'
             }`}
           >
-            📝 {isFa ? 'خلاصه فصل‌های کتاب' : 'Book Chapter Summaries'}
+            <span className="text-base md:text-lg">📝</span>
+            <span>{isFa ? 'خلاصه فصل‌های کتاب' : 'Book Chapter Summaries'}</span>
           </button>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 mt-6">
+      <div className="max-w-6xl mx-auto px-4">
         {activeTab === 'taught' && (
           <BooksSection lang={lang} />
         )}
