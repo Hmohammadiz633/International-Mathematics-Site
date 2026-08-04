@@ -123,7 +123,7 @@ const MATH_SITES_DATA = [
     countryFa: 'استرالیا',
     countryEn: 'Australia',
     preUniversity: [
-      { nameFa: 'مِثس آنلاین', nameEn: 'Maths Online', descFa: 'درسنامه و تمرین کامل سیستم آموزشی استرالیا', descEn: 'Comprehensive K-12 Australian curriculum lessons', url: 'https://www.mathsonline.com.au' },
+      { nameFa: 'مِثس آنلاین', nameEn: 'Maths Online', descFa: 'درسنامه و تمرین کامل سیستم آموزشی استرالیا', descEn: 'Comprehensive Australian curriculum lessons', url: 'https://www.mathsonline.com.au' },
       { nameFa: 'اچ‌اس‌سی مِثس', nameEn: 'HSC Maths by Topic', descFa: 'آموزش و نمونه سوالات طبقه بندی شده ریاضی HSC', descEn: 'Categorized HSC exam questions and study guides', url: 'https://hscmathsbytopic.firsteducation.com.au/' },
       { nameFa: 'امسی‌مَث', nameEn: 'AMSIMath', descFa: 'موسسه علوم ریاضی استرالیا برای مدارس', descEn: 'Australian Mathematical Sciences Institute school modules', url: 'https://calculate.amsi.org.au' },
       { nameFa: 'ادی وو مَث (ووتوب)', nameEn: 'Eddie Woo Math (Wootube)', descFa: 'ویدیوهای آموزشی استاد مشهور ریاضی استرالیا', descEn: 'Famous video explanations for high school math concepts', url: 'https://mreduardowoo.com' }
@@ -141,7 +141,7 @@ const MATH_SITES_DATA = [
     countryEn: 'Canada',
     preUniversity: [
       { nameFa: 'مرکز ریاضیات واترلو (CEMC)', nameEn: 'CEMC (Waterloo)', descFa: 'آموزش و نمونه سوالات المپیاد و ریاضی مدارس کانادا', descEn: 'Courseware & contests by Centre for Education in Math', url: 'https://www.cemc.uwaterloo.ca' },
-      { nameFa: 'تی‌وی‌او لرن (اونتاریو)', nameEn: 'TVO Learn', descFa: 'منابع رسمی آموزش ریاضی بر اساس استاندارد انتاریو', descEn: 'Official Ontario curriculum resources for K-12', url: 'https://tvolearn.com' },
+      { nameFa: 'تی‌وی‌او لرن (اونتاریو)', nameEn: 'TVO Learn', descFa: 'منابع رسمی آموزش ریاضی بر اساس استاندارد انتاریو', descEn: 'Official Ontario curriculum resources', url: 'https://tvolearn.com' },
       { nameFa: 'مِثیز', nameEn: 'Mathies', descFa: 'ابزارهای تعاملی آموزش ریاضیات مدارس', descEn: 'Interactive tools and games for learning math', url: 'https://mathies.ca' }
     ],
     university: [
@@ -179,7 +179,7 @@ const MATH_SITES_DATA = [
     university: [
       { nameFa: 'ان‌پی‌تی‌ئی‌ال مَث', nameEn: 'NPTEL Math', descFa: 'آموزش پایه دانشگاه و کنکور (موسسه ملی فناوری)', descEn: 'Basic university and entrance exam education (NPTEL)', url: 'https://nptel.ac.in' },
       { nameFa: 'ریاضی آی‌آی‌تی بمبئی', nameEn: 'IIT Bombay Math', descFa: 'برنامه‌های آکادمیک IIT بمبئی', descEn: 'Academic programs at IIT Bombay', url: 'https://www.math.iitb.ac.in' },
-      { nameFa: 'موسسه آمار کلکته (ISI)', nameEn: 'ISI Kolkata', descSent: 'موسسه آمار و ریاضیات پیشرفته هند', descEn: 'Indian Statistical Institute advanced math and stats', url: 'https://www.isical.ac.in' }
+      { nameFa: 'موسسه آمار کلکته (ISI)', nameEn: 'ISI Kolkata', descFa: 'موسسه آمار و ریاضیات پیشرفته هند', descEn: 'Indian Statistical Institute advanced math and stats', url: 'https://www.isical.ac.in' }
     ]
   }
 ];
@@ -274,7 +274,7 @@ export default function MathSitesPage() {
               {selectedCountry.preUniversity && selectedCountry.preUniversity.length > 0 && (
                 <div>
                   <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
-                    🏫 {isFa ? 'قبل دانشگاه (K-12)' : 'Pre-University & High School'}
+                    🏫 {isFa ? 'قبل دانشگاه' : 'Pre-University & High School'}
                   </h3>
                   <div className="flex flex-col gap-3">
                     {selectedCountry.preUniversity.map((site, idx) => (
