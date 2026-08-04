@@ -113,7 +113,7 @@ const MATH_SITES_DATA = [
     university: [
       { nameFa: 'ریاضی دانشگاه بوغازچی', nameEn: 'Boğaziçi University Math', descFa: 'اسلاید و جزوه به انگلیسی/ترکی', descEn: 'Lecture slides and notes in English/Turkish', url: 'https://math.boun.edu.tr' },
       { nameFa: 'ریاضی دانشگاه خاورمیانه (METU)', nameEn: 'METU Math Department', descFa: 'برنامه درسی و منابع پیشنهادی دانشگاه خاورمیانه', descEn: 'Syllabi and course material from METU', url: 'https://math.metu.edu.tr' },
-      { nameFa: 'ریاضی دانشگاه فنی استانبول (İTÜ)', nameEn: 'Istanbul Technical University Math', descFa: 'جزوات درسی ریاضی دانشگاه فنی استانبول', descEn: 'Academic math notes from ITU', url: 'https://www.math.itu.edu.tr' },
+      { nameFa: 'ریاضی دانشگاه فنی استانبول (İTÜ)', nameEn: 'Istanbul Technical University Math', descFa: 'جزوات درسی ریاضی دانشگاه فنی استانبول', descEn: 'Academic math notes from ITU', url: 'https://math.itu.edu.tr' },
       { nameFa: 'دانشگاه سابانجی', nameEn: 'Sabancı University', descFa: 'دوره‌های آنلاین آزاد و برنامه‌های آکادمیک', descEn: 'Open online courses and university math programs', url: 'https://www.sabanciuniv.edu' }
     ]
   },
@@ -189,6 +189,7 @@ export default function MathSitesPage() {
   const [selectedCountry, setSelectedCountry] = useState(MATH_SITES_DATA[0]);
 
   const isFa = lang === 'fa';
+  const isIran = selectedCountry.id === 'iran';
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans p-4 md:p-8 antialiased">
@@ -285,12 +286,12 @@ export default function MathSitesPage() {
                         className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm"
                       >
                         <div>
-                          {/* نام سایت همیشه انگلیسی است */}
-                          <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base dir-ltr text-left">
-                            {site.nameEn}
+                          {/* برای ایران نام فارسی/انگلیسی بر اساس زبان صفحه، برای بقیه کشورها همیشه نام انگلیسی از چپ به راست */}
+                          <div className={`font-bold text-slate-900 group-hover:underline text-sm md:text-base ${isIran ? '' : 'dir-ltr text-left'}`}>
+                            {isIran ? (isFa ? site.nameFa : site.nameEn) : site.nameEn}
                           </div>
-                          {/* توضیحات همچنان فارسی/انگلیسی است */}
-                          <div className="text-xs text-slate-600 mt-1">
+                          {/* توضیحات همچنان فارسی/انگلیسی از راست به چپ */}
+                          <div className="text-xs text-slate-600 mt-1 dir-rtl text-right">
                             {isFa ? site.descFa : site.descEn}
                           </div>
                         </div>
@@ -317,12 +318,12 @@ export default function MathSitesPage() {
                         className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm"
                       >
                         <div>
-                          {/* نام سایت همیشه انگلیسی است */}
-                          <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base dir-ltr text-left">
-                            {site.nameEn}
+                          {/* برای ایران نام فارسی/انگلیسی بر اساس زبان صفحه، برای بقیه کشورها همیشه نام انگلیسی از چپ به راست */}
+                          <div className={`font-bold text-slate-900 group-hover:underline text-sm md:text-base ${isIran ? '' : 'dir-ltr text-left'}`}>
+                            {isIran ? (isFa ? site.nameFa : site.nameEn) : site.nameEn}
                           </div>
-                          {/* توضیحات همچنان فارسی/انگلیسی است */}
-                          <div className="text-xs text-slate-600 mt-1">
+                          {/* توضیحات همچنان فارسی/انگلیسی از راست به چپ */}
+                          <div className="text-xs text-slate-600 mt-1 dir-rtl text-right">
                             {isFa ? site.descFa : site.descEn}
                           </div>
                         </div>
