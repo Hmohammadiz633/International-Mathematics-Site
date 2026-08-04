@@ -179,7 +179,7 @@ const MATH_SITES_DATA = [
     university: [
       { nameFa: 'ان‌پی‌تی‌ئی‌ال مَث', nameEn: 'NPTEL Math', descFa: 'آموزش پایه دانشگاه و کنکور (موسسه ملی فناوری)', descEn: 'Basic university and entrance exam education (NPTEL)', url: 'https://nptel.ac.in' },
       { nameFa: 'ریاضی آی‌آی‌تی بمبئی', nameEn: 'IIT Bombay Math', descFa: 'برنامه‌های آکادمیک IIT بمبئی', descEn: 'Academic programs at IIT Bombay', url: 'https://www.math.iitb.ac.in' },
-      { nameFa: 'موسسه آمار کلکته (ISI)', nameEn: 'ISI Kolkata', descFa: 'موسسه آمار و ریاضیات پیشرفته هند', descEn: 'Indian Statistical Institute advanced math and stats', url: 'https://www.isical.ac.in' }
+      { nameFa: 'موسسه آمار کلکته (ISI)', nameEn: 'ISI Kolkata', descSent: 'موسسه آمار و ریاضیات پیشرفته هند', descEn: 'Indian Statistical Institute advanced math and stats', url: 'https://www.isical.ac.in' }
     ]
   }
 ];
@@ -286,12 +286,12 @@ export default function MathSitesPage() {
                         className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm"
                       >
                         <div>
-                          {/* برای ایران نام فارسی/انگلیسی بر اساس زبان صفحه، برای بقیه کشورها همیشه نام انگلیسی از چپ به راست */}
-                          <div className={`font-bold text-slate-900 group-hover:underline text-sm md:text-base ${isIran ? '' : 'dir-ltr text-left'}`}>
+                          {/* نام سایت: برای ایران بسته به زبان، برای بقیه کشورها همیشه انگلیسی از راست به چپ */}
+                          <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base text-right" style={{ direction: isIran && isFa ? 'rtl' : 'ltr', unicodeBidi: 'embed' }}>
                             {isIran ? (isFa ? site.nameFa : site.nameEn) : site.nameEn}
                           </div>
-                          {/* توضیحات همچنان فارسی/انگلیسی از راست به چپ */}
-                          <div className="text-xs text-slate-600 mt-1 dir-rtl text-right">
+                          {/* توضیحات: فارسی از راست به چپ */}
+                          <div className="text-xs text-slate-600 mt-1 text-right" style={{ direction: 'rtl' }}>
                             {isFa ? site.descFa : site.descEn}
                           </div>
                         </div>
@@ -318,12 +318,12 @@ export default function MathSitesPage() {
                         className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm"
                       >
                         <div>
-                          {/* برای ایران نام فارسی/انگلیسی بر اساس زبان صفحه، برای بقیه کشورها همیشه نام انگلیسی از چپ به راست */}
-                          <div className={`font-bold text-slate-900 group-hover:underline text-sm md:text-base ${isIran ? '' : 'dir-ltr text-left'}`}>
+                          {/* نام سایت: برای ایران بسته به زبان، برای بقیه کشورها همیشه انگلیسی از راست به چپ */}
+                          <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base text-right" style={{ direction: isIran && isFa ? 'rtl' : 'ltr', unicodeBidi: 'embed' }}>
                             {isIran ? (isFa ? site.nameFa : site.nameEn) : site.nameEn}
                           </div>
-                          {/* توضیحات همچنان فارسی/انگلیسی از راست به چپ */}
-                          <div className="text-xs text-slate-600 mt-1 dir-rtl text-right">
+                          {/* توضیحات: فارسی از راست به چپ */}
+                          <div className="text-xs text-slate-600 mt-1 text-right" style={{ direction: 'rtl' }}>
                             {isFa ? site.descFa : site.descEn}
                           </div>
                         </div>
