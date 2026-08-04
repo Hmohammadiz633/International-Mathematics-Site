@@ -1,34 +1,18 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
-  const [lang, setLang] = useState('fa');
+  const [language, setLanguage] = useState('fa'); // پیش‌فرض فارسی
 
-  // دریافت زبان ذخیره‌شده از مرورگر
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedLang = localStorage.getItem('site_lang');
-      if (savedLang) {
-        setLang(savedLang);
-      }
-    }
-  }, []);
-
-  // تغییر زبان و ذخیره آن در مرورگر
-  const changeLanguage = (newLang) => {
-    setLang(newLang);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('site_lang', newLang);
-    }
+  const toggleLanguage = () => {
+    setLanguage((prev) => (prev === 'fa' ? 'en' : 'fa'));
   };
 
-  const isFa = lang === 'fa';
-
   return (
-    <LanguageContext.Provider value={{ lang, changeLanguage, isFa }}>
+    <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage }}>
       {children}
     </LanguageContext.Provider>
   );
