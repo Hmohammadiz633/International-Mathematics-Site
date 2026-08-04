@@ -141,12 +141,15 @@ const MATH_SITES_DATA = [
     countryEn: 'Canada',
     preUniversity: [
       { nameFa: 'مرکز ریاضیات واترلو (CEMC)', nameEn: 'CEMC (Waterloo)', descFa: 'آموزش و نمونه سوالات المپیاد و ریاضی مدارس کانادا', descEn: 'Courseware & contests by Centre for Education in Math', url: 'https://www.cemc.uwaterloo.ca' },
+      { nameFa: 'تی‌وی‌او ماسیفای', nameEn: 'TVO Mathify', descFa: 'پشتیبانی و آموزش آنلاین ریاضی بر اساس استاندارد انتاریو', descEn: 'Online math tutoring and resources based on Ontario curriculum', url: 'https://www.tvomathify.com' },
+      { nameFa: 'سی‌کی-۱۲ فاندیشن', nameEn: 'CK-12 Foundation', descFa: 'کتب درسی و منابع تعاملی رایگان ریاضی', descEn: 'Free online textbooks and interactive math resources', url: 'https://www.ck12.org' },
       { nameFa: 'تی‌وی‌او لرن (اونتاریو)', nameEn: 'TVO Learn', descFa: 'منابع رسمی آموزش ریاضی بر اساس استاندارد انتاریو', descEn: 'Official Ontario curriculum resources', url: 'https://tvolearn.com' },
       { nameFa: 'مِثیز', nameEn: 'Mathies', descFa: 'ابزارهای تعاملی آموزش ریاضیات مدارس', descEn: 'Interactive tools and games for learning math', url: 'https://mathies.ca' }
     ],
     university: [
       { nameFa: 'ریاضی دانشگاه تورنتو', nameEn: 'U of T Mathematics', descFa: 'منابع و جزوات آموزشی دانشگاه تورنتو', descEn: 'Course information and math resources', url: 'https://www.math.toronto.edu' },
-      { nameFa: 'ریاضی دانشگاه بریتیش کلمبیا (UBC)', nameEn: 'UBC Math Department', descFa: 'صفحه اساتید و جزوات ریاضی بریتیش کلمبیا', descEn: 'Calculus and math course portals at UBC', url: 'https://www.math.ubc.ca' }
+      { nameFa: 'ریاضی دانشگاه بریتیش کلمبیا (UBC)', nameEn: 'UBC Math Department', descFa: 'صفحه اساتید و جزوات ریاضی بریتیش کلمبیا', descEn: 'Calculus and math course portals at UBC', url: 'https://www.math.ubc.ca' },
+      { nameFa: 'موسسه پریمیتر (منابع نظری)', nameEn: 'Perimeter Institute', descFa: 'فیزیک نظری و ریاضیات پیشرفته', descEn: 'Theoretical physics and advanced mathematics resources', url: 'https://perimeterinstitute.ca' }
     ]
   },
   {
