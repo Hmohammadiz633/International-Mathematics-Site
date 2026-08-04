@@ -286,8 +286,15 @@ export default function MathSitesPage() {
                         className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm"
                       >
                         <div>
-                          {/* نام سایت: برای ایران بسته به زبان، برای بقیه کشورها همیشه انگلیسی از راست به چپ */}
-                          <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base text-right" style={{ direction: isIran && isFa ? 'rtl' : 'ltr', unicodeBidi: 'embed' }}>
+                          {/* نام سایت: چیدمان و تراز چپ به راست برای نام انگلیسی و راست به چین برای فارسی ایران */}
+                          <div 
+                            className="font-bold text-slate-900 group-hover:underline text-sm md:text-base" 
+                            style={{ 
+                              direction: isIran && isFa ? 'rtl' : 'ltr', 
+                              textAlign: isIran && isFa ? 'right' : 'left',
+                              unicodeBidi: 'embed' 
+                            }}
+                          >
                             {isIran ? (isFa ? site.nameFa : site.nameEn) : site.nameEn}
                           </div>
                           {/* توضیحات: فارسی از راست به چپ */}
@@ -318,8 +325,15 @@ export default function MathSitesPage() {
                         className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm"
                       >
                         <div>
-                          {/* نام سایت: برای ایران بسته به زبان، برای بقیه کشورها همیشه انگلیسی از راست به چپ */}
-                          <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base text-right" style={{ direction: isIran && isFa ? 'rtl' : 'ltr', unicodeBidi: 'embed' }}>
+                          {/* نام سایت: چیدمان و تراز چپ به راست برای نام انگلیسی و راست به چین برای فارسی ایران */}
+                          <div 
+                            className="font-bold text-slate-900 group-hover:underline text-sm md:text-base" 
+                            style={{ 
+                              direction: isIran && isFa ? 'rtl' : 'ltr', 
+                              textAlign: isIran && isFa ? 'right' : 'left',
+                              unicodeBidi: 'embed' 
+                            }}
+                          >
                             {isIran ? (isFa ? site.nameFa : site.nameEn) : site.nameEn}
                           </div>
                           {/* توضیحات: فارسی از راست به چپ */}
