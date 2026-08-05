@@ -173,45 +173,45 @@ export default function Home() {
           </div>
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
-            {/* دکمه‌های سه‌بعدی بالای صفحه */}
-            <div className="w-full flex items-center justify-center gap-2 md:gap-3 overflow-x-auto py-2 text-xs md:text-sm font-bold">
+            {/* دکمه‌های ساده بالای صفحه (بدون حالت سه بعدی، کادر، آیکون و سایه) */}
+            <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
               <Link 
                 href="/educational-systems" 
-                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
+                className="hover:text-blue-600 whitespace-nowrap transition-colors"
               >
-                🌐 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
+                {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
               </Link>
 
               <Link 
                 href="/books" 
-                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
+                className="hover:text-blue-600 whitespace-nowrap transition-colors"
               >
-                📚 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
+                {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
               </Link>
 
               <Link 
                 href="/math-sites" 
-                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
+                className="hover:text-blue-600 whitespace-nowrap transition-colors"
               >
-                💻 {isFa ? 'سایت‌های ریاضی کشورها' : 'Math Websites'}
+                {isFa ? 'سایت‌های ریاضی کشورها' : 'Math Websites'}
               </Link>
 
               <button 
                 type="button"
                 aria-expanded={isFeedbackOpen}
                 onClick={() => setIsFeedbackOpen(!isFeedbackOpen)} 
-                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
+                className="hover:text-blue-600 whitespace-nowrap transition-colors flex items-center gap-1"
               >
-                <span>💬 {isFa ? 'بازخورد کلاس‌ها' : 'Class Feedback'}</span>
+                <span>{isFa ? 'بازخورد کلاس‌ها' : 'Class Feedback'}</span>
                 <span className="text-[10px]">{isFeedbackOpen ? '▲' : '▼'}</span>
               </button>
 
               <button 
                 type="button"
                 onClick={() => scrollToSection('contact')} 
-                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border-b-4 border-slate-300 hover:border-slate-400 active:border-b-0 active:translate-y-1 shadow-[0_4px_0_#cbd5e1] hover:shadow-[0_2px_0_#94a3b8] active:shadow-none whitespace-nowrap transition-all duration-150 flex items-center gap-1.5"
+                className="hover:text-blue-600 whitespace-nowrap transition-colors"
               >
-                📞 {isFa ? 'ارتباط با استاد' : 'Contact'}
+                {isFa ? 'ارتباط با استاد' : 'Contact'}
               </button>
             </div>
 
@@ -224,7 +224,7 @@ export default function Home() {
                     href={item.link} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border-b-2 border-gray-300 hover:border-gray-400 active:translate-y-0.5 active:border-b-0 shadow-sm transition-all flex items-center gap-1.5"
+                    className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-200 shadow-sm transition-all flex items-center gap-1.5"
                   >
                     <span>⭐</span>
                     <span>{isFa ? item.fa : item.en}</span>
@@ -311,7 +311,7 @@ export default function Home() {
           </h4>
           <p className="text-slate-700 leading-relaxed text-sm md:text-base font-normal mb-6">
             {isFa 
-              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲، معادلات دیفرانسیل، محاسبات عددی، آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران و همچنین تدریس در دبیرستان‌های برتر تهران'
+              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲، معادلات دیفرانسیل، محاسبات عددی، آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران و همچنین تدریس در دبیرستان‌های برتر تهران' 
               : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran, as well as teaching in top high schools in Tehran.'}
           </p>
 
