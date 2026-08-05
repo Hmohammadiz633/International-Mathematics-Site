@@ -192,15 +192,15 @@ export default function EducationalSystemsPage() {
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
             <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
-              <Link href="/educational-systems" className="hover:text-blue-600 whitespace-nowrap transition-colors">
-                {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
-              </Link>
-              {/* دکمه خانه بدون آیکون، منتقل شده به سمت راست دکمه نظام آموزشی دانشگاه‌ها / کشورها */}
+              {/* دکمه خانه اولین گزینه از سمت راست */}
               <Link 
                 href="/" 
                 className="hover:text-blue-600 whitespace-nowrap transition-colors"
               >
                 {isFa ? 'خانه' : 'Home'}
+              </Link>
+              <Link href="/educational-systems" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+                {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
               </Link>
               <Link href="/books" className="hover:text-blue-600 whitespace-nowrap transition-colors">
                 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
@@ -232,7 +232,6 @@ export default function EducationalSystemsPage() {
       </header>
 
       <div className="max-w-4xl mx-auto px-4 pt-8">
-        {/* عنوان بخش */}
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
             🌐 {isFa ? 'نظام‌های آموزشی ریاضی کشورها' : 'International Educational Systems'}
@@ -242,7 +241,6 @@ export default function EducationalSystemsPage() {
           </p>
         </div>
 
-        {/* چیدمان دکمه‌های تخت (Flat) کشورها */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 md:gap-3 mb-8">
           {EDUCATIONAL_DATA.map((item) => {
             const isSelected = selectedCountry.id === item.id;
@@ -266,11 +264,8 @@ export default function EducationalSystemsPage() {
           })}
         </div>
 
-        {/* کارت خاکستری رنگ نمایش اطلاعات کشور انتخاب‌شده */}
         {selectedCountry && (
           <div className="bg-slate-100 text-slate-800 rounded-3xl p-6 md:p-8 border border-slate-300 shadow-sm transition-all duration-300">
-            
-            {/* سربرگ کشور */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-300 pb-4 mb-6">
               <div className="flex items-center gap-3">
                 <span className="text-4xl md:text-5xl">{selectedCountry.flag}</span>
@@ -284,7 +279,6 @@ export default function EducationalSystemsPage() {
                 </div>
               </div>
 
-              {/* لینک اصلی کانال/منبع */}
               <a 
                 href={selectedCountry.link} 
                 target="_blank" 
@@ -295,12 +289,10 @@ export default function EducationalSystemsPage() {
               </a>
             </div>
 
-            {/* توضیحات کامل */}
             <p className="text-slate-700 text-sm md:text-base leading-relaxed mb-6 font-normal text-justify">
               {isFa ? selectedCountry.descriptionFa : selectedCountry.descriptionEn}
             </p>
 
-            {/* بخش لینک‌های مفید و منابع رسمی */}
             {selectedCountry.resources && selectedCountry.resources.length > 0 && (
               <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
                 <h3 className="font-bold text-sm text-slate-900 mb-3 flex items-center gap-2">
@@ -322,10 +314,8 @@ export default function EducationalSystemsPage() {
                 </div>
               </div>
             )}
-
           </div>
         )}
-
       </div>
     </main>
   );
