@@ -4,10 +4,17 @@ import { useState } from 'react';
 import Link from 'next/link';
 import BooksSection from '@/components/BooksSection';
 
+const FEEDBACKS = [
+  { fa: 'بازخورد ۱', en: 'Feedback 1', link: 'https://t.me/International_Maths/110' },
+  { fa: 'بازخورد ۲', en: 'Feedback 2', link: 'https://t.me/International_Maths/111' },
+  { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
+];
+
 export default function BooksPage() {
   const [lang, setLang] = useState('fa');
   const [activeTab, setActiveTab] = useState('taught');
   const [selectedGrade, setSelectedGrade] = useState(7);
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
 
   const isFa = lang === 'fa';
 
@@ -124,31 +131,57 @@ export default function BooksPage() {
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-white text-black pb-12">
-      <header className="sticky top-0 z-50 bg-white border-b border-gray-200 px-4 py-3 shadow-sm">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Link 
-            href="/" 
-            className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-black text-xs font-bold rounded-lg border border-gray-300 transition"
-          >
-            <span>{isFa ? '← بازگشت به صفحه اصلی' : '← Back to Home'}</span>
-          </Link>
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 py-3 shadow-sm">
+        <div className="max-w-6xl mx-auto flex flex-col items-center gap-3">
+          <div className="w-full flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl flex items-center justify-center p-1.5 shadow-sm">
+                <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M2 3h20v14H2z" /><path d="M8 21l4-4 4 4" /><path d="M7 8h4" /><path d="M7 12h2" /><path d="M15 11l2 2 4-4" />
+                </svg>
+              </div>
+              <h1 className="font-black text-base md:text-xl text-slate-800 tracking-tight leading-snug">
+                {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Math'}
+              </h1>
+            </div>
 
-          <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300">
-            <button 
-              type="button"
-              onClick={() => setLang('fa')} 
-              className={`text-xs font-bold transition ${isFa ? 'text-black underline' : 'text-gray-500 hover:text-black'}`}
-            >
-              فارسی
-            </button>
-            <span className="text-gray-400 font-light">|</span>
-            <button 
-              type="button"
-              onClick={() => setLang('en')} 
-              className={`text-xs font-bold transition ${!isFa ? 'text-black underline' : 'text-gray-500 hover:text-black'}`}
-            >
-              English
-            </button>
+            <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300 shadow-inner">
+              <button type="button" onClick={() => setLang('fa')} className={`text-xs font-bold transition ${isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>فارسی</button>
+              <span className="text-gray-400 font-light">|</span>
+              <button type="button" onClick={() => setLang('en')} className={`text-xs font-bold transition ${!isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>English</button>
+            </div>
+          </div>
+
+          <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
+            <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
+              <Link href="/educational-systems" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+                {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
+              </Link>
+              <Link href="/books" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+                {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
+              </Link>
+              <Link href="/math-sites" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+                {isFa ? 'سایت‌های ریاضی کشورها' : 'Math Websites'}
+              </Link>
+              <button type="button" aria-expanded={isFeedbackOpen} onClick={() => setIsFeedbackOpen(!isFeedbackOpen)} className="hover:text-blue-600 whitespace-nowrap transition-colors flex items-center gap-1">
+                <span>{isFa ? 'بازخورد کلاس‌ها' : 'Class Feedback'}</span>
+                <span className="text-[10px]">{isFeedbackOpen ? '▲' : '▼'}</span>
+              </button>
+              <Link href="/#contact" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+                {isFa ? 'ارتباط با استاد' : 'Contact'}
+              </Link>
+            </div>
+
+            {isFeedbackOpen && (
+              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-3 rounded-2xl border border-gray-200 my-1 shadow-inner">
+                {FEEDBACKS.map((item, idx) => (
+                  <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-200 shadow-sm transition-all flex items-center gap-1.5">
+                    <span>⭐</span>
+                    <span>{isFa ? item.fa : item.en}</span>
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </header>
