@@ -146,7 +146,6 @@ export default function BooksPage() {
             </div>
 
             <div className="flex items-center gap-3">
-              {/* تغییر زبان */}
               <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300 shadow-inner">
                 <button type="button" onClick={() => setLang('fa')} className={`text-xs font-bold transition ${isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>فارسی</button>
                 <span className="text-gray-400 font-light">|</span>
@@ -157,15 +156,15 @@ export default function BooksPage() {
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
             <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
-              <Link href="/educational-systems" className="hover:text-blue-600 whitespace-nowrap transition-colors">
-                {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
-              </Link>
-              {/* دکمه خانه منتقل شده به سمت راست دکمه نظام آموزشی دانشگاه‌ها (نظام آموزشی کشورها) */}
+              {/* دکمه خانه اولین گزینه از سمت راست قرار گرفت */}
               <Link 
                 href="/" 
                 className="hover:text-blue-600 whitespace-nowrap transition-colors flex items-center gap-1.5"
               >
                 <span>{isFa ? 'خانه' : 'Home'}</span>
+              </Link>
+              <Link href="/educational-systems" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+                {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
               </Link>
               <Link href="/books" className="hover:text-blue-600 whitespace-nowrap transition-colors">
                 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
@@ -205,7 +204,6 @@ export default function BooksPage() {
         </p>
       </section>
 
-      {/* تب‌های اصلی سه‌بعدی */}
       <div className="max-w-2xl mx-auto px-4 mt-6 mb-8">
         <div className="flex justify-center items-center gap-4">
           <button
@@ -243,7 +241,6 @@ export default function BooksPage() {
 
         {activeTab === 'summaries' && (
           <div className="space-y-8">
-            {/* دکمه‌های پایه‌ها با استایل سه‌بعدی */}
             <div className="flex flex-wrap justify-center gap-3 md:gap-4 bg-gray-50 p-6 rounded-3xl border border-gray-200 shadow-inner">
               {grades.map((grade) => {
                 const isSelected = selectedGrade === grade.id;
