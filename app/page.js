@@ -175,22 +175,21 @@ export default function Home() {
           </div>
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
-            {/* دکمه‌های بالا شامل نظام آموزشی و خانه بدون آیکون در سمت راست نظام آموزشی */}
+            {/* ترتیب دکمه‌ها: خانه، نظام آموزشی، کتب و منابع آموزشی و بقیه */}
             <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
               
-              <Link 
-                href="/educational-systems" 
-                className="hover:text-blue-600 whitespace-nowrap transition-colors"
-              >
-                {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
-              </Link>
-
-              {/* دکمه خانه بدون آیکون، دقیقاً سمت راست نظام آموزشی */}
               <Link 
                 href="/" 
                 className="hover:text-blue-600 whitespace-nowrap transition-colors"
               >
                 {isFa ? 'خانه' : 'Home'}
+              </Link>
+
+              <Link 
+                href="/educational-systems" 
+                className="hover:text-blue-600 whitespace-nowrap transition-colors"
+              >
+                {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
               </Link>
 
               <Link 
