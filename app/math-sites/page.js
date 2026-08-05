@@ -3,6 +3,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
+const FEEDBACKS = [
+  { fa: 'بازخورد ۱', en: 'Feedback 1', link: 'https://t.me/International_Maths/110' },
+  { fa: 'بازخورد ۲', en: 'Feedback 2', link: 'https://t.me/International_Maths/111' },
+  { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
+];
+
 // داده‌های جامع سایت‌های ریاضی کشورها با پشتیبانی کامل از متن فارسی و انگلیسی
 const MATH_SITES_DATA = [
   {
@@ -190,42 +196,69 @@ const MATH_SITES_DATA = [
 export default function MathSitesPage() {
   const [lang, setLang] = useState('fa');
   const [selectedCountry, setSelectedCountry] = useState(MATH_SITES_DATA[0]);
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
 
   const isFa = lang === 'fa';
   const isIran = selectedCountry.id === 'iran';
 
   return (
-    <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans p-4 md:p-8 antialiased">
-      <div className="max-w-5xl mx-auto">
-        
-        {/* هدر */}
-        <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
-          <Link 
-            href="/" 
-            className="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs md:text-sm font-semibold rounded-xl transition"
-          >
-            {isFa ? '🏠 بازگشت به صفحه اصلی' : '🏠 Back to Home'}
-          </Link>
+    <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 py-3 shadow-sm">
+        <div className="max-w-6xl mx-auto flex flex-col items-center gap-3">
+          <div className="w-full flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl flex items-center justify-center p-1.5 shadow-sm">
+                <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M2 3h20v14H2z" /><path d="M8 21l4-4 4 4" /><path d="M7 8h4" /><path d="M7 12h2" /><path d="M15 11l2 2 4-4" />
+                </svg>
+              </div>
+              <h1 className="font-black text-base md:text-xl text-slate-800 tracking-tight leading-snug">
+                {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Math'}
+              </h1>
+            </div>
 
-          <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-gray-200 shadow-sm">
-            <button 
-              type="button"
-              onClick={() => setLang('fa')} 
-              className={`text-xs font-bold transition ${isFa ? 'text-slate-900 underline font-black' : 'text-gray-400 hover:text-black'}`}
-            >
-              فارسی
-            </button>
-            <span className="text-gray-300 font-light">|</span>
-            <button 
-              type="button"
-              onClick={() => setLang('en')} 
-              className={`text-xs font-bold transition ${!isFa ? 'text-slate-900 underline font-black' : 'text-gray-400 hover:text-black'}`}
-            >
-              English
-            </button>
+            <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300 shadow-inner">
+              <button type="button" onClick={() => setLang('fa')} className={`text-xs font-bold transition ${isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>فارسی</button>
+              <span className="text-gray-400 font-light">|</span>
+              <button type="button" onClick={() => setLang('en')} className={`text-xs font-bold transition ${!isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>English</button>
+            </div>
+          </div>
+
+          <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
+            <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
+              <Link href="/educational-systems" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+                {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
+              </Link>
+              <Link href="/books" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+                {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
+              </Link>
+              <Link href="/math-sites" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+                {isFa ? 'سایت‌های ریاضی کشورها' : 'Math Websites'}
+              </Link>
+              <button type="button" aria-expanded={isFeedbackOpen} onClick={() => setIsFeedbackOpen(!isFeedbackOpen)} className="hover:text-blue-600 whitespace-nowrap transition-colors flex items-center gap-1">
+                <span>{isFa ? 'بازخورد کلاس‌ها' : 'Class Feedback'}</span>
+                <span className="text-[10px]">{isFeedbackOpen ? '▲' : '▼'}</span>
+              </button>
+              <Link href="/#contact" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+                {isFa ? 'ارتباط با استاد' : 'Contact'}
+              </Link>
+            </div>
+
+            {isFeedbackOpen && (
+              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-3 rounded-2xl border border-gray-200 my-1 shadow-inner">
+                {FEEDBACKS.map((item, idx) => (
+                  <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-200 shadow-sm transition-all flex items-center gap-1.5">
+                    <span>⭐</span>
+                    <span>{isFa ? item.fa : item.en}</span>
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </div>
+      </header>
 
+      <div className="max-w-5xl mx-auto px-4 pt-8">
         {/* عنوان */}
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
@@ -289,11 +322,9 @@ export default function MathSitesPage() {
                         className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm"
                       >
                         <div className="flex flex-col w-full text-right" style={{ direction: 'rtl', textAlign: 'right' }}>
-                          {/* نام سایت: راست‌چین کامل در فارسی و انگلیسی */}
                           <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base">
                             {isIran ? (isFa ? site.nameFa : site.nameEn) : site.nameEn}
                           </div>
-                          {/* توضیحات: راست‌چین و زیر نام سایت */}
                           <div className="text-xs text-slate-600 mt-1">
                             {isFa ? site.descFa : site.descEn}
                           </div>
@@ -321,11 +352,9 @@ export default function MathSitesPage() {
                         className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm"
                       >
                         <div className="flex flex-col w-full text-right" style={{ direction: 'rtl', textAlign: 'right' }}>
-                          {/* نام سایت: راست‌چین کامل در فارسی و انگلیسی */}
                           <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base">
                             {isIran ? (isFa ? site.nameFa : site.nameEn) : site.nameEn}
                           </div>
-                          {/* توضیحات: راست‌چین و زیر نام سایت */}
                           <div className="text-xs text-slate-600 mt-1">
                             {isFa ? site.descFa : site.descEn}
                           </div>
