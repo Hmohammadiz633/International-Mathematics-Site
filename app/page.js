@@ -175,16 +175,15 @@ export default function Home() {
           </div>
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
-            {/* دکمه‌های بالا شامل دکمه خانه کنار نظام آموزشی */}
+            {/* دکمه‌های بالا شامل دکمه خانه بدون آیکون کنار نظام آموزشی */}
             <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
               
-              {/* دکمه خانه */}
+              {/* دکمه خانه بدون آیکون */}
               <Link 
                 href="/" 
-                className="hover:text-blue-600 whitespace-nowrap transition-colors flex items-center gap-1"
+                className="hover:text-blue-600 whitespace-nowrap transition-colors"
               >
-                <span>🏠</span>
-                <span>{isFa ? 'خانه' : 'Home'}</span>
+                {isFa ? 'خانه' : 'Home'}
               </Link>
 
               <Link 
