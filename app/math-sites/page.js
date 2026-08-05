@@ -226,11 +226,11 @@ export default function MathSitesPage() {
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
             <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
-              <Link href="/educational-systems" className="hover:text-blue-600 whitespace-nowrap transition-colors">
-                {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
-              </Link>
               <Link href="/" className="hover:text-blue-600 whitespace-nowrap transition-colors">
                 {isFa ? 'خانه' : 'Home'}
+              </Link>
+              <Link href="/educational-systems" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+                {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
               </Link>
               <Link href="/books" className="hover:text-blue-600 whitespace-nowrap transition-colors">
                 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
@@ -262,7 +262,6 @@ export default function MathSitesPage() {
       </header>
 
       <div className="max-w-5xl mx-auto px-4 pt-8">
-        {/* عنوان */}
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
             💻 {isFa ? 'سایت‌های آموزشی ریاضی کشورها' : 'Math Educational Websites'}
@@ -272,7 +271,6 @@ export default function MathSitesPage() {
           </p>
         </div>
 
-        {/* دکمه‌های کشورها */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 mb-8">
           {MATH_SITES_DATA.map((item) => {
             const isSelected = selectedCountry.id === item.id;
@@ -296,7 +294,6 @@ export default function MathSitesPage() {
           })}
         </div>
 
-        {/* کادر اطلاعات کشور انتخاب شده */}
         {selectedCountry && (
           <div className="bg-slate-100 rounded-3xl p-6 md:p-8 border border-slate-300 shadow-sm transition-all duration-300">
             
@@ -309,7 +306,6 @@ export default function MathSitesPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               
-              {/* بخش قبل دانشگاه */}
               {selectedCountry.preUniversity && selectedCountry.preUniversity.length > 0 && (
                 <div>
                   <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
@@ -339,7 +335,6 @@ export default function MathSitesPage() {
                 </div>
               )}
 
-              {/* بخش دانشگاهی */}
               {selectedCountry.university && selectedCountry.university.length > 0 && (
                 <div>
                   <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
