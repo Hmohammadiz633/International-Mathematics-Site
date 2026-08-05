@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = 'https://your-domain.com'; // دامنه واقعی خود را جایگزین کنید
+  const baseUrl = 'https://internationalmaths.ir';
 
   return [
     {
