@@ -138,19 +138,30 @@ export default function Home() {
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 py-3 shadow-sm">
         <div className="max-w-6xl mx-auto flex flex-col items-center gap-3">
           <div className="w-full flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl flex items-center justify-center p-1.5 shadow-sm">
-                <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M2 3h20v14H2z" />
-                  <path d="M8 21l4-4 4 4" />
-                  <path d="M7 8h4" />
-                  <path d="M7 12h2" />
-                  <path d="M15 11l2 2 4-4" />
-                </svg>
+            <div className="flex items-center gap-3">
+              {/* دکمه خانه در سمت راست */}
+              <Link 
+                href="/" 
+                className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs md:text-sm font-bold rounded-xl transition flex items-center gap-1.5 border border-slate-200 shadow-sm"
+              >
+                <span>🏠</span>
+                <span>{isFa ? 'خانه' : 'Home'}</span>
+              </Link>
+
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl flex items-center justify-center p-1.5 shadow-sm">
+                  <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M2 3h20v14H2z" />
+                    <path d="M8 21l4-4 4 4" />
+                    <path d="M7 8h4" />
+                    <path d="M7 12h2" />
+                    <path d="M15 11l2 2 4-4" />
+                  </svg>
+                </div>
+                <h1 className="font-black text-base md:text-xl text-slate-800 tracking-tight leading-snug">
+                  {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Math'}
+                </h1>
               </div>
-              <h1 className="font-black text-base md:text-xl text-slate-800 tracking-tight leading-snug">
-                {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Math'}
-              </h1>
             </div>
 
             <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300 shadow-inner">
@@ -173,7 +184,7 @@ export default function Home() {
           </div>
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
-            {/* دکمه‌های ساده بالای صفحه (بدون حالت سه بعدی، کادر، آیکون و سایه) */}
+            {/* دکمه‌های ساده بالای صفحه */}
             <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
               <Link 
                 href="/educational-systems" 
