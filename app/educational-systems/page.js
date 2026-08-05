@@ -64,7 +64,7 @@ const EDUCATIONAL_DATA = [
     countryEn: 'Canada',
     titleFa: 'نظام آموزشی کانادا',
     titleEn: 'Canadian Educational System',
-    link: 'https://t.me/International_Maths',
+    link: 'https://t.me/International_Maths/302',
     descriptionFa: 'نظام‌های استانی شامل اونتاریو (Ontario Curriculum) و بریتیش کلمبیا (BC Curriculum) از پایه ۹ تا ۱۲ و درس Calculus & Vectors.',
     descriptionEn: 'Provincial Curricula (Ontario Grade 9-12, BC Curriculum) aligned with Canadian standards.',
     resources: [
@@ -79,7 +79,7 @@ const EDUCATIONAL_DATA = [
     countryEn: 'Germany',
     titleFa: 'نظام آموزشی آلمان',
     titleEn: 'German Educational System',
-    link: 'https://t.me/International_Maths',
+    link: 'https://t.me/International_Maths/375',
     descriptionFa: 'تدریس متناسب با امتحانات Abitur آلمان، مدارس Gymnasium و کالج‌های آماده‌سازی (Studienkolleg).',
     descriptionEn: 'Covering Analysis, Linear Algebra, and Stochastics for the German Abitur and Studienkolleg exams.',
     resources: [
@@ -93,7 +93,7 @@ const EDUCATIONAL_DATA = [
     countryEn: 'Australia',
     titleFa: 'نظام آموزشی استرالیا',
     titleEn: 'Australian Educational System',
-    link: 'https://t.me/International_Maths',
+    link: 'https://t.me/International_Maths/299',
     descriptionFa: 'آموزش ریاضیات مطابق با استاندارد ATAR ایالت‌های مختلف (VCE, HSC) شامل General, Methods و Specialist Math.',
     descriptionEn: 'Aligned with Australian ATAR (VCE/HSC) courses: General, Methods, and Specialist Mathematics.',
     resources: [
@@ -135,7 +135,7 @@ const EDUCATIONAL_DATA = [
     countryEn: 'Italy',
     titleFa: 'نظام آموزشی ایتالیا (Liceo Scientifico)',
     titleEn: 'Italian Educational System',
-    link: 'https://t.me/International_Maths',
+    link: 'https://t.me/International_Maths/389',
     descriptionFa: 'تدریس ریاضیات دبیرستان‌های علمی ایتالیا و آمادگی آزمون‌های ورود به دانشگاه‌های ایتالیا (TOLC-I, TOLC-E).',
     descriptionEn: 'Mathematics prep for Liceo Scientifico and university entrance exams (TOLC-I / TOLC-E).',
     resources: [
