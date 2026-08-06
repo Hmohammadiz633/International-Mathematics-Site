@@ -121,7 +121,7 @@ const EDUCATIONAL_DATA = [
     countryEn: 'Sweden',
     titleFa: 'نظام آموزشی سوئد (Gymnasieskola)',
     titleEn: 'Swedish Educational System',
-    link: 'https://t.me/International_Maths',
+    link: 'https://t.me/International_Maths/686',
     descriptionFa: 'تدریس سطوح مختلف ریاضیات مدارس سوئد (Matematik 1c تا 5) متناسب با استانداردهای آموزشی اسکاندیناوی.',
     descriptionEn: 'Specialized math tutoring for Swedish secondary school courses (Matematik 1c to 5).',
     resources: [
