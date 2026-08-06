@@ -29,12 +29,12 @@ export default function BooksPage() {
 
   // کتاب‌های تالیف شده (book1 تا book6)
   const authoredBooks = [
-    { id: 1, src: '/book1.JPG', title: 'کتاب تالیفی ۱' },
-    { id: 2, src: '/book2.JPG', title: 'کتاب تالیفی ۲' },
-    { id: 3, src: '/book3.JPG', title: 'کتاب تالیفی ۳' },
-    { id: 4, src: '/book4.JPG', title: 'کتاب تالیفی ۴' },
-    { id: 5, src: '/book5.JPG', title: 'کتاب تالیفی ۵' },
-    { id: 6, src: '/book6.JPG', title: 'کتاب تالیفی ۶' },
+    { id: 1, src: '/book1.JPG', title: 'کتاب تالیفی ۱', link: 'https://t.me/International_Maths/103' },
+    { id: 2, src: '/book2.JPG', title: 'کتاب تالیفی ۲', link: 'https://t.me/International_Maths/103' },
+    { id: 3, src: '/book3.JPG', title: 'کتاب تالیفی ۳', link: 'https://t.me/International_Maths/103' },
+    { id: 4, src: '/book4.JPG', title: 'کتاب تالیفی ۴', link: 'https://t.me/International_Maths/103' },
+    { id: 5, src: '/book5.JPG', title: 'کتاب تالیفی ۵', link: 'https://t.me/International_Maths/103' },
+    { id: 6, src: '/book6.JPG', title: 'کتاب تالیفی ۶', link: 'https://t.me/International_Maths/103' },
   ];
 
   const grade7Images = [
@@ -213,7 +213,6 @@ export default function BooksPage() {
         </p>
       </section>
 
-      {/* تب‌های تخت (بدون حالت سه‌بعدی و سایه سنگین) */}
       <div className="max-w-3xl mx-auto px-4 mt-6 mb-8">
         <div className="flex flex-wrap justify-center items-center gap-3">
           <button
@@ -262,7 +261,7 @@ export default function BooksPage() {
           <BooksSection lang={lang} />
         )}
 
-        {/* بخش کتاب‌های تالیف شده همراه با هایپرلینک تلگرام */}
+        {/* بخش کتاب‌های تالیف شده همراه با دکمه واحد مشاهده در تلگرام */}
         {activeTab === 'authored' && (
           <div className="bg-slate-50 border border-gray-300 rounded-3xl p-4 md:p-8 shadow-sm">
             <h3 className="text-xl font-black text-slate-800 mb-6 text-center border-b border-gray-200 pb-3">
@@ -271,25 +270,25 @@ export default function BooksPage() {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
               {authoredBooks.map((book) => (
-                <div key={book.id} className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden p-3 shadow-sm hover:shadow transition">
+                <div key={book.id} className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden p-4 shadow-sm hover:shadow transition flex flex-col items-center text-center">
                   <img 
                     src={book.src} 
                     alt={book.title} 
-                    className="w-full h-auto object-contain rounded-xl block"
+                    className="w-full h-auto object-contain rounded-xl block mb-4"
                     loading="lazy"
                   />
-                  <div className="mt-3 flex items-center justify-between px-1">
-                    <span className="font-bold text-sm text-slate-800">{book.title}</span>
-                    <a 
-                      href="https://t.me/International_Maths/103" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="text-xs font-semibold text-blue-600 hover:underline flex items-center gap-1"
-                    >
-                      <span>مشاهده در تلگرام</span>
-                      <span>↗</span>
-                    </a>
-                  </div>
+                  <span className="font-bold text-sm text-slate-800 mb-4">{book.title}</span>
+                  <a 
+                    href={book.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl shadow-sm transition-all flex items-center justify-center gap-2"
+                  >
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.25.38-.51 1.05-.78 4.11-1.79 6.85-2.97 8.22-3.54 3.91-1.64 4.72-1.92 5.25-1.93.12 0 .39.03.56.17.14.12.18.28.2.45-.02.07-.02.14-.04.23z"/>
+                    </svg>
+                    <span>{isFa ? 'مشاهده در تلگرام' : 'View on Telegram'}</span>
+                  </a>
                 </div>
               ))}
             </div>
