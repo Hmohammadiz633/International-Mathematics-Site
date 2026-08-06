@@ -149,7 +149,7 @@ const EDUCATIONAL_DATA = [
     countryEn: 'UAE',
     titleFa: 'نظام‌های بین‌المللی امارات (دبی / ابوظبی)',
     titleEn: 'UAE International Schools',
-    link: 'https://t.me/International_Maths',
+    link: 'https://t.me/International_Maths/587',
     descriptionFa: 'تدریس ریاضیات مدارس بین‌المللی امارات تحت نظام‌های IB، آمریکایی (AP) و بریتانیایی (IGCSE/A-Level).',
     descriptionEn: 'Math tutoring for international students in UAE enrolled in IB, British, and American curricula.',
     resources: [
