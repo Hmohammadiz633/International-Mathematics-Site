@@ -27,6 +27,16 @@ export default function BooksPage() {
     { id: 12, fa: 'پایه دوازدهم', en: 'Grade 12' },
   ];
 
+  // کتاب‌های تالیف شده (book1 تا book6)
+  const authoredBooks = [
+    { id: 1, src: '/book1.JPG', title: 'کتاب تالیفی ۱' },
+    { id: 2, src: '/book2.JPG', title: 'کتاب تالیفی ۲' },
+    { id: 3, src: '/book3.JPG', title: 'کتاب تالیفی ۳' },
+    { id: 4, src: '/book4.JPG', title: 'کتاب تالیفی ۴' },
+    { id: 5, src: '/book5.JPG', title: 'کتاب تالیفی ۵' },
+    { id: 6, src: '/book6.JPG', title: 'کتاب تالیفی ۶' },
+  ];
+
   const grade7Images = [
     { id: 1, src: '/summary-g7-1.JPG', title: 'خلاصه فصل ۱' },
     { id: 2, src: '/summary-g7-2.JPG', title: 'خلاصه فصل ۲' },
@@ -156,7 +166,6 @@ export default function BooksPage() {
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
             <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
-              {/* دکمه خانه اولین گزینه از سمت راست قرار گرفت */}
               <Link 
                 href="/" 
                 className="hover:text-blue-600 whitespace-nowrap transition-colors flex items-center gap-1.5"
@@ -200,36 +209,50 @@ export default function BooksPage() {
           📚 {isFa ? 'کتب و منابع آموزشی' : 'Educational Books & Resources'}
         </h1>
         <p className="text-gray-600 text-sm md:text-base">
-          {isFa ? 'مجموعه کامل کتاب‌های آموزشی و خلاصه فصل‌های ریاضیات' : 'Comprehensive collection of math textbooks and chapter summaries'}
+          {isFa ? 'مجموعه کامل کتاب‌های آموزشی، تالیفی و خلاصه فصل‌های ریاضیات' : 'Comprehensive collection of math textbooks and chapter summaries'}
         </p>
       </section>
 
-      <div className="max-w-2xl mx-auto px-4 mt-6 mb-8">
-        <div className="flex justify-center items-center gap-4">
+      {/* تب‌های تخت (بدون حالت سه‌بعدی و سایه سنگین) */}
+      <div className="max-w-3xl mx-auto px-4 mt-6 mb-8">
+        <div className="flex flex-wrap justify-center items-center gap-3">
           <button
             type="button"
             onClick={() => setActiveTab('taught')}
-            className={`px-6 py-3.5 rounded-2xl font-extrabold text-xs md:text-sm transition-all duration-200 cursor-pointer transform flex items-center justify-center gap-2 flex-1 text-center ${
+            className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all duration-150 cursor-pointer flex items-center justify-center gap-2 ${
               activeTab === 'taught'
-                ? 'bg-slate-700 text-white border-2 border-slate-800 border-b-8 border-b-slate-900 shadow-xl translate-y-1'
-                : 'bg-slate-100 text-slate-800 border-2 border-slate-300 border-b-8 border-b-slate-400 shadow-md hover:shadow-lg hover:-translate-y-0.5 hover:bg-slate-200 hover:border-b-slate-500'
+                ? 'bg-slate-900 text-white border border-slate-900 shadow-sm'
+                : 'bg-white text-slate-800 border border-slate-200 hover:bg-slate-50'
             }`}
           >
-            <span className="text-base md:text-lg">📖</span>
-            <span>{isFa ? 'کتاب‌های تدریس شده کشورها' : 'Books Taught in Countries'}</span>
+            <span className="text-sm">📖</span>
+            <span>{isFa ? 'کتاب‌های تدریس شده کشورها' : 'Books Taught'}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('authored')}
+            className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all duration-150 cursor-pointer flex items-center justify-center gap-2 ${
+              activeTab === 'authored'
+                ? 'bg-slate-900 text-white border border-slate-900 shadow-sm'
+                : 'bg-white text-slate-800 border border-slate-200 hover:bg-slate-50'
+            }`}
+          >
+            <span className="text-sm">✍️</span>
+            <span>{isFa ? 'کتاب های تالیف شده' : 'Authored Books'}</span>
           </button>
 
           <button
             type="button"
             onClick={() => setActiveTab('summaries')}
-            className={`px-6 py-3.5 rounded-2xl font-extrabold text-xs md:text-sm transition-all duration-200 cursor-pointer transform flex items-center justify-center gap-2 flex-1 text-center ${
+            className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all duration-150 cursor-pointer flex items-center justify-center gap-2 ${
               activeTab === 'summaries'
-                ? 'bg-slate-700 text-white border-2 border-slate-800 border-b-8 border-b-slate-900 shadow-xl translate-y-1'
-                : 'bg-slate-100 text-slate-800 border-2 border-slate-300 border-b-8 border-b-slate-400 shadow-md hover:shadow-lg hover:-translate-y-0.5 hover:bg-slate-200 hover:border-b-slate-500'
+                ? 'bg-slate-900 text-white border border-slate-900 shadow-sm'
+                : 'bg-white text-slate-800 border border-slate-200 hover:bg-slate-50'
             }`}
           >
-            <span className="text-base md:text-lg">📝</span>
-            <span>{isFa ? 'خلاصه فصل‌های کتاب' : 'Book Chapter Summaries'}</span>
+            <span className="text-sm">📝</span>
+            <span>{isFa ? 'خلاصه فصل‌های کتاب' : 'Chapter Summaries'}</span>
           </button>
         </div>
       </div>
@@ -237,6 +260,30 @@ export default function BooksPage() {
       <div className="max-w-6xl mx-auto px-4">
         {activeTab === 'taught' && (
           <BooksSection lang={lang} />
+        )}
+
+        {/* بخش جدید کتاب‌های تالیف شده (book1 تا book6 به صورت شبکه منظم و تخت) */}
+        {activeTab === 'authored' && (
+          <div className="bg-slate-50 border border-gray-300 rounded-3xl p-4 md:p-8 shadow-sm">
+            <h3 className="text-xl font-black text-slate-800 mb-6 text-center border-b border-gray-200 pb-3">
+              {isFa ? '✍️ کتاب‌های تالیف شده' : '✍️ Authored Books'}
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+              {authoredBooks.map((book) => (
+                <div key={book.id} className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden p-3 shadow-sm hover:shadow transition">
+                  <img 
+                    src={book.src} 
+                    alt={book.title} 
+                    className="w-full h-auto object-contain rounded-xl block"
+                    loading="lazy"
+                  />
+                  <div className="mt-3 text-center font-bold text-sm text-slate-800">
+                    {book.title}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         )}
 
         {activeTab === 'summaries' && (
@@ -249,10 +296,10 @@ export default function BooksPage() {
                     key={grade.id}
                     type="button"
                     onClick={() => setSelectedGrade(grade.id)}
-                    className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all duration-150 cursor-pointer transform ${
+                    className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all duration-150 cursor-pointer ${
                       isSelected
-                        ? 'bg-slate-900 text-white border-2 border-black border-b-4 border-b-slate-950 shadow-md translate-y-0.5'
-                        : 'bg-white text-slate-800 border-2 border-slate-200 border-b-4 border-b-slate-300 shadow hover:shadow-md hover:-translate-y-0.5 hover:bg-slate-50 hover:border-b-slate-400'
+                        ? 'bg-slate-900 text-white border border-slate-900 shadow-sm'
+                        : 'bg-white text-slate-800 border border-slate-200 hover:bg-slate-50'
                     }`}
                   >
                     {isFa ? grade.fa : grade.en}
@@ -270,11 +317,11 @@ export default function BooksPage() {
                   {(selectedGrade === 7 ? grade7Images : 
                     selectedGrade === 8 ? grade8Images : 
                     selectedGrade === 9 ? grade9Images : grade10Images).map((img) => (
-                    <div key={img.id} className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div key={img.id} className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm transition">
                       <img 
                         src={img.src} 
                         alt={img.title || 'Summary'} 
-                        className="w-full h-auto object-contain block hover:scale-[1.01] transition duration-300"
+                        className="w-full h-auto object-contain block"
                         loading="lazy"
                       />
                     </div>
