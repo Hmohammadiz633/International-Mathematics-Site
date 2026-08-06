@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import BooksSection from '@/components/BooksSection';
 
 const FEEDBACKS = [
   { fa: 'بازخورد ۱', en: 'Feedback 1', link: 'https://t.me/International_Maths/110' },
@@ -9,164 +10,127 @@ const FEEDBACKS = [
   { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
 ];
 
-// آرایه کامل داده‌های کشورها (اولین کشور: ایران)
-const EDUCATIONAL_DATA = [
-  {
-    id: 'iran',
-    flag: '🇮🇷',
-    countryFa: 'ایران',
-    countryEn: 'Iran',
-    titleFa: 'نظام آموزشی ایران (کنکور، سمپاد و المپیاد)',
-    titleEn: 'Iranian Educational System (Konkur & Olympiads)',
-    link: 'https://t.me/International_Maths',
-    descriptionFa: 'تدریس تخصصی ریاضیات مفهومی، تیزهوشان (سمپاد)، کنکور سراسری و آماده‌سازی برای المپیادهای کشوری و بین‌المللی ریاضی.',
-    descriptionEn: 'Conceptual Math tutoring, SAMPAD (Gifted Schools), National Entrance Exam (Konkur), and Math Olympiad prep.',
-    resources: [
-      { title: 'شبکه ملی مدارس (رشد)', url: 'https://roshd.ir' },
-      { title: 'سازمان پژوهش و برنامه‌ریزی آموزشی (کتاب‌های درسی)', url: 'http://chap.sch.ir' },
-      { title: 'باشگاه دانش‌پژوهان جوان (المپیاد ریاضی)', url: 'https://ysc.medu.ir' }
-    ]
-  },
-  {
-    id: 'usa',
-    flag: '🇺🇸',
-    countryFa: 'آمریکا',
-    countryEn: 'USA',
-    titleFa: 'نظام آموزشی آمریکا (USA)',
-    titleEn: 'US Educational System',
-    link: 'https://t.me/International_Maths/379',
-    descriptionFa: 'نظام آموزشی آمریکا مبتنی بر سیستم ۱۲ ساله (K-12) است. آموزش تخصصی ریاضیات از Algebra 1 & 2 تا AP Calculus AB/BC و آماده‌سازی آزمون‌های SAT/ACT.',
-    descriptionEn: 'The US education system is based on the K-12 framework. Specialized tutoring for US school math from Algebra 1 & 2 to AP Calculus AB/BC and SAT/ACT prep.',
-    resources: [
-      { title: 'سایت رسمی College Board (آزمون‌های AP و SAT)', url: 'https://www.collegeboard.org' },
-      { title: 'پلتفرم آموزش آنلاین Khan Academy', url: 'https://www.khanacademy.org' }
-    ]
-  },
-  {
-    id: 'uk',
-    flag: '🇬🇧',
-    countryFa: 'انگلستان',
-    countryEn: 'UK',
-    titleFa: 'نظام آموزشی انگلستان (UK)',
-    titleEn: 'UK Educational System',
-    link: 'https://t.me/International_Maths/297',
-    descriptionFa: 'نظام آموزشی بریتانیا شامل مراحل کلیدی (Key Stages)، مقطع GCSE و دوره A-Level (Edexcel, AQA) می‌باشد.',
-    descriptionEn: 'The UK system is structured into Key Stages, GCSEs, and A-Levels (Edexcel, AQA, OCR).',
-    resources: [
-      { title: 'پرتال Pearson Edexcel', url: 'https://qualifications.pearson.com' },
-      { title: 'سایت آموزشی Physics & Maths Tutor', url: 'https://www.physicsandmathstutor.com' }
-    ]
-  },
-  {
-    id: 'canada',
-    flag: '🇨🇦',
-    countryFa: 'کانادا',
-    countryEn: 'Canada',
-    titleFa: 'نظام آموزشی کانادا',
-    titleEn: 'Canadian Educational System',
-    link: 'https://t.me/International_Maths/302',
-    descriptionFa: 'نظام‌های استانی شامل اونتاریو (Ontario Curriculum) و بریتیش کلمبیا (BC Curriculum) از پایه ۹ تا ۱۲ و درس Calculus & Vectors.',
-    descriptionEn: 'Provincial Curricula (Ontario Grade 9-12, BC Curriculum) aligned with Canadian standards.',
-    resources: [
-      { title: 'وزارت آموزش اونتاریو', url: 'https://www.ontario.ca/page/ministry-education' },
-      { title: 'مرکز مسابقات ریاضی دانشگاه واترلو (CEMC)', url: 'https://www.cemc.uwaterloo.ca' }
-    ]
-  },
-  {
-    id: 'germany',
-    flag: '🇩🇪',
-    countryFa: 'آلمان',
-    countryEn: 'Germany',
-    titleFa: 'نظام آموزشی آلمان',
-    titleEn: 'German Educational System',
-    link: 'https://t.me/International_Maths/375',
-    descriptionFa: 'تدریس متناسب با امتحانات Abitur آلمان، مدارس Gymnasium و کالج‌های آماده‌سازی (Studienkolleg).',
-    descriptionEn: 'Covering Analysis, Linear Algebra, and Stochastics for the German Abitur and Studienkolleg exams.',
-    resources: [
-      { title: 'پرتال آموزشی Mathebibel', url: 'https://www.mathebibel.de' }
-    ]
-  },
-  {
-    id: 'australia',
-    flag: '🇦🇺',
-    countryFa: 'استرالیا',
-    countryEn: 'Australia',
-    titleFa: 'نظام آموزشی استرالیا',
-    titleEn: 'Australian Educational System',
-    link: 'https://t.me/International_Maths/299',
-    descriptionFa: 'آموزش ریاضیات مطابق با استاندارد ATAR ایالت‌های مختلف (VCE, HSC) شامل General, Methods و Specialist Math.',
-    descriptionEn: 'Aligned with Australian ATAR (VCE/HSC) courses: General, Methods, and Specialist Mathematics.',
-    resources: [
-      { title: 'برنامه درسی ملی استرالیا (ACARA)', url: 'https://www.australiancurriculum.edu.au' }
-    ]
-  },
-  {
-    id: 'france',
-    flag: '🇫🇷',
-    countryFa: 'فرانسه',
-    countryEn: 'France',
-    titleFa: 'نظام آموزشی فرانسه (Baccalauréat)',
-    titleEn: 'French Educational System',
-    link: 'https://t.me/International_Maths/688',
-    descriptionFa: 'آموزش ریاضیات مقطع دبیرستان فرانسه (Lycée) و آمادگی امتحانات نهایی دیپلم فرانسه (Bac Général - Spécialité Mathématiques).',
-    descriptionEn: 'Tutoring for Lycée mathematics and French Baccalaureate preparation.',
-    resources: [
-      { title: 'وزارت آموزش ملی فرانسه', url: 'https://www.education.gouv.fr' }
-    ]
-  },
-  {
-    id: 'sweden',
-    flag: '🇸🇪',
-    countryFa: 'سوئد',
-    countryEn: 'Sweden',
-    titleFa: 'نظام آموزشی سوئد (Gymnasieskola)',
-    titleEn: 'Swedish Educational System',
-    link: 'https://t.me/International_Maths/686',
-    descriptionFa: 'تدریس سطوح مختلف ریاضیات مدارس سوئد (Matematik 1c تا 5) متناسب با استانداردهای آموزشی اسکاندیناوی.',
-    descriptionEn: 'Specialized math tutoring for Swedish secondary school courses (Matematik 1c to 5).',
-    resources: [
-      { title: 'اداره ملی آموزش سوئد (Skolverket)', url: 'https://www.skolverket.se' }
-    ]
-  },
-  {
-    id: 'italy',
-    flag: '🇮🇹',
-    countryFa: 'ایتالیا',
-    countryEn: 'Italy',
-    titleFa: 'نظام آموزشی ایتالیا (Liceo Scientifico)',
-    titleEn: 'Italian Educational System',
-    link: 'https://t.me/International_Maths/389',
-    descriptionFa: 'تدریس ریاضیات دبیرستان‌های علمی ایتالیا و آمادگی آزمون‌های ورود به دانشگاه‌های ایتالیا (TOLC-I, TOLC-E).',
-    descriptionEn: 'Mathematics prep for Liceo Scientifico and university entrance exams (TOLC-I / TOLC-E).',
-    resources: [
-      { title: 'پرتال رسمی آزمون‌های TOLC (CISIA)', url: 'https://www.cisiaonline.it' }
-    ]
-  },
-  {
-    id: 'uae',
-    flag: '🇦🇪',
-    countryFa: 'امارات',
-    countryEn: 'UAE',
-    titleFa: 'نظام‌های بین‌المللی امارات (دبی / ابوظبی)',
-    titleEn: 'UAE International Schools',
-    link: 'https://t.me/International_Maths/587',
-    descriptionFa: 'تدریس ریاضیات مدارس بین‌المللی امارات تحت نظام‌های IB، آمریکایی (AP) و بریتانیایی (IGCSE/A-Level).',
-    descriptionEn: 'Math tutoring for international students in UAE enrolled in IB, British, and American curricula.',
-    resources: [
-      { title: 'سازمان دانش و توسعه انسانی دبی (KHDA)', url: 'https://www.khda.gov.ae' }
-    ]
-  }
-];
-
-export default function EducationalSystemsPage() {
+export default function BooksPage() {
   const [lang, setLang] = useState('fa');
-  const [selectedCountry, setSelectedCountry] = useState(EDUCATIONAL_DATA[0]);
+  const [activeTab, setActiveTab] = useState('taught');
+  const [selectedGrade, setSelectedGrade] = useState(7);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
 
   const isFa = lang === 'fa';
 
+  const grades = [
+    { id: 7, fa: 'پایه هفتم', en: 'Grade 7' },
+    { id: 8, fa: 'پایه هشتم', en: 'Grade 8' },
+    { id: 9, fa: 'پایه نهم', en: 'Grade 9' },
+    { id: 10, fa: 'پایه دهم', en: 'Grade 10' },
+    { id: 11, fa: 'پایه یازدهم', en: 'Grade 11' },
+    { id: 12, fa: 'پایه دوازدهم', en: 'Grade 12' },
+  ];
+
+  const grade7Images = [
+    { id: 1, src: '/summary-g7-1.JPG', title: 'خلاصه فصل ۱' },
+    { id: 2, src: '/summary-g7-2.JPG', title: 'خلاصه فصل ۲' },
+    { id: 3, src: '/summary-g7-3.JPG', title: 'خلاصه فصل ۳' },
+    { id: 4, src: '/summary-g7-4.JPG', title: 'خلاصه فصل ۴' },
+    { id: 5, src: '/summary-g7-5.JPG', title: 'خلاصه فصل ۵' },
+    { id: 6, src: '/summary-g7-6.JPG', title: 'خلاصه فصل ۶' },
+    { id: 7, src: '/summary-g7-7.JPG', title: 'خلاصه فصل ۷' },
+    { id: 8, src: '/summary-g7-8.JPG', title: 'خلاصه فصل ۸' },
+    { id: 9, src: '/summary-g7-9.JPG', title: 'خلاصه فصل ۹' },
+    { id: 10, src: '/summary-g7-10.JPG', title: 'خلاصه فصل ۱۰' },
+    { id: 11, src: '/summary-g7-11.JPG', title: 'خلاصه فصل ۱۱' },
+    { id: 12, src: '/summary-g7-12.JPG', title: 'خلاصه فصل ۱۲' },
+  ];
+
+  const grade8Images = [
+    { id: 1, src: '/IMG_0891.JPG', title: 'خلاصه فصل ۱' },
+    { id: 2, src: '/IMG_0892.JPG', title: 'خلاصه فصل ۲' },
+    { id: 3, src: '/IMG_0893.JPG', title: 'خلاصه فصل ۳' },
+    { id: 4, src: '/IMG_0894.JPG', title: 'خلاصه فصل ۴' },
+    { id: 5, src: '/IMG_0895.JPG', title: 'خلاصه فصل ۵' },
+    { id: 6, src: '/IMG_0896.JPG', title: 'خلاصه فصل ۶' },
+    { id: 7, src: '/IMG_0897.JPG', title: 'خلاصه فصل ۷' },
+    { id: 8, src: '/IMG_0898.JPG', title: 'خلاصه فصل ۸' },
+    { id: 9, src: '/IMG_0899.JPG', title: 'خلاصه فصل ۹' },
+    { id: 10, src: '/IMG_0900.JPG', title: 'خلاصه فصل ۱۰' },
+    { id: 11, src: '/IMG_0901.JPG', title: 'خلاصه فصل ۱۱' },
+  ];
+
+  const grade9Images = [
+    { id: 1, src: '/IMG_0908.JPG', title: 'خلاصه فصل ۱' },
+    { id: 2, src: '/IMG_0909.JPG', title: 'خلاصه فصل ۲' },
+    { id: 3, src: '/IMG_0910.JPG', title: 'خلاصه فصل ۳' },
+    { id: 4, src: '/IMG_0911.JPG', title: 'خلاصه فصل ۴' },
+    { id: 5, src: '/IMG_0912.JPG', title: 'خلاصه فصل ۵' },
+    { id: 6, src: '/IMG_0913.JPG', title: 'خلاصه فصل ۶' },
+    { id: 7, src: '/IMG_0914.JPG', title: 'خلاصه فصل ۷' },
+    { id: 8, src: '/IMG_0915.JPG', title: 'خلاصه فصل ۸' },
+    { id: 9, src: '/IMG_0916.JPG', title: 'خلاصه فصل ۹' },
+    { id: 10, src: '/IMG_0917.JPG', title: 'خلاصه فصل ۱۰' },
+  ];
+
+  const grade10Images = [
+    { id: 1, src: '/IMG_0919.JPG', title: 'خلاصه فصل ۱' },
+    { id: 2, src: '/IMG_0920.JPG', title: 'خلاصه فصل ۲' },
+    { id: 3, src: '/IMG_0921.JPG', title: 'خلاصه فصل ۳' },
+    { id: 4, src: '/IMG_0922.JPG', title: 'خلاصه فصل ۴' },
+    { id: 5, src: '/IMG_0923.JPG', title: 'خلاصه فصل ۵' },
+    { id: 6, src: '/IMG_0924.JPG', title: 'خلاصه فصل ۶' },
+    { id: 7, src: '/IMG_0925.JPG', title: 'خلاصه فصل ۷' },
+    { id: 8, src: '/IMG_0926.JPG', title: 'خلاصه فصل ۸' },
+    { id: 9, src: '/IMG_0927.JPG', title: 'خلاصه فصل ۹' },
+    { id: 10, src: '/IMG_0928.JPG', title: 'خلاصه فصل ۱۰' },
+  ];
+
+  const grade11Images = [
+    { id: 1, src: '/IMG_0930.jpg' },
+    { id: 2, src: '/IMG_0931.PNG' },
+    { id: 3, src: '/IMG_0932.PNG' },
+    { id: 4, src: '/IMG_0933.PNG' },
+    { id: 5, src: '/IMG_0934.PNG' },
+    { id: 6, src: '/IMG_0935.PNG' },
+    { id: 7, src: '/IMG_0936.PNG' },
+    { id: 8, src: '/IMG_0937.jpg' },
+    { id: 9, src: '/IMG_0938.jpg' },
+    { id: 10, src: '/IMG_0939.jpg' },
+    { id: 11, src: '/IMG_0940.jpg' },
+    { id: 12, src: '/IMG_0941.jpg' },
+    { id: 13, src: '/IMG_0942.PNG' },
+    { id: 14, src: '/IMG_0943.PNG' },
+    { id: 15, src: '/IMG_0944.jpg' },
+    { id: 16, src: '/IMG_0945.PNG' },
+    { id: 17, src: '/IMG_0946.jpg' },
+    { id: 18, src: '/IMG_0947.jpg' },
+    { id: 19, src: '/IMG_0948.jpg' },
+    { id: 20, src: '/IMG_0949.PNG' },
+  ];
+
+  const grade12Images = [
+    { id: 1, src: '/IMG_0956.PNG' },
+    { id: 2, src: '/IMG_0957.PNG' },
+    { id: 3, src: '/IMG_0958.jpg' },
+    { id: 4, src: '/IMG_0959.jpg' },
+    { id: 5, src: '/IMG_0960.PNG' },
+    { id: 6, src: '/IMG_0961.PNG' },
+    { id: 7, src: '/IMG_0962.PNG' },
+    { id: 8, src: '/IMG_0963.jpg' },
+    { id: 9, src: '/IMG_0964.PNG' },
+    { id: 10, src: '/IMG_0965.PNG' },
+    { id: 11, src: '/IMG_0966.PNG' },
+    { id: 12, src: '/IMG_0967.jpg' },
+    { id: 13, src: '/IMG_0968.PNG' },
+    { id: 14, src: '/IMG_0969.jpg' },
+    { id: 15, src: '/IMG_0970.PNG' },
+    { id: 16, src: '/IMG_0971.jpg' },
+    { id: 17, src: '/IMG_0972.PNG' },
+    { id: 18, src: '/IMG_0973.jpg' },
+    { id: 19, src: '/IMG_0974.jpg' },
+    { id: 20, src: '/IMG_0975.PNG' },
+    { id: 21, src: '/IMG_0976.PNG' },
+  ];
+
   return (
-    <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
+    <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-white text-black pb-12">
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 py-3 shadow-sm">
         <div className="max-w-6xl mx-auto flex flex-col items-center gap-3">
           <div className="w-full flex items-center justify-between">
@@ -192,12 +156,8 @@ export default function EducationalSystemsPage() {
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
             <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
-              {/* دکمه خانه اولین گزینه از سمت راست */}
-              <Link 
-                href="/" 
-                className="hover:text-blue-600 whitespace-nowrap transition-colors"
-              >
-                {isFa ? 'خانه' : 'Home'}
+              <Link href="/" className="hover:text-blue-600 whitespace-nowrap transition-colors flex items-center gap-1.5">
+                <span>{isFa ? 'خانه' : 'Home'}</span>
               </Link>
               <Link href="/educational-systems" className="hover:text-blue-600 whitespace-nowrap transition-colors">
                 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
@@ -231,87 +191,141 @@ export default function EducationalSystemsPage() {
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-4 pt-8">
-        <div className="text-center mb-8">
-          <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
-            🌐 {isFa ? 'نظام‌های آموزشی ریاضی کشورها' : 'International Educational Systems'}
-          </h1>
-          <p className="text-xs md:text-sm text-slate-600 font-medium">
-            {isFa ? 'روی هر کشور کلیک کنید تا اطلاعات کامل، توضیحات و لینک‌های مربوطه باز شوند:' : 'Click on any country button to reveal full information and links:'}
-          </p>
+      <section className="max-w-4xl mx-auto text-center px-4 pt-8 pb-4">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-black mb-2">
+          📚 {isFa ? 'کتب و منابع آموزشی' : 'Educational Books & Resources'}
+        </h1>
+        <p className="text-gray-600 text-sm md:text-base">
+          {isFa ? 'مجموعه کامل کتاب‌های آموزشی و خلاصه فصل‌های ریاضیات' : 'Comprehensive collection of math textbooks and chapter summaries'}
+        </p>
+      </section>
+
+      <div className="max-w-2xl mx-auto px-4 mt-6 mb-8">
+        <div className="flex justify-center items-center gap-4">
+          <button
+            type="button"
+            onClick={() => setActiveTab('taught')}
+            className={`px-6 py-3.5 rounded-2xl font-extrabold text-xs md:text-sm transition-all duration-200 cursor-pointer transform flex items-center justify-center gap-2 flex-1 text-center ${
+              activeTab === 'taught'
+                ? 'bg-slate-700 text-white border-2 border-slate-800 border-b-8 border-b-slate-900 shadow-xl translate-y-1'
+                : 'bg-slate-100 text-slate-800 border-2 border-slate-300 border-b-8 border-b-slate-400 shadow-md hover:shadow-lg hover:-translate-y-0.5 hover:bg-slate-200 hover:border-b-slate-500'
+            }`}
+          >
+            <span className="text-base md:text-lg">📖</span>
+            <span>{isFa ? 'کتاب‌های تدریس شده کشورها' : 'Books Taught in Countries'}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('summaries')}
+            className={`px-6 py-3.5 rounded-2xl font-extrabold text-xs md:text-sm transition-all duration-200 cursor-pointer transform flex items-center justify-center gap-2 flex-1 text-center ${
+              activeTab === 'summaries'
+                ? 'bg-slate-700 text-white border-2 border-slate-800 border-b-8 border-b-slate-900 shadow-xl translate-y-1'
+                : 'bg-slate-100 text-slate-800 border-2 border-slate-300 border-b-8 border-b-slate-400 shadow-md hover:shadow-lg hover:-translate-y-0.5 hover:bg-slate-200 hover:border-b-slate-500'
+            }`}
+          >
+            <span className="text-base md:text-lg">📝</span>
+            <span>{isFa ? 'خلاصه فصل‌های کتاب' : 'Book Chapter Summaries'}</span>
+          </button>
         </div>
+      </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-2.5 md:gap-3 mb-8">
-          {EDUCATIONAL_DATA.map((item) => {
-            const isSelected = selectedCountry.id === item.id;
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setSelectedCountry(item)}
-                className={`
-                  px-4 py-2.5 rounded-xl font-bold text-xs md:text-sm flex items-center gap-2 transition cursor-pointer border
-                  ${isSelected 
-                    ? 'bg-slate-700 text-white border-slate-700 shadow-sm' 
-                    : 'bg-white hover:bg-slate-100 text-slate-700 border-slate-200'
-                  }
-                `}
-              >
-                <span className="text-lg md:text-xl leading-none">{item.flag}</span>
-                <span>{isFa ? item.countryFa : item.countryEn}</span>
-              </button>
-            );
-          })}
-        </div>
+      <div className="max-w-6xl mx-auto px-4">
+        {activeTab === 'taught' && (
+          <BooksSection lang={lang} />
+        )}
 
-        {selectedCountry && (
-          <div className="bg-slate-100 text-slate-800 rounded-3xl p-6 md:p-8 border border-slate-300 shadow-sm transition-all duration-300">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-300 pb-4 mb-6">
-              <div className="flex items-center gap-3">
-                <span className="text-4xl md:text-5xl">{selectedCountry.flag}</span>
-                <div>
-                  <h2 className="text-xl md:text-2xl font-black text-slate-900">
-                    {isFa ? selectedCountry.titleFa : selectedCountry.titleEn}
-                  </h2>
-                  <span className="text-xs text-slate-500 font-bold">
-                    {isFa ? selectedCountry.countryFa : selectedCountry.countryEn}
-                  </span>
-                </div>
-              </div>
-
-              <a 
-                href={selectedCountry.link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="self-start sm:self-auto px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl transition whitespace-nowrap shadow-sm"
-              >
-                🔗 {isFa ? 'مشاهده در تلگرام' : 'View on Telegram'}
-              </a>
+        {activeTab === 'summaries' && (
+          <div className="space-y-8">
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4 bg-gray-50 p-6 rounded-3xl border border-gray-200 shadow-inner">
+              {grades.map((grade) => {
+                const isSelected = selectedGrade === grade.id;
+                return (
+                  <button
+                    key={grade.id}
+                    type="button"
+                    onClick={() => setSelectedGrade(grade.id)}
+                    className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all duration-150 cursor-pointer transform ${
+                      isSelected
+                        ? 'bg-slate-900 text-white border-2 border-black border-b-4 border-b-slate-950 shadow-md translate-y-0.5'
+                        : 'bg-white text-slate-800 border-2 border-slate-200 border-b-4 border-b-slate-300 shadow hover:shadow-md hover:-translate-y-0.5 hover:bg-slate-50 hover:border-b-slate-400'
+                    }`}
+                  >
+                    {isFa ? grade.fa : grade.en}
+                  </button>
+                );
+              })}
             </div>
 
-            <p className="text-slate-700 text-sm md:text-base leading-relaxed mb-6 font-normal text-justify">
-              {isFa ? selectedCountry.descriptionFa : selectedCountry.descriptionEn}
-            </p>
-
-            {selectedCountry.resources && selectedCountry.resources.length > 0 && (
-              <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-                <h3 className="font-bold text-sm text-slate-900 mb-3 flex items-center gap-2">
-                  💻 {isFa ? 'سایت‌ها و منابع رسمی این کشور:' : 'Official Resources & Websites:'}
+            {[7, 8, 9, 10].includes(selectedGrade) && (
+              <div className="bg-slate-50 border border-gray-300 rounded-3xl p-4 md:p-8 shadow-sm">
+                <h3 className="text-xl font-black text-slate-800 mb-6 text-center border-b border-gray-200 pb-3">
+                  {isFa ? `📌 خلاصه فصل‌های ریاضی ${grades.find(g => g.id === selectedGrade)?.fa}` : `📌 ${grades.find(g => g.id === selectedGrade)?.en} Chapter Summaries`}
                 </h3>
-                <div className="flex flex-wrap gap-2">
-                  {selectedCountry.resources.map((res, idx) => (
-                    <a
-                      key={idx}
-                      href={res.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-xs font-medium text-slate-800 rounded-xl border border-slate-200 transition flex items-center gap-1.5"
-                    >
-                      <span>🌐</span>
-                      <span>{res.title}</span>
-                    </a>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                  {(selectedGrade === 7 ? grade7Images : 
+                    selectedGrade === 8 ? grade8Images : 
+                    selectedGrade === 9 ? grade9Images : grade10Images).map((img) => (
+                    <div key={img.id} className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+                      <img 
+                        src={img.src} 
+                        alt={img.title || 'Summary'} 
+                        className="w-full h-auto object-contain block hover:scale-[1.01] transition duration-300"
+                        loading="lazy"
+                      />
+                    </div>
                   ))}
                 </div>
+              </div>
+            )}
+
+            {selectedGrade === 11 && (
+              <div className="bg-slate-50 border border-gray-300 rounded-3xl p-4 md:p-8 shadow-sm">
+                <h3 className="text-xl font-black text-slate-800 mb-6 text-center border-b border-gray-200 pb-3">
+                  {isFa ? '📌 خلاصه فصل‌های ریاضی پایه یازدهم' : '📌 Grade 11 Chapter Summaries'}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 items-start">
+                  {grade11Images.map((img) => (
+                    <div key={img.id} className="w-full bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                      <img 
+                        src={img.src} 
+                        alt="Summary" 
+                        className="w-full h-auto object-contain block"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {selectedGrade === 12 && (
+              <div className="bg-slate-50 border border-gray-300 rounded-3xl p-4 md:p-8 shadow-sm">
+                <h3 className="text-xl font-black text-slate-800 mb-6 text-center border-b border-gray-200 pb-3">
+                  {isFa ? '📌 خلاصه فصل‌های ریاضی پایه دوازدهم' : '📌 Grade 12 Chapter Summaries'}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 items-start">
+                  {grade12Images.map((img) => (
+                    <div key={img.id} className="w-full bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                      <img 
+                        src={img.src} 
+                        alt="Summary" 
+                        className="w-full h-auto object-contain block"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {![7, 8, 9, 10, 11, 12].includes(selectedGrade) && (
+              <div className="text-center py-12 bg-gray-50 rounded-2xl border border-dashed border-gray-300">
+                <p className="text-gray-600 text-sm md:text-base font-medium">
+                  {isFa 
+                    ? `خلاصه فصل‌های مربوط به ${grades.find(g => g.id === selectedGrade)?.fa} به‌زودی اضافه خواهد شد.` 
+                    : `Summaries for ${grades.find(g => g.id === selectedGrade)?.en} will be added soon.`}
+                </p>
               </div>
             )}
           </div>
