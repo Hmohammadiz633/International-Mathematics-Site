@@ -237,7 +237,7 @@ export default function BooksPage() {
             }`}
           >
             <span className="text-sm">✍️</span>
-            <span>{isFa ? 'کتاب های تالیف شده دانشگاهی' : 'Authored University Books'}</span>
+            <span>{isFa ? 'کتاب های تالیف شده' : 'Authored Books'}</span>
           </button>
 
           <button
