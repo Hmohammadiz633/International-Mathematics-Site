@@ -237,7 +237,7 @@ export default function BooksPage() {
             }`}
           >
             <span className="text-sm">✍️</span>
-            <span>{isFa ? 'کتاب های تالیف شده' : 'Authored Books'}</span>
+            <span>{isFa ? 'کتاب های تالیف شده دانشگاهی' : 'Authored University Books'}</span>
           </button>
 
           <button
@@ -264,7 +264,7 @@ export default function BooksPage() {
           <div className="bg-slate-50 border border-gray-300 rounded-3xl p-4 md:p-8 shadow-sm">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6 border-b border-gray-200 pb-4">
               <h3 className="text-xl font-black text-slate-800 text-center md:text-right">
-                {isFa ? '✍️ کتاب‌های تالیف شده' : '✍️ Authored Books'}
+                {isFa ? '✍️ کتاب‌های تالیف شده دانشگاهی' : '✍️ Authored University Books'}
               </h3>
               <a 
                 href="https://t.me/International_Maths/103" 
