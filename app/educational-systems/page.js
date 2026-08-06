@@ -107,7 +107,7 @@ const EDUCATIONAL_DATA = [
     countryEn: 'France',
     titleFa: 'نظام آموزشی فرانسه (Baccalauréat)',
     titleEn: 'French Educational System',
-    link: 'https://t.me/International_Maths',
+    link: 'https://t.me/International_Maths/688',
     descriptionFa: 'آموزش ریاضیات مقطع دبیرستان فرانسه (Lycée) و آمادگی امتحانات نهایی دیپلم فرانسه (Bac Général - Spécialité Mathématiques).',
     descriptionEn: 'Tutoring for Lycée mathematics and French Baccalaureate preparation.',
     resources: [
