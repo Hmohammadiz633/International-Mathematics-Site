@@ -262,12 +262,13 @@ export default function BooksPage() {
           <BooksSection lang={lang} />
         )}
 
-        {/* بخش جدید کتاب‌های تالیف شده (book1 تا book6 به صورت شبکه منظم و تخت) */}
+        {/* بخش کتاب‌های تالیف شده همراه با هایپرلینک تلگرام */}
         {activeTab === 'authored' && (
           <div className="bg-slate-50 border border-gray-300 rounded-3xl p-4 md:p-8 shadow-sm">
             <h3 className="text-xl font-black text-slate-800 mb-6 text-center border-b border-gray-200 pb-3">
               {isFa ? '✍️ کتاب‌های تالیف شده' : '✍️ Authored Books'}
             </h3>
+            
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
               {authoredBooks.map((book) => (
                 <div key={book.id} className="w-full bg-white border border-gray-200 rounded-2xl overflow-hidden p-3 shadow-sm hover:shadow transition">
@@ -277,8 +278,17 @@ export default function BooksPage() {
                     className="w-full h-auto object-contain rounded-xl block"
                     loading="lazy"
                   />
-                  <div className="mt-3 text-center font-bold text-sm text-slate-800">
-                    {book.title}
+                  <div className="mt-3 flex items-center justify-between px-1">
+                    <span className="font-bold text-sm text-slate-800">{book.title}</span>
+                    <a 
+                      href="https://t.me/International_Maths/103" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-xs font-semibold text-blue-600 hover:underline flex items-center gap-1"
+                    >
+                      <span>مشاهده در تلگرام</span>
+                      <span>↗</span>
+                    </a>
                   </div>
                 </div>
               ))}
