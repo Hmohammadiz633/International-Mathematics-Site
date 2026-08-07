@@ -79,7 +79,7 @@ export default function BooksSection({ lang = 'fa' }) {
       <div className="max-w-4xl mx-auto bg-white rounded-3xl border-2 border-slate-200 shadow-2xl overflow-hidden">
         <div className="relative w-full h-[320px] md:h-[420px] bg-slate-900 overflow-y-auto overflow-x-hidden touch-auto scrollbar-hide">
           <img
-            src="/IMG_1849.jpg"
+            src="/IMG_1839.jpg"
             alt={isFa ? 'کتب و منابع تدریس‌شده' : 'Taught Textbooks'}
             className="w-full h-auto min-h-full object-cover block"
             loading="eager"
