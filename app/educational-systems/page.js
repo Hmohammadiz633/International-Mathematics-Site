@@ -234,7 +234,7 @@ export default function EducationalSystemsPage() {
       <div className="max-w-4xl mx-auto px-4 pt-8">
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
-            🌐 {isFa ? 'نظام‌های آموزشی ریاضی کشورها' : 'International Educational Systems'}
+            🌐 {isFa ? 'نظام‌های آموزشی کشورها' : 'International Educational Systems'}
           </h1>
           <p className="text-xs md:text-sm text-slate-600 font-medium">
             {isFa ? 'روی هر کشور کلیک کنید تا اطلاعات کامل، توضیحات و لینک‌های مربوطه باز شوند:' : 'Click on any country button to reveal full information and links:'}
