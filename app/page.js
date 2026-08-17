@@ -184,7 +184,7 @@ export default function Home() {
                 href="/" 
                 className={`whitespace-nowrap transition-colors ${
                   pathname === '/' 
-                    ? 'text-gray-400 cursor-default pointer-events-none' 
+                    ? 'text-gray-500 font-bold cursor-default pointer-events-none' 
                     : 'text-gray-700 hover:text-blue-600'
                 }`}
               >
