@@ -12,7 +12,6 @@ export default function Navbar() {
     { name: 'کتب آموزشی', href: '/books' },
     { name: 'سایت‌های ریاضی', href: '/math-sites' },
     { name: 'ارتباط با استاد', href: '/contact' },
-    { name: 'درباره ما', href: '/about' },
   ];
 
   return (
@@ -25,7 +24,7 @@ export default function Navbar() {
             href={link.href}
             className={`px-3 py-2 rounded-md transition-colors ${
               isActive
-                ? 'bg-slate-200 text-slate-900 font-bold'
+                ? 'bg-slate-300 text-slate-950 font-bold shadow-sm'
                 : 'text-slate-700 hover:bg-slate-100'
             }`}
           >
