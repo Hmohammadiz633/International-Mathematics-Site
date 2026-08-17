@@ -192,7 +192,6 @@ export default function EducationalSystemsPage() {
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
             <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
-              {/* دکمه خانه اولین گزینه از سمت راست */}
               <Link 
                 href="/" 
                 className="hover:text-blue-600 whitespace-nowrap transition-colors"
@@ -233,9 +232,9 @@ export default function EducationalSystemsPage() {
 
       <div className="max-w-4xl mx-auto px-4 pt-8">
         <div className="text-center mb-8">
-          <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
+          <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
             🌐 {isFa ? 'نظام‌های آموزشی کشورها' : 'International Educational Systems'}
-          </h1>
+          </h2>
           <p className="text-xs md:text-sm text-slate-600 font-medium">
             {isFa ? 'روی هر کشور کلیک کنید تا اطلاعات کامل، توضیحات و لینک‌های مربوطه باز شوند:' : 'Click on any country button to reveal full information and links:'}
           </p>
@@ -270,9 +269,9 @@ export default function EducationalSystemsPage() {
               <div className="flex items-center gap-3">
                 <span className="text-4xl md:text-5xl">{selectedCountry.flag}</span>
                 <div>
-                  <h2 className="text-xl md:text-2xl font-black text-slate-900">
+                  <h3 className="text-xl md:text-2xl font-black text-slate-900">
                     {isFa ? selectedCountry.titleFa : selectedCountry.titleEn}
-                  </h2>
+                  </h3>
                   <span className="text-xs text-slate-500 font-bold">
                     {isFa ? selectedCountry.countryFa : selectedCountry.countryEn}
                   </span>
@@ -295,9 +294,9 @@ export default function EducationalSystemsPage() {
 
             {selectedCountry.resources && selectedCountry.resources.length > 0 && (
               <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-                <h3 className="font-bold text-sm text-slate-900 mb-3 flex items-center gap-2">
+                <h4 className="font-bold text-sm text-slate-900 mb-3 flex items-center gap-2">
                   💻 {isFa ? 'سایت‌ها و منابع رسمی این کشور:' : 'Official Resources & Websites:'}
-                </h3>
+                </h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedCountry.resources.map((res, idx) => (
                     <a
@@ -320,4 +319,3 @@ export default function EducationalSystemsPage() {
     </main>
   );
 }
- 
