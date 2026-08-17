@@ -225,25 +225,24 @@ export default function MathSitesPage() {
           </div>
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
-            {/* منوی اصلی با رنگ خاکستری ثابت و بدون هیچ‌گونه انبار یا جابجایی */}
-            <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-500">
-              <Link href="/" className="whitespace-nowrap transition-colors">
+            <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
+              <Link href="/" className="hover:text-blue-600 whitespace-nowrap transition-colors">
                 {isFa ? 'خانه' : 'Home'}
               </Link>
-              <Link href="/educational-systems" className="whitespace-nowrap transition-colors">
+              <Link href="/educational-systems" className="hover:text-blue-600 whitespace-nowrap transition-colors">
                 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
               </Link>
-              <Link href="/books" className="whitespace-nowrap transition-colors">
+              <Link href="/books" className="hover:text-blue-600 whitespace-nowrap transition-colors">
                 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
               </Link>
-              <Link href="/math-sites" className="whitespace-nowrap transition-colors">
+              <Link href="/math-sites" className="hover:text-blue-600 whitespace-nowrap transition-colors">
                 {isFa ? 'سایت‌های ریاضی کشورها' : 'Math Websites'}
               </Link>
-              <button type="button" aria-expanded={isFeedbackOpen} onClick={() => setIsFeedbackOpen(!isFeedbackOpen)} className="whitespace-nowrap transition-colors flex items-center gap-1">
+              <button type="button" aria-expanded={isFeedbackOpen} onClick={() => setIsFeedbackOpen(!isFeedbackOpen)} className="hover:text-blue-600 whitespace-nowrap transition-colors flex items-center gap-1">
                 <span>{isFa ? 'بازخورد کلاس‌ها' : 'Class Feedback'}</span>
                 <span className="text-[10px]">{isFeedbackOpen ? '▲' : '▼'}</span>
               </button>
-              <Link href="/#contact" className="whitespace-nowrap transition-colors">
+              <Link href="/#contact" className="hover:text-blue-600 whitespace-nowrap transition-colors">
                 {isFa ? 'ارتباط با استاد' : 'Contact'}
               </Link>
             </div>
