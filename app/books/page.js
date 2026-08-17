@@ -204,9 +204,9 @@ export default function BooksPage() {
       </header>
 
       <section className="max-w-4xl mx-auto text-center px-4 pt-8 pb-4">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-black mb-2">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-black mb-2">
           📚 {isFa ? 'کتب و منابع آموزشی' : 'Educational Books & Resources'}
-        </h1>
+        </h2>
         <p className="text-gray-600 text-sm md:text-base">
           {isFa ? 'مجموعه کامل کتاب‌های آموزشی، تالیفی و خلاصه فصل‌های ریاضیات' : 'Comprehensive collection of math textbooks and chapter summaries'}
         </p>
