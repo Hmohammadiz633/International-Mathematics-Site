@@ -1,5 +1,4 @@
 import './globals.css';
-import Navbar from '@/components/Navbar';
 
 export const metadata = {
   title: 'آموزش بین‌المللی ریاضی و تدریس خصوصی GCSE Maths',
@@ -11,6 +10,7 @@ export const metadata = {
     'ریاضی بین‌الملل'
   ],
   authors: [{ name: 'International Math' }],
+  // اضافه کردن تنظیمات آیکون‌ها
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
@@ -28,12 +28,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
+      {/* می‌توانید فاوآیکون را در تگ head هم برای اطمینان بیشتر اضافه کنید */}
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">
-        <Navbar />
-        <main>{children}</main>
+        {children}
       </body>
     </html>
   );
