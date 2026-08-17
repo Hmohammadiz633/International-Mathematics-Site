@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 // انتقال متغیرهای ثابت به بیرون از کامپوننت جهت جلوگیری از رندر مجدد
 const FEEDBACKS = [
@@ -117,6 +118,7 @@ function IntegratedContactButtons({ lang }) {
 export default function Home() {
   const [lang, setLang] = useState('fa');
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
+  const pathname = usePathname();
 
   const isFa = lang === 'fa';
 
@@ -175,33 +177,41 @@ export default function Home() {
           </div>
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
-            {/* ترتیب دکمه‌ها: خانه، نظام آموزشی، کتب و منابع آموزشی و بقیه */}
+            {/* ترتیب دقیق منوهای شما با اعمال رنگ خاکستری برای صفحه فعال */}
             <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
               
               <Link 
                 href="/" 
-                className="hover:text-blue-600 whitespace-nowrap transition-colors"
+                className={`whitespace-nowrap transition-colors px-2.5 py-1 rounded-md ${
+                  pathname === '/' ? 'bg-slate-200 text-slate-900 font-bold' : 'hover:text-blue-600'
+                }`}
               >
                 {isFa ? 'خانه' : 'Home'}
               </Link>
 
               <Link 
                 href="/educational-systems" 
-                className="hover:text-blue-600 whitespace-nowrap transition-colors"
+                className={`whitespace-nowrap transition-colors px-2.5 py-1 rounded-md ${
+                  pathname === '/educational-systems' ? 'bg-slate-200 text-slate-900 font-bold' : 'hover:text-blue-600'
+                }`}
               >
                 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
               </Link>
 
               <Link 
                 href="/books" 
-                className="hover:text-blue-600 whitespace-nowrap transition-colors"
+                className={`whitespace-nowrap transition-colors px-2.5 py-1 rounded-md ${
+                  pathname === '/books' ? 'bg-slate-200 text-slate-900 font-bold' : 'hover:text-blue-600'
+                }`}
               >
                 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
               </Link>
 
               <Link 
                 href="/math-sites" 
-                className="hover:text-blue-600 whitespace-nowrap transition-colors"
+                className={`whitespace-nowrap transition-colors px-2.5 py-1 rounded-md ${
+                  pathname === '/math-sites' ? 'bg-slate-200 text-slate-900 font-bold' : 'hover:text-blue-600'
+                }`}
               >
                 {isFa ? 'سایت‌های ریاضی کشورها' : 'Math Websites'}
               </Link>
@@ -210,7 +220,7 @@ export default function Home() {
                 type="button"
                 aria-expanded={isFeedbackOpen}
                 onClick={() => setIsFeedbackOpen(!isFeedbackOpen)} 
-                className="hover:text-blue-600 whitespace-nowrap transition-colors flex items-center gap-1"
+                className="hover:text-blue-600 whitespace-nowrap transition-colors flex items-center gap-1 px-2.5 py-1 rounded-md"
               >
                 <span>{isFa ? 'بازخورد کلاس‌ها' : 'Class Feedback'}</span>
                 <span className="text-[10px]">{isFeedbackOpen ? '▲' : '▼'}</span>
@@ -219,7 +229,7 @@ export default function Home() {
               <button 
                 type="button"
                 onClick={() => scrollToSection('contact')} 
-                className="hover:text-blue-600 whitespace-nowrap transition-colors"
+                className="hover:text-blue-600 whitespace-nowrap transition-colors px-2.5 py-1 rounded-md"
               >
                 {isFa ? 'ارتباط با استاد' : 'Contact'}
               </button>
@@ -287,7 +297,7 @@ export default function Home() {
                       دارای مدرک دکترای تخصصی ریاضی از دانشگاه صنعتی امیرکبیر هستم و به مدت <strong className="text-white font-black underline decoration-blue-400 underline-offset-4">۲۹ سال</strong> به طور مستمر در عرصه آموزش ریاضی در داخل و خارج از کشور فعالیت داشته‌ام.
                     </p>
                     <p>
-                    هدف از راه اندازی این وبسایت و گروه آموزشی مرتبط، ارائه خدمات تدریس تخصصی و هدفمند به ایرانیان عزیز مقیم خارج از کشور است تا بتوانند ریاضی را دقیقاً مطابق با کتابهای درسی و نظام آموزشی کشور محل سکونت خود بیاموزند. در اینجا و به طور کامل تر در گروه تلگرامی این مجموعه، کتابهای ریاضی مدارس و دانشگاههای کشورهای مختلف از جمله آمریکا، کانادا، آلمان، انگلستان، استرالیا و ترکیه گردآوری شده و به صورت کاملاً رایگان در اختیار تمام اعضاء قرار می گیرد.
+                    هدف از راه اندازی این وبسایت و گروه آموزشی مرتبط، ارائه خدمات تدریس تخصصی و هدفمند به ایرانیان عزیز مقیم خارج از کشور است تا بتوانند ریاضی را دقیقاً مطابق با کتابهای درسی و نظام آموزشی کشور محل سکونت خود بیاموزند. در اینجا و به طور کامل تر در گروه تلگرامی این مجموعه، کتابهای مدارس و دانشگاههای کشورهای مختلف از جمله آمریکا، کانادا، آلمان، انگلستان، استرالیا و ترکیه گردآوری شده و به صورت کاملاً رایگان در اختیار تمام اعضاء قرار می گیرد.
                     </p>
                     <p>
                       من با تکیه بر تجربیات چندین دهه تدریس در نظام‌های آموزشی گوناگون، متعهد به ارائه دقیق‌ترین و کاربردی‌ترین آموزش ریاضی مطابق با استانداردهای مدارس خارج از ایران هستم و از شما دعوت می‌کنم که با پیوستن به این دوره، ریاضی را به شیوه‌ای صحیح، اصولی و متناسب با نیازهای تحصیلی خود فرا بگیرید.
