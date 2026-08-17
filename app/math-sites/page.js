@@ -263,9 +263,9 @@ export default function MathSitesPage() {
 
       <div className="max-w-5xl mx-auto px-4 pt-8">
         <div className="text-center mb-8">
-          <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
+          <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-3">
             💻 {isFa ? 'سایت‌های آموزشی ریاضی کشورها' : 'Math Educational Websites'}
-          </h1>
+          </h2>
           <p className="text-xs md:text-sm text-slate-600 font-medium">
             {isFa ? 'برای مشاهده سایت‌های هر کشور، روی دکمه مربوط به آن کلیک کنید:' : 'Click on any country button to reveal its resources below:'}
           </p>
@@ -299,18 +299,18 @@ export default function MathSitesPage() {
             
             <div className="flex items-center gap-3 border-b border-slate-300 pb-4 mb-6">
               <span className="text-4xl">{selectedCountry.flag}</span>
-              <h2 className="text-xl md:text-2xl font-black text-slate-900">
+              <h3 className="text-xl md:text-2xl font-black text-slate-900">
                 {isFa ? `منابع و سایت‌های ریاضی ${selectedCountry.countryFa}` : `${selectedCountry.countryEn} Math Websites`}
-              </h2>
+              </h3>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               
               {selectedCountry.preUniversity && selectedCountry.preUniversity.length > 0 && (
                 <div>
-                  <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  <h4 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
                     🏫 {isFa ? 'قبل دانشگاه' : 'Pre-University & High School'}
-                  </h3>
+                  </h4>
                   <div className="flex flex-col gap-3">
                     {selectedCountry.preUniversity.map((site, idx) => (
                       <a
@@ -337,9 +337,9 @@ export default function MathSitesPage() {
 
               {selectedCountry.university && selectedCountry.university.length > 0 && (
                 <div>
-                  <h3 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  <h4 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
                     🎓 {isFa ? 'دانشگاهی' : 'University'}
-                  </h3>
+                  </h4>
                   <div className="flex flex-col gap-3">
                     {selectedCountry.university.map((site, idx) => (
                       <a
