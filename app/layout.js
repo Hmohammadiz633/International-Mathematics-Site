@@ -1,6 +1,6 @@
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
-import LanguageHtmlUpdater from '@/components/LanguageHtmlUpdater'; // یک کامپوننت کمکی برای آپدیت تگ html
+import ClientLayoutWrapper from '@/components/ClientLayoutWrapper';
 
 export const metadata = {
   title: 'آموزش بین‌المللی ریاضی و تدریس خصوصی GCSE Maths',
@@ -34,8 +34,9 @@ export default function RootLayout({ children }) {
       </head>
       <body className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">
         <LanguageProvider>
-          <LanguageHtmlUpdater />
-          {children}
+          <ClientLayoutWrapper>
+            {children}
+          </ClientLayoutWrapper>
         </LanguageProvider>
       </body>
     </html>
