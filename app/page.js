@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useLanguage } from '@/context/LanguageContext'; // اتصال به کانتکست مرکزی زبان
 
 // انتقال متغیرهای ثابت به بیرون از کامپوننت جهت جلوگیری از رندر مجدد
 const FEEDBACKS = [
@@ -36,7 +37,7 @@ const SCHEMA_DATA = {
   ],
 };
 
-// کامپوننت داخلی ContactButtons فقط با تلگرام، اینستاگرام و جیمیل اختصاصی (استفاده از تم آبی یکدست)
+// کامپوننت داخلی ContactButtons فقط با تلگرام، اینستاگرام و جیمیل اختصاصی
 function IntegratedContactButtons({ lang }) {
   const isFa = lang === 'fa';
 
@@ -116,11 +117,12 @@ function IntegratedContactButtons({ lang }) {
 }
 
 export default function Home() {
-  const [lang, setLang] = useState('fa');
+  // استفاده از هوک مرکزی برای خواندن و تغییر زبان
+  const { language, setLanguage } = useLanguage();
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const pathname = usePathname();
 
-  const isFa = lang === 'fa';
+  const isFa = language === 'fa';
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -160,7 +162,7 @@ export default function Home() {
             <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300 shadow-inner">
               <button 
                 type="button"
-                onClick={() => setLang('fa')} 
+                onClick={() => setLanguage('fa')} 
                 className={`text-xs font-bold transition ${isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}
               >
                 فارسی
@@ -168,7 +170,7 @@ export default function Home() {
               <span className="text-gray-400 font-light">|</span>
               <button 
                 type="button"
-                onClick={() => setLang('en')} 
+                onClick={() => setLanguage('en')} 
                 className={`text-xs font-bold transition ${!isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}
               >
                 English
@@ -177,9 +179,7 @@ export default function Home() {
           </div>
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
-            {/* ترتیب دکمه‌ها: خانه، نظام آموزشی، کتب و منابع آموزشی و بقیه */}
             <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
-              
               <Link 
                 href="/" 
                 className={`whitespace-nowrap transition-colors font-bold ${
@@ -231,7 +231,7 @@ export default function Home() {
               </button>
             </div>
 
-            {/* منوی کشویی بازخورد کلاس‌ها (استفاده از تم آبی هماهنگ) */}
+            {/* منوی کشویی بازخورد کلاس‌ها */}
             {isFeedbackOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-blue-50/60 p-3 rounded-2xl border border-blue-200 my-1 shadow-inner">
                 {FEEDBACKS.map((item, idx) => (
@@ -415,7 +415,7 @@ export default function Home() {
 
       {/* بخش ارتباط با استاد */}
       <div id="contact" className="mt-8">
-        <IntegratedContactButtons lang={lang} />
+        <IntegratedContactButtons lang={language} />
       </div>
     </main>
   );
