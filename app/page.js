@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useLanguage } from '@/context/LanguageContext';
+import { useLanguage } from '@/context/LanguageContext'; // اتصال به کانتکست مرکزی زبان
 
 // انتقال متغیرهای ثابت به بیرون از کامپوننت جهت جلوگیری از رندر مجدد
 const FEEDBACKS = [
@@ -37,7 +37,7 @@ const SCHEMA_DATA = {
   ],
 };
 
-// کامپوننت داخلی ContactButtons بدون تایپ‌اسکریپت اضافی برای جلوگیری از خطای Build
+// کامپوننت داخلی ContactButtons فقط با تلگرام، اینستاگرام و جیمیل اختصاصی
 function IntegratedContactButtons({ lang }) {
   const isFa = lang === 'fa';
 
@@ -117,6 +117,7 @@ function IntegratedContactButtons({ lang }) {
 }
 
 export default function Home() {
+  // استفاده از هوک مرکزی برای خواندن و تغییر زبان
   const { language, setLanguage } = useLanguage();
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const pathname = usePathname();
@@ -230,6 +231,7 @@ export default function Home() {
               </button>
             </div>
 
+            {/* منوی کشویی بازخورد کلاس‌ها */}
             {isFeedbackOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-blue-50/60 p-3 rounded-2xl border border-blue-200 my-1 shadow-inner">
                 {FEEDBACKS.map((item, idx) => (
@@ -291,7 +293,7 @@ export default function Home() {
                       دارای مدرک دکترای تخصصی ریاضی از دانشگاه صنعتی امیرکبیر هستم و به مدت <strong className="text-white font-black underline decoration-blue-400 underline-offset-4">۲۹ سال</strong> به طور مستمر در عرصه آموزش ریاضی در داخل و خارج از کشور فعالیت داشته‌ام.
                     </p>
                     <p>
-                      هدف از راه اندازی این وبسایت و گروه آموزشی مرتبط، ارائه خدمات تدریس تخصصی و هدفمند به ایرانیان عزیز مقیم خارج از کشور است تا بتوانند ریاضی را دقیقاً مطابق با کتابهای درسی و نظام آموزشی کشور محل سکونت خود بیاموزند. در اینجا و به طور کامل تر در گروه تلگرامی این مجموعه، کتابهای مدارس و دانشگاههای کشورهای مختلف از جمله آمریکا، کانادا، آلمان، انگلستان، استرالیا و ترکیه گردآوری شده و به صورت کاملاً رایگان در اختیار تمام اعضاء قرار می گیرد.
+                    هدف از راه اندازی این وبسایت و گروه آموزشی مرتبط، ارائه خدمات تدریس تخصصی و هدفمند به ایرانیان عزیز مقیم خارج از کشور است تا بتوانند ریاضی را دقیقاً مطابق با کتابهای درسی و نظام آموزشی کشور محل سکونت خود بیاموزند. در اینجا و به طور کامل تر در گروه تلگرامی این مجموعه، کتابهای مدارس و دانشگاههای کشورهای مختلف از جمله آمریکا، کانادا، آلمان، انگلستان، استرالیا و ترکیه گردآوری شده و به صورت کاملاً رایگان در اختیار تمام اعضاء قرار می گیرد.
                     </p>
                     <p>
                       من با تکیه بر تجربیات چندین دهه تدریس در نظام‌های آموزشی گوناگون، متعهد به ارائه دقیق‌ترین و کاربردی‌ترین آموزش ریاضی مطابق با استانداردهای مدارس خارج از ایران هستم و از شما دعوت می‌کنم که با پیوستن به این دوره، ریاضی را به شیوه‌ای صحیح، اصولی و متناسب با نیازهای تحصیلی خود فرا بگیرید.
@@ -417,4 +419,4 @@ export default function Home() {
       </div>
     </main>
   );
-} 
+}
