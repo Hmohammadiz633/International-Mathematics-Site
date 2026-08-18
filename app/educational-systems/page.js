@@ -160,12 +160,12 @@ const EDUCATIONAL_DATA = [
 ];
 
 export default function EducationalSystemsPage() {
-  const { language, setLanguage } = useLanguage();
+  const { language: lang, setLanguage: setLang } = useLanguage();
   const pathname = usePathname();
   const [selectedCountry, setSelectedCountry] = useState(EDUCATIONAL_DATA[0]);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
 
-  const isFa = language === 'fa';
+  const isFa = lang === 'fa';
   const isEducationalActive = pathname === '/educational-systems';
 
   return (
@@ -175,7 +175,7 @@ export default function EducationalSystemsPage() {
           <div className="w-full flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div className="w-9 h-9 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl flex items-center justify-center p-1.5 shadow-sm">
-                <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M2 3h20v14H2z" /><path d="M8 21l4-4 4 4" /><path d="M7 8h4" /><path d="M7 12h2" /><path d="M15 11l2 2 4-4" />
                 </svg>
               </div>
@@ -186,15 +186,15 @@ export default function EducationalSystemsPage() {
 
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300 shadow-inner">
-                <button type="button" onClick={() => setLanguage('fa')} className={`text-xs font-bold transition ${isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>فارسی</button>
-                <span className="text-gray-400 font-light">|</span>
-                <button type="button" onClick={() => setLanguage('en')} className={`text-xs font-bold transition ${!isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>English</button>
+                <button type="button" onClick={() => setLang('fa')} className={`text-xs font-bold transition ${isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>فارسی</button>
+                <span className="text-gray-400 font-light" aria-hidden="true">|</span>
+                <button type="button" onClick={() => setLang('en')} className={`text-xs font-bold transition ${!isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>English</button>
               </div>
             </div>
           </div>
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
-            <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
+            <nav className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
               <Link 
                 href="/" 
                 className="hover:text-blue-600 whitespace-nowrap transition-colors"
@@ -221,7 +221,7 @@ export default function EducationalSystemsPage() {
               </Link>
               <button type="button" aria-expanded={isFeedbackOpen} onClick={() => setIsFeedbackOpen(!isFeedbackOpen)} className="hover:text-blue-600 whitespace-nowrap transition-colors flex items-center gap-1">
                 <span>{isFa ? 'بازخورد کلاس‌ها' : 'Class Feedback'}</span>
-                <span className="text-[10px]">{isFeedbackOpen ? '▲' : '▼'}</span>
+                <span className="text-[10px]" aria-hidden="true">{isFeedbackOpen ? '▲' : '▼'}</span>
               </button>
               <Link 
                 href="/#contact" 
@@ -229,13 +229,13 @@ export default function EducationalSystemsPage() {
               >
                 {isFa ? 'ارتباط با استاد' : 'Contact'}
               </Link>
-            </div>
+            </nav>
 
             {isFeedbackOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-blue-50/60 p-3 rounded-2xl border border-blue-100 my-1 shadow-inner">
                 {FEEDBACKS.map((item, idx) => (
                   <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-white hover:bg-blue-50 text-xs font-semibold text-blue-900 rounded-lg border border-blue-200 shadow-sm transition-all flex items-center gap-1.5">
-                    <span>⭐</span>
+                    <span aria-hidden="true">⭐</span>
                     <span>{isFa ? item.fa : item.en}</span>
                   </a>
                 ))}
@@ -271,7 +271,7 @@ export default function EducationalSystemsPage() {
                   }
                 `}
               >
-                <span className="text-lg md:text-xl leading-none">{item.flag}</span>
+                <span className="text-lg md:text-xl leading-none" aria-hidden="true">{item.flag}</span>
                 <span>{isFa ? item.countryFa : item.countryEn}</span>
               </button>
             );
@@ -282,7 +282,7 @@ export default function EducationalSystemsPage() {
           <div className="bg-blue-50/40 text-slate-800 rounded-3xl p-6 md:p-8 border border-blue-200 shadow-sm transition-all duration-300">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-blue-200 pb-4 mb-6">
               <div className="flex items-center gap-3">
-                <span className="text-4xl md:text-5xl">{selectedCountry.flag}</span>
+                <span className="text-4xl md:text-5xl" aria-hidden="true">{selectedCountry.flag}</span>
                 <div>
                   <h3 className="text-xl md:text-2xl font-black text-slate-900">
                     {isFa ? selectedCountry.titleFa : selectedCountry.titleEn}
@@ -297,9 +297,10 @@ export default function EducationalSystemsPage() {
                 href={selectedCountry.link} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="self-start sm:self-auto px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition whitespace-nowrap shadow-sm shadow-blue-200"
+                className="self-start sm:self-auto px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition whitespace-nowrap shadow-sm shadow-blue-200 flex items-center gap-1.5"
               >
-                🔗 {isFa ? 'مشاهده در تلگرام' : 'View on Telegram'}
+                <span aria-hidden="true">🔗</span>
+                <span>{isFa ? 'مشاهده در تلگرام' : 'View on Telegram'}</span>
               </a>
             </div>
 
@@ -310,7 +311,8 @@ export default function EducationalSystemsPage() {
             {selectedCountry.resources && selectedCountry.resources.length > 0 && (
               <div className="bg-white p-4 rounded-2xl border border-blue-100 shadow-sm">
                 <h4 className="font-bold text-sm text-slate-900 mb-3 flex items-center gap-2">
-                  💻 {isFa ? 'سایت‌ها و منابع رسمی این کشور:' : 'Official Resources & Websites:'}
+                  <span aria-hidden="true">💻</span>
+                  <span>{isFa ? 'سایت‌ها و منابع رسمی این کشور:' : 'Official Resources & Websites:'}</span>
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedCountry.resources.map((res, idx) => (
@@ -321,7 +323,7 @@ export default function EducationalSystemsPage() {
                       rel="noopener noreferrer"
                       className="px-3 py-2 bg-blue-50/50 hover:bg-blue-100/70 text-xs font-medium text-blue-900 rounded-xl border border-blue-200 transition flex items-center gap-1.5"
                     >
-                      <span>🌐</span>
+                      <span aria-hidden="true">🌐</span>
                       <span>{res.title}</span>
                     </a>
                   ))}
