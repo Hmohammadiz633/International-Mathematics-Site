@@ -2,197 +2,246 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import BooksSection from '@/components/BooksSection';
+import { usePathname } from 'next/navigation';
 
+// انتقال متغیرهای ثابت به بیرون از کامپوننت جهت جلوگیری از رندر مجدد
 const FEEDBACKS = [
   { fa: 'بازخورد ۱', en: 'Feedback 1', link: 'https://t.me/International_Maths/110' },
   { fa: 'بازخورد ۲', en: 'Feedback 2', link: 'https://t.me/International_Maths/111' },
   { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
 ];
 
-export default function BooksPage() {
+const SCHEMA_DATA = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'هادی محمدی زرندینی',
+  jobTitle: 'عضو هیات علمی دانشگاه و مدرس ریاضیات بین‌الملل',
+  worksFor: {
+    '@type': 'EducationalOrganization',
+    name: 'دانشگاه ملی مهارت تهران',
+  },
+  alumniOf: [
+    {
+      '@type': 'EducationalOrganization',
+      name: 'دانشگاه صنعتی امیرکبیر',
+    },
+    {
+      '@type': 'EducationalOrganization',
+      name: 'دانشگاه خوارزمی',
+    },
+  ],
+  sameAs: [
+    'https://t.me/International_Maths',
+    'https://instagram.com/Hadi_mohammadi_zarandini',
+  ],
+};
+
+// کامپوننت داخلی ContactButtons فقط با تلگرام، اینستاگرام و جیمیل اختصاصی (استفاده از تم آبی یکدست)
+function IntegratedContactButtons({ lang }) {
+  const isFa = lang === 'fa';
+
+  return (
+    <section className="max-w-5xl mx-auto px-4 pt-6">
+      <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
+        <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-6 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
+          <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">📞</span>
+          <span>{isFa ? 'ارتباط با استاد' : 'Contact Professor'}</span>
+        </h4>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* تلگرام */}
+          <a
+            href="https://t.me/International_Maths"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between p-4 bg-blue-50/50 hover:bg-blue-100/60 border border-blue-200 rounded-2xl transition group shadow-sm"
+          >
+            <div className="flex items-center gap-3">
+              <svg className="w-8 h-8 text-blue-600 fill-current shrink-0" viewBox="0 0 24 24">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.228-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.12.098.153.228.166.331.012.095.029.311.011.479z"/>
+              </svg>
+              <div>
+                <div className="font-bold text-slate-900 text-sm md:text-base">
+                  {isFa ? 'کانال تلگرام' : 'Telegram Channel'}
+                </div>
+                <div className="text-xs text-slate-500" dir="ltr">@International_Maths</div>
+              </div>
+            </div>
+            <span className="text-blue-600 font-bold group-hover:translate-x-1 transition-transform">↗</span>
+          </a>
+
+          {/* اینستاگرام */}
+          <a
+            href="https://instagram.com/Hadi_mohammadi_zarandini"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between p-4 bg-blue-50/50 hover:bg-blue-100/60 border border-blue-200 rounded-2xl transition group shadow-sm"
+          >
+            <div className="flex items-center gap-3">
+              <svg className="w-8 h-8 text-blue-600 fill-current shrink-0" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              <div>
+                <div className="font-bold text-slate-900 text-sm md:text-base">
+                  {isFa ? 'صفحه اینستاگرام' : 'Instagram Page'}
+                </div>
+                <div className="text-xs text-slate-500" dir="ltr">@Hadi_mohammadi_zarandini</div>
+              </div>
+            </div>
+            <span className="text-blue-600 font-bold group-hover:translate-x-1 transition-transform">↗</span>
+          </a>
+
+          {/* جیمیل */}
+          <a
+            href="mailto:Hadi.mohammadi.zarandini@gmail.com"
+            className="flex items-center justify-between p-4 bg-blue-50/50 hover:bg-blue-100/60 border border-blue-200 rounded-2xl transition group shadow-sm"
+          >
+            <div className="flex items-center gap-3 overflow-hidden">
+              <svg className="w-8 h-8 text-blue-600 fill-current shrink-0" viewBox="0 0 24 24">
+                <path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.713v13.856h24v-13.856l-12 9.713z"/>
+              </svg>
+              <div className="truncate">
+                <div className="font-bold text-slate-900 text-sm md:text-base">
+                  {isFa ? 'ارسال ایمیل (جیمیل)' : 'Gmail'}
+                </div>
+                <div className="text-xs text-slate-500 truncate" dir="ltr">Hadi.mohammadi.zarandini@gmail.com</div>
+              </div>
+            </div>
+            <span className="text-blue-600 font-bold group-hover:translate-x-1 transition-transform shrink-0">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function Home() {
   const [lang, setLang] = useState('fa');
-  const [activeTab, setActiveTab] = useState('taught');
-  const [selectedGrade, setSelectedGrade] = useState(7);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
+  const pathname = usePathname();
 
   const isFa = lang === 'fa';
 
-  const grades = [
-    { id: 7, fa: 'پایه هفتم', en: 'Grade 7' },
-    { id: 8, fa: 'پایه هشتم', en: 'Grade 8' },
-    { id: 9, fa: 'پایه نهم', en: 'Grade 9' },
-    { id: 10, fa: 'پایه دهم', en: 'Grade 10' },
-    { id: 11, fa: 'پایه یازدهم', en: 'Grade 11' },
-    { id: 12, fa: 'پایه دوازدهم', en: 'Grade 12' },
-  ];
-
-  const authoredBooks = [
-    { id: 1, src: '/book1.JPG', title: 'کتاب تالیفی ۱' },
-    { id: 2, src: '/book2.JPG', title: 'کتاب تالیفی ۲' },
-    { id: 3, src: '/book3.JPG', title: 'کتاب تالیفی ۳' },
-    { id: 4, src: '/book4.JPG', title: 'کتاب تالیفی ۴' },
-    { id: 5, src: '/book5.JPG', title: 'کتاب تالیفی ۵' },
-    { id: 6, src: '/book6.JPG', title: 'کتاب تالیفی ۶' },
-  ];
-
-  const grade7Images = [
-    { id: 1, src: '/summary-g7-1.JPG', title: 'خلاصه فصل ۱' },
-    { id: 2, src: '/summary-g7-2.JPG', title: 'خلاصه فصل ۲' },
-    { id: 3, src: '/summary-g7-3.JPG', title: 'خلاصه فصل ۳' },
-    { id: 4, src: '/summary-g7-4.JPG', title: 'خلاصه فصل ۴' },
-    { id: 5, src: '/summary-g7-5.JPG', title: 'خلاصه فصل ۵' },
-    { id: 6, src: '/summary-g7-6.JPG', title: 'خلاصه فصل ۶' },
-    { id: 7, src: '/summary-g7-7.JPG', title: 'خلاصه فصل ۷' },
-    { id: 8, src: '/summary-g7-8.JPG', title: 'خلاصه فصل ۸' },
-    { id: 9, src: '/summary-g7-9.JPG', title: 'خلاصه فصل ۹' },
-    { id: 10, src: '/summary-g7-10.JPG', title: 'خلاصه فصل ۱۰' },
-    { id: 11, src: '/summary-g7-11.JPG', title: 'خلاصه فصل ۱۱' },
-    { id: 12, src: '/summary-g7-12.JPG', title: 'خلاصه فصل ۱۲' },
-  ];
-
-  const grade8Images = [
-    { id: 1, src: '/IMG_0891.JPG', title: 'خلاصه فصل ۱' },
-    { id: 2, src: '/IMG_0892.JPG', title: 'خلاصه فصل ۲' },
-    { id: 3, src: '/IMG_0893.JPG', title: 'خلاصه فصل ۳' },
-    { id: 4, src: '/IMG_0894.JPG', title: 'خلاصه فصل ۴' },
-    { id: 5, src: '/IMG_0895.JPG', title: 'خلاصه فصل ۵' },
-    { id: 6, src: '/IMG_0896.JPG', title: 'خلاصه فصل ۶' },
-    { id: 7, src: '/IMG_0897.JPG', title: 'خلاصه فصل ۷' },
-    { id: 8, src: '/IMG_0898.JPG', title: 'خلاصه فصل ۸' },
-    { id: 9, src: '/IMG_0899.JPG', title: 'خلاصه فصل ۹' },
-    { id: 10, src: '/IMG_0900.JPG', title: 'خلاصه فصل ۱۰' },
-    { id: 11, src: '/IMG_0901.JPG', title: 'خلاصه فصل ۱۱' },
-  ];
-
-  const grade9Images = [
-    { id: 1, src: '/IMG_0908.JPG', title: 'خلاصه فصل ۱' },
-    { id: 2, src: '/IMG_0909.JPG', title: 'خلاصه فصل ۲' },
-    { id: 3, src: '/IMG_0910.JPG', title: 'خلاصه فصل ۳' },
-    { id: 4, src: '/IMG_0911.JPG', title: 'خلاصه فصل ۴' },
-    { id: 5, src: '/IMG_0912.JPG', title: 'خلاصه فصل ۵' },
-    { id: 6, src: '/IMG_0913.JPG', title: 'خلاصه فصل ۶' },
-    { id: 7, src: '/IMG_0914.JPG', title: 'خلاصه فصل ۷' },
-    { id: 8, src: '/IMG_0915.JPG', title: 'خلاصه فصل ۸' },
-    { id: 9, src: '/IMG_0916.JPG', title: 'خلاصه فصل ۹' },
-    { id: 10, src: '/IMG_0917.JPG', title: 'خلاصه فصل ۱۰' },
-  ];
-
-  const grade10Images = [
-    { id: 1, src: '/IMG_0919.JPG', title: 'خلاصه فصل ۱' },
-    { id: 2, src: '/IMG_0920.JPG', title: 'خلاصه فصل ۲' },
-    { id: 3, src: '/IMG_0921.JPG', title: 'خلاصه فصل ۳' },
-    { id: 4, src: '/IMG_0922.JPG', title: 'خلاصه فصل ۴' },
-    { id: 5, src: '/IMG_0923.JPG', title: 'خلاصه فصل ۵' },
-    { id: 6, src: '/IMG_0924.JPG', title: 'خلاصه فصل ۶' },
-    { id: 7, src: '/IMG_0925.JPG', title: 'خلاصه فصل ۷' },
-    { id: 8, src: '/IMG_0926.JPG', title: 'خلاصه فصل ۸' },
-    { id: 9, src: '/IMG_0927.JPG', title: 'خلاصه فصل ۹' },
-    { id: 10, src: '/IMG_0928.JPG', title: 'خلاصه فصل ۱۰' },
-  ];
-
-  const grade11Images = [
-    { id: 1, src: '/IMG_0930.jpg' },
-    { id: 2, src: '/IMG_0931.PNG' },
-    { id: 3, src: '/IMG_0932.PNG' },
-    { id: 4, src: '/IMG_0933.PNG' },
-    { id: 5, src: '/IMG_0934.PNG' },
-    { id: 6, src: '/IMG_0935.PNG' },
-    { id: 7, src: '/IMG_0936.PNG' },
-    { id: 8, src: '/IMG_0937.jpg' },
-    { id: 9, src: '/IMG_0938.jpg' },
-    { id: 10, src: '/IMG_0939.jpg' },
-    { id: 11, src: '/IMG_0940.jpg' },
-    { id: 12, src: '/IMG_0941.jpg' },
-    { id: 13, src: '/IMG_0942.PNG' },
-    { id: 14, src: '/IMG_0943.PNG' },
-    { id: 15, src: '/IMG_0944.jpg' },
-    { id: 16, src: '/IMG_0945.PNG' },
-    { id: 17, src: '/IMG_0946.jpg' },
-    { id: 18, src: '/IMG_0947.jpg' },
-    { id: 19, src: '/IMG_0948.jpg' },
-    { id: 20, src: '/IMG_0949.PNG' },
-  ];
-
-  const grade12Images = [
-    { id: 1, src: '/IMG_0956.PNG' },
-    { id: 2, src: '/IMG_0957.PNG' },
-    { id: 3, src: '/IMG_0958.jpg' },
-    { id: 4, src: '/IMG_0959.jpg' },
-    { id: 5, src: '/IMG_0960.PNG' },
-    { id: 6, src: '/IMG_0961.PNG' },
-    { id: 7, src: '/IMG_0962.PNG' },
-    { id: 8, src: '/IMG_0963.jpg' },
-    { id: 9, src: '/IMG_0964.PNG' },
-    { id: 10, src: '/IMG_0965.PNG' },
-    { id: 11, src: '/IMG_0966.PNG' },
-    { id: 12, src: '/IMG_0967.jpg' },
-    { id: 13, src: '/IMG_0968.PNG' },
-    { id: 14, src: '/IMG_0969.jpg' },
-    { id: 15, src: '/IMG_0970.PNG' },
-    { id: 16, src: '/IMG_0971.jpg' },
-    { id: 17, src: '/IMG_0972.PNG' },
-    { id: 18, src: '/IMG_0973.jpg' },
-    { id: 19, src: '/IMG_0974.jpg' },
-    { id: 20, src: '/IMG_0975.PNG' },
-    { id: 21, src: '/IMG_0976.PNG' },
-  ];
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50/50 text-slate-900 pb-12">
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-blue-100 px-4 py-3 shadow-sm">
+    <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA_DATA) }}
+      />
+
+      {/* هدر */}
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 py-3 shadow-sm">
         <div className="max-w-6xl mx-auto flex flex-col items-center gap-3">
           <div className="w-full flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 bg-blue-50 border border-blue-200 text-blue-600 rounded-xl flex items-center justify-center p-1.5 shadow-sm">
-                <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M2 3h20v14H2z" /><path d="M8 21l4-4 4 4" /><path d="M7 8h4" /><path d="M7 12h2" /><path d="M15 11l2 2 4-4" />
-                </svg>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl flex items-center justify-center p-1.5 shadow-sm">
+                  <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M2 3h20v14H2z" />
+                    <path d="M8 21l4-4 4 4" />
+                    <path d="M7 8h4" />
+                    <path d="M7 12h2" />
+                    <path d="M15 11l2 2 4-4" />
+                  </svg>
+                </div>
+                <h1 className="font-black text-base md:text-xl text-slate-800 tracking-tight leading-snug">
+                  {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Math'}
+                </h1>
               </div>
-              <h1 className="font-black text-base md:text-xl text-blue-950 tracking-tight leading-snug">
-                {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Math'}
-              </h1>
             </div>
 
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 bg-blue-50/50 px-3 py-1.5 rounded-lg border border-blue-100 shadow-inner">
-                <button type="button" onClick={() => setLang('fa')} className={`text-xs font-bold transition ${isFa ? 'text-blue-600 underline font-black' : 'text-slate-500 hover:text-blue-950'}`}>فارسی</button>
-                <span className="text-blue-300 font-light">|</span>
-                <button type="button" onClick={() => setLang('en')} className={`text-xs font-bold transition ${!isFa ? 'text-blue-600 underline font-black' : 'text-slate-500 hover:text-blue-950'}`}>English</button>
-              </div>
+            <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300 shadow-inner">
+              <button 
+                type="button"
+                onClick={() => setLang('fa')} 
+                className={`text-xs font-bold transition ${isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}
+              >
+                فارسی
+              </button>
+              <span className="text-gray-400 font-light">|</span>
+              <button 
+                type="button"
+                onClick={() => setLang('en')} 
+                className={`text-xs font-bold transition ${!isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}
+              >
+                English
+              </button>
             </div>
           </div>
 
-          <div className="w-full flex flex-col items-center gap-2 border-t border-blue-50 pt-3">
-            <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-slate-700">
+          <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
+            {/* ترتیب دکمه‌ها: خانه، نظام آموزشی، کتب و منابع آموزشی و بقیه */}
+            <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
+              
               <Link 
                 href="/" 
-                className="hover:text-blue-600 whitespace-nowrap transition-colors flex items-center gap-1.5"
+                className={`whitespace-nowrap transition-colors font-bold ${
+                  pathname === '/' 
+                    ? 'text-blue-700' 
+                    : 'text-gray-700 hover:text-blue-600'
+                }`}
               >
-                <span>{isFa ? 'خانه' : 'Home'}</span>
+                {isFa ? 'خانه' : 'Home'}
               </Link>
-              <Link href="/educational-systems" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+
+              <Link 
+                href="/educational-systems" 
+                className="hover:text-blue-600 whitespace-nowrap transition-colors"
+              >
                 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
               </Link>
-              <Link href="/books" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+
+              <Link 
+                href="/books" 
+                className="text-blue-800 hover:text-blue-900 whitespace-nowrap transition-colors font-bold"
+              >
                 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
               </Link>
-              <Link href="/math-sites" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+
+              <Link 
+                href="/math-sites" 
+                className="hover:text-blue-600 whitespace-nowrap transition-colors"
+              >
                 {isFa ? 'سایت‌های ریاضی کشورها' : 'Math Websites'}
               </Link>
-              <button type="button" aria-expanded={isFeedbackOpen} onClick={() => setIsFeedbackOpen(!isFeedbackOpen)} className="hover:text-blue-600 whitespace-nowrap transition-colors flex items-center gap-1">
+
+              <button 
+                type="button"
+                aria-expanded={isFeedbackOpen}
+                onClick={() => setIsFeedbackOpen(!isFeedbackOpen)} 
+                className="hover:text-blue-600 whitespace-nowrap transition-colors flex items-center gap-1"
+              >
                 <span>{isFa ? 'بازخورد کلاس‌ها' : 'Class Feedback'}</span>
                 <span className="text-[10px]">{isFeedbackOpen ? '▲' : '▼'}</span>
               </button>
-              <Link href="/#contact" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+
+              <button 
+                type="button"
+                onClick={() => scrollToSection('contact')} 
+                className="hover:text-blue-600 whitespace-nowrap transition-colors"
+              >
                 {isFa ? 'ارتباط با استاد' : 'Contact'}
-              </Link>
+              </button>
             </div>
 
+            {/* منوی کشویی بازخورد کلاس‌ها (استفاده از تم آبی هماهنگ) */}
             {isFeedbackOpen && (
-              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-blue-50/60 p-3 rounded-2xl border border-blue-100 my-1 shadow-inner">
+              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-blue-50/60 p-3 rounded-2xl border border-blue-200 my-1 shadow-inner">
                 {FEEDBACKS.map((item, idx) => (
-                  <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-white hover:bg-blue-50 text-xs font-semibold text-blue-950 rounded-lg border border-blue-100 shadow-sm transition-all flex items-center gap-1.5">
+                  <a 
+                    key={idx} 
+                    href={item.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="px-3 py-1.5 bg-white hover:bg-blue-50 text-xs font-semibold text-blue-900 rounded-lg border border-blue-200 shadow-sm transition-all flex items-center gap-1.5"
+                  >
                     <span>⭐</span>
                     <span>{isFa ? item.fa : item.en}</span>
                   </a>
@@ -203,195 +252,170 @@ export default function BooksPage() {
         </div>
       </header>
 
-      <section className="max-w-4xl mx-auto text-center px-4 pt-8 pb-4">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-950 mb-2">
-          📚 {isFa ? 'کتب و منابع آموزشی' : 'Educational Books & Resources'}
+      {/* بنر اصلی و عنوان */}
+      <section className="max-w-4xl mx-auto text-center px-4 pt-12 pb-6">
+        <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-5 leading-tight tracking-tight bg-gradient-to-r from-blue-900 via-indigo-800 to-slate-900 bg-clip-text text-transparent">
+          {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics Tutoring'}
         </h2>
-        <p className="text-slate-600 text-sm md:text-base">
-          {isFa ? 'مجموعه کامل کتاب‌های آموزشی، تالیفی و خلاصه فصل‌های ریاضیات' : 'Comprehensive collection of math textbooks and chapter summaries'}
+        <p className="text-slate-700 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-medium">
+          {isFa 
+            ? 'تدریس تخصصی و مفهومی ریاضیات نظام‌های آموزشی بین‌المللی (امریكا، كانادا، انگلیس، استرالیا، آلمان و اروپا)' 
+            : 'Specialized math education for international curricula (USA, Canada, UK, Australia, Germany, Europe).'}
         </p>
       </section>
 
-      <div className="max-w-3xl mx-auto px-4 mt-6 mb-8">
-        <div className="flex flex-wrap justify-center items-center gap-3">
-          <button
-            type="button"
-            onClick={() => setActiveTab('taught')}
-            className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all duration-150 cursor-pointer flex items-center justify-center gap-2 ${
-              activeTab === 'taught'
-                ? 'bg-blue-600 text-white border border-blue-600 shadow-sm shadow-blue-200'
-                : 'bg-white text-slate-700 border border-blue-100 hover:bg-blue-50/50'
-            }`}
-          >
-            <span className="text-sm">📖</span>
-            <span>{isFa ? 'کتاب‌های تدریس شده کشورها' : 'Books Taught'}</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setActiveTab('authored')}
-            className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all duration-150 cursor-pointer flex items-center justify-center gap-2 ${
-              activeTab === 'authored'
-                ? 'bg-blue-600 text-white border border-blue-600 shadow-sm shadow-blue-200'
-                : 'bg-white text-slate-700 border border-blue-100 hover:bg-blue-50/50'
-            }`}
-          >
-            <span className="text-sm">✍️</span>
-            <span>{isFa ? 'کتاب های تالیف شده' : 'Authored Books'}</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setActiveTab('summaries')}
-            className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all duration-150 cursor-pointer flex items-center justify-center gap-2 ${
-              activeTab === 'summaries'
-                ? 'bg-blue-600 text-white border border-blue-600 shadow-sm shadow-blue-200'
-                : 'bg-white text-slate-700 border border-blue-100 hover:bg-blue-50/50'
-            }`}
-          >
-            <span className="text-sm">📝</span>
-            <span>{isFa ? 'خلاصه فصل‌های کتاب' : 'Chapter Summaries'}</span>
-          </button>
-        </div>
-      </div>
-
-      <div className="max-w-6xl mx-auto px-4">
-        {activeTab === 'taught' && (
-          <BooksSection lang={lang} />
-        )}
-
-        {activeTab === 'authored' && (
-          <div className="bg-blue-50/30 border border-blue-100 rounded-3xl p-4 md:p-8 shadow-sm">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6 border-b border-blue-100 pb-4">
-              <h3 className="text-xl font-black text-blue-950 text-center md:text-right">
-                {isFa ? '✍️ کتاب‌های تالیف شده دانشگاهی' : '✍️ Authored University Books'}
-              </h3>
-              <a 
-                href="https://t.me/International_Maths/103" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs md:text-sm font-bold rounded-xl shadow-sm transition-all flex items-center gap-2"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.25.38-.51 1.05-.78 4.11-1.79 6.85-2.97 8.22-3.54 3.91-1.64 4.72-1.92 5.25-1.93.12 0 .39.03.56.17.14.12.18.28.2.45-.02.07-.02.14-.04.23z"/>
-                </svg>
-                <span>{isFa ? 'مشاهده در تلگرام' : 'View on Telegram'}</span>
-              </a>
+      {/* معرفی هادی محمدی زرندینی */}
+      <section id="about" className="max-w-5xl mx-auto px-4 pt-6">
+        <div className="bg-slate-800/90 text-white rounded-3xl p-6 md:p-10 border border-slate-700/60 shadow-xl">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+            <div className="shrink-0 flex flex-col items-center">
+              <img 
+                src="/profile.jpg" 
+                alt="هادی محمدی زرندینی مدرس ریاضی بین الملل" 
+                className="w-48 h-60 object-cover rounded-2xl border-2 border-slate-600 shadow-lg mb-3" 
+                loading="eager"
+              />
+              <span className="text-xs font-bold text-slate-200 bg-slate-700/80 px-3 py-1.5 rounded-xl border border-slate-600 text-center">
+                {isFa ? 'هیات علمی دانشگاه ملی مهارت تهران' : 'Faculty Member at National Skills University of Tehran'}
+              </span>
             </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
-              {authoredBooks.map((book) => (
-                <div key={book.id} className="w-full bg-white border border-blue-100 rounded-2xl overflow-hidden p-3 shadow-sm hover:shadow transition">
-                  <img 
-                    src={book.src} 
-                    alt={book.title} 
-                    className="w-full h-auto object-contain rounded-xl block mb-3"
-                    loading="lazy"
-                  />
-                  <div className="px-1 text-center">
-                    <span className="font-bold text-sm text-blue-950">{book.title}</span>
-                  </div>
-                </div>
-              ))}
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-6 border-b border-slate-700/60 pb-4 mt-2 md:mt-0">
+                <span className="text-3xl">👨‍🏫</span>
+                <h3 className="text-2xl md:text-3xl font-black text-white leading-snug tracking-tight">
+                  {isFa ? 'هادی محمدی زرندینی' : 'Hadi Mohammadi Zarandini'}
+                </h3>
+              </div>
+              <div className="text-slate-200 leading-loose text-sm md:text-base space-y-4 text-justify font-normal">
+                {isFa ? (
+                  <>
+                    <p>
+                      دارای مدرک دکترای تخصصی ریاضی از دانشگاه صنعتی امیرکبیر هستم و به مدت <strong className="text-white font-black underline decoration-blue-400 underline-offset-4">۲۹ سال</strong> به طور مستمر در عرصه آموزش ریاضی در داخل و خارج از کشور فعالیت داشته‌ام.
+                    </p>
+                    <p>
+                    هدف از راه اندازی این وبسایت و گروه آموزشی مرتبط، ارائه خدمات تدریس تخصصی و هدفمند به ایرانیان عزیز مقیم خارج از کشور است تا بتوانند ریاضی را دقیقاً مطابق با کتابهای درسی و نظام آموزشی کشور محل سکونت خود بیاموزند. در اینجا و به طور کامل تر در گروه تلگرامی این مجموعه، کتابهای مدارس و دانشگاههای کشورهای مختلف از جمله آمریکا، کانادا، آلمان، انگلستان، استرالیا و ترکیه گردآوری شده و به صورت کاملاً رایگان در اختیار تمام اعضاء قرار می گیرد.
+                    </p>
+                    <p>
+                      من با تکیه بر تجربیات چندین دهه تدریس در نظام‌های آموزشی گوناگون، متعهد به ارائه دقیق‌ترین و کاربردی‌ترین آموزش ریاضی مطابق با استانداردهای مدارس خارج از ایران هستم و از شما دعوت می‌کنم که با پیوستن به این دوره، ریاضی را به شیوه‌ای صحیح، اصولی و متناسب با نیازهای تحصیلی خود فرا بگیرید.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      Holder of a Ph.D. in Mathematics from Amirkabir University of Technology, with over <strong className="text-white font-black underline decoration-blue-400 underline-offset-4">29 years</strong> of continuous experience in teaching mathematics both nationally and internationally.
+                    </p>
+                    <p>
+                      The goal of this program is to provide targeted, specialized math tutoring for students living abroad, aligning perfectly with their local school standard curricula, alongside free daily Q&A sessions on social media platforms.
+                    </p>
+                    <p>
+                      Special summer prep classes are also offered to reinforce mathematical foundations and prepare students for the upcoming academic year.
+                    </p>
+                  </>
+                )}
+              </div>
             </div>
           </div>
-        )}
+        </div>
+      </section>
 
-        {activeTab === 'summaries' && (
-          <div className="space-y-8">
-            <div className="flex flex-wrap justify-center gap-3 md:gap-4 bg-blue-50/40 p-6 rounded-3xl border border-blue-100 shadow-inner">
-              {grades.map((grade) => {
-                const isSelected = selectedGrade === grade.id;
-                return (
-                  <button
-                    key={grade.id}
-                    type="button"
-                    onClick={() => setSelectedGrade(grade.id)}
-                    className={`px-5 py-2.5 rounded-xl font-bold text-xs md:text-sm transition-all duration-150 cursor-pointer ${
-                      isSelected
-                        ? 'bg-blue-600 text-white border border-blue-600 shadow-sm shadow-blue-200'
-                        : 'bg-white text-slate-700 border border-blue-100 hover:bg-blue-50/50'
-                    }`}
-                  >
-                    {isFa ? grade.fa : grade.en}
-                  </button>
-                );
-              })}
+      {/* سوابق تدریس */}
+      <section className="max-w-5xl mx-auto px-4 pt-6">
+        <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
+          <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-4 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
+            <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">📖</span>
+            <span>{isFa ? 'سوابق تدریس' : 'Teaching Experience'}</span>
+          </h4>
+          <p className="text-slate-700 leading-relaxed text-sm md:text-base font-normal mb-6">
+            {isFa 
+              ? 'تدریس دروس ریاضی مانند ریاضی عمومی ۱و۲، معادلات دیفرانسیل، محاسبات عددی، آمار و احتمالات مهندسی و ریاضی مهندسی در دانشگاه‌های ملی مهارت و دانشگاه الزهرا و علوم تحقیقات تهران و همچنین تدریس در دبیرستان‌های برتر تهران' 
+              : 'Teaching higher math courses including Calculus I & II, Differential Equations, Numerical Analysis, Engineering Statistics & Probability, and Engineering Mathematics at National Skills University, Alzahra University, and Science and Research Branch of Tehran, as well as teaching in top high schools in Tehran.'}
+          </p>
+
+          <div className="flex justify-center">
+            <div className="w-full max-w-md rounded-2xl overflow-hidden border border-gray-200 bg-gray-100 shadow-sm">
+              <img 
+                src="/teaching1.JPG" 
+                alt="تدریس هادی محمدی زرندینی در دانشگاه" 
+                className="w-full h-48 md:h-64 object-cover hover:scale-105 transition duration-300 block"
+                loading="lazy"
+              />
             </div>
+          </div>
+        </div>
+      </section>
 
-            {[7, 8, 9, 10].includes(selectedGrade) && (
-              <div className="bg-blue-50/30 border border-blue-100 rounded-3xl p-4 md:p-8 shadow-sm">
-                <h3 className="text-xl font-black text-blue-950 mb-6 text-center border-b border-blue-100 pb-3">
-                  {isFa ? `📌 خلاصه فصل‌های ریاضی ${grades.find(g => g.id === selectedGrade)?.fa}` : `📌 ${grades.find(g => g.id === selectedGrade)?.en} Chapter Summaries`}
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                  {(selectedGrade === 7 ? grade7Images : 
-                    selectedGrade === 8 ? grade8Images : 
-                    selectedGrade === 9 ? grade9Images : grade10Images).map((img) => (
-                    <div key={img.id} className="w-full bg-white border border-blue-100 rounded-2xl overflow-hidden shadow-sm transition">
-                      <img 
-                        src={img.src} 
-                        alt={img.title || 'Summary'} 
-                        className="w-full h-auto object-contain block"
-                        loading="lazy"
-                      />
-                    </div>
-                  ))}
-                </div>
+      {/* سوابق تحصیلی */}
+      <section className="max-w-5xl mx-auto px-4 pt-6">
+        <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
+          <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-6 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
+            <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">🎓</span>
+            <span>{isFa ? 'سوابق تحصیلی' : 'Education'}</span>
+          </h4>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
+              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
+                <img 
+                  src="/amirkabir.jpg" 
+                  alt="دانشگاه صنعتی امیرکبیر" 
+                  className="w-full h-full object-contain"
+                  loading="lazy"
+                />
               </div>
-            )}
-
-            {selectedGrade === 11 && (
-              <div className="bg-blue-50/30 border border-blue-100 rounded-3xl p-4 md:p-8 shadow-sm">
-                <h3 className="text-xl font-black text-blue-950 mb-6 text-center border-b border-blue-100 pb-3">
-                  {isFa ? '📌 خلاصه فصل‌های ریاضی پایه یازدهم' : '📌 Grade 11 Chapter Summaries'}
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 items-start">
-                  {grade11Images.map((img) => (
-                    <div key={img.id} className="w-full bg-white border border-blue-100 rounded-xl overflow-hidden shadow-sm">
-                      <img 
-                        src={img.src} 
-                        alt="Summary" 
-                        className="w-full h-auto object-contain block"
-                        loading="lazy"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {selectedGrade === 12 && (
-              <div className="bg-blue-50/30 border border-blue-100 rounded-3xl p-4 md:p-8 shadow-sm">
-                <h3 className="text-xl font-black text-blue-950 mb-6 text-center border-b border-blue-100 pb-3">
-                  {isFa ? '📌 خلاصه فصل‌های ریاضی پایه دوازدهم' : '📌 Grade 12 Chapter Summaries'}
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 items-start">
-                  {grade12Images.map((img) => (
-                    <div key={img.id} className="w-full bg-white border border-blue-100 rounded-xl overflow-hidden shadow-sm">
-                      <img 
-                        src={img.src} 
-                        alt="Summary" 
-                        className="w-full h-auto object-contain block"
-                        loading="lazy"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {![7, 8, 9, 10, 11, 12].includes(selectedGrade) && (
-              <div className="text-center py-12 bg-blue-50/40 rounded-2xl border border-dashed border-blue-200">
-                <p className="text-slate-600 text-sm md:text-base font-medium">
-                  {isFa 
-                    ? `خلاصه فصل‌های مربوط به ${grades.find(g => g.id === selectedGrade)?.fa} به‌زودی اضافه خواهد شد.` 
-                    : `Summaries for ${grades.find(g => g.id === selectedGrade)?.en} will be added soon.`}
+              <div>
+                <h5 className="font-bold text-slate-900 text-sm md:text-base leading-snug">
+                  {isFa ? 'دکتری تخصصی ریاضی' : 'Ph.D. in Mathematics'}
+                </h5>
+                <p className="text-xs text-slate-500 font-normal mt-0.5">
+                  {isFa ? 'گرایش بهینه سازی - دانشگاه صنعتی امیرکبیر' : 'Optimization - Amirkabir University'}
                 </p>
               </div>
-            )}
+            </div>
+
+            <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
+              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
+                <img 
+                  src="/amirkabir.jpg" 
+                  alt="دانشگاه صنعتی امیرکبیر" 
+                  className="w-full h-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+              <div>
+                <h5 className="font-bold text-slate-900 text-sm md:text-base leading-snug">
+                  {isFa ? 'کارشناسی ارشد' : 'M.Sc. in Applied Mathematics'}
+                </h5>
+                <p className="text-xs text-slate-500 font-normal mt-0.5">
+                  {isFa ? 'گرایش ریاضی کاربردی - دانشگاه صنعتی امیرکبیر' : 'Amirkabir University of Technology'}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-md transition">
+              <div className="w-12 h-12 shrink-0 bg-white border border-gray-200 rounded-xl p-1.5 flex items-center justify-center overflow-hidden shadow-sm">
+                <img 
+                  src="/kharazmi.jpg" 
+                  alt="دانشگاه خوارزمی" 
+                  className="w-full h-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+              <div>
+                <h5 className="font-bold text-slate-900 text-sm md:text-base leading-snug">
+                  {isFa ? 'کارشناسی ریاضی' : 'B.Sc. in Mathematics'}
+                </h5>
+                <p className="text-xs text-slate-500 font-normal mt-0.5">
+                  {isFa ? 'دانشگاه خوارزمی' : 'Kharazmi University'}
+                </p>
+              </div>
+            </div>
           </div>
-        )}
+        </div>
+      </section>
+
+      {/* بخش ارتباط با استاد */}
+      <div id="contact" className="mt-8">
+        <IntegratedContactButtons lang={lang} />
       </div>
     </main>
   );
