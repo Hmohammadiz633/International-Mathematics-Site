@@ -38,14 +38,14 @@ const SCHEMA_DATA = {
 };
 
 // کامپوننت داخلی ContactButtons فقط با تلگرام، اینستاگرام و جیمیل اختصاصی
-function IntegratedContactButtons({ lang }) {
+function IntegratedContactButtons({ lang }: { lang: string }) {
   const isFa = lang === 'fa';
 
   return (
     <section className="max-w-5xl mx-auto px-4 pt-6">
       <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
         <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-6 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
-          <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">📞</span>
+          <span className="p-2 bg-blue-50 text-blue-700 rounded-xl" aria-hidden="true">📞</span>
           <span>{isFa ? 'ارتباط با استاد' : 'Contact Professor'}</span>
         </h4>
 
@@ -55,10 +55,11 @@ function IntegratedContactButtons({ lang }) {
             href="https://t.me/International_Maths"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Telegram Channel"
             className="flex items-center justify-between p-4 bg-blue-50/50 hover:bg-blue-100/60 border border-blue-200 rounded-2xl transition group shadow-sm"
           >
             <div className="flex items-center gap-3">
-              <svg className="w-8 h-8 text-blue-600 fill-current shrink-0" viewBox="0 0 24 24">
+              <svg className="w-8 h-8 text-blue-600 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.228-.461-1.901-.903-1.056-.693-1.653-1.124-2.678-1.8-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.12.098.153.228.166.331.012.095.029.311.011.479z"/>
               </svg>
               <div>
@@ -68,7 +69,7 @@ function IntegratedContactButtons({ lang }) {
                 <div className="text-xs text-slate-500" dir="ltr">@International_Maths</div>
               </div>
             </div>
-            <span className="text-blue-600 font-bold group-hover:translate-x-1 transition-transform">↗</span>
+            <span className="text-blue-600 font-bold group-hover:translate-x-1 transition-transform" aria-hidden="true">↗</span>
           </a>
 
           {/* اینستاگرام */}
@@ -76,10 +77,11 @@ function IntegratedContactButtons({ lang }) {
             href="https://instagram.com/Hadi_mohammadi_zarandini"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Instagram Page"
             className="flex items-center justify-between p-4 bg-blue-50/50 hover:bg-blue-100/60 border border-blue-200 rounded-2xl transition group shadow-sm"
           >
             <div className="flex items-center gap-3">
-              <svg className="w-8 h-8 text-blue-600 fill-current shrink-0" viewBox="0 0 24 24">
+              <svg className="w-8 h-8 text-blue-600 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
               <div>
@@ -89,16 +91,17 @@ function IntegratedContactButtons({ lang }) {
                 <div className="text-xs text-slate-500" dir="ltr">@Hadi_mohammadi_zarandini</div>
               </div>
             </div>
-            <span className="text-blue-600 font-bold group-hover:translate-x-1 transition-transform">↗</span>
+            <span className="text-blue-600 font-bold group-hover:translate-x-1 transition-transform" aria-hidden="true">↗</span>
           </a>
 
           {/* جیمیل */}
           <a
             href="mailto:Hadi.mohammadi.zarandini@gmail.com"
+            aria-label="Send Email"
             className="flex items-center justify-between p-4 bg-blue-50/50 hover:bg-blue-100/60 border border-blue-200 rounded-2xl transition group shadow-sm"
           >
             <div className="flex items-center gap-3 overflow-hidden">
-              <svg className="w-8 h-8 text-blue-600 fill-current shrink-0" viewBox="0 0 24 24">
+              <svg className="w-8 h-8 text-blue-600 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.713v13.856h24v-13.856l-12 9.713z"/>
               </svg>
               <div className="truncate">
@@ -108,7 +111,7 @@ function IntegratedContactButtons({ lang }) {
                 <div className="text-xs text-slate-500 truncate" dir="ltr">Hadi.mohammadi.zarandini@gmail.com</div>
               </div>
             </div>
-            <span className="text-blue-600 font-bold group-hover:translate-x-1 transition-transform shrink-0">↗</span>
+            <span className="text-blue-600 font-bold group-hover:translate-x-1 transition-transform shrink-0" aria-hidden="true">↗</span>
           </a>
         </div>
       </div>
@@ -124,7 +127,7 @@ export default function Home() {
 
   const isFa = language === 'fa';
 
-  const scrollToSection = (id) => {
+  const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -145,7 +148,7 @@ export default function Home() {
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2.5">
                 <div className="w-9 h-9 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl flex items-center justify-center p-1.5 shadow-sm">
-                  <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg className="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M2 3h20v14H2z" />
                     <path d="M8 21l4-4 4 4" />
                     <path d="M7 8h4" />
@@ -167,7 +170,7 @@ export default function Home() {
               >
                 فارسی
               </button>
-              <span className="text-gray-400 font-light">|</span>
+              <span className="text-gray-400 font-light" aria-hidden="true">|</span>
               <button 
                 type="button"
                 onClick={() => setLanguage('en')} 
@@ -179,7 +182,7 @@ export default function Home() {
           </div>
 
           <div className="w-full flex flex-col items-center gap-2 border-t border-gray-100 pt-3">
-            <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
+            <nav className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
               <Link 
                 href="/" 
                 className={`whitespace-nowrap transition-colors font-bold ${
@@ -219,7 +222,7 @@ export default function Home() {
                 className="hover:text-blue-600 whitespace-nowrap transition-colors flex items-center gap-1"
               >
                 <span>{isFa ? 'بازخورد کلاس‌ها' : 'Class Feedback'}</span>
-                <span className="text-[10px]">{isFeedbackOpen ? '▲' : '▼'}</span>
+                <span className="text-[10px]" aria-hidden="true">{isFeedbackOpen ? '▲' : '▼'}</span>
               </button>
 
               <button 
@@ -229,7 +232,7 @@ export default function Home() {
               >
                 {isFa ? 'ارتباط با استاد' : 'Contact'}
               </button>
-            </div>
+            </nav>
 
             {/* منوی کشویی بازخورد کلاس‌ها */}
             {isFeedbackOpen && (
@@ -242,7 +245,7 @@ export default function Home() {
                     rel="noopener noreferrer" 
                     className="px-3 py-1.5 bg-white hover:bg-blue-50 text-xs font-semibold text-blue-900 rounded-lg border border-blue-200 shadow-sm transition-all flex items-center gap-1.5"
                   >
-                    <span>⭐</span>
+                    <span aria-hidden="true">⭐</span>
                     <span>{isFa ? item.fa : item.en}</span>
                   </a>
                 ))}
@@ -281,7 +284,7 @@ export default function Home() {
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-6 border-b border-slate-700/60 pb-4 mt-2 md:mt-0">
-                <span className="text-3xl">👨‍🏫</span>
+                <span className="text-3xl" aria-hidden="true">👨‍🏫</span>
                 <h3 className="text-2xl md:text-3xl font-black text-white leading-snug tracking-tight">
                   {isFa ? 'هادی محمدی زرندینی' : 'Hadi Mohammadi Zarandini'}
                 </h3>
@@ -322,7 +325,7 @@ export default function Home() {
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
           <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-4 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
-            <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">📖</span>
+            <span className="p-2 bg-blue-50 text-blue-700 rounded-xl" aria-hidden="true">📖</span>
             <span>{isFa ? 'سوابق تدریس' : 'Teaching Experience'}</span>
           </h4>
           <p className="text-slate-700 leading-relaxed text-sm md:text-base font-normal mb-6">
@@ -348,7 +351,7 @@ export default function Home() {
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
           <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-6 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
-            <span className="p-2 bg-blue-50 text-blue-700 rounded-xl">🎓</span>
+            <span className="p-2 bg-blue-50 text-blue-700 rounded-xl" aria-hidden="true">🎓</span>
             <span>{isFa ? 'سوابق تحصیلی' : 'Education'}</span>
           </h4>
 
