@@ -248,9 +248,9 @@ export default function MathSitesPage() {
             </div>
 
             {isFeedbackOpen && (
-              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-3 rounded-2xl border border-gray-200 my-1 shadow-inner">
+              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-blue-50/60 p-3 rounded-2xl border border-blue-100 my-1 shadow-inner">
                 {FEEDBACKS.map((item, idx) => (
-                  <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-200 shadow-sm transition-all flex items-center gap-1.5">
+                  <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-white hover:bg-blue-50 text-xs font-semibold text-blue-900 rounded-lg border border-blue-200 shadow-sm transition-all flex items-center gap-1.5">
                     <span>⭐</span>
                     <span>{isFa ? item.fa : item.en}</span>
                   </a>
@@ -282,8 +282,8 @@ export default function MathSitesPage() {
                 className={`
                   px-4 py-2.5 rounded-xl font-bold text-xs md:text-sm flex items-center gap-2 transition cursor-pointer border
                   ${isSelected 
-                    ? 'bg-slate-700 text-white border-slate-700 shadow-sm' 
-                    : 'bg-white hover:bg-slate-100 text-slate-700 border-slate-200'
+                    ? 'bg-blue-600 text-white border-blue-600 shadow-sm shadow-blue-200' 
+                    : 'bg-white hover:bg-blue-50 text-slate-700 border-slate-200 hover:border-blue-200'
                   }
                 `}
               >
@@ -295,9 +295,9 @@ export default function MathSitesPage() {
         </div>
 
         {selectedCountry && (
-          <div className="bg-slate-100 rounded-3xl p-6 md:p-8 border border-slate-300 shadow-sm transition-all duration-300">
+          <div className="bg-blue-50/40 rounded-3xl p-6 md:p-8 border border-blue-200 shadow-sm transition-all duration-300">
             
-            <div className="flex items-center gap-3 border-b border-slate-300 pb-4 mb-6">
+            <div className="flex items-center gap-3 border-b border-blue-200 pb-4 mb-6">
               <span className="text-4xl">{selectedCountry.flag}</span>
               <h3 className="text-xl md:text-2xl font-black text-slate-900">
                 {isFa ? `منابع و سایت‌های ریاضی ${selectedCountry.countryFa}` : `${selectedCountry.countryEn} Math Websites`}
@@ -318,17 +318,17 @@ export default function MathSitesPage() {
                         href={site.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm"
+                        className="p-4 bg-white hover:bg-blue-50/60 border border-blue-100 hover:border-blue-300 rounded-2xl transition group flex items-start justify-between shadow-sm"
                       >
                         <div className="flex flex-col w-full text-right" style={{ direction: 'rtl', textAlign: 'right' }}>
-                          <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base">
+                          <div className="font-bold text-slate-900 group-hover:text-blue-700 group-hover:underline text-sm md:text-base">
                             {isIran ? (isFa ? site.nameFa : site.nameEn) : site.nameEn}
                           </div>
                           <div className="text-xs text-slate-600 mt-1">
                             {isFa ? site.descFa : site.descEn}
                           </div>
                         </div>
-                        <span className="text-slate-500 font-bold group-hover:translate-x-1 transition-transform text-xs shrink-0 mr-2">↗</span>
+                        <span className="text-blue-500 font-bold group-hover:translate-x-1 transition-transform text-xs shrink-0 mr-2">↗</span>
                       </a>
                     ))}
                   </div>
@@ -347,17 +347,17 @@ export default function MathSitesPage() {
                         href={site.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-4 bg-white hover:bg-slate-200/60 border border-slate-200 hover:border-slate-400 rounded-2xl transition group flex items-start justify-between shadow-sm"
+                        className="p-4 bg-white hover:bg-blue-50/60 border border-blue-100 hover:border-blue-300 rounded-2xl transition group flex items-start justify-between shadow-sm"
                       >
                         <div className="flex flex-col w-full text-right" style={{ direction: 'rtl', textAlign: 'right' }}>
-                          <div className="font-bold text-slate-900 group-hover:underline text-sm md:text-base">
+                          <div className="font-bold text-slate-900 group-hover:text-blue-700 group-hover:underline text-sm md:text-base">
                             {isIran ? (isFa ? site.nameFa : site.nameEn) : site.nameEn}
                           </div>
                           <div className="text-xs text-slate-600 mt-1">
                             {isFa ? site.descFa : site.descEn}
                           </div>
                         </div>
-                        <span className="text-slate-500 font-bold group-hover:translate-x-1 transition-transform text-xs shrink-0 mr-2">↗</span>
+                        <span className="text-blue-500 font-bold group-hover:translate-x-1 transition-transform text-xs shrink-0 mr-2">↗</span>
                       </a>
                     ))}
                   </div>
