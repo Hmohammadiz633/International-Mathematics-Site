@@ -9,7 +9,6 @@ const FEEDBACKS = [
   { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
 ];
 
-// داده‌های جامع سایت‌های ریاضی کشورها با پشتیبانی کامل از متن فارسی و انگلیسی
 const MATH_SITES_DATA = [
   {
     id: 'iran',
@@ -49,7 +48,7 @@ const MATH_SITES_DATA = [
     university: [
       { nameFa: 'ام‌آی‌تی اوپن‌کورس‌ویر', nameEn: 'MIT OpenCourseWare', descFa: 'منبع کلاسیک و جامع دوره‌های ریاضی MIT', descEn: 'Free lecture notes, exams, and videos from MIT', url: 'https://ocw.mit.edu' },
       { nameFa: "پائولز آنلاین مَث نوتس", nameEn: "Paul's Online Math Notes", descFa: 'جزوات ریاضی عمومی و دیفرانسیل دانشگاه Lamar', descEn: 'Popular calculus and differential equations study guide', url: 'https://tutorial.math.lamar.edu' },
-      { nameFa: 'ولفریم مَث‌ورلد', nameEn: 'Wolfram MathWorld', descFa: 'دانشنامه تخصصی و جامع ریاضیات جهان', descEn: 'The webs most extensive mathematical encyclopedia', url: 'https://mathworld.wolfram.com' },
+      { nameFa: 'ولفریم مَث‌ورلد', nameEn: 'Wolfram MathWorld', descFa: 'دانشنامه تخصصی و جامع ریاضیات جهان', descEn: 'The web\'s most extensive mathematical encyclopedia', url: 'https://mathworld.wolfram.com' },
       { nameFa: 'سیملب', nameEn: 'Symbolab', descFa: 'حل گام به گام مسائل انتگرال، مشتق و جبر دانشگاهی', descEn: 'Step-by-step calculator for calculus and algebra', url: 'https://www.symbolab.com' },
       { nameFa: 'اس.او.اس ریاضیات', nameEn: 'S.O.S. Mathematics', descFa: 'مرور سریع و تمرینات ریاضیات عمومی دانشگاهی', descEn: 'Quick study material for university math students', url: 'https://www.sosmath.com' }
     ]
@@ -180,7 +179,7 @@ const MATH_SITES_DATA = [
     countryFa: 'هند',
     countryEn: 'India',
     preUniversity: [
-      { nameFa: 'بایجوز', nameEn: "BYJU'S", descFa: 'ویدیوهای مفهومی پایه تا دوازدهم', descEn: 'Conceptual videos for grades 1 to 12', url: 'https://byjus.com' },
+      { nameFa: 'بایجوز', nameEn: 'BYJU\'S', descFa: 'ویدیوهای مفهومی پایه تا دوازدهم', descEn: 'Conceptual videos for grades 1 to 12', url: 'https://byjus.com' },
       { nameFa: 'کیومث', nameEn: 'Cuemath', descFa: 'تمرین تعاملی ریاضی پایه', descEn: 'Interactive foundational math practice', url: 'https://www.cuemath.com' },
       { nameFa: 'ویدانتو مَث', nameEn: 'Vedantu Math', descFa: 'کلاس‌های آنلاین و تست‌های آمادگی JEE', descEn: 'Online classes and JEE preparation tests', url: 'https://www.vedantu.com' },
       { nameFa: 'تیواری آکادمی', nameEn: 'Tiwari Academy', descFa: 'راهنما و حل تمرینات کتب NCERT هند', descEn: 'Solutions and guide for Indian NCERT textbooks', url: 'https://www.tiwariacademy.com' }
