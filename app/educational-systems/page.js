@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useLanguage } from '@/context/LanguageContext';
 
 const FEEDBACKS = [
   { fa: 'بازخورد ۱', en: 'Feedback 1', link: 'https://t.me/International_Maths/110' },
@@ -158,12 +159,13 @@ const EDUCATIONAL_DATA = [
 ];
 
 export default function EducationalSystemsPage() {
-  const [lang, setLang] = useState('fa');
+  // دریافت وضعیت زبان از context سراسری به جای useState محلی
+  const { language, setLanguage } = useLanguage();
   const [selectedCountry, setSelectedCountry] = useState(EDUCATIONAL_DATA[0]);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const [isEducationalActive, setIsEducationalActive] = useState(false);
 
-  const isFa = lang === 'fa';
+  const isFa = language === 'fa';
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
@@ -183,9 +185,9 @@ export default function EducationalSystemsPage() {
 
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300 shadow-inner">
-                <button type="button" onClick={() => setLang('fa')} className={`text-xs font-bold transition ${isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>فارسی</button>
+                <button type="button" onClick={() => setLanguage('fa')} className={`text-xs font-bold transition ${isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>فارسی</button>
                 <span className="text-gray-400 font-light">|</span>
-                <button type="button" onClick={() => setLang('en')} className={`text-xs font-bold transition ${!isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>English</button>
+                <button type="button" onClick={() => setLanguage('en')} className={`text-xs font-bold transition ${!isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>English</button>
               </div>
             </div>
           </div>
