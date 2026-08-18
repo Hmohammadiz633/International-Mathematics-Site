@@ -182,9 +182,9 @@ export default function Home() {
               
               <Link 
                 href="/" 
-                className={`whitespace-nowrap transition-colors ${
+                className={`whitespace-nowrap transition-colors font-bold ${
                   pathname === '/' 
-                    ? 'text-gray-500 font-bold cursor-default pointer-events-none' 
+                    ? 'text-blue-700' 
                     : 'text-gray-700 hover:text-blue-600'
                 }`}
               >
