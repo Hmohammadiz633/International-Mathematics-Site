@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useLanguage } from '@/context/LanguageContext';
 
 const FEEDBACKS = [
   { fa: 'بازخورد ۱', en: 'Feedback 1', link: 'https://t.me/International_Maths/110' },
@@ -193,7 +195,8 @@ const MATH_SITES_DATA = [
 ];
 
 export default function MathSitesPage() {
-  const [lang, setLang] = useState('fa');
+  const { language: lang, setLanguage: setLang } = useLanguage();
+  const pathname = usePathname();
   const [selectedCountry, setSelectedCountry] = useState(MATH_SITES_DATA[0]);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
 
