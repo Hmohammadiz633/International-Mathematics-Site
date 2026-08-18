@@ -235,7 +235,7 @@ export default function MathSitesPage() {
               <Link href="/books" className="hover:text-blue-600 whitespace-nowrap transition-colors">
                 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
               </Link>
-              <Link href="/math-sites" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+              <Link href="/math-sites" className="text-blue-700 font-bold whitespace-nowrap transition-colors">
                 {isFa ? 'سایت‌های ریاضی کشورها' : 'Math Websites'}
               </Link>
               <button type="button" aria-expanded={isFeedbackOpen} onClick={() => setIsFeedbackOpen(!isFeedbackOpen)} className="hover:text-blue-600 whitespace-nowrap transition-colors flex items-center gap-1">
