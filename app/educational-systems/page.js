@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
 
 const FEEDBACKS = [
@@ -159,13 +160,13 @@ const EDUCATIONAL_DATA = [
 ];
 
 export default function EducationalSystemsPage() {
-  // دریافت وضعیت زبان از context سراسری به جای useState محلی
   const { language, setLanguage } = useLanguage();
+  const pathname = usePathname();
   const [selectedCountry, setSelectedCountry] = useState(EDUCATIONAL_DATA[0]);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
-  const [isEducationalActive, setIsEducationalActive] = useState(false);
 
   const isFa = language === 'fa';
+  const isEducationalActive = pathname === '/educational-systems';
 
   return (
     <main dir={isFa ? 'rtl' : 'ltr'} className="min-h-screen bg-slate-50 text-slate-900 font-sans pb-12 antialiased">
@@ -196,28 +197,24 @@ export default function EducationalSystemsPage() {
             <div className="w-full flex items-center justify-center gap-4 md:gap-6 overflow-x-auto py-2 text-xs md:text-sm font-medium text-gray-700">
               <Link 
                 href="/" 
-                onClick={() => setIsEducationalActive(false)}
                 className="hover:text-blue-600 whitespace-nowrap transition-colors"
               >
                 {isFa ? 'خانه' : 'Home'}
               </Link>
               <Link 
                 href="/educational-systems" 
-                onClick={() => setIsEducationalActive(true)}
-                className={`whitespace-nowrap transition-colors ${isEducationalActive ? 'text-blue-800 font-bold' : 'hover:text-blue-600'}`}
+                className={`whitespace-nowrap transition-colors ${isEducationalActive ? 'text-blue-700 font-bold' : 'hover:text-blue-600'}`}
               >
                 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
               </Link>
               <Link 
                 href="/books" 
-                onClick={() => setIsEducationalActive(false)}
                 className="hover:text-blue-600 whitespace-nowrap transition-colors"
               >
                 {isFa ? 'کتب و منابع آموزشی' : 'Books & Resources'}
               </Link>
               <Link 
                 href="/math-sites" 
-                onClick={() => setIsEducationalActive(false)}
                 className="hover:text-blue-600 whitespace-nowrap transition-colors"
               >
                 {isFa ? 'سایت‌های ریاضی کشورها' : 'Math Websites'}
@@ -228,7 +225,6 @@ export default function EducationalSystemsPage() {
               </button>
               <Link 
                 href="/#contact" 
-                onClick={() => setIsEducationalActive(false)}
                 className="hover:text-blue-600 whitespace-nowrap transition-colors"
               >
                 {isFa ? 'ارتباط با استاد' : 'Contact'}
