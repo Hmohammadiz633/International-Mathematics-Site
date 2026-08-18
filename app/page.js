@@ -38,7 +38,7 @@ const SCHEMA_DATA = {
 };
 
 // کامپوننت داخلی ContactButtons فقط با تلگرام، اینستاگرام و جیمیل اختصاصی
-function IntegratedContactButtons({ lang }) {
+function IntegratedContactButtons({ lang }: { lang: string }) {
   const isFa = lang === 'fa';
 
   return (
@@ -123,7 +123,7 @@ export default function Home() {
 
   const isFa = language === 'fa';
 
-  const scrollToSection = (id) => {
+  const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
