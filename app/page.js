@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useLanguage } from '@/context/LanguageContext';
+import { useLanguage } from '@/context/LanguageContext'; // اتصال به کانتکست مرکزی زبان
 
+// انتقال متغیرهای ثابت به بیرون از کامپوننت جهت جلوگیری از رندر مجدد
 const FEEDBACKS = [
   { fa: 'بازخورد ۱', en: 'Feedback 1', link: 'https://t.me/International_Maths/110' },
   { fa: 'بازخورد ۲', en: 'Feedback 2', link: 'https://t.me/International_Maths/111' },
@@ -36,6 +37,7 @@ const SCHEMA_DATA = {
   ],
 };
 
+// کامپوننت داخلی ContactButtons فقط با تلگرام، اینستاگرام و جیمیل اختصاصی
 function IntegratedContactButtons({ lang }) {
   const isFa = lang === 'fa';
 
@@ -48,6 +50,7 @@ function IntegratedContactButtons({ lang }) {
         </h4>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* تلگرام */}
           <a
             href="https://t.me/International_Maths"
             target="_blank"
@@ -68,6 +71,7 @@ function IntegratedContactButtons({ lang }) {
             <span className="text-blue-600 font-bold group-hover:translate-x-1 transition-transform">↗</span>
           </a>
 
+          {/* اینستاگرام */}
           <a
             href="https://instagram.com/Hadi_mohammadi_zarandini"
             target="_blank"
@@ -88,6 +92,7 @@ function IntegratedContactButtons({ lang }) {
             <span className="text-blue-600 font-bold group-hover:translate-x-1 transition-transform">↗</span>
           </a>
 
+          {/* جیمیل */}
           <a
             href="mailto:Hadi.mohammadi.zarandini@gmail.com"
             className="flex items-center justify-between p-4 bg-blue-50/50 hover:bg-blue-100/60 border border-blue-200 rounded-2xl transition group shadow-sm"
@@ -132,6 +137,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA_DATA) }}
       />
 
+      {/* هدر */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 px-4 py-3 shadow-sm">
         <div className="max-w-6xl mx-auto flex flex-col items-center gap-3">
           <div className="w-full flex items-center justify-between">
@@ -224,6 +230,7 @@ export default function Home() {
               </button>
             </div>
 
+            {/* منوی کشویی بازخورد کلاس‌ها */}
             {isFeedbackOpen && (
               <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-blue-50/60 p-3 rounded-2xl border border-blue-200 my-1 shadow-inner">
                 {FEEDBACKS.map((item, idx) => (
@@ -244,6 +251,7 @@ export default function Home() {
         </div>
       </header>
 
+      {/* بنر اصلی و عنوان */}
       <section className="max-w-4xl mx-auto text-center px-4 pt-12 pb-6">
         <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-5 leading-tight tracking-tight bg-gradient-to-r from-blue-900 via-indigo-800 to-slate-900 bg-clip-text text-transparent">
           {isFa ? 'آموزش بین‌المللی ریاضیات' : 'International Mathematics Tutoring'}
@@ -255,6 +263,7 @@ export default function Home() {
         </p>
       </section>
 
+      {/* معرفی هادی محمدی زرندینی */}
       <section id="about" className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-slate-800/90 text-white rounded-3xl p-6 md:p-10 border border-slate-700/60 shadow-xl">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
@@ -308,6 +317,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* سوابق تدریس */}
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
           <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-4 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
@@ -333,6 +343,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* سوابق تحصیلی */}
       <section className="max-w-5xl mx-auto px-4 pt-6">
         <div className="bg-white text-gray-900 rounded-3xl p-6 md:p-8 border border-gray-200/90 shadow-md">
           <h4 className="text-xl md:text-2xl font-black text-slate-900 mb-6 flex items-center gap-3 border-b border-gray-100 pb-3 leading-snug">
@@ -401,6 +412,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* بخش ارتباط با استاد */}
       <div id="contact" className="mt-8">
         <IntegratedContactButtons lang={language} />
       </div>
