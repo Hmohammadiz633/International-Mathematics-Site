@@ -1,5 +1,6 @@
 import './globals.css';
-import { LanguageProvider } from '@/context/LanguageContext'; // مسیر دقیق فایل Context خود را چک کنید
+import { LanguageProvider } from '@/context/LanguageContext';
+import LanguageHtmlUpdater from '@/components/LanguageHtmlUpdater'; // یک کامپوننت کمکی برای آپدیت تگ html
 
 export const metadata = {
   title: 'آموزش بین‌المللی ریاضی و تدریس خصوصی GCSE Maths',
@@ -27,13 +28,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="fa" dir="rtl">
+    <html lang="fa" dir="rtl" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      {/* در اینجا LanguageProvider کل children (صفحات سایت) را در بر می‌گیرد */}
       <body className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">
         <LanguageProvider>
+          <LanguageHtmlUpdater />
           {children}
         </LanguageProvider>
       </body>
