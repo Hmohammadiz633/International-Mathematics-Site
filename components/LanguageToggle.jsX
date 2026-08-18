@@ -1,23 +1,22 @@
 'use client';
-import { useState } from 'react';
 
-export default function LanguageToggle({ onLanguageChange }) {
-  const [lang, setLang] = useState('fa');
+import { useLanguage } from '@/context/LanguageContext';
+
+export default function LanguageToggle() {
+  const { language, setLanguage } = useLanguage();
 
   const toggleLanguage = () => {
-    const newLang = lang === 'fa' ? 'en' : 'fa';
-    setLang(newLang);
-    if (onLanguageChange) {
-      onLanguageChange(newLang);
-    }
+    const newLang = language === 'fa' ? 'en' : 'fa';
+    setLanguage(newLang);
   };
 
   return (
     <button 
+      type="button"
       onClick={toggleLanguage}
       className="text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 transition flex items-center gap-1 shadow-sm active:scale-95"
     >
-      🌐 {lang === 'fa' ? 'English' : 'فارسی'}
+      🌐 {language === 'fa' ? 'English' : 'فارسی'}
     </button>
   );
 }
