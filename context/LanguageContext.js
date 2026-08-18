@@ -1,48 +1,33 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
-  // مقدار اولیه را امن می‌خوانیم تا روی سرور خطا ندهد
-  const [language, setLanguage] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('site_lang') || 'fa';
-    }
-    return 'fa';
-  });
+  const [language, setLanguage] = useState('fa');
 
+  // خواندن زبان ذخیره‌شده از مرورگر هنگام لود اولیه
   useEffect(() => {
-    const savedLang = localStorage.getItem('site_lang');
+    const savedLang = localStorage.getItem('site_language');
     if (savedLang) {
       setLanguage(savedLang);
     }
   }, []);
 
-  const changeLanguage = (newLang) => {
-    setLanguage(newLang);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('site_lang', newLang);
-    }
-  };
-
-  const toggleLanguage = () => {
-    const nextLang = language === 'fa' ? 'en' : 'fa';
-    changeLanguage(nextLang);
+  // ذخیره کردن تغییرات زبان در حافظه مرورگر
+  const handleSetLanguage = (lang) => {
+    setLanguage(lang);
+    localStorage.setItem('site_language', lang);
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: changeLanguage, toggleLanguage }}>
+    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage }}>
       {children}
     </LanguageContext.Provider>
   );
 }
 
 export function useLanguage() {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
-  }
-  return context;
+  return useContext(LanguageContext);
 }
