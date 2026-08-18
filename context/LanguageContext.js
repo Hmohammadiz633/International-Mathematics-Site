@@ -1,18 +1,32 @@
 'use client';
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
   const [language, setLanguage] = useState('fa'); // پیش‌فرض فارسی
 
+  // خواندن زبان ذخیره‌شده از حافظه مرورگر هنگام بارگذاری اولیه
+  useEffect(() => {
+    const savedLang = localStorage.getItem('site_lang');
+    if (savedLang) {
+      setLanguage(savedLang);
+    }
+  }, []);
+
+  const setAndSaveLanguage = (newLang) => {
+    setLanguage(newLang);
+    localStorage.setItem('site_lang', newLang);
+  };
+
   const toggleLanguage = () => {
-    setLanguage((prev) => (prev === 'fa' ? 'en' : 'fa'));
+    const nextLang = language === 'fa' ? 'en' : 'fa';
+    setAndSaveLanguage(nextLang);
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage }}>
+    <LanguageContext.Provider value={{ language, setLanguage: setAndSaveLanguage, toggleLanguage }}>
       {children}
     </LanguageContext.Provider>
   );
