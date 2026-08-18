@@ -9,7 +9,6 @@ const FEEDBACKS = [
   { fa: 'بازخورد ۳', en: 'Feedback 3', link: 'https://t.me/International_Maths/1352' },
 ];
 
-// آرایه کامل داده‌های کشورها (اولین کشور: ایران)
 const EDUCATIONAL_DATA = [
   {
     id: 'iran',
@@ -217,9 +216,9 @@ export default function EducationalSystemsPage() {
             </div>
 
             {isFeedbackOpen && (
-              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-gray-50 p-3 rounded-2xl border border-gray-200 my-1 shadow-inner">
+              <div className="w-full flex items-center justify-center gap-2 flex-wrap bg-blue-50/60 p-3 rounded-2xl border border-blue-100 my-1 shadow-inner">
                 {FEEDBACKS.map((item, idx) => (
-                  <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-white hover:bg-gray-100 text-xs font-semibold text-black rounded-lg border border-gray-200 shadow-sm transition-all flex items-center gap-1.5">
+                  <a key={idx} href={item.link} target="_blank" rel="noopener noreferrer" className="px-3 py-1.5 bg-white hover:bg-blue-50 text-xs font-semibold text-blue-900 rounded-lg border border-blue-200 shadow-sm transition-all flex items-center gap-1.5">
                     <span>⭐</span>
                     <span>{isFa ? item.fa : item.en}</span>
                   </a>
@@ -251,8 +250,8 @@ export default function EducationalSystemsPage() {
                 className={`
                   px-4 py-2.5 rounded-xl font-bold text-xs md:text-sm flex items-center gap-2 transition cursor-pointer border
                   ${isSelected 
-                    ? 'bg-slate-700 text-white border-slate-700 shadow-sm' 
-                    : 'bg-white hover:bg-slate-100 text-slate-700 border-slate-200'
+                    ? 'bg-blue-600 text-white border-blue-600 shadow-sm shadow-blue-200' 
+                    : 'bg-white hover:bg-blue-50 text-slate-700 border-slate-200 hover:border-blue-200'
                   }
                 `}
               >
@@ -264,15 +263,15 @@ export default function EducationalSystemsPage() {
         </div>
 
         {selectedCountry && (
-          <div className="bg-slate-100 text-slate-800 rounded-3xl p-6 md:p-8 border border-slate-300 shadow-sm transition-all duration-300">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-300 pb-4 mb-6">
+          <div className="bg-blue-50/40 text-slate-800 rounded-3xl p-6 md:p-8 border border-blue-200 shadow-sm transition-all duration-300">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-blue-200 pb-4 mb-6">
               <div className="flex items-center gap-3">
                 <span className="text-4xl md:text-5xl">{selectedCountry.flag}</span>
                 <div>
                   <h3 className="text-xl md:text-2xl font-black text-slate-900">
                     {isFa ? selectedCountry.titleFa : selectedCountry.titleEn}
                   </h3>
-                  <span className="text-xs text-slate-500 font-bold">
+                  <span className="text-xs text-blue-600 font-bold">
                     {isFa ? selectedCountry.countryFa : selectedCountry.countryEn}
                   </span>
                 </div>
@@ -282,7 +281,7 @@ export default function EducationalSystemsPage() {
                 href={selectedCountry.link} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="self-start sm:self-auto px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl transition whitespace-nowrap shadow-sm"
+                className="self-start sm:self-auto px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition whitespace-nowrap shadow-sm shadow-blue-200"
               >
                 🔗 {isFa ? 'مشاهده در تلگرام' : 'View on Telegram'}
               </a>
@@ -293,7 +292,7 @@ export default function EducationalSystemsPage() {
             </p>
 
             {selectedCountry.resources && selectedCountry.resources.length > 0 && (
-              <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+              <div className="bg-white p-4 rounded-2xl border border-blue-100 shadow-sm">
                 <h4 className="font-bold text-sm text-slate-900 mb-3 flex items-center gap-2">
                   💻 {isFa ? 'سایت‌ها و منابع رسمی این کشور:' : 'Official Resources & Websites:'}
                 </h4>
@@ -304,7 +303,7 @@ export default function EducationalSystemsPage() {
                       href={res.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-xs font-medium text-slate-800 rounded-xl border border-slate-200 transition flex items-center gap-1.5"
+                      className="px-3 py-2 bg-blue-50/50 hover:bg-blue-100/70 text-xs font-medium text-blue-900 rounded-xl border border-blue-200 transition flex items-center gap-1.5"
                     >
                       <span>🌐</span>
                       <span>{res.title}</span>
