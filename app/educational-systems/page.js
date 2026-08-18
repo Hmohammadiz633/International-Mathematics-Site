@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const FEEDBACKS = [
@@ -163,6 +163,18 @@ export default function EducationalSystemsPage() {
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const [isEducationalActive, setIsEducationalActive] = useState(false);
 
+  useEffect(() => {
+    const savedLang = localStorage.getItem('site_lang');
+    if (savedLang) {
+      setLang(savedLang);
+    }
+  }, []);
+
+  const changeLang = (newLang) => {
+    setLang(newLang);
+    localStorage.setItem('site_lang', newLang);
+  };
+
   const isFa = lang === 'fa';
 
   return (
@@ -183,9 +195,9 @@ export default function EducationalSystemsPage() {
 
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-300 shadow-inner">
-                <button type="button" onClick={() => setLang('fa')} className={`text-xs font-bold transition ${isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>فارسی</button>
+                <button type="button" onClick={() => changeLang('fa')} className={`text-xs font-bold transition ${isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>فارسی</button>
                 <span className="text-gray-400 font-light">|</span>
-                <button type="button" onClick={() => setLang('en')} className={`text-xs font-bold transition ${!isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>English</button>
+                <button type="button" onClick={() => changeLang('en')} className={`text-xs font-bold transition ${!isFa ? 'text-blue-700 underline font-black' : 'text-gray-500 hover:text-black'}`}>English</button>
               </div>
             </div>
           </div>
