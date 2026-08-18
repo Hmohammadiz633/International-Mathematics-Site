@@ -36,7 +36,7 @@ const SCHEMA_DATA = {
   ],
 };
 
-function IntegratedContactButtons({ lang }: { lang: string }) {
+function IntegratedContactButtons({ lang }) {
   const isFa = lang === 'fa';
 
   return (
@@ -118,7 +118,7 @@ export default function Home() {
 
   const isFa = language === 'fa';
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
