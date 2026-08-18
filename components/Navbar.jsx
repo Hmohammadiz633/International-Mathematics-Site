@@ -2,16 +2,38 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useLanguage } from '@/context/LanguageContext'; // ۱. وارد کردن هوک زبان
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { language } = useLanguage(); // ۲. خواندن زبان فعلی
+
+  // ۳. تعریف دیکشنری ترجمه‌ها
+  const translations = {
+    fa: {
+      home: 'خانه',
+      systems: 'نظام آموزشی کشورها',
+      books: 'کتب آموزشی',
+      mathSites: 'سایت‌های ریاضی',
+      contact: 'ارتباط با استاد',
+    },
+    en: {
+      home: 'Home',
+      systems: 'Educational Systems',
+      books: 'Books',
+      mathSites: 'Math Websites',
+      contact: 'Contact',
+    }
+  };
+
+  const t = translations[language]; // انتخاب ترجمه بر اساس زبان فعلی
 
   const navLinks = [
-    { name: 'خانه', href: '/' },
-    { name: 'نظام آموزشی کشورها', href: '/educational-systems' },
-    { name: 'کتب آموزشی', href: '/books' },
-    { name: 'سایت‌های ریاضی', href: '/math-sites' },
-    { name: 'ارتباط با استاد', href: '/contact' },
+    { name: t.home, href: '/' },
+    { name: t.systems, href: '/educational-systems' },
+    { name: t.books, href: '/books' },
+    { name: t.mathSites, href: '/math-sites' },
+    { name: t.contact, href: '/contact' },
   ];
 
   return (
