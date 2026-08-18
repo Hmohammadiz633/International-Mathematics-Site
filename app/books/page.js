@@ -171,7 +171,7 @@ export default function BooksPage() {
               >
                 <span>{isFa ? 'خانه' : 'Home'}</span>
               </Link>
-              <Link href="/educational-systems" className="hover:text-blue-600 whitespace-nowrap transition-colors">
+              <Link href="/educational-systems" className="text-blue-700 font-bold whitespace-nowrap transition-colors">
                 {isFa ? 'نظام آموزشی کشورها' : 'Educational Systems'}
               </Link>
               <Link href="/books" className="hover:text-blue-600 whitespace-nowrap transition-colors">
